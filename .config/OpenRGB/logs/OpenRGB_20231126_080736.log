@@ -1,0 +1,52 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20231126_080736
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+1003  |Info:    ------------------------------------------------------
+1004  |Info:    |               Start device detection               |
+1004  |Info:    ------------------------------------------------------
+1004  |Info:    Initializing HID interfaces: Success
+1014  |Info:    ------------------------------------------------------
+1014  |Info:    |             Detecting I2C interfaces               |
+1014  |Info:    ------------------------------------------------------
+1014  |Info:    Registering I2C interface: /dev/i2c-3 Device 1002:73DF Subsystem: 1043:05CB
+1015  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1015  |Info:    Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+1015  |Info:    Registering I2C interface: /dev/i2c-1 Device 0000:0000 Subsystem: 0000:0000
+1015  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1015  |Info:    Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+1015  |Info:    Registering I2C interface: /dev/i2c-6 Device 1002:73DF Subsystem: 1043:05CB
+1015  |Info:    Registering I2C interface: /dev/i2c-4 Device 1002:73DF Subsystem: 1043:05CB
+1016  |Info:    Registering I2C interface: /dev/i2c-2 Device 1002:73DF Subsystem: 1043:05CB
+1016  |Info:    Registering I2C interface: /dev/i2c-0 Device 8086:7A23 Subsystem: 1849:7A23
+1016  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1016  |Info:    Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+1017  |Info:    Registering I2C interface: /dev/i2c-7 Device 1002:73DF Subsystem: 1043:05CB
+1017  |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:73DF Subsystem: 1043:05CB
+1017  |Info:    ------------------------------------------------------
+1017  |Info:    |               Detecting I2C devices                |
+1017  |Info:    ------------------------------------------------------
+1436  |Info:    [ASUS Aura Motherboard] Registering RGB controller
+1773  |Info:    ------------------------------------------------------
+1773  |Info:    |               Detecting I2C PCI devices            |
+1773  |Info:    ------------------------------------------------------
+1774  |Info:    ------------------------------------------------------
+1774  |Info:    |               Detecting HID devices                |
+1774  |Info:    ------------------------------------------------------
+2075  |Info:    [ASRock B760M Pro RS] Registering RGB controller
+2075  |Info:    ------------------------------------------------------
+2075  |Info:    |            Detecting libusb HID devices            |
+2075  |Info:    ------------------------------------------------------
+2096  |Info:    ------------------------------------------------------
+2096  |Info:    |              Detecting other devices               |
+2096  |Info:    ------------------------------------------------------
+2103  |Info:    ------------------------------------------------------
+2103  |Info:    |                Detection completed                 |
+2103  |Info:    ------------------------------------------------------

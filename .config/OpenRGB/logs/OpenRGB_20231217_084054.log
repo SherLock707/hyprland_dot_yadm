@@ -1,0 +1,38 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20231217_084054
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+12696 |Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+12696 |Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+12696 |Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw5
+1693986|Info:    Found file: Cyan.orp attempting to validate header
+1693986|Info:    Valid v4 profile found for Cyan
+1693986|Info:    Found file: Cyan2.orp attempting to validate header
+1693986|Info:    Valid v4 profile found for Cyan2
+1693986|Info:    Found file: mag_blue.orp attempting to validate header
+1693986|Info:    Valid v4 profile found for mag_blue
+1713863|Info:    Found file: Cyan.orp attempting to validate header
+1713863|Info:    Valid v4 profile found for Cyan
+1713863|Info:    Found file: Cyan2.orp attempting to validate header
+1713863|Info:    Valid v4 profile found for Cyan2
+1713863|Info:    Found file: mag_blue.orp attempting to validate header
+1713863|Info:    Valid v4 profile found for mag_blue
+2108757|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+2108757|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+2108757|Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw5
+2145616|Info:    Found file: Cyan.orp attempting to validate header
+2145616|Info:    Valid v4 profile found for Cyan
+2145616|Info:    Found file: Cyan2.orp attempting to validate header
+2145616|Info:    Valid v4 profile found for Cyan2
+2145616|Info:    Found file: mag_blue.orp attempting to validate header
+2145616|Info:    Valid v4 profile found for mag_blue
+2146396|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+2146396|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+2146396|Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw5

@@ -1,0 +1,71 @@
+
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+// "mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 6,
+"margin-left": 8,
+"margin-right": 8,
+"reload_style_on_change": true,
+
+"modules-left": [
+	"custom/menu",
+	"custom/separator#blank_1",
+	"privacy",
+	"custom/separator#blank_1",
+	// "cava",
+	// "mpris",
+	"hyprland/window"
+	// "custom/mviz"
+	],
+
+"modules-center": [
+	"hyprland/workspaces#pacman",
+	"custom/separator#blank_1",
+	"wlr/taskbar"
+	], 
+
+"modules-right": [
+	"network#speed",
+	"custom/separator#blank_1",
+	// "custom/notification",
+	"custom/swaync",
+	"custom/pacman2",
+	// "custom/pacman",
+	"idle_inhibitor",
+	"custom/power_outage_switch",
+	"custom/separator#blank_1",
+	"group/hardware",
+	"custom/separator#blank_1",
+	"pulseaudio",
+	"custom/backlight",
+	"custom/separator#blank_1",
+	"tray",
+	"custom/weather",
+	"clock",
+	"custom/separator#blank_1",
+	"custom/lock",
+	"custom/power"
+	],
+
+	"group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+			"cpu", 
+			"temperature",
+			"memory",
+			"custom/gpu_usage",
+			"custom/gpu_temp",
+			"custom/gpu_power",
+			"custom/gpu_fan",
+			"disk"
+		]
+		}
+}

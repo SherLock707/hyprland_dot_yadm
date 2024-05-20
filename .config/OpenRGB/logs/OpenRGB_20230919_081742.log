@@ -1,0 +1,57 @@
+    OpenRGB v0.91
+    Commit: d16ec6f0b1f01827e28f699f1ad599a46e6c8419 from 2023-09-17 19:32:40 +0000
+    Launched: 20230919_081742
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+1002  |Info:    Saving detector settings
+1004  |Info:    ------------------------------------------------------
+1004  |Info:    |               Start device detection               |
+1004  |Info:    ------------------------------------------------------
+1004  |Info:    Initializing HID interfaces: Success
+1006  |Info:    ------------------------------------------------------
+1006  |Info:    |             Detecting I2C interfaces               |
+1006  |Info:    ------------------------------------------------------
+1007  |Info:    Registering I2C interface: /dev/i2c-3 Device 1002:73DF Subsystem: 1043:05CB
+1007  |Info:    Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+1007  |Info:    Registering I2C interface: /dev/i2c-1 Device 1002:73DF Subsystem: 1043:05CB
+1007  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1007  |Info:    Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+1007  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1007  |Info:    Registering I2C interface: /dev/i2c-6 Device 0000:0000 Subsystem: 0000:0000
+1007  |Info:    Registering I2C interface: /dev/i2c-4 Device 1002:73DF Subsystem: 1043:05CB
+1007  |Info:    Registering I2C interface: /dev/i2c-2 Device 1002:73DF Subsystem: 1043:05CB
+1008  |Info:    Registering I2C interface: /dev/i2c-0 Device 1002:73DF Subsystem: 1043:05CB
+1008  |Info:    Registering I2C interface: /dev/i2c-9 Device 8086:7A23 Subsystem: 1849:7A23
+1008  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1008  |Info:    Registering I2C interface: /dev/i2c-7 Device 0000:0000 Subsystem: 0000:0000
+1008  |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:73DF Subsystem: 1043:05CB
+1008  |Info:    ------------------------------------------------------
+1008  |Info:    |               Detecting I2C devices                |
+1008  |Info:    ------------------------------------------------------
+1208  |Info:    [ENE DRAM] Registering RGB controller
+1533  |Info:    ------------------------------------------------------
+1533  |Info:    |               Detecting I2C PCI devices            |
+1533  |Info:    ------------------------------------------------------
+1533  |Info:    ------------------------------------------------------
+1533  |Info:    |               Detecting HID devices                |
+1533  |Info:    ------------------------------------------------------
+1552  |Info:    [ASRock B760M Pro RS] Registering RGB controller
+1552  |Info:    ------------------------------------------------------
+1552  |Info:    |            Detecting libusb HID devices            |
+1552  |Info:    ------------------------------------------------------
+1555  |Info:    ------------------------------------------------------
+1555  |Info:    |              Detecting other devices               |
+1555  |Info:    ------------------------------------------------------
+1558  |Info:    ------------------------------------------------------
+1558  |Info:    |                Detection completed                 |
+1558  |Info:    ------------------------------------------------------
+30777 |Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-9, address 0x73
+30777 |Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+37433 |Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-9, address 0x73
+37433 |Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0

@@ -1,0 +1,35 @@
+# config_directory/config.toml
+[config]
+reload_apps = false
+set_wallpaper = false
+# wallpaper_tool = None #'Swww'
+# prefix = '@'
+# swww_options = [
+#     "--transition-type",
+#     "center",
+# ]
+# run_after = [
+#     [ "echo", "'hello'" ],
+#     [ "echo", "'hello again'" ],
+# ]
+
+[config.reload_apps_list]
+waybar = false
+kitty = false
+gtk_theme = false
+dunst = false
+
+
+# [templates.test] # First way of adding template
+# input_path = '~/.config/matugen/template.css'
+# output_path = '~/.config/matugen/template_res.css'
+
+[templates.waybar] # First way of adding template
+input_path = '~/.config/matugen/colors-waybar_template.css'
+output_path = '~/.config/matugen/colors-waybar.css'
+
+# [templates] # Another way
+# test2 = { input_path = '~/.config/matugen/template2.css', output_path = '~/.config/matugen2' }
+
+
+#matugen image /home/itachi/Pictures/wallpapers/bench_hollow_greenpath.png -m "dark" -t "scheme-expressive" --contrast 0.2

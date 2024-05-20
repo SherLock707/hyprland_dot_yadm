@@ -1,0 +1,13 @@
+    OpenRGB v0.91
+    Commit: 7d637a502d2ca0d7f32307da9ae5f26679bcf432 from 2023-10-27 17:59:41 +0200
+    Launched: 20231029_091548
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+368   |Info:    Profile loading: FAILED! for ENE DRAM @ I2C: /dev/i2c-9, address 0x73
+368   |Info:    Profile loading: FAILED! for ASRock B760M Pro RS @ HID: /dev/hidraw0

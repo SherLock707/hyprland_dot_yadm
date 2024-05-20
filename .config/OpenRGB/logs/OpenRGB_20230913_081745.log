@@ -1,0 +1,73 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20230913_081745
+====================================================================================================
+
+1001  |Info:    ------------------------------------------------------
+1001  |Info:    |               Start device detection               |
+1001  |Info:    ------------------------------------------------------
+1001  |Info:    Initializing HID interfaces: Success
+1003  |Info:    ------------------------------------------------------
+1003  |Info:    |             Detecting I2C interfaces               |
+1003  |Info:    ------------------------------------------------------
+1004  |Info:    Registering I2C interface: /dev/i2c-3 Device 1002:73DF Subsystem: 1043:05CB
+1004  |Info:    Registering I2C interface: /dev/i2c-1 Device 1002:73DF Subsystem: 1043:05CB
+1005  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1005  |Info:    Registering I2C interface: /dev/i2c-6 Device 0000:0000 Subsystem: 0000:0000
+1005  |Info:    Registering I2C interface: /dev/i2c-2 Device 1002:73DF Subsystem: 1043:05CB
+1005  |Info:    Registering I2C interface: /dev/i2c-9 Device 8086:7A23 Subsystem: 1849:7A23
+1005  |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:73DF Subsystem: 1043:05CB
+1005  |Info:    ------------------------------------------------------
+1005  |Info:    |               Detecting I2C devices                |
+1005  |Info:    ------------------------------------------------------
+1285  |Info:    ------------------------------------------------------
+1285  |Info:    |               Detecting I2C PCI devices            |
+1285  |Info:    ------------------------------------------------------
+1285  |Info:    ------------------------------------------------------
+1285  |Info:    |               Detecting HID devices                |
+1285  |Info:    ------------------------------------------------------
+1303  |Info:    [ASRock B760M Pro RS] Registering RGB controller
+1303  |Info:    ------------------------------------------------------
+1303  |Info:    |            Detecting libusb HID devices            |
+1303  |Info:    ------------------------------------------------------
+1307  |Info:    ------------------------------------------------------
+1307  |Info:    |              Detecting other devices               |
+1307  |Info:    ------------------------------------------------------
+1309  |Info:    ------------------------------------------------------
+1309  |Info:    |                Detection completed                 |
+1309  |Info:    ------------------------------------------------------
+1309  |Dialog:  <h2>WARNING:</h2><p>One or more I2C/SMBus interfaces failed to initialize.</p><p>RGB DRAM modules and some motherboards' onboard RGB lighting will not be available without I2C/SMBus.</p><p>On Linux, this is usually because the i2c-dev module is not loaded.  You must load the i2c-dev module along with the correct i2c driver for your motherboard.  This is usually i2c-piix4 for AMD systems and i2c-i801 for Intel systems.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p>
+37881 |Info:    ------------------------------------------------------
+37881 |Info:    |               Start device detection               |
+37881 |Info:    ------------------------------------------------------
+37881 |Info:    Initializing HID interfaces: Success
+37882 |Info:    ------------------------------------------------------
+37882 |Info:    |             Detecting I2C interfaces               |
+37882 |Info:    ------------------------------------------------------
+37882 |Info:    Registering I2C interface: /dev/i2c-3 Device 1002:73DF Subsystem: 1043:05CB
+37882 |Info:    Registering I2C interface: /dev/i2c-1 Device 1002:73DF Subsystem: 1043:05CB
+37883 |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+37883 |Info:    Registering I2C interface: /dev/i2c-6 Device 0000:0000 Subsystem: 0000:0000
+37883 |Info:    Registering I2C interface: /dev/i2c-2 Device 1002:73DF Subsystem: 1043:05CB
+37883 |Info:    Registering I2C interface: /dev/i2c-9 Device 8086:7A23 Subsystem: 1849:7A23
+37883 |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:73DF Subsystem: 1043:05CB
+37883 |Info:    ------------------------------------------------------
+37883 |Info:    |               Detecting I2C devices                |
+37883 |Info:    ------------------------------------------------------
+38164 |Info:    ------------------------------------------------------
+38164 |Info:    |               Detecting I2C PCI devices            |
+38164 |Info:    ------------------------------------------------------
+38167 |Info:    ------------------------------------------------------
+38167 |Info:    |               Detecting HID devices                |
+38167 |Info:    ------------------------------------------------------
+38184 |Info:    [ASRock B760M Pro RS] Registering RGB controller
+38184 |Info:    ------------------------------------------------------
+38184 |Info:    |            Detecting libusb HID devices            |
+38184 |Info:    ------------------------------------------------------
+38186 |Info:    ------------------------------------------------------
+38186 |Info:    |              Detecting other devices               |
+38186 |Info:    ------------------------------------------------------
+38188 |Info:    ------------------------------------------------------
+38188 |Info:    |                Detection completed                 |
+38188 |Info:    ------------------------------------------------------
+38188 |Dialog:  <h2>WARNING:</h2><p>One or more I2C/SMBus interfaces failed to initialize.</p><p>RGB DRAM modules and some motherboards' onboard RGB lighting will not be available without I2C/SMBus.</p><p>On Linux, this is usually because the i2c-dev module is not loaded.  You must load the i2c-dev module along with the correct i2c driver for your motherboard.  This is usually i2c-piix4 for AMD systems and i2c-i801 for Intel systems.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p>

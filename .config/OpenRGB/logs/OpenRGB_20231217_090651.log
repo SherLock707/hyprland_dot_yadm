@@ -1,0 +1,56 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20231217_090651
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+8826  |Info:    ------------------------------------------------------
+8826  |Info:    |               Start device detection               |
+8826  |Info:    ------------------------------------------------------
+8827  |Info:    Initializing HID interfaces: Success
+8839  |Info:    ------------------------------------------------------
+8839  |Info:    |             Detecting I2C interfaces               |
+8839  |Info:    ------------------------------------------------------
+8839  |Info:    Registering I2C interface: /dev/i2c-3 Device 1002:73DF Subsystem: 1043:05CB
+8839  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+8839  |Info:    Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+8839  |Info:    Registering I2C interface: /dev/i2c-1 Device 0000:0000 Subsystem: 0000:0000
+8840  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+8840  |Info:    Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+8840  |Info:    Registering I2C interface: /dev/i2c-6 Device 1002:73DF Subsystem: 1043:05CB
+8840  |Info:    Registering I2C interface: /dev/i2c-4 Device 1002:73DF Subsystem: 1043:05CB
+8840  |Info:    Registering I2C interface: /dev/i2c-2 Device 1002:73DF Subsystem: 1043:05CB
+8840  |Info:    Registering I2C interface: /dev/i2c-0 Device 8086:7A23 Subsystem: 1849:7A23
+8841  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+8841  |Info:    Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+8841  |Info:    Registering I2C interface: /dev/i2c-7 Device 1002:73DF Subsystem: 1043:05CB
+8841  |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:73DF Subsystem: 1043:05CB
+8841  |Info:    ------------------------------------------------------
+8841  |Info:    |               Detecting I2C devices                |
+8841  |Info:    ------------------------------------------------------
+9052  |Info:    [ENE DRAM] Registering RGB controller
+9383  |Info:    ------------------------------------------------------
+9383  |Info:    |               Detecting I2C PCI devices            |
+9383  |Info:    ------------------------------------------------------
+9384  |Info:    ------------------------------------------------------
+9384  |Info:    |               Detecting HID devices                |
+9384  |Info:    ------------------------------------------------------
+9402  |Info:    [ASRock B760M Pro RS] Registering RGB controller
+9413  |Info:    [Razer Basilisk V3] Registering RGB controller
+9414  |Info:    ------------------------------------------------------
+9414  |Info:    |            Detecting libusb HID devices            |
+9414  |Info:    ------------------------------------------------------
+9435  |Info:    ------------------------------------------------------
+9435  |Info:    |              Detecting other devices               |
+9435  |Info:    ------------------------------------------------------
+9449  |Info:    ------------------------------------------------------
+9449  |Info:    |                Detection completed                 |
+9449  |Info:    ------------------------------------------------------
+9449  |Info:    Profile loading: FAILED! for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+9449  |Info:    Profile loading: FAILED! for ASRock B760M Pro RS @ HID: /dev/hidraw0
+9449  |Info:    Profile loading: FAILED! for Razer Basilisk V3 @ HID: /dev/hidraw5

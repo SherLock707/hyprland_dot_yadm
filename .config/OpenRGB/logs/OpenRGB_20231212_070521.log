@@ -1,0 +1,32 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20231212_070521
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2
+0     |Info:    Found file: mag_blue.orp attempting to validate header
+0     |Info:    Valid v4 profile found for mag_blue
+153777|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+153778|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+153778|Info:    Profile loading: FAILED! for Razer Basilisk V3 @ HID: /dev/hidraw5
+165563|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+165563|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+165563|Info:    Profile loading: FAILED! for Razer Basilisk V3 @ HID: /dev/hidraw5
+168125|Info:    Found file: Cyan.orp attempting to validate header
+168125|Info:    Valid v4 profile found for Cyan
+168125|Info:    Found file: Cyan2.orp attempting to validate header
+168125|Info:    Valid v4 profile found for Cyan2
+168125|Info:    Found file: mag_blue.orp attempting to validate header
+168125|Info:    Valid v4 profile found for mag_blue
+184943|Info:    Found file: Cyan.orp attempting to validate header
+184943|Info:    Valid v4 profile found for Cyan
+184943|Info:    Found file: Cyan2.orp attempting to validate header
+184943|Info:    Valid v4 profile found for Cyan2
+184943|Info:    Found file: mag_blue.orp attempting to validate header
+184943|Info:    Valid v4 profile found for mag_blue
+186529|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+186529|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+186529|Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw5

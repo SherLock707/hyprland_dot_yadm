@@ -1,0 +1,8 @@
+plugins = [
+    # Installs the plugin from https://github.com/hyprland-community/hyprland-autoname-workspaces
+    "hyprland-autoname-workspaces",
+    # A more explicit definition of the git install
+    { git = "https://github.com/hyprland-community/hyprland-autoname-workspaces", branch = "main", name = "hyprland-autoname-workspaces" },
+    # Installs the same plugin from a local folder
+    # { local = "/home/duckonaut/repos/split-monitor-workspaces" },
+]

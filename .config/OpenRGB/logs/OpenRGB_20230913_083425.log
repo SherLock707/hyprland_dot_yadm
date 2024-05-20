@@ -1,0 +1,9 @@
+    OpenRGB v0.91
+    Commit: 1fbbbb00ba8bef038b287c9e06c9124af991d9dc from 2023-09-12 18:39:53 -0500
+    Launched: 20230913_083425
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan2

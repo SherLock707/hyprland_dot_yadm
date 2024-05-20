@@ -1,0 +1,30 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 2,
+                "code": 6,
+                "origin_hash": "6a76ddc1f522e52d75d6504f361b0c79",
+                "analog_threshold": -1
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KEY_LEFTALT +KEY_LEFT ",
+        "name": "Wheel Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 2,
+                "code": 6,
+                "origin_hash": "6a76ddc1f522e52d75d6504f361b0c79",
+                "analog_threshold": 1
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "KEY_LEFTALT + KEY_RIGHT  ",
+        "name": "Wheel Right",
+        "mapping_type": "key_macro"
+    }
+]

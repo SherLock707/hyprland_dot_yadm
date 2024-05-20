@@ -1,0 +1,14 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20240222_221836
+====================================================================================================
+
+0     |Info:    Found file: Cyan.orp attempting to validate header
+0     |Info:    Valid v4 profile found for Cyan
+0     |Info:    Found file: Cyan2.orp attempting to validate header
+2     |Info:    Valid v4 profile found for Cyan2
+2     |Info:    Found file: mag_blue.orp attempting to validate header
+2     |Info:    Valid v4 profile found for mag_blue
+457   |Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-0, address 0x73
+457   |Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw0
+457   |Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw7

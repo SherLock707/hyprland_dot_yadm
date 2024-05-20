@@ -1,0 +1,15 @@
+#
+# Recolor mode settings
+#
+
+set recolor-lightcolor          "#000000" # Background
+set recolor-darkcolor           "#ffffff" # Foreground
+
+#
+# Startup options
+#
+set smooth-scroll true
+set adjust-open width
+set recolor true
+
+set guioptions ""

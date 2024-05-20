@@ -1,0 +1,208 @@
+// Load with --load-config examples/2.jsonc
+// Note that you must replace the image path to an existing image to display it.
+
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    // "logo": {
+    //     "type": "sixel",
+    //     "source": "/home/itachi/.config/fastfetch/joi.png",
+    //     "width": 40,
+    //     "height": 13,
+    //     "padding": {
+    //         "top": 3,
+    //         "left": 2,
+    //         "right": 2
+    //     }
+    "logo": {
+        "type": "raw",
+        "source": "/home/itachi/.config/fastfetch/assets/hollow_samurai_fastfetch.sixel",
+        "width": 32,
+        "height": 17,
+        "padding": {
+            "top": 2,
+            "left": 1,
+            "right": 1
+        }
+    },
+    "display": {
+        "separator": "  ",
+        "size": {
+            "ndigits": 0,
+            "maxPrefix": "MB"
+        },
+        "bar": {
+            "charElapsed": "=",
+            "charTotal": "-",
+            "width": 13
+        },
+        "disableLinewrap": true,
+        "brightColor": true
+    },
+    "modules": [
+        {
+            "type": "title", // HardwareStart
+            "format": "┌─────────── \u001b[1m{1}@{2}\u001b[0m ─────────┐" // `\u001b` is `\033`, or `\e`
+        },
+        // {
+        //     "type": "custom2",
+        //     "key": " ",
+        //     "format": "\u001b[31m███\u001b[32m███\u001b[33m███\u001b[34m███\u001b[35m███\u001b[36m███"
+        // },
+        {
+            "type": "cpu",
+            "keyColor": "bright_cyan",
+            "format": "{1}",
+            "key": "  󰍛"
+        },
+        {
+            "type": "gpu",
+            "keyColor": "bright_cyan",
+            "key": "  󰾲"
+        },
+        // {
+        //     "type": "disk",
+        //     "key": "  "
+        // },
+        {
+            "type": "memory",
+            "keyColor": "bright_cyan",
+            "key": "  󰑭"
+        },
+        // {
+        //     "type": "swap",
+        //     "key": "  󰓡"
+        // },
+        {
+            "type": "display",
+            "keyColor": "bright_cyan",
+            "key": "  󰍹"
+        },
+        // {
+        //     "type": "brightness",
+        //     "key": "  󰃞"
+        // },
+        // {
+        //     "type": "battery",
+        //     "key": "  "
+        // },
+        // {
+        //     "type": "poweradapter",
+        //     "key": "  "
+        // },
+        // {
+        //     "type": "bluetooth",
+        //     "key": "  "
+        // },
+        // {
+        //     "type": "sound",
+        //     "key": "  "
+        // },
+        // {
+        //     "type": "gamepad",
+        //     "key": "  "
+        // },
+        {
+            "type": "custom", // SoftwareStart
+            "format": "├──────────────────── \u001b[1m󰍹 \u001b[0m ──────────────────┤"
+        },
+        // {
+        //     "type": "title",
+        //     "key": "  ",
+        //     "format": "{1}@{2}"
+        // },
+        {
+            "type": "os",
+            "key": "  "
+        },
+        {
+            "type": "kernel",
+            "key": "  ",
+            "format": "{1} {2}"
+        },
+        {
+            "type": "wm",
+            "key": "  "
+        },
+        {
+            "type": "de",
+            "key": "  "
+        },
+        {
+            "type": "terminal",
+            "key": "  "
+        },
+        {
+            "type": "shell",
+            "key": "  "
+        },
+        {
+            "type": "lm",
+            "key": "  󰧨"
+        },
+        {
+            "type": "custom", // SoftwareStart
+            "format": "├──────────────────── \u001b[1m \u001b[0m ──────────────────┤"
+        },
+        {
+            "type": "terminalfont",
+            "keyColor": "bright_magenta",
+            "key": "  "
+        },
+        {
+            "type": "theme",
+            "key": "  󰉼",
+            "keyColor": "bright_magenta",
+            "format": "Catppuccin-Mauve [GTK2/3/4]"
+        },
+        {
+            "type": "icons",
+            "keyColor": "bright_magenta",
+            "key": "  󰀻"
+        },
+        // {
+        //     "type": "wallpaper",
+        //     "key": "  󰸉"
+        // },
+        {
+            "type": "packages",
+            "keyColor": "bright_magenta",
+            "key": "  󰏖"
+        },
+        {
+            "type": "uptime",
+            "keyColor": "bright_magenta",
+            "key": "  󰅐"
+        },
+        // {
+        //     "type": "media",
+        //     "key": "  󰝚"
+        // },
+        // {
+        //     "type": "localip",
+        //     "key": "  󰩟",
+        //     "compact": true
+        // },
+        // {
+        //     "type": "publicip",
+        //     "key": "  󰩠"
+        // },
+        // {
+        //     "type": "wifi",
+        //     "key": "  ",
+        //     "format": "{4}" // ssid
+        // },
+        // {
+        //     "type": "locale",
+        //     "key": "  "
+        // },
+        {
+            "type": "custom", // InformationEnd
+            "format": "└──────────────────────────────────────────┘"
+        },
+        {
+            "type": "colors",
+            "paddingLeft": 2,
+            "symbol": "circle",
+        }
+    ]
+}
