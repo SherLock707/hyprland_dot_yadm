@@ -1,0 +1,19 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
+#
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
+UUID=9907-595B                            /boot/efi      vfat    defaults,noatime 0 2
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /              btrfs   subvol=/@,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /home          btrfs   subvol=/@home,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /root          btrfs   subvol=/@root,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /srv           btrfs   subvol=/@srv,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /var/cache     btrfs   subvol=/@cache,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /var/log       btrfs   subvol=/@log,defaults,noatime,compress=zstd 0 0
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /var/tmp       btrfs   subvol=/@tmp,defaults,noatime,compress=zstd 0 0
+tmpfs                                     /tmp           tmpfs   defaults,noatime,mode=1777 0 0
+UUID=500ad0aa-adca-4716-9ea5-1f69eb7fa7c7 /run/media/itachi/DATA_NVME ext4 defaults,x-gvfs-name=DATA_NVME 0 2
+UUID=1de989da-4964-4cf5-9711-f9e671ce41a7 /run/media/itachi/DATA_SATA ext4 defaults,x-gvfs-name=DATA_SATA 0 2
+UUID=ac318953-0c56-4733-8145-0bf7bedb49f4 /run/media/itachi/DATA_SATA_4TB ext4 defaults,x-gvfs-name=DATA_SATA_4TB 0 2

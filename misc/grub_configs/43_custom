@@ -1,0 +1,19 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+
+menuentry 'Garuda Hyprland' --class hyprland --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-e1f650a2-e001-45d0-b834-63b552578c79' {
+	load_video
+	set gfxpayload=keep
+	insmod gzio
+	insmod part_gpt
+	insmod btrfs
+	search --no-floppy --fs-uuid --set=root e1f650a2-e001-45d0-b834-63b552578c79
+	echo    'Loading Linux linux-zen ...'
+	linux   /@/boot/vmlinuz-linux-zen root=UUID=e1f650a2-e001-45d0-b834-63b552578c79 rw rootflags=subvol=@  quiet split_lock_detect=off loglevel=3 ibt=off
+	echo    'Loading initial ramdisk ...'
+	initrd  /@/boot/intel-ucode.img /@/boot/initramfs-linux-zen.img
+}
