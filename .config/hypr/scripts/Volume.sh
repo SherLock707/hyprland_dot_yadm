@@ -35,6 +35,7 @@ notify_user() {
     if [[ "$(get_volume)" == "Muted" ]]; then
         # dunstify -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume: Muted"
         notify-send -e  -a volume  -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: Muted"
+        echo
     else
         # dunstify -h int:value:"$(get_volume | sed 's/%//')" -h string:x-dunst-stack-tag:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
         play -q "$sDIR/audio-volume-change.oga" &
@@ -55,6 +56,7 @@ inc_volume() {
         pamixer -u && notify_user
     fi
     pamixer -i 2 && notify_user
+    # swayosd-client --output-volume +2 & notify_user
 
     touch "$UP_FILE" &
     # notify-send "Creating PID file. $(get_volume)"
@@ -73,6 +75,7 @@ dec_volume() {
         pamixer -u && notify_user
     fi
     pamixer -d 2 && notify_user
+    # swayosd-client --output-volume -2 && notify_user
 
     touch "$DOWN_FILE" &
     # notify-send "Creating PID file. $(get_volume)"
@@ -80,6 +83,7 @@ dec_volume() {
 
 # Toggle Mute
 toggle_mute() {
+    # swayosd-client --output-volume mute-toggle
 	if [ "$(pamixer --get-mute)" == "false" ]; then
 		pamixer -m && notify-send -e -a volume -h string:x-canonical-private-synchronous:volume_notif -u low -i "$iDIR/volume-mute.png" "Volume Switched OFF"
 	elif [ "$(pamixer --get-mute)" == "true" ]; then
