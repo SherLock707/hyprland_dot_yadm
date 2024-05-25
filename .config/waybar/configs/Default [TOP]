@@ -19,6 +19,7 @@
 	"custom/menu",
 	"custom/separator#blank_1",
 	"privacy",
+	"gamemode",
 	"custom/separator#blank_1",
 	// "cava",
 	// "mpris",
@@ -57,6 +58,10 @@
 
 	"group/hardware": {
 		"orientation": "horizontal",
+		// "drawer": {
+		// 	"transition-duration": 500,
+		// 	"transition-left-to-right": true,
+		// },
 		"modules": [
 			"cpu", 
 			"temperature",

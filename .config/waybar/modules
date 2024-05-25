@@ -791,6 +791,18 @@
                        }
         },
 
+      "gamemode": {
+        "format": "{glyph}",
+        "format-alt": "{glyph}{count}",
+        "glyph": "󰊗 ",
+        "hide-not-running": true,
+        "use-icon": false,
+        "icon-spacing": 4,
+        "icon-size": 20,
+        "tooltip": true,
+        "tooltip-format": "Games running: {count}"
+    },
+
   }
   
   

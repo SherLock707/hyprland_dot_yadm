@@ -48,4 +48,4 @@ fi
 
 main
 
-~/.config/hypr/scripts/Refresh.sh &
+~/.config/hypr/scripts/Refresh_with_waybar.sh &

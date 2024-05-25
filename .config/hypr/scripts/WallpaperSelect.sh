@@ -69,11 +69,11 @@ main() {
   fi
 }
 
-# # Check if rofi is already running
-# if pidof rofi > /dev/null; then
-#   pkill rofi
-#   exit 0
-# fi
+# Check if rofi is already running
+if pidof rofi > /dev/null; then
+  pkill rofi
+  exit 0
+fi
 
 main
 

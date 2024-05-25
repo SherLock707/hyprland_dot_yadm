@@ -6,7 +6,7 @@ RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 # swww query || swww init
 swww query || swww-daemon --format xrgb
-swww img ${RANDOMPICS} --transition-fps 30 --transition-type any --transition-duration 3
+swww img ${RANDOMPICS} --transition-fps 60 --transition-type any --transition-duration 3
 
 # exec $HOME/.config/hypr/scripts/PywalSwww.sh &
 sleep 1

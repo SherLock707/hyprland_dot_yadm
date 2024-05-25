@@ -170,6 +170,7 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #privacy,
+#gamemode,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);

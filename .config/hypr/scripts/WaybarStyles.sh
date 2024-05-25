@@ -37,7 +37,7 @@ main() {
     done
 
     # Launch Refresh.sh in the background
-    ~/.config/hypr/scripts/Refresh.sh &
+    ~/.config/hypr/scripts/Refresh_with_waybar.sh &
 }
 
 # Check if rofi is already running
