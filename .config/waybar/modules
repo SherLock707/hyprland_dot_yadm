@@ -313,10 +313,11 @@
     "offscreen-css" : true,
     "offscreen-css-text": "(inactive)",
      "rewrite": {
-          "(.*) — Mozilla Firefox": " $1",
+          "(.*) Brave": "<span font=\"Font Awesome 5 Free\"> </span> $1",
           "(.*) - fish": "> [$1]",
-      "(.*) - zsh": "> [$1]",
-      "(.*) - kitty": "> [$1]",
+      "(.*)mpv": "  [$1]",
+      "(.*)foot": "  [$1]",
+      "(.*)~": "  $1",
     },
   },
   
