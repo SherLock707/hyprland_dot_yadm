@@ -1,4 +1,4 @@
-@import '../../.cache/wal/colors-waybar.css';
+@import '../waybar/color/colors-waybar.css';
 
 /* @define-color foreground rgb(248, 248, 242);
 @define-color background @color1; */

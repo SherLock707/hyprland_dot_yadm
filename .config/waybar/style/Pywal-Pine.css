@@ -1,7 +1,7 @@
 
 /* Rose Pine */
 
-@import '../../.cache/wal/colors-waybar.css';
+@import 'color/colors-waybar.css';
 
 @define-color bar-bg rgba(0, 0, 0, 0);
 @define-color main-bg #26233a;

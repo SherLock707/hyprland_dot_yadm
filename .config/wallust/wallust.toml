@@ -1,6 +1,9 @@
 # wallust 3.0 beta.*
 
+# `full`, `resized`, `wal`, `thumb`, `fastresize`, `kmeans
 backend = "wal"
+
+# `lab`, `labmixed`, `lch`, `lchmixed`, `lchansi`
 color_space = "lch"
 
 # NOTE: All filters will fill 16 colors (from color0 to color15), 16 color
@@ -18,7 +21,6 @@ color_space = "lch"
 #  * softlight   - Light with soft pastel colors, counterpart of `harddark`
 #  * softlight16 - softlight with 16 color variation
 palette = "dark16"
-# saturate = 1.0
 
 # Difference between similar colors, used by the colorspace:
 #  1          Not perceptible by human eyes.
@@ -29,32 +31,26 @@ palette = "dark16"
 threshold = 10
 
 [templates]
-# cava.template = 'templates/colors-cava'
-# cava.target = '~/.config/cava/config'
+cava.template = 'templates/colors-cava'
+cava.target = '~/.config/cava/config'
 
-# hypr.template = 'templates/colors-hyprland.conf'
-# hypr.target = '~/.config/hypr/wallust/wallust-hyprland.conf'
+hypr.template = 'templates/colors-hyprland.conf'
+hypr.target = '~/.config/hypr/color/wallust-hyprland.conf'
 
-# rofi.template = 'templates/colors-rofi.rasi'
-# rofi.target = '~/.config/rofi/wallust/colors-rofi.rasi'
+rofi.template = 'templates/colors-rofi.rasi'
+rofi.target = '~/.config/rofi/color/colors-rofi.rasi'
 
-# waybar.template = 'templates/colors-waybar.css'
-# waybar.target = '~/.config/waybar/wallust/colors-waybar.css'
+waybar.template = 'templates/colors-waybar.css'
+waybar.target = '~/.config/waybar/color/colors-waybar.css'
 
 #kitty.template = 'templates/colors-kitty.conf'
 #kitty.target = '~/.config/kitty/kitty.conf'
 
-#swaync.template = 'templates/colors-swaync.css'
-#swaync.target = '~/.config/swaync/wallust/colors-wallust.css'
+swaync.template = 'templates/colors-swaync.css'
+swaync.target = '~/.config/swaync/color/colors-wallust.css'
 
-#macchina.template = 'templates/colors-macchina.toml'
-#macchina.target = '~/.config/macchina/themes/wallust.toml'
+zathura.template = 'templates/colors-zathura'
+zathura.target = '~/.config/zathura/zathurarc'
 
-#wezterm.template = 'templates/colors-wezterm.toml'
-#wezterm.target = '~/.config/wezterm/colors/wallust.toml'
-
-#zathura.template = 'templates/colors-zathura'
-#zathura.target = '~/.config/zathura/zathurarc'
-
-waybar.template = 'templates/colors-waybar.css'
-waybar.target = '~/.config/wallust/test/colors-waybar.css'
+icon_color.template = 'templates/colors-icons'
+icon_color.target = '~/.config/waybar/color/colors-icons'
