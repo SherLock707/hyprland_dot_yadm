@@ -1,14 +1,7 @@
 @import '../waybar/color/colors-waybar.css';
 
-/* @define-color foreground rgb(248, 248, 242);
-@define-color background @color1; */
-/* @define-color background rgb(40, 42, 54); */
-/* @define-color background-alpha rgba(40, 42, 54, 0.8); */
 @define-color accent @color7;
 @define-color accent2 @color13;
-/* @define-color accent rgba(189, 147, 249, 0.8); */
-/* @define-color current-line rgb(68, 71, 90); */
-/* @define-color comment rgb(98, 114, 164); */
 
 @define-color cc-bg rgba(26, 27, 38, 1);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
@@ -81,7 +74,7 @@
 .notification-action {
   border-radius: 5px;
   background: linear-gradient(
-    45deg,
+    90deg,
     /* rgba(164, 89, 235, 0.8), */
     @accent,
     @accent2

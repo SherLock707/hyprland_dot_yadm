@@ -2,7 +2,7 @@
   all: unset;
 }
 
-@import '../../../.cache/wal/colors-waybar.css';
+@import '../../waybar/color/colors-waybar.css';
 /* @import '../../../.cache/wal/colors-waybar-rgba.css'; */
 
 
@@ -138,7 +138,7 @@ widget {
   background-image: url('../../rofi/.current_wallpaper');
   background-size: cover;
   background-position: center;
-  border: 0.068rem solid alpha(@color4, 0.5);
+  border: 0.068rem solid alpha(@color6, 0.5);
 }
 
 .overview-tasks-workspace-number {
