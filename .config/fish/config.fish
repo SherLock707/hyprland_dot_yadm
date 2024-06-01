@@ -191,6 +191,7 @@ set EDITOR /usr/bin/vscodium
 # end
 
 if [ $TERM = foot ]
+  ~/.config/fastfetch/assets/buildin-art.sh
   fastfetch --load-config ~/.config/fastfetch/foot.jsonc
 else if [ $TERM = xterm-kitty ]
   fastfetch --load-config ~/.config/fastfetch/kitty.jsonc

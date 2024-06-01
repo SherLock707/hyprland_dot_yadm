@@ -49,8 +49,8 @@ waybar.target = '~/.config/waybar/color/colors-waybar.css'
 swaync.template = 'templates/colors-swaync.css'
 swaync.target = '~/.config/swaync/color/colors-wallust.css'
 
-zathura.template = 'templates/colors-zathura'
-zathura.target = '~/.config/zathura/zathurarc'
+# zathura.template = 'templates/colors-zathura'
+# zathura.target = '~/.config/zathura/zathurarc'
 
 icon_color.template = 'templates/colors-icons'
 icon_color.target = '~/.config/waybar/color/colors-icons'
