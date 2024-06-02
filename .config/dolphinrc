@@ -17,7 +17,7 @@ Version=202
 ViewPropsTimestamp=2023,12,28,21,28,40.404
 
 [KFileDialog Settings]
-Places Icons Auto-resize=false
+Places Icons Auto-resize=true
 Places Icons Static Size=22
 Recent Files[$e]=file:$HOME
 Recent URLs[$e]=file:///run/media/itachi/DATA_SATA_4TB/Downloads/,file:///run/media/itachi/DATA_SATA_4TB/Downloads/Devine/,file:///run/media/itachi/DATA_SATA_4TB/Downloads/last_case/,file:///run/media/itachi/DATA_SATA_4TB/Downloads/anomoly_loop/
@@ -29,6 +29,12 @@ detailViewIconSize=16
 [MainWindow]
 MenuBar=Disabled
 ToolBarsMovable=Disabled
+
+[MainWindow][Toolbar mainToolBar]
+ToolButtonStyle=IconOnly
+
+[PlacesPanel]
+IconSize=-1
 
 [PreviewSettings]
 Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
