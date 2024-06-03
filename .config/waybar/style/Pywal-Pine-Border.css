@@ -171,6 +171,10 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #privacy,
 #gamemode,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-calculator,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);

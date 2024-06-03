@@ -18,6 +18,8 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_1",
+	"group/tools",
+	"custom/separator#blank_1",
 	"privacy",
 	"gamemode",
 	"custom/separator#blank_1",
@@ -72,5 +74,23 @@
 			"custom/gpu_fan",
 			"disk"
 		]
-		}
+	},
+
+	"group/tools":{
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true
+		},
+		"modules":[
+			"custom/chatgpt",
+			"custom/separator#blank_1",
+			"custom/gemini",
+			"custom/separator#blank_1",
+			"custom/calculator",
+			"custom/separator#blank_1",
+			"custom/ytmusic"
+		]
+	}
+
 }

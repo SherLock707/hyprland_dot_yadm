@@ -31,8 +31,8 @@ palette = "dark16"
 threshold = 10
 
 [templates]
-cava.template = 'templates/colors-cava'
-cava.target = '~/.config/cava/config'
+# cava.template = 'templates/colors-cava'
+# cava.target = '~/.config/cava/config'
 
 hypr.template = 'templates/colors-hyprland.conf'
 hypr.target = '~/.config/hypr/color/wallust-hyprland.conf'
