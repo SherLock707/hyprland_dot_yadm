@@ -4,10 +4,10 @@
 file_path="$HOME/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-Mauve-pywal.svg"
 
 # Define the colors file path
-colors_file="$HOME/.cache/wal/colors"
+colors_file="$HOME/.config/waybar/color/colors-icons"
 
 # Read the new color from the 7th line of the colors file
-new_color=$(sed '9q;d' "$colors_file")
+new_color=$(cat "$colors_file")
 
 # Define the pattern for the old color line
 color_line_pattern="<!--PYWAL\[#.{6}\] -->"

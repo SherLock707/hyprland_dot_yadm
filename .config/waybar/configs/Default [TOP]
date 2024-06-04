@@ -3,7 +3,6 @@
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
-// "mode": "dock",
 "exclusive": true,
 "passthrough": false,
 "position": "top",
@@ -18,6 +17,8 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_1",
+	"wlr/taskbar",
+	"custom/separator#blank_1",
 	"group/tools",
 	"custom/separator#blank_1",
 	"privacy",
@@ -30,9 +31,9 @@
 	],
 
 "modules-center": [
-	"hyprland/workspaces#pacman",
-	"custom/separator#blank_1",
-	"wlr/taskbar"
+	"hyprland/workspaces#pacman"
+	// "custom/separator#blank_1",
+	// "wlr/taskbar"
 	], 
 
 "modules-right": [
