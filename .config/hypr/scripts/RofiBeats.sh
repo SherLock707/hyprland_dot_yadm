@@ -15,6 +15,7 @@ declare -A menu_options=(
   ["Relaxing Music ☕️🎶"]="https://youtube.com/playlist?list=PLMIbmfP_9vb8BCxRoraJpoo4q1yMFg4CE"
   ["Doja Cat - Agora Hills 💃🎶"]="https://www.youtube.com/playlist?list=PLl2G65bbMeeXLM5xu9lavnk1jbsAIhnr6"
   ["Cannons - Golden cover 💃🎶"]="https://www.youtube.com/watch?v=ZznBYOeDmug"
+  ["Home - Decay 💃🎶"]="https://www.youtube.com/watch?v=fcRkfmjBFCM"
 )
 
 # Function for displaying notifications

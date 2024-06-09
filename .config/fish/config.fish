@@ -111,6 +111,13 @@ function cleanup
     end
 end
 
+#enable_transience
+# function starship_transient_prompt_func
+#   starship module character
+# end
+# enable_transience
+
+
 # abbr
 abbr u 'update'
 abbr ua 'update --noconfirm'
@@ -199,3 +206,4 @@ else if [ $TERM = xterm-kitty ]
 #   fastfetch --load-config ~/.config/fastfetch/2.jsonc
 
 end
+

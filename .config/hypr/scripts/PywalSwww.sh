@@ -27,7 +27,7 @@ done
 
 # execute pywal skipping tty and terminal
 # wal -i $wallpaper_path -s -t
- wallust run "$wallpaper_path" -s
+wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
 #Update icon colours

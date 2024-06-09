@@ -28,7 +28,7 @@
         "separator": "  ",
         "size": {
             "ndigits": 0,
-            "maxPrefix": "MB"
+            "maxPrefix": "GB"
         },
         "bar": {
             "charElapsed": "=",
@@ -69,6 +69,13 @@
             "keyColor": "bright_cyan",
             "key": "  󰑭"
         },
+        {
+            "type": "disk",
+            "folders": "/", // Use "/System/Volumes/VM" or something else on macOS
+            "format": "",
+            "key": "  󱛟",
+            "keyColor": "bright_cyan"
+        },
         // {
         //     "type": "swap",
         //     "key": "  󰓡"
@@ -78,6 +85,11 @@
             "keyColor": "bright_cyan",
             "key": "  󰍹"
         },
+        // {
+        //     "type": "chassis",
+        //     "key": "COMPUTER TYPE",
+        //     "keyColor": "green"
+        // },
         // {
         //     "type": "brightness",
         //     "key": "  󰃞"
@@ -185,7 +197,7 @@
         //     "type": "theme",
         //     "key": "  󰉼",
         //     "keyColor": "bright_magenta",
-        //     // "format": "Catppuccin-Mauve [GTK2/3/4]"
+        //     "format": "{3}"
         // },
         {
             "type": "command",
@@ -202,6 +214,11 @@
         //     "type": "wallpaper",
         //     "key": "  󰸉"
         // },
+        {
+            "type": "cursor",
+            "key": "  󰆿",
+            "keyColor": "bright_magenta"
+        },
         {
             "type": "packages",
             "keyColor": "bright_magenta",

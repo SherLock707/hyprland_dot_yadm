@@ -48,6 +48,11 @@ main() {
   # Random choice case
   if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
     swww img "${wallDIR}/${RANDOM_PIC}" $SWWW_PARAMS
+    # exit 0
+    sleep 0.5
+    ${SCRIPTSDIR}/PywalSwww.sh
+    sleep 0.2
+    ${SCRIPTSDIR}/Refresh.sh
     exit 0
   fi
 

@@ -160,6 +160,47 @@
       "default": "",
     },
   },
+  // NUMBERS and ICONS style with window rewrite
+"hyprland/workspaces#rw": {
+	"disable-scroll": true,
+	"all-outputs": true,
+	"warp-on-scroll": false,
+	"sort-by-number": true,
+	"show-special": false,
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"format": "{icon} ({windows})",
+	"format-window-separator": "",
+	"window-rewrite-default": " ",
+	"window-rewrite": {
+		// "title<.*youtube.*>": " ",
+		// "title<.*reddit.*>": " ",
+		"title<.*Picture-in-Picture.*>": " ",
+		"class<*.brave.*>": "<span font=\"Font Awesome 5 Free\"> </span> ",
+		"class<kitty>": " ",
+		"class<konsole>": " ",
+		"class<foot>": " ",
+		"class<lutris>": "󰺷 ",
+		"class<Gimp-.*>": " ",
+		"class<thunar>": "󰝰 ",
+		"class<org.kde.dolphin>": "󰝰 ",
+		"class<subl>": "󰅳 ",
+		"class<celluloid>": " ",
+		"class<code-oss>": "󰨞 ",
+		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
+		"class<mousepad>": " ",
+		"class<libreoffice-writer>": " ",
+		"class<libreoffice-startcenter>": "󰏆 "
+		},
+    // "format-icons": {
+    //   "active": " 󰮯 ",
+    //   "default": "󰊠",
+    //   "persistent": "󰊠",
+    //   "empty": "󱙝",
+    //   "special": "",
+    // },
+},
   // GROUP
   "group/motherboard": {
     "orientation": "horizontal",
@@ -266,7 +307,7 @@
       "on-scroll": 1,
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        // "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
@@ -511,7 +552,7 @@
     "tooltip": false,
   },
   "custom/lock": {
-    "format": "",
+    "format": " ",
     "on-click": "~/.config/hypr/scripts/LockScreen.sh",
     "tooltip": false,
   },
@@ -831,6 +872,11 @@
     "on-click": "qalculate-gtk",
     "tooltip": false
 },
-
+"custom/hyprshade": {
+    "format": "󰖔 ",
+    "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
+    "tooltip": true,
+    "tooltip-format": "hyprshade current",
+},
 
 }

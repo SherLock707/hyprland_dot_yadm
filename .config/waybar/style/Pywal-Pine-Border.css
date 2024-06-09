@@ -176,6 +176,7 @@ tooltip {
 #custom-gemini,
 #custom-ytmusic,
 #custom-calculator,
+#custom-hyprshade,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);

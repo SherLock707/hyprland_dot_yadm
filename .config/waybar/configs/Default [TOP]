@@ -34,6 +34,7 @@
 	"hyprland/workspaces#pacman"
 	// "custom/separator#blank_1",
 	// "wlr/taskbar"
+	// "hyprland/workspaces#rw"
 	], 
 
 "modules-right": [
@@ -50,6 +51,7 @@
 	"custom/separator#blank_1",
 	"pulseaudio",
 	"custom/backlight",
+	"custom/hyprshade",
 	"custom/separator#blank_1",
 	"tray",
 	"custom/weather",
@@ -80,7 +82,7 @@
 	"group/tools":{
 		"orientation": "horizontal",
 		"drawer": {
-			"transition-duration": 500,
+			"transition-duration": 300,
 			"transition-left-to-right": true
 		},
 		"modules":[
