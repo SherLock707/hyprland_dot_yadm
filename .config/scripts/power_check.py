@@ -16,33 +16,42 @@ def ping_host(host):
 def main():
     host_to_ping = "192.168.1.88"
     router_to_ping = "192.168.1.1"
-    failed_attempts = 0
+    failed = 5
+    count_down = 3
+    suspended = False
 
     while True:
         if os.path.exists("/tmp/POWER_OUTAGE_KILLSWITCH"):
             if ping_host(host_to_ping):
                 # print('Successful ping')
-                failed_attempts = 0
+                failed = 5
+                suspended = False
             else:
                 print('Failed ping')
-                failed_attempts += 1
+                failed -= 1
             
-            if failed_attempts >= 2:
-                os.system(f"notify-send -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Suspending in {failed_attempts-1}' 'Power outage' &")
+            if failed < 5 and not suspended:
+                os.system(f"notify-send -e -a 'Power failure' -h string:x-canonical-private-synchronous:power_notif -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Suspending in {failed}' &")
+                count_down -= 1
 
-            if failed_attempts >= 5:
+            if failed <= 1 and not suspended:
                 if not ping_host(router_to_ping):
                     time.sleep(5)
                     continue
-                failed_attempts = 0
-                os.system("notify-send -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Suspending' 'Power outage' &")
+                failed = 5
+                os.system(f"notify-send -t 3000 -e -a 'Power failure' -h string:x-canonical-private-synchronous:power_notif -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Suspending' &")
+                suspended = True
                 os.system("sudo systemctl suspend & disown")
-                # os.system("notify-send -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Test' &")
+                # os.system(f"notify-send -e -a 'Power failure' -h string:x-canonical-private-synchronous:power_notif -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Good bye' &")
+                # os.system("sudo systemctl suspend & disown")
+
+                count_down = 3
+
                 # break
         # else:
         #     print("POWER_OUTAGE_KILLSWITCH file not found. Ignoring the operation.")
 
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     main()

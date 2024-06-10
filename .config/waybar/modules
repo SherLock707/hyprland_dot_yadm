@@ -876,7 +876,7 @@
     "format": "󰖔 ",
     "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
     "tooltip": true,
-    "tooltip-format": "hyprshade current",
+    "tooltip-format": "(hyprshade current)",
 },
 
 }
