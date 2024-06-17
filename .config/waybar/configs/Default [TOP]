@@ -31,10 +31,13 @@
 	],
 
 "modules-center": [
-	"hyprland/workspaces#pacman"
+	// "hyprland/workspaces#pacman"
 	// "custom/separator#blank_1",
 	// "wlr/taskbar"
-	// "hyprland/workspaces#rw"
+	"hyprland/workspaces#rw"
+	// "hyprland/workspaces#kanji"
+	// "hyprland/workspaces#roman"
+	// "hyprland/workspaces"
 	], 
 
 "modules-right": [

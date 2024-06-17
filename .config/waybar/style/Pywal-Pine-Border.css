@@ -49,8 +49,25 @@ tooltip {
     font-size: 18px;
 }
 
+#workspaces.rw button {
+    /* box-shadow: none; */
+    border: 0.2px solid alpha(@main-fg, 0.8);
+	/* text-shadow: none; */
+    padding: 1px;
+    border-radius: 9px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    color: @main-fg;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    font-size: 16px;
+}
+
 #workspaces button.active {
-    background: @wb-act-bg;
+    /* background: @wb-act-bg; */
+    background: @color5;
     color: @wb-act-fg;
     margin-left: 3px;
     padding-left: 12px;
