@@ -186,7 +186,8 @@
 		"class<mpv>": " ",
 		"class<code-oss>": "󰨞 ",
 		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
-		"class<mousepad>": " "
+		"class<mousepad>": " ",
+		"class<org-jdownloader-update-launcher-JDLauncher>": " "
 		},
     // "format-icons": {
     //   "active": " 󰮯 ",

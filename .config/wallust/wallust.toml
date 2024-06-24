@@ -54,3 +54,6 @@ swaync.target = '~/.config/swaync/color/colors-wallust.css'
 
 icon_color.template = 'templates/colors-icons'
 icon_color.target = '~/.config/waybar/color/colors-icons'
+
+btop_color.template = 'templates/color-btop'
+btop_color.target = '~/.config/btop/color/colors-btop.theme'

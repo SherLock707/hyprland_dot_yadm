@@ -187,6 +187,8 @@ alias jctl 'journalctl -p 3 -xb'
 # Recent installed packages
 alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 
+alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
+
 zoxide init fish | source
 
 set EDITOR /usr/bin/vscodium
@@ -198,10 +200,12 @@ set EDITOR /usr/bin/vscodium
 # end
 
 if [ $TERM = foot ]
-  ~/.config/fastfetch/assets/buildin-art.sh
-  fastfetch --load-config ~/.config/fastfetch/foot.jsonc
+  alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
+#   ~/.config/fastfetch/assets/buildin-art.sh
+#   fastfetch --load-config ~/.config/fastfetch/foot.jsonc
 else if [ $TERM = xterm-kitty ]
-  fastfetch --load-config ~/.config/fastfetch/kitty.jsonc
+  alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/kitty.jsonc'
+#   fastfetch --load-config ~/.config/fastfetch/kitty.jsonc
 # else
 #   fastfetch --load-config ~/.config/fastfetch/2.jsonc
 

@@ -217,7 +217,7 @@ plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-// default_shell "fish"
+default_shell "fish"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 //
@@ -228,7 +228,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -260,26 +260,26 @@ plugins {
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
-// themes {
-//     dracula {
-//         fg 248 248 242
-//         bg 40 42 54
-//         red 255 85 85
-//         green 80 250 123
-//         yellow 241 250 140
-//         blue 98 114 164
-//         magenta 255 121 198
-//         orange 255 184 108
-//         cyan 139 233 253
-//         black 0 0 0
-//         white 255 255 255
-//     }
-// }
+themes {
+    catppuccin-mocha {
+        bg "#585b70" // Surface2
+        fg "#cdd6f4"
+        red "#f38ba8"
+        green "#a6e3a1"
+        blue "#89b4fa"
+        yellow "#f9e2af"
+        magenta "#f5c2e7" // Pink
+        orange "#fab387" // Peach
+        cyan "#89dceb" // Sky
+        black "#181825" // Mantle
+        white "#cdd6f4"
+  }
+}
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-// theme "default"
+theme "catppuccin-mocha"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -335,7 +335,7 @@ plugins {
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/usr/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -346,11 +346,11 @@ plugins {
 
 // The folder in which Zellij will look for layouts
 //
-// layout_dir "/path/to/my/layout_dir"
+//layout_dir "/home/itachi/.config/zellij/layout"
 
 // The folder in which Zellij will look for themes
 //
-// theme_dir "/path/to/my/theme_dir"
+theme_dir "/home/itachi/.config/zellij/themes"
 
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
