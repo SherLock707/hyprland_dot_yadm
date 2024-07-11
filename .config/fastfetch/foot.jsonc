@@ -15,7 +15,7 @@
     //     }
     "logo": {
         "type": "raw",
-        "source": "/home/itachi/.config/fastfetch/assets/hollow_samurai_fastfetch.sixel",
+        "source": "/home/itachi/.config/fastfetch/assets/hollow_samurai_new.sixel",
         "width": 32,
         "height": 17,
         "padding": {

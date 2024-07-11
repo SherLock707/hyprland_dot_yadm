@@ -5,7 +5,7 @@ update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detai
 
 [DetailsMode]
 IconSize=32
-PreviewSize=16
+PreviewSize=32
 SidePadding=0
 
 [ExtractDialog]

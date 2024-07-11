@@ -111,6 +111,10 @@ function cleanup
     end
 end
 
+function a2c
+    aria2c "$argv"
+end
+
 #enable_transience
 # function starship_transient_prompt_func
 #   starship module character
@@ -188,6 +192,8 @@ alias jctl 'journalctl -p 3 -xb'
 alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 
 alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
+
+# alias aria2c 'a2c'
 
 zoxide init fish | source
 
