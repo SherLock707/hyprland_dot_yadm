@@ -8,7 +8,7 @@ plugins = [
 [scratchpads.term]
 animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
-command = "foot --app-id foot-dropterm -t tmux"
+command = "foot --app-id foot-dropterm"
 class = "foot-dropterm"
 size = "70% 60%"
 margin = 50

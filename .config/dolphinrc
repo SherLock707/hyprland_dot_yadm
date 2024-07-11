@@ -37,7 +37,7 @@ ToolButtonStyle=IconOnly
 IconSize=-1
 
 [PreviewSettings]
-Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
+Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,svgthumbnail,ffmpegthumbs
 
 [Search]
 What=Content

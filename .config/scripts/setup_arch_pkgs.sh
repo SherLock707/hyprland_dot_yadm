@@ -222,3 +222,4 @@ dart-sass
  archlinux-xdg-menu
 goverlay
 wallust
+ffmpegthumbs

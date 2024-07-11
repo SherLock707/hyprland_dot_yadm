@@ -137,7 +137,7 @@ Speedbar Width=137
 View Style=DetailTree
 
 [PreviewSettings]
-MaximumRemoteSize=0
+MaximumRemoteSize=10485760
 
 [WM]
 activeBackground=12,14,20
