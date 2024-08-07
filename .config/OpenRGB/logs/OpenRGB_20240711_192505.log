@@ -12,3 +12,12 @@
 453   |Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-1, address 0x73
 453   |Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw5
 453   |Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw4
+13391030|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-1, address 0x73
+13391030|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw5
+13391030|Info:    Profile loading: FAILED! for Razer Basilisk V3 @ HID: /dev/hidraw4
+13399010|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-1, address 0x73
+13399010|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw5
+13399010|Info:    Profile loading: FAILED! for Razer Basilisk V3 @ HID: /dev/hidraw4
+13402832|Info:    Profile loading: Succeeded for ENE DRAM @ I2C: /dev/i2c-1, address 0x73
+13402832|Info:    Profile loading: Succeeded for ASRock B760M Pro RS @ HID: /dev/hidraw5
+13402832|Info:    Profile loading: Succeeded for Razer Basilisk V3 @ HID: /dev/hidraw4
