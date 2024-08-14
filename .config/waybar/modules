@@ -183,6 +183,8 @@
 		"class<Gimp-.*>": " ",
 		"class<thunar>": "󰝰 ",
 		"class<org.kde.dolphin>": "󰝰 ",
+		"class<steam.*>": " ",
+		"class<io.missioncenter.MissionCenter>": " ",
 		"class<mpv>": " ",
 		"class<code-oss>": "󰨞 ",
 		"class<codium|codium-url-handler|VSCodium>": "󰨞 ",
@@ -693,7 +695,8 @@
   "custom/gpu_temp": {
     "exec": "sensors | awk '/edge/{sub(\"+\", \"\", $2); printf \"%.0f\", $2}'",
     "format": " {}°C",
-    "on-click": "foot -e radeontop -cT",
+    "on-click": "missioncenter",
+    // "on-click": "foot -e radeontop -cT",
     "return-type": "",
     "interval": 5
   },
@@ -782,6 +785,7 @@
       "mpv": "",
       "spotify": "",
       "vlc": "󰕼",
+      "steam": ""
     },
     "status-icons": {
       "paused": "󰐎",
