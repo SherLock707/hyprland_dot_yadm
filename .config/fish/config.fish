@@ -5,8 +5,6 @@ set VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x SHELL /usr/bin/fish
 
-set EDITOR /usr/bin/nvim
-
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
     set -x QT_QPA_PLATFORMTHEME qt5ct

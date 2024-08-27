@@ -743,6 +743,18 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true,
   },
+  "custom/netstatus": {
+    "tooltip": false,
+    "interval": 1,
+    "format": "{icon}",
+    "format-icons": {
+      "success": "<big><span foreground='#C1E1C1'><sup> </sup></span></big>",
+      "fail": "<big><span foreground='#FAA0A0'><sup> </sup></span></big>"
+    },
+    "return-type": "json",
+    "exec": "ping -W 0.1 -c 1 1.1.1.1 > /dev/null && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    "escape": true,
+  },
   "custom/backlight": {
     "interval": 60,
     "align": 0,

@@ -6,16 +6,18 @@
     "logo": {
         "type": "kitty",
         // "source": "/home/itachi/.config/fastfetch/assets/hollow_samurai_new.png",
-        "source": "/home/itachi/.config/fastfetch/assets/lucy_2.png",
+        "source": "/home/itachi/.config/fastfetch/assets/2B_standing3.png",
         // "width": 31,
         // "height": 17,
-        "width": 35,
+        // "width": 35,
+        // "height": 27,
+        "width": 25,
         "height": 27,
         "padding": {
             // "top": 2,
             // "left": 1,
             // "right": 1
-            "top": 0,
+            "top": 1,
             "left": 0,
             "right": 0
         }

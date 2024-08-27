@@ -42,6 +42,7 @@
 
 "modules-right": [
 	"network#speed",
+	"custom/netstatus",
 	"custom/separator#blank_1",
 	// "custom/notification",
 	"custom/swaync",
