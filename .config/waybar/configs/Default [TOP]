@@ -19,10 +19,12 @@
 	"custom/separator#blank_1",
 	"wlr/taskbar",
 	"custom/separator#blank_1",
+	"custom/netstatus",
+	"custom/controllerstatus",
 	"group/tools",
-	"custom/separator#blank_1",
 	"privacy",
 	"gamemode",
+	"systemd-failed-units",
 	"custom/separator#blank_1",
 	// "cava",
 	// "mpris",
@@ -42,7 +44,6 @@
 
 "modules-right": [
 	"network#speed",
-	"custom/netstatus",
 	"custom/separator#blank_1",
 	// "custom/notification",
 	"custom/swaync",

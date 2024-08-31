@@ -685,7 +685,7 @@
     "interval": 5
   },
   "custom/gpu_fan": {
-    "exec": "sensors | awk '/fan1/{print $2}' | head -1",
+    "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
     "format": "󰈐 {}",
     "on-click": "corectrl",
     "on-click-right": "corectrl -m Quite",
@@ -753,6 +753,18 @@
     },
     "return-type": "json",
     "exec": "ping -W 0.1 -c 1 1.1.1.1 > /dev/null && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    "escape": true,
+  },
+  "custom/controllerstatus": {
+    "tooltip": true,
+    "interval": 5,
+    "format": "{icon} ",
+    "format-icons": {
+      "success": "<big><span foreground='#C1E1C1'>󰖺</span></big>", 
+      "fail": "<big><span foreground='#FAA0A0'>󰖻</span></big>"
+    },
+    "return-type": "json",
+    "exec": "stat -c \"%n\" /dev/input/js1 >/dev/null 2>&1  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
     "escape": true,
   },
   "custom/backlight": {
@@ -827,6 +839,7 @@
   "privacy": {
     "icon-spacing": 4,
     "icon-size": 18,
+    "hide-on-ok": false,
     "transition-duration": 250,
     "modules": [
       {
@@ -887,6 +900,13 @@
     "icon-size": 20,
     "tooltip": true,
     "tooltip-format": "Games running: {count}"
+  },
+  "systemd-failed-units": {
+    "hide-on-ok": false, // Do not hide if there is zero failed units.
+    "format": "✗ {nr_failed}",
+    "format-ok": "✓",
+    "system": true, // Monitor failed systemwide units.
+    "user": false // Ignore failed user units.
   },
   "custom/chatgpt": {
     "format": " ",
