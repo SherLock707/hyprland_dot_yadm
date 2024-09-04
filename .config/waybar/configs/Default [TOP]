@@ -20,6 +20,7 @@
 	"wlr/taskbar",
 	"custom/separator#blank_1",
 	"custom/netstatus",
+	"custom/power_outage_switch",
 	"custom/controllerstatus",
 	"group/tools",
 	"privacy",
@@ -27,7 +28,8 @@
 	"systemd-failed-units",
 	"custom/separator#blank_1",
 	// "cava",
-	// "mpris",
+	"mpris",
+	// "mpd",
 	"hyprland/window"
 	// "custom/mviz"
 	],
@@ -50,7 +52,6 @@
 	"custom/pacman2",
 	// "custom/pacman",
 	"idle_inhibitor",
-	"custom/power_outage_switch",
 	"custom/separator#blank_1",
 	"group/hardware",
 	"custom/separator#blank_1",

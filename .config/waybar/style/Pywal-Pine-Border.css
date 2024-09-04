@@ -189,6 +189,8 @@ tooltip {
 #custom-weather.snowyIcyNight,
 #privacy,
 #gamemode,
+#power-profiles-daemon,
+#mpris,
 #systemd-failed-units,
 #custom-netstatus,
 #custom-controllerstatus,
@@ -211,6 +213,7 @@ tooltip {
 
 #network {
     min-width: 200px;
+    
 }
 
 #cpu,

@@ -344,20 +344,32 @@
     "on-scroll-down": "shift_down"
   },
   "cpu": {
-    "format": "󰍛 {usage}%",
+    // "format": "󰍛 {usage}%",
     "interval": 1,
     "format-alt-click": "click",
     "format-alt": "󰍛 {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format": "󰍛 {usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
     "format-icons": [
-      "▁",
-      "▂",
-      "▃",
-      "▄",
-      "▅",
-      "▆",
-      "▇",
-      "█"
+        "▁",
+        "<span color='#69ff94'>▂</span>", // green
+        "<span color='#2aa9ff'>▃</span>", // blue
+        "<span color='#f8f8f2'>▄</span>", // white
+        "<span color='#ecc6d9'>▅</span>", // white
+        "<span color='#ffffa5'>▆</span>", // yellow
+        "<span color='#ffffa5'>▇</span>", // yellow
+        "<span color='#ff9977'>█</span>", // orange
+        "<span color='#dd532e'>█</span>"  // red
     ],
+    // "format-icons": [
+    //   "▁",
+    //   "▂",
+    //   "▃",
+    //   "▄",
+    //   "▅",
+    //   "▆",
+    //   "▇",
+    //   "█"
+    // ],
     "on-click-right": "gnome-system-monitor",
   },
   "disk": {
@@ -447,11 +459,11 @@
     "format": "{ifname}",
     "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
     "format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
-    "format-disconnected": "󰌙",
+    "format-disconnected": "󰌙 <big><span foreground='#FAA0A0'><sup> </sup></span></big>",
     "tooltip-format": "{ipaddr}",
     "format-linked": "󰈁 {ifname} (No IP)",
     "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-ethernet": "{ifname} 󰌘 {ipaddr}",
     "tooltip-format-disconnected": "󰌙 Disconnected",
     "max-length": 50,
     "format-icons": [
@@ -777,7 +789,7 @@
     "format": "{icon} ",
     // "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
     "format-icons": [
-      "󰃠"
+      "<big>󰃠</big>"
     ],
     "tooltip-format": "backlight {}%",
     "tooltip": true,
@@ -790,8 +802,8 @@
     "smooth-scrolling-threshold": 1,
   },
   "mpris": {
-    "format": "{player_icon} ",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} {player_icon} <i>{dynamic}</i>",
     "on-click-middle": "playerctl play-pause",
     "on-click": "playerctl previous",
     "on-click-right": "playerctl next",
@@ -812,7 +824,7 @@
       "steam": ""
     },
     "status-icons": {
-      "paused": "󰐎",
+      "paused": "",
       "playing": "",
       "stopped": "",
     },
@@ -830,8 +842,14 @@
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
   },
   "custom/power_outage_switch": {
-    "format": "󱐋{}",
-    "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && echo 'On' || echo 'Off'",
+    "format": "{icon} ",
+    // "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && echo 'On' || echo 'Off'",
+    "format-icons": {
+      "success": "<big><span foreground='#C1E1C1'>󰚥</span></big>", 
+      "fail": "<big><span foreground='#FAA0A0'>󰚦</span></big>"
+    },
+    "return-type": "json",
+    "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ]  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
     // "exec-if": "pgrep -f 'python3 power_check.py' > /dev/null",
     "interval": 5,
     "on-click": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && rm '/tmp/POWER_OUTAGE_KILLSWITCH' || touch '/tmp/POWER_OUTAGE_KILLSWITCH'",
@@ -890,6 +908,18 @@
       "on-click-right": "mode"
     }
   },
+//   "mpris": {
+//     "format": " : {player_icon} {dynamic}",
+//     "format-paused": " : {status_icon} <i>{dynamic}</i>",
+//     "player-icons": {
+//       "default": "▶",
+//       "mpv": "🎵"
+//     },
+//     "status-icons": {
+//       "paused": "⏸"
+//     },
+//     // "ignored-players": ["firefox"]
+// },
   "gamemode": {
     "format": "{glyph}",
     "format-alt": "{glyph}{count}",
@@ -908,6 +938,17 @@
     "system": true, // Monitor failed systemwide units.
     "user": false // Ignore failed user units.
   },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+},
   "custom/chatgpt": {
     "format": " ",
     "on-click": "brave --app=https://chat.openai.com",
@@ -929,7 +970,7 @@
     "tooltip": false
 },
 "custom/hyprshade": {
-    "format": "󰖔 ",
+    "format": "<big>󰖔</big> ",
     "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
     "tooltip": true,
     "tooltip-format": "(hyprshade current)",
