@@ -28,7 +28,7 @@
 	"systemd-failed-units",
 	"custom/separator#blank_1",
 	// "cava",
-	"mpris",
+	// "mpris",
 	// "mpd",
 	"hyprland/window"
 	// "custom/mviz"
