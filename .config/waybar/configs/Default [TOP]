@@ -17,6 +17,8 @@
 "modules-left": [
 	"custom/menu",
 	"custom/separator#blank_1",
+	"custom/mviz",
+	"custom/separator#blank_1",
 	"wlr/taskbar",
 	"custom/separator#blank_1",
 	"custom/netstatus",
@@ -30,8 +32,7 @@
 	// "cava",
 	// "mpris",
 	// "mpd",
-	"hyprland/window",
-	"custom/mviz"
+	"hyprland/window"
 	],
 
 "modules-center": [

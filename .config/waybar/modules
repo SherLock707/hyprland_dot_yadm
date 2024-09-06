@@ -348,7 +348,8 @@
     "interval": 1,
     "format-alt-click": "click",
     "format-alt": "󰍛 {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format": "󰍛 {usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+    "format": "󰍛 {usage}%",
+    // "format": "󰍛 {usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
     "format-icons": [
         "▁",
         "<span color='#69ff94'>▂</span>", // green
