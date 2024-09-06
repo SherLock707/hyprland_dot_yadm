@@ -30,8 +30,8 @@
 	// "cava",
 	// "mpris",
 	// "mpd",
-	"hyprland/window"
-	// "custom/mviz"
+	"hyprland/window",
+	"custom/mviz"
 	],
 
 "modules-center": [

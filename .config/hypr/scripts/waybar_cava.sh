@@ -20,6 +20,8 @@ config_file="/tmp/bar_cava_config"
 cat >"$config_file" <<EOF
 [general]
 bars = 10
+framerate = 23
+sleep_timer = 300
 
 [input]
 method = pulse
@@ -31,6 +33,7 @@ raw_target = /dev/stdout
 data_format = ascii
 ascii_max_range = 7
 EOF
+
 
 # Kill cava if it's already running
 pkill -f "cava -p $config_file"
