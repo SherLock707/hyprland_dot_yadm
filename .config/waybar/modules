@@ -476,7 +476,7 @@
     ]
   },
   "pulseaudio": {
-    "format": "{icon} ",
+    "format": "<big>{icon} </big>",
     "format-bluetooth": "{icon} 󰂰 {volume}%",
     "format-muted": "󰖁",
     "format-icons": {

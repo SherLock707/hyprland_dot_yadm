@@ -41,7 +41,7 @@ def main():
                 failed = 5
                 os.system(f"notify-send -t 3000 -e -a 'Power failure' -h string:x-canonical-private-synchronous:power_notif -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Suspending' &")
                 suspended = True
-                os.system("sudo systemctl suspend & disown")
+                os.system("systemctl suspend & disown")
                 # os.system(f"notify-send -e -a 'Power failure' -h string:x-canonical-private-synchronous:power_notif -u low -i '/home/itachi/.config/dunst/images/bell.png' 'Good bye' &")
                 # os.system("sudo systemctl suspend & disown")
 
