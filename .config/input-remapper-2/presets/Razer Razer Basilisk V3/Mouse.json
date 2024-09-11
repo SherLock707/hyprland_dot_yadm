@@ -1,0 +1,30 @@
+[
+    {
+        "input_combination": [
+            {
+                "type": 2,
+                "code": 6,
+                "origin_hash": "37491ec238a2c71557570ff81182dabe",
+                "analog_threshold": -1
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Alt_L + Left ",
+        "name": "Wheel Left",
+        "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 2,
+                "code": 6,
+                "origin_hash": "37491ec238a2c71557570ff81182dabe",
+                "analog_threshold": 1
+            }
+        ],
+        "target_uinput": "keyboard",
+        "output_symbol": "Alt_L + Right",
+        "name": "Wheel Right",
+        "mapping_type": "key_macro"
+    }
+]
