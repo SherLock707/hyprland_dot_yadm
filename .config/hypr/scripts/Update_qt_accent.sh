@@ -2,6 +2,7 @@
 
 # Define the SVG file path
 file_path="$HOME/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-Mauve-pywal.svg"
+kvconfig_path="$HOME/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-Mauve-pywal.kvconfig"
 
 # Define the colors file path
 colors_file="$HOME/.config/waybar/color/colors-icons"
@@ -24,6 +25,7 @@ old_color=$(echo "$file_content" | grep -oP "$color_line_pattern" | head -n 1 | 
 # Replace the old color code with the new one
 if [ -n "$new_color" ]; then
     sed -i "s/$old_color/$new_color/g" "$file_path"
+    sed -i "s/$old_color/$new_color/g" "$kvconfig_path"
     # echo "Color code replaced with $new_color."
 # else
 #     echo "New color code not found."

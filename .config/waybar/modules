@@ -488,7 +488,7 @@
       "car": "",
       "default": [
         "",
-        "",
+        " ",
         "󰕾",
         ""
       ],
@@ -679,7 +679,8 @@
     "signal": 8
   },
   "custom/pacman2": {
-    "format": "{icon} {}",
+    // "format": "{icon} {}",
+    "format": "{2} {0}",
     "return-type": "json",
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates",
@@ -738,7 +739,8 @@
   },
   "custom/swaync": {
     "tooltip": false,
-    "format": "{icon} {}",
+    // "format": "{icon} {}",
+    "format": "{2} {0}",
     "format-icons": {
       "notification": "<span foreground='red'><sup></sup></span>",
       "none": "",

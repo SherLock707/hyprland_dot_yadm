@@ -8461,3 +8461,4 @@ FIXME this is really an API */
 @define-color popover_fg_color #FFFFFF;
 @define-color shade_color rgba(255, 255, 255, 0.12);
 @define-color scrollbar_outline_color rgba(255, 255, 255, 0.12);
+@import 'colors.css';
