@@ -476,9 +476,9 @@
     ]
   },
   "pulseaudio": {
-    "format": "<big>{icon} </big>",
+    "format": "<big>{icon}</big>",
     "format-bluetooth": "{icon} 󰂰 {volume}%",
-    "format-muted": "󰖁",
+    "format-muted": "<big> </big>",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -487,10 +487,10 @@
       "portable": "",
       "car": "",
       "default": [
-        "",
+        " ",
         " ",
-        "󰕾",
-        ""
+        // "󰕾 ",
+        " "
       ],
       "ignored-sinks": [
         "Easy Effects Sink"
@@ -845,11 +845,11 @@
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
   },
   "custom/power_outage_switch": {
-    "format": "{icon} ",
+    "format": "{icon}",
     // "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && echo 'On' || echo 'Off'",
     "format-icons": {
-      "success": "<big><span foreground='#C1E1C1'>󰚥</span></big>", 
-      "fail": "<big><span foreground='#FAA0A0'>󰚦</span></big>"
+      "success": "<big><span foreground='#C1E1C1'></span></big>", 
+      "fail": "<big><span foreground='#FAA0A0'></span></big>"
     },
     "return-type": "json",
     "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ]  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
