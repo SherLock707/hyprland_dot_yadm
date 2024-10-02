@@ -199,6 +199,7 @@ tooltip {
 #custom-ytmusic,
 #custom-calculator,
 #custom-hyprshade,
+#custom-hyprpicker,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);

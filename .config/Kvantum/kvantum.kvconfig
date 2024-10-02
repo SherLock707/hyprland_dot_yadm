@@ -3,3 +3,4 @@ theme=Catppuccin-Mocha-Mauve-pywal
 
 [Applications]
 Catppuccin-Mocha-Mauve-pywal=dolphin
+Default=dolphin, org.kde.dolphin

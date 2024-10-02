@@ -978,5 +978,10 @@
     "tooltip": true,
     "tooltip-format": "(hyprshade current)",
 },
-
+"custom/hyprpicker": {
+    "tooltip": false,
+    "format": " ",
+    "on-click": "hyprpicker -a",
+    "escape": true,
+  },
 }
