@@ -186,7 +186,7 @@ keybinds {
 }
 
 plugins {
-    tab-bar location="zellij:tab-bar"
+    //tab-bar location="zellij:tab-bar"
     status-bar location="zellij:status-bar"
     strider location="zellij:strider"
     compact-bar location="zellij:compact-bar"
@@ -315,7 +315,7 @@ theme "catppuccin-mocha"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text

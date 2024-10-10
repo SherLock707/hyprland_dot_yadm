@@ -127,6 +127,7 @@ abbr u 'update'
 abbr ua 'update --noconfirm'
 abbr uas 'update -a --noconfirm'
 abbr pyact 'source /run/media/itachi/DATA_SATA/Downloads/pyenv_1/bin/activate.fish'
+abbr code 'codium'
 
 ## Useful aliases
 
