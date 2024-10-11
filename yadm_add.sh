@@ -1,4 +1,3 @@
-
 yadm add ~/.config/btop/
 yadm add ~/.config/cava/
 yadm add ~/.config/corectrl/
@@ -45,3 +44,4 @@ yadm add ~/Pictures/wallpapers/
 yadm add ~/.local/bin/scripts/
 yadm add ~/.config/catppuccin_themes/
 yadm add ~/yadm_add.sh
+yadm add ~/.config/xdg-desktop-portal/
