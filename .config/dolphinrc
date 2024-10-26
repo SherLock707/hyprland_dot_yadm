@@ -10,7 +10,7 @@ SidePadding=0
 
 [ExtractDialog]
 3440x1440 screen: Window-Maximized=true
-DirHistory[$e]=$HOME/Downloads/New Folder/,/run/media/itachi/DATA_SATA_4TB/Downloads/anomoly_loop/,/run/media/itachi/DATA_SATA_4TB/Downloads/last_case/,/run/media/itachi/DATA_SATA_4TB/Downloads/Devine/,/run/media/itachi/DATA_SATA_4TB/Downloads/
+DirHistory[$e]=/run/media/itachi/CoolerDrive/personal/,/run/media/itachi/3886-1DA7/,$HOME/Downloads/New Folder/,/run/media/itachi/DATA_SATA_4TB/Downloads/anomoly_loop/,/run/media/itachi/DATA_SATA_4TB/Downloads/last_case/,/run/media/itachi/DATA_SATA_4TB/Downloads/Devine/,/run/media/itachi/DATA_SATA_4TB/Downloads/
 
 [General]
 Version=202
