@@ -6,8 +6,6 @@ import Overview from './modules/overview/main.js';
 // import AudioContent from "./modules/audio/index.js";
 // import OSD from './modules/osd/OSD.js';
 // import { forMonitors } from './modules/utils.js';
-// import Indicator from './modules/indicators/main.js';
-
 
 const COMPILED_STYLE_DIR = `${GLib.get_user_config_dir()}/ags/user/`
 
@@ -18,19 +16,10 @@ async function applyStyle() {
 }
 applyStyle().catch(print);
 
-
-// const range = (length, start = 1) => Array.from({ length }, (_, i) => i + start);
-// function forMonitors(widget) {
-//     // const n = Gdk.Display.get_default()?.get_n_monitors() || 1;
-//     const n = 1;
-//     return range(n, 0).map(widget).flat(1);
-// }
-
 const Windows = () => [
     Overview(),
     // AudioContent()
     // forMonitors(OSD),
-    // forMonitors(Indicator),
 ];
 const CLOSE_ANIM_TIME = 210;
 

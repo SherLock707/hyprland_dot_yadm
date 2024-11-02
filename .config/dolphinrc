@@ -5,7 +5,7 @@ update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detai
 
 [DetailsMode]
 IconSize=32
-PreviewSize=22
+PreviewSize=16
 SidePadding=0
 
 [ExtractDialog]
@@ -35,3 +35,6 @@ IconSize=-1
 
 [PreviewSettings]
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,svgthumbnail,ffmpegthumbs
+
+[Toolbar mainToolBar]
+ToolButtonStyle=IconOnly
