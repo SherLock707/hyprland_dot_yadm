@@ -57,3 +57,6 @@ icon_color.target = '~/.config/waybar/color/colors-icons'
 
 btop_color.template = 'color-btop'
 btop_color.target = '~/.config/btop/color/colors-btop.theme'
+
+icon_color_darker.template = 'colors-icons-darker'
+icon_color_darker.target = '~/.config/waybar/color/colors-icons-darker'

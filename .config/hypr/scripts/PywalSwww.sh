@@ -30,6 +30,11 @@ done
 wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
+# OPENRGB
+# NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"
+# COLOR_CODE=$(sed 's/#//' "$NEW_COLOR_FILE")
+# openrgb -c "$COLOR_CODE" &
+
 #Update icon colours
 $HOME/.config/hypr/scripts/SetIconColor.sh
 
