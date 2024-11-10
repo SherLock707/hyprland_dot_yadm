@@ -169,6 +169,19 @@ tooltip {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
+#custom-netstatus,
+#custom-controllerstatus,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-calculator,
+#custom-hyprshade,
+#custom-hyprpicker,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: @main-bg;

@@ -143,13 +143,12 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#
-
 #backlight,
 #backlight-slider,
 #battery,
 #bluetooth,
 #cava,
+#custom-mviz,
 #clock,
 #cpu,
 #disk,
@@ -163,7 +162,6 @@ tooltip {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -185,6 +183,7 @@ tooltip {
 #custom-lock,
 #custom-notification,
 #custom-swaync,
+#custom-power_outage_switch,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -200,6 +199,19 @@ tooltip {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
+#custom-netstatus,
+#custom-controllerstatus,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-calculator,
+#custom-hyprshade,
+#custom-hyprpicker,
 #custom-weather.sunnyDay {
     color: @mauve;
     background: @main-bg;

@@ -45,6 +45,7 @@ tooltip {
     color: @main-fg;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    font-size: 16px;
 }
 
 #workspaces button.active {
@@ -56,6 +57,7 @@ tooltip {
     margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    font-size: 16px;
 }
 
 #workspaces button:hover {
@@ -65,6 +67,7 @@ tooltip {
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    font-size: 16px;
 }
 
 #taskbar button {
@@ -131,7 +134,6 @@ tooltip {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
@@ -153,6 +155,7 @@ tooltip {
 #custom-lock,
 #custom-notification,
 #custom-swaync,
+#custom-power_outage_switch,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -168,6 +171,19 @@ tooltip {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
+#custom-netstatus,
+#custom-controllerstatus,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-calculator,
+#custom-hyprshade,
+#custom-hyprpicker,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: @main-bg;
@@ -176,6 +192,7 @@ tooltip {
 	padding-bottom: 2px;
     padding-left: 6px;
     padding-right: 6px;
+    border: 0.2px solid @main-fg;
 }
 
 #temperature.critical {
