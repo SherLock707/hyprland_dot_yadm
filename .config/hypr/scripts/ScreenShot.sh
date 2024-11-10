@@ -9,7 +9,7 @@ notify_cmd_shot="notify-send -t 2000 -A action1=Open -h string:x-canonical-priva
 notify_view() {
 	# ${notify_cmd_shot} "Copied to clipboard."
 	if [[ -e "$dir/$file" ]]; then
-	
+
 		respo=$(${notify_cmd_shot} " $file ")
 		if [[ "$respo" == "action1" ]]; then
 			eog "$dir/$file" &
@@ -30,7 +30,7 @@ countdown() {
 # take shots
 shotnow() {
 	cd ${dir} && grim - | tee "$file" | wl-copy
-	sleep 2
+	# sleep 1
 	notify_view
 }
 
