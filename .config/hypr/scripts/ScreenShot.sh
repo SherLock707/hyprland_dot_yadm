@@ -1,20 +1,21 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
-
 time=$(date +%Y-%m-%d-%H-%M-%S)
 dir="$(xdg-user-dir)/Pictures/Screenshots"
 file="Screenshot_${time}_${RANDOM}.png"
 
 # notify and view screenshot
-notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
+notify_cmd_shot="notify-send -t 2000 -A action1=Open -h string:x-canonical-private-synchronous:shot-notify -u low -i ${dir}/$file"
 notify_view() {
-	${notify_cmd_shot} "Copied to clipboard."
-##	viewnior ${dir}/"$file"
+	# ${notify_cmd_shot} "Copied to clipboard."
 	if [[ -e "$dir/$file" ]]; then
-		${notify_cmd_shot} "Screenshot Saved."
+	
+		respo=$(${notify_cmd_shot} " $file ")
+		if [[ "$respo" == "action1" ]]; then
+			eog "$dir/$file" &
+		fi
 	else
-		${notify_cmd_shot} "Screenshot Deleted."
+		${notify_cmd_shot} " Screenshot Deleted."
 	fi
 }
 
