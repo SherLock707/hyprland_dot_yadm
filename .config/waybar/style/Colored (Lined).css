@@ -6,7 +6,7 @@ font-family: "JetBrainsMono Nerd Font";
 font-weight: bold;
 min-height: 0;
 /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-font-size: 98%;
+font-size: 100%;
 font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 padding: 1px;
 }
@@ -30,6 +30,7 @@ window#waybar {
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+    font-size: 16px;
 }
 
 #workspaces button.active {
@@ -55,6 +56,7 @@ window#waybar {
 #battery,
 #bluetooth,
 #cava,
+#custom-mviz,
 #clock,
 #cpu,
 #disk,
@@ -68,18 +70,28 @@ window#waybar {
 #network,
 #pulseaudio,
 #pulseaudio-slider,
-#taskbar button,
 #taskbar,
 #temperature,
 #tray,
+#mpris,
 #window,
 #wireplumber,
 #workspaces,
+#custom-pacman,
+#custom-pacman2,
+#custom-gpu_usage,
+#custom-gpu_temp,
+#custom-gpu_fan,
+#custom-gpu_power,
+#custom-clipboard,
 #custom-backlight,
 #custom-cycle_wall,
 #custom-keybinds,
 #custom-light_dark,
 #custom-lock,
+#custom-notification,
+#custom-swaync,
+#custom-power_outage_switch,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
@@ -95,6 +107,19 @@ window#waybar {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
+#custom-netstatus,
+#custom-controllerstatus,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-calculator,
+#custom-hyprshade,
+#custom-hyprpicker,
 #custom-weather.sunnyDay {
     padding: 1px 4px;
     border-bottom: 1px;
