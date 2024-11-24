@@ -115,8 +115,18 @@ function a2c
     aria2c "$argv"
 end
 
-function fastfetch_min 
-    /bin/fastfetch -c ~/.config/fastfetch/minimal.jsonc
+# function fastfetch_min 
+#     /bin/fastfetch -c ~/.config/fastfetch/minimal.jsonc
+# end
+
+function fastfetch_min
+    if test "$argv[1]" = "foot"
+        /bin/fastfetch -c ~/.config/fastfetch/minimal_foot.jsonc
+    else if test "$argv[1]" = "kitty"
+        /bin/fastfetch -c ~/.config/fastfetch/minimal_kitty.jsonc
+    else
+        /bin/fastfetch -c ~/.config/fastfetch/minimal_gen.jsonc
+    end
 end
 
 #enable_transience
@@ -213,13 +223,18 @@ set EDITOR /usr/bin/vscodium
 
 # alias fastfetch_min 'fastfetch --load-config ~/.config/fastfetch/minimal.jsonc'
 
+
+
 if [ $TERM = foot ]
   alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
 #   ~/.config/fastfetch/assets/buildin-art.sh
 #   fastfetch --load-config ~/.config/fastfetch/foot.jsonc
+  fastfetch_min "foot"
 else if [ $TERM = xterm-kitty ]
   alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/kitty.jsonc'
+  fastfetch_min "kitty"
+else
+    fastfetch_min
 end
 
 
-fastfetch_min
