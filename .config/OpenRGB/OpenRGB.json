@@ -17,7 +17,7 @@
         "enabled": true,
         "host": "0.0.0.0",
         "port": "6742",
-        "profile": "Cyan",
+        "profile": "GPU_RAM_match",
         "setclient": true,
         "setcustom": false,
         "setminimized": true,
@@ -1339,7 +1339,7 @@
     "UserInterface": {
         "RunZoneChecks": false,
         "exit_profile": {
-            "profile_name": "Cyan",
+            "profile_name": "GPU_RAM_match",
             "set_on_exit": true
         },
         "geometry": {

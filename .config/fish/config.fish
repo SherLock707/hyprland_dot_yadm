@@ -115,6 +115,10 @@ function a2c
     aria2c "$argv"
 end
 
+function fastfetch_min 
+    /bin/fastfetch -c ~/.config/fastfetch/minimal.jsonc
+end
+
 #enable_transience
 # function starship_transient_prompt_func
 #   starship module character
@@ -193,7 +197,7 @@ alias jctl 'journalctl -p 3 -xb'
 # Recent installed packages
 alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 
-alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
+# alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
 
 # alias aria2c 'a2c'
 
@@ -207,15 +211,15 @@ set EDITOR /usr/bin/vscodium
 #     fastfetch --load-config ~/.config/fastfetch/2.jsonc
 # end
 
+# alias fastfetch_min 'fastfetch --load-config ~/.config/fastfetch/minimal.jsonc'
+
 if [ $TERM = foot ]
   alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
 #   ~/.config/fastfetch/assets/buildin-art.sh
 #   fastfetch --load-config ~/.config/fastfetch/foot.jsonc
 else if [ $TERM = xterm-kitty ]
   alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/kitty.jsonc'
-#   fastfetch --load-config ~/.config/fastfetch/kitty.jsonc
-# else
-#   fastfetch --load-config ~/.config/fastfetch/2.jsonc
-
 end
 
+
+fastfetch_min
