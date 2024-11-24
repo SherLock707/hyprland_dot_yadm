@@ -55,7 +55,7 @@
             "keyColor": "white"
         },
         {
-            "key": "│{#36;2;78;154;66} 󰍹 display{#white}│ ",
+            "key": "│{#36;1;78;154;66} 󰍹 display{#white}│ ",
             "type": "display",
             "keyColor": "white",
             "format": "{1}x{2} {3}Hz {12}\""
@@ -63,7 +63,7 @@
         {
             "key": "{#white}│{#38;2;203;166;247}  pkgs   {#white}│ ",
             "type": "packages",
-            "format": "{2} (pacman){?3}[{3}]{?}",
+            "format": "{2} (pacman){?3}{?}",
             "keyColor": "38;2;203;166;247"
         },
         {
@@ -74,7 +74,7 @@
         {
             "type": "command",
             "keyColor": "white",
-            "key": "│{#37;2;203;166;246} 󰃲 alive {#white} │ ",
+            "key": "│{#37;1;203;166;246} 󰃲 alive {#white} │ ",
             "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
         },
         // Colors seperator

@@ -63,7 +63,7 @@
         {
             "key": "{#white}│{#38;2;203;166;247}  pkgs   {#white}│ ",
             "type": "packages",
-            "format": "{2} (pacman){?3}[{3}]{?}",
+            "format": "{2}(pacman){?3}{?}",
             "keyColor": "38;2;203;166;247"
         },
         {
