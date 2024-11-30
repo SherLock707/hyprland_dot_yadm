@@ -1,0 +1,385 @@
+#!/usr/bin/env bash
+
+# *-------------------------------------------------------*
+# | MPVCTL                                                |
+# |                                                       |
+# | A small script for controlling mpv via the JSON IPC   |
+# | (https://gist.github.com/dwgill/a66769e0edef69c04d3b) |
+# | dependency of ytdl-mpv but independent from it, maybe |
+# | some functions only useful in combination with it     |
+# |                                                       |
+# | Authors: Andrea Rossoni                               |
+# | License: GPLv3                                        |
+# *-------------------------------------------------------*
+
+# Default envs
+SOCKET=/tmp/mpv.sock
+
+# Error function
+_die() {
+   printf '[Error] %s\n' "$@" >&2
+   exit 1
+}
+
+# Ensure dependencies
+_checkDep() {
+   local deps
+   deps=(mpv socat yt-dlp jq iconv)
+   for dep in "${deps[@]}"; do
+      type "$dep" >/dev/null 2>&1 || _die "Cannot find ${dep} in your \$PATH"
+   done
+   ICONV=$(which iconv)
+   type "gnu-iconv" >/dev/null 2>&1 && ICONV=$(which gnu-iconv)
+   local test
+   test=$(echo "D̲eep̲ ̲P̲u̲r̲ple" | $ICONV -f utf-8 -s -c -t ascii)
+   [[ "$test" == "Deep Purple" ]] ||
+      _die "Unsupported iconv flavour, install gnu-iconv"
+   SOCKCMD="socat - $SOCKET"
+}
+
+# Check if sock is idle, otherwise exit
+_checkSock() {
+   [[ -S $SOCKET ]] || _die "Cannot find mpv socket file"
+   local return_code
+   printf '{ "command:" [ "get_version" ] }' | $SOCKCMD &>/dev/null
+   return_code=$?
+   [[ "$return_code" -eq 0 ]] || _die "Cannot connect to mpv socket, connection refused"
+}
+
+# Usage (help) message
+_usage() {
+   cat >&2 <<EOF
+usage: $(basename "$0") [-h] [--socket SOCKET] action
+
+MPVCTL - mpv cli ipc-json frontend
+
+positional arguments:
+  add            add tracks to playlist
+  check          check socket status
+  clear          playlist clear
+  load           load a playlist from given path
+  loop           loop/unloop currently playing playlist
+  loop-status    get loop status currently playing playlist
+  next           play next track (or chapter) in playlist
+  playlist       print sorted list of tracks
+  prev           play prev track (or chapter) in playlist
+  rm             remove track number from playlist
+  save           save current playlist to given path
+  stop           always stop playback
+  toggle         toggle playback
+  track          jump to playlist track number
+  ctrack         get current track playlist number
+  chapters       get chapter list (if available)
+  chapter        jump to track chapter number
+  cchapter       get current chapter (-1 if no chapters)
+
+optional arguments:
+  -h, --help     print this help
+  -s, --socket   set socket location [default: ${SOCKET}]
+EOF
+}
+
+# Check sock status, only for information
+_getSock() {
+   if [ ! -S "$SOCKET" ]; then
+      printf 'disabled\n'
+      exit 0
+   fi
+   printf '{ "command:" [ "get_version" ] }' | $SOCKCMD &>/dev/null
+   local return_code=$?
+   if [ ! "$return_code" -eq 0 ]; then
+      printf 'disabled\n'
+      exit 0
+   fi
+   printf 'enabled\n'
+   exit 0
+}
+
+# Get current playlist formatted and sorted
+_getPlaylist() {
+   _checkSock
+   # track numbers
+   local trnum
+   trnum=$(_getProperty 'playlist-count')
+   # current track number
+   local trcur
+   trcur=$(_getProperty 'playlist-pos')
+
+   local count
+   count=0
+   while [ "$count" -lt "$trnum" ]; do
+      # current track mark
+      local trcurmark
+      trcurmark=' '
+      # track name
+      local trname
+      local trcurmark
+      trname=$(_getProperty "playlist/$count/filename")
+      if [ "$count" -eq "$trcur" ]; then trcurmark='*'; fi
+      # check if local or yt media
+      if [[ $trname =~ ^ytdl://(.*)$ ]]; then
+         # track id
+         local trid
+         trid=${trname:7}
+         # if cache db given, search yt media using it
+         if [ -n "$1" ] && [ -f "$1" ]; then
+            local db
+            db=$1
+            # search for track title
+            local trtitle
+            trtitle="$(sqlite3 "${db}" \
+               "SELECT nchapters,title FROM meta WHERE id='${trid}'")"
+            if [ -z "$trtitle" ]; then
+               local csv
+               csv=$(
+                  yt-dlp --dump-json "https://youtube.com/watch?v=${trid}" |
+                     sed 's/\xE2\x80\x9D//g;s/\xE2\x80\x9C//g' |
+                     jq -r '. | {id:.id,title:.title,nchapters:(.chapters|length),chapters:(.chapters|if .==null then [] else [.[].title] end)} | map(tostring) | @csv' |
+                     ($ICONV -f utf-8 -c -t ascii || true)
+               )
+               # cache this single id without a linked query inside main table
+               sqlite3 "${db}" "INSERT INTO meta (id,title,nchapters,chapters) VALUES (${csv})"
+               trtitle="$(sqlite3 "${db}" "SELECT nchapters,title FROM meta WHERE id='${trid}'")"
+            fi
+         else
+            # searching track title, using ytdl
+            local trtitle
+            trtitle=$(yt-dlp --get-title "https://youtube.com/watch?v=${trid}" |
+               ($ICONV -f utf-8 -c -t ascii || true))
+         fi
+         if [ -z "$trtitle" ]; then
+            printf '[Warning] yt-dlp title search failed for %s\n' "$trid" >&2
+            local trtitle
+            trtitle="NULL"
+         fi
+      else
+         # other media file type, not yt url
+         local trtitle
+         trtitle=$trname
+      fi
+
+      local zerocount
+      zerocount=$(printf '%s\n' "$((count + 1))")
+      printf '%s)%s %s\n' "$zerocount" "$trcurmark" "$trtitle" |
+         sed 's/ 0|/ [##] /;s/ \([0-9]\+\)|/ [\1] /' |
+         sed 's/^[0-9])/0&/;s/\[\([0-9]\)\]/[0\1]/'
+      count=$((count + 1))
+   done
+}
+
+# get chapters from mpv metadata
+_getChaptersMpv() {
+   local nch
+   # number of chapters
+   nch=$(_getProperty "chapters")
+   if [ "$nch" -gt "0" ]; then
+      local chcur
+      # get current chapter
+      chcur=$(_getProperty 'chapter')
+      chcur=$((chcur + 1))
+      # get chapters list from mpv player
+      _getProperty 'chapter-list' |
+         jq -r '.[].title' |
+         awk '{ print FNR ")  " $0 }' |
+         sed "s/\(^$chcur)\) /\1*/" |
+         sed 's/^[0-9])/0&/'
+   fi
+}
+#
+# get chapters from metadata inside sqlite3 db
+_getChaptersDb() {
+   # sqlite db
+   local db
+   db=$2
+   # track to inspect id
+   local trid
+   trid=$(_getProperty "playlist/$trnum/filename")
+   trid=${trid:7}
+   # number of chapters
+   local nch
+   nch="$(sqlite3 "${db}" "SELECT nchapters FROM meta WHERE id='${trid}'")"
+   if [ "$nch" -gt "0" ]; then
+      # get chapters list from sqlite3 db
+      sqlite3 "$db" "SELECT chapters FROM meta WHERE id='${trid}'" |
+         jq -r '.[]' |
+         awk '{ print FNR ") " $0 }' |
+         sed 's/^[0-9])/0&/'
+   fi
+}
+
+# Get track chapters if available
+_getChapters() {
+   # track number to inspect
+   local trnum
+   trnum=$1
+   [ -z "$trnum" ] && _die "Missing parameter: track number in playlist"
+   # current track number
+   local trcur
+   trcur=$(_getProperty 'playlist-pos')
+   if [ "$trnum" -eq "$trcur" ]; then
+      _getChaptersMpv
+   else
+      # if cache db given, search track chapters using it
+      if [ -n "$2" ] && [ -f "$2" ]; then
+         _getChaptersDb "$trnum" "$2"
+      fi
+   fi
+}
+
+# next track in playlist unless chapters detected
+# in this case it is preferable to play next chapter
+_nextPlaylist() {
+   local nch
+   # number of chapters
+   nch=$(_getProperty "chapters")
+   if [ "$nch" -gt "0" ]; then
+      local chcur
+      # get current chapter
+      chcur=$(_getProperty 'chapter')
+      # if at the last chapter play next track
+      # else next chapter
+      if [ "$chcur" -eq "$((nch - 1))" ]; then
+         _setProperty 'playlist_next'
+      else
+         _setProperty 'set_property' 'chapter' "$((chcur + 1))"
+      fi
+   else
+      _setProperty 'playlist_next'
+   fi
+}
+
+# previous track in playlist unless chapters detected
+# in this case it is preferable to play previous chapter
+_prevPlaylist() {
+   local nch
+   # number of chapters
+   nch=$(_getProperty "chapters")
+   if [ "$nch" -gt "0" ]; then
+      local chcur
+      # get current chapter
+      chcur=$(_getProperty 'chapter')
+      # if at the first chapter play previous track
+      # else previous chapter
+      if [ "$chcur" -eq "0" ]; then
+         _setProperty 'playlist_prev'
+      else
+         _setProperty 'set_property' 'chapter' "$((chcur - 1))"
+      fi
+   else
+      _setProperty 'playlist_prev'
+   fi
+}
+
+# Save current playlist to given file
+_savePlaylist() {
+   _checkSock
+   [[ -n "$1" ]] || _die 'None path given'
+   [[ -d "$(dirname "$1")" ]] || _die 'Invalid path given'
+   # track numbers
+   local trnum
+   trnum=$(_getProperty 'playlist-count')
+   local count
+   count=0
+   while [ "$count" -lt "$trnum" ]; do
+      # track name
+      local trname
+      trname=$(_getProperty "playlist/$count/filename")
+      printf '%s\n' "$trname"
+      count=$((count + 1))
+   done >"$1"
+}
+
+# Load playlist from given file
+_loadPlaylist() {
+   [[ -n "$1" ]] || _die 'None path given'
+   [[ -f "$1" ]] || _die 'Invalid path given'
+   for track in $(<"$1"); do
+      _setProperty 'loadfile' "$track" 'append-play'
+   done
+}
+
+# Get loop status
+_getLoop() {
+   #loop state
+   local lstate
+   lstate=$(_getProperty 'loop-playlist' | sed "s/inf/on/" | sed "s/no/off/")
+   if [ -z "$lstate" ]; then
+      exit 1
+   fi
+   printf '%s\n' "$lstate"
+}
+
+# Toggle loop playlist
+_toggleLoop() {
+   local lstate
+   lstate=$(_getLoop)
+   if [ -z "$lstate" ]; then
+      exit 1
+   fi
+   if [ "$lstate" == "off" ]; then
+      _setProperty 'set_property' 'loop-playlist' 'inf'
+   else
+      _setProperty 'set_property' 'loop-playlist' 'no'
+   fi
+}
+
+# Get method to read from socket
+_getProperty() {
+   _checkSock
+   local property
+   property=$(printf '{"command":["get_property_string","%s"]}\n' "$1" | $SOCKCMD | jq -r .data)
+   printf '%s\n' "$property"
+}
+
+# Set method to write from socket
+_setProperty() {
+   _checkSock
+   printf '%s\n' "$@" | jq -R . | jq -c -s '{command:.}' | $SOCKCMD &>/dev/null
+}
+
+# Parse optional argument
+case "$1" in
+-s | --socket)
+   shift
+   [ -n "$1" ] && SOCKET="$1"
+   shift
+   ;;
+esac
+
+# Check deps
+_checkDep
+
+# Parse positional argument
+case "$1" in
+add)
+   shift
+   for track in "$@"; do _setProperty 'loadfile' "$track" 'append-play'; done
+   ;;
+check) _getSock ;;
+clear) _setProperty 'playlist_clear' ;;
+load) _loadPlaylist "$2" ;;
+loop) _toggleLoop ;;
+loop-status) _getLoop ;;
+next) _nextPlaylist ;;
+playlist) _getPlaylist "$2" ;;
+prev) _prevPlaylist ;;
+rm) _setProperty 'playlist_remove' "$2" ;;
+save) _savePlaylist "$2" ;;
+stop) _setProperty 'quit' ;;
+toggle) _setProperty 'cycle' 'pause' ;;
+track) _setProperty 'set_property' 'playlist-pos' "$2" ;;
+ctrack) _getProperty 'playlist-pos' ;;
+chapters) _getChapters "$2" "$3" ;;
+chapter) _setProperty 'set_property' 'chapter' "$2" ;;
+cchapter) _getProperty 'chapter' | sed 's/null/-1/' ;;
+-h | --help)
+   shift
+   _usage
+   exit 0
+   ;;
+*)
+   shift
+   _usage
+   exit 1
+   ;;
+esac

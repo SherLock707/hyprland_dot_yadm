@@ -41,6 +41,7 @@ yadm add ~/.config/menus/
 yadm add ~/.config/wallust/
 yadm add ~/.config/waypaper/
 yadm add ~/Pictures/wallpapers/
+yadm add ~/Pictures/wallpapers_live/
 yadm add ~/.local/bin/scripts/
 yadm add ~/.config/catppuccin_themes/
 yadm add ~/yadm_add.sh

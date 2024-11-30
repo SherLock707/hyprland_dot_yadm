@@ -4,11 +4,15 @@
         // "type":"small",
         "type":"kitty",
         // "source": "arch",
-        "source": "/home/itachi/.config/fastfetch/assets/jinx_chibi_stand_border.png",
+        "source": "/home/itachi/.config/fastfetch/assets/rem_head_border.png",
+        // 2B
+        // "width": 19,
+        // "height": 11,
+        // rem head
         "width": 21,
-        "height": 12,
+        "height": 8,
         "padding": {
-            "top": 1,
+            "top": 3,
             "left": 1,
             "right": 1
         }
@@ -92,6 +96,7 @@
             "key": "{#white}│  colors │ ",
             "type": "custom",
             "format": "{#30;5;0;255;255}𝙹 {#31;5}𝙸 {#32;5}𝙽 {#33;5}𝚇   {#34;5}ジ {#35;5}ン {#36;5}ク {#37;5}ス",
+            // "format": "{#30;5;0;255;255}R {#31;5}E {#32;5}M {#33;5}𝚇   {#34;5}ジ {#35;5}ン {#36;5}ク {#37;5}ス",
             "keyColor": "white"
         },
         // Bottom of Box
