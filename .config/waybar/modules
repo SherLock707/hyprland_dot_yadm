@@ -179,7 +179,7 @@
 		"class<kitty>": " ",
 		"class<konsole>": " ",
 		"class<foot>": " ",
-		"class<lutris>": "󰊴 ",
+		"class<net.lutris.Lutris>": "󰊴 ",
 		"class<Gimp-.*>": " ",
 		"class<thunar>": "󰝰 ",
 		"class<org.kde.dolphin>": "󰝰 ",
@@ -202,9 +202,9 @@
       "1": [],
       "2": [],
       "3": [],
-      // "4": [],
-      // "5": [],
-      // "6": [],
+      "4": [],
+      "5": [],
+      "6": [],
       // "7": [],
       // "8": [],
       // "9": [],
@@ -514,13 +514,13 @@
     "scroll-step": 5,
   },
   "temperature": {
-    "interval": 10,
+    "interval": 5,
     "tooltip": false,
-    "hwmon-path": [
-      "/sys/class/hwmon/hwmon1/temp1_input",
-      "/sys/class/thermal/thermal_zone0/temp"
-    ],
-    //"thermal-zone": 0,
+    // "hwmon-path": [
+    //   "/sys/class/hwmon/hwmon1/temp1_input",
+    //   "/sys/class/thermal/thermal_zone0/temp"
+    // ],
+    "thermal-zone": 0,
     "critical-threshold": 82,
     "format-critical": " {icon}{temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
