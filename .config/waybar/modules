@@ -319,9 +319,9 @@
   "clock": {
     "interval": 1,
     //"format": " {:%I:%M %p}",
-    "format": " {:%I:%M:%S %p}",
+    "format": " {:%I:%M:%S %p (%d %a)}",
     "format-alt": " {:%I:%M %p   %Y, %d %B, %A}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
@@ -521,21 +521,19 @@
     //   "/sys/class/thermal/thermal_zone0/temp"
     // ],
     "thermal-zone": 0,
-    "critical-threshold": 82,
+    "critical-threshold": 70,
     "format-critical": " {icon}{temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
       "󰈸"
     ],
-    "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+    // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+    "on-click": "foot -e gotop --bytes --celsius --no-nvidia",
+    "on-click-right": "psensor"
   },
   "tray": {
     "icon-size": 17,
     "spacing": 8,
-  },
-  "wireplumber": {
-    "format": "{icon} {volume} %",
-    "format-muted": " Mute",
     "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
     "on-click-right": "pavucontrol -t 3",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
@@ -699,7 +697,7 @@
     "interval": 5
   },
   "custom/gpu_fan": {
-    "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
+    "exec": "sensors | awk '/fan1/{print $2}' | head -1",
     "format": "󰈐 {}",
     "on-click": "corectrl",
     "on-click-right": "corectrl -m Quite",
@@ -775,12 +773,16 @@
     "interval": 5,
     "format": "{icon} ",
     "format-icons": {
-      "success": "<big><span foreground='#C1E1C1'>󰖺</span></big>", 
-      "fail": "<big><span foreground='#FAA0A0'>󰖻</span></big>"
+      "success-gamemodeoff": "<big><span foreground='#C1E1C1'>󰖺 </span></big>", 
+      "success-gamemodeon": "<big><span foreground='#C1E1C1'>󰖺 </span></big>",
+      "fail-gamemodeoff": "<big><span foreground='#FAA0A0'>󰖻 </span></big>", 
+      "fail-gamemodeon": "<big><span foreground='#FAA0A0'>󰖻 </span></big>"
     },
     "return-type": "json",
-    "exec": "stat -c \"%n\" /dev/input/js1 >/dev/null 2>&1  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    // "exec": "stat -c \"%n\" /dev/input/js1 >/dev/null 2>&1  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    "exec": "~/.config/hypr/scripts/controller_check.sh",
     "escape": true,
+    "on-click": "~/.config/hypr/scripts/GameMode.sh"
   },
   "custom/backlight": {
     "interval": 60,
