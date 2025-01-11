@@ -984,7 +984,7 @@
 "custom/hyprpicker": {
     "tooltip": false,
     "format": " ",
-    "on-click": "hyprpicker -a",
+    "on-click": " COLOR=$(hyprpicker -a) && notify-send -u low -i /home/itachi/.config/dunst/icons/dropper.png \"  Hyprpicker\" \"  Copied to clipboard: <span color='$COLOR'> 󰮯      \n   $COLOR </span>\"",
     "escape": true,
   },
 }
