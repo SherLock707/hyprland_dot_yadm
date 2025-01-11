@@ -113,7 +113,7 @@ Theme=BeautyLine
 LookAndFeelPackage=Dr460nized
 ShowDeleteCommand=false
 SingleClick=false
-widgetStyle=qt6ct-style
+widgetStyle=kvantum-dark
 
 [KFileDialog Settings]
 Allow Expansion=false
