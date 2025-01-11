@@ -38,3 +38,6 @@ Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthu
 
 [Toolbar mainToolBar]
 ToolButtonStyle=IconOnly
+
+[UiSettings]
+ColorScheme=Catppuccin-Mocha-Mauve-pywal

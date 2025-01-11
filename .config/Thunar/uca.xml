@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
-	<icon>audacious</icon>
-	<name>Add to audacious playlist</name>
-	<submenu></submenu>
-	<unique-id>1681893052016505-1</unique-id>
-	<command>audacious -e %U</command>
-	<description></description>
-	<range>*</range>
-	<patterns>*</patterns>
-	<audio-files/>
-</action>
-<action>
 	<icon>foot</icon>
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
@@ -33,6 +22,32 @@
 	<range>*</range>
 	<patterns>*.rar;*.zip;*.7z;*.gz;*.tar,;*.xz</patterns>
 	<other-files/>
+</action>
+<action>
+	<icon>audacious</icon>
+	<name>Add to audacious playlist</name>
+	<submenu></submenu>
+	<unique-id>1681893052016505-1</unique-id>
+	<command>audacious -e %U</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+</action>
+<action>
+	<icon>kdeconnectindicator</icon>
+	<name>KDEConnect</name>
+	<submenu></submenu>
+	<unique-id>1734276846883916-1</unique-id>
+	<command>kdeconnect-cli -d DEVICE_ID --share %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 <action>
 	<icon>checkbox</icon>

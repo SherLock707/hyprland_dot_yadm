@@ -715,7 +715,7 @@
   "custom/gpu_power": {
     "exec": "sensors | awk '/PPT/{sub(\"\", $2); printf \"%.0f\", $2}'",
     "format": "󱐋 {}W",
-    "on-click": "foot -e sensors",
+    "on-click": "foot -e watch sensors",
     "return-type": "",
     "interval": 5
   },
@@ -757,16 +757,17 @@
     "escape": true,
   },
   "custom/netstatus": {
-    "tooltip": false,
-    "interval": 1,
+    "tooltip": true,
+    "interval": 5,
     "format": "{icon}",
     "format-icons": {
       "success": "<big><span foreground='#C1E1C1'><sup> </sup></span></big>",
       "fail": "<big><span foreground='#FAA0A0'><sup> </sup></span></big>"
     },
     "return-type": "json",
-    "exec": "ping -W 0.1 -c 1 1.1.1.1 > /dev/null && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
-    "escape": true,
+    // "exec": "ping -W 0.1 -c 1 1.1.1.1 > /dev/null && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    "exec": "~/.config/hypr/scripts/net_usage.sh",
+    // "escape": true
   },
   "custom/controllerstatus": {
     "tooltip": true,
