@@ -5,15 +5,20 @@ dir="$(xdg-user-dir)/Pictures/Screenshots"
 file="Screenshot_${time}_${RANDOM}.png"
 
 # notify and view screenshot
-notify_cmd_shot="notify-send -t 2000 -A action1=Open -h string:x-canonical-private-synchronous:shot-notify -u low -i ${dir}/$file"
+notify_cmd_shot="notify-send -t 10000 -A action1=Open -A action2=Delete -h string:x-canonical-private-synchronous:shot-notify -u low -i ${dir}/${file}"
 notify_view() {
 	# ${notify_cmd_shot} "Copied to clipboard."
 	if [[ -e "$dir/$file" ]]; then
-
-		respo=$(${notify_cmd_shot} " $file ")
-		if [[ "$respo" == "action1" ]]; then
-			eog "$dir/$file" &
-		fi
+		resp=$(timeout 10 ${notify_cmd_shot} " $file ")
+		echo "$resp"
+		case "$resp" in
+			action1)
+				xdg-open "${dir}/${file}" &
+				;;
+			action2)
+				rm "${dir}/${file}" &
+				;;
+		esac
 	else
 		${notify_cmd_shot} " Screenshot Deleted."
 	fi

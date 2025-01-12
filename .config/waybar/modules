@@ -977,7 +977,9 @@
 },
 "custom/hyprshade": {
     "format": "<big>󰖔</big> ",
-    "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
+    "on-click": "hyprsunset -t 3500",
+    "on-click-middle": "pkill hyprsunset",
+    // "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
     "tooltip": true,
     "tooltip-format": "(hyprshade current)",
 },
