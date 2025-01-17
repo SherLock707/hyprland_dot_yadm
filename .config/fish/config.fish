@@ -211,6 +211,8 @@ alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 
 # alias aria2c 'a2c'
 
+alias mpv_up 'mpv --glsl-shaders="shaders=~/shaders/Anime4K_Clamp_Highlights.glsl:~/shaders/Anime4K_Restore_CNN_VL.glsl:~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~/shaders/Anime4K_Restore_CNN_M.glsl:~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"'
+
 zoxide init fish | source
 
 set EDITOR /usr/bin/vscodium
