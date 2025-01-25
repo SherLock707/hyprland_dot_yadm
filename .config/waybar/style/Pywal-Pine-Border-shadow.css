@@ -210,7 +210,7 @@ tooltip {
     padding-right: 6px;
     border: 0.5px solid @main-fg;
 
-    border-bottom: 2px;
+    border-bottom: 3px;
     border-style: solid;
     border-color: @main-fg;
 }
