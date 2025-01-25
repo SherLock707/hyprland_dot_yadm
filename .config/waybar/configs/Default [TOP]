@@ -16,6 +16,8 @@
 
 "modules-left": [
 	"custom/menu",
+	"custom/separator#blank_1",
+	"tray",
 	// "custom/separator#blank_1",
 	// "custom/mviz",
 	"custom/separator#blank_1",
@@ -60,12 +62,11 @@
 	"custom/backlight",
 	"custom/hyprshade",
 	"custom/separator#blank_1",
-	"tray",
+	// "tray",
 	"custom/weather",
 	"clock",
 	"custom/separator#blank_1",
-	"custom/lock",
-	"custom/power"
+	"group/system_state"
 	],
 
 	"group/hardware": {
@@ -83,6 +84,19 @@
 			"custom/gpu_power",
 			"custom/gpu_fan",
 			"disk"
+		]
+	},
+
+	"group/system_state":{
+		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 300,
+			"transition-left-to-right": true
+		},
+		"modules":[
+			"custom/power",
+			"custom/lock"
+			
 		]
 	},
 

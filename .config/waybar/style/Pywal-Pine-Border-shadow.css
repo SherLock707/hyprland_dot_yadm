@@ -32,6 +32,10 @@ tooltip {
     border-radius: 8px;
     border-width: 0px;
     border: 0.5px solid @main-fg;
+
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @main-fg;
 }
 
 #workspaces button {
