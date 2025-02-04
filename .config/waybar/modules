@@ -977,11 +977,18 @@
 },
 "custom/hyprshade": {
     "format": "<big>󰖔</big> ",
-    "on-click": "hyprsunset -t 3500",
-    "on-click-middle": "pkill hyprsunset",
-    // "on-click": "~/.config/hypr/scripts/hyprshade.sh headless",
+    // "format": "{icon}",
+    // "format-icons": {
+    //   "success": "<big><span foreground='#FAA0A0'>󰖔</span></big>", 
+    //   "fail": "<big><span foreground='#C1E1C1'> </span></big>"
+    // },
+    // "exec": "[ -n \"$(pgrep hyprsunset)\" ] && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
+    // "return-type": "json",
+    // "interval": 5,
+    "on-click": "pgrep hyprsunset && pkill hyprsunset|| hyprsunset -t 3500",
+    // "on-click": "pgrep hyprsunset && pkill hyprsunset && echo '{\"alt\": \"fail\"}' || (hyprsunset -t 3500 >/dev/null && echo '{\"alt\": \"success\"}')",
     "tooltip": true,
-    "tooltip-format": "(hyprshade current)",
+    "tooltip-format": "hyprsunset toggle"
 },
 "custom/hyprpicker": {
     "tooltip": false,

@@ -28,6 +28,13 @@ if test -d ~/.local/bin
     end
 end
 
+# # Add ~/.local/bin to PATH
+# if test -d ~/.local/bin/scripts/
+#     if not contains -- ~/.local/bin/scripts $PATH
+#         set -p PATH ~/.local/bin/scripts
+#     end
+# end
+
 # Add ~/.local/bin to PATH
 if test -d ~/.cargo/bin
     if not contains -- ~/.cargo/bin $PATH

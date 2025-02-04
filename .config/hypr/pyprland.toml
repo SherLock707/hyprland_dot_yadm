@@ -2,7 +2,7 @@
 
 plugins = [
   "scratchpads",
-  "magnify",
+  "magnify"
 ]
 
 [scratchpads.term]

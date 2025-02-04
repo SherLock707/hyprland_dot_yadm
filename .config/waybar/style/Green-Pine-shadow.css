@@ -45,7 +45,7 @@ tooltip {
     color: @main-fg;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #workspaces button.active {
@@ -57,7 +57,7 @@ tooltip {
     margin-right: 3px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #workspaces button:hover {
