@@ -92,3 +92,7 @@ Use --utf-force argument to force start if you're sure your terminal can handle 
 2025/01/14 (21:43:38) | ===> btop++ v.1.4.0
 2025/01/14 (21:43:38) | ERROR: No UTF-8 locale detected!
 Use --utf-force argument to force start if you're sure your terminal can handle it.
+
+2025/02/08 (10:29:38) | ===> btop++ v.1.4.0
+2025/02/08 (10:29:38) | ERROR: No UTF-8 locale detected!
+Use --utf-force argument to force start if you're sure your terminal can handle it.

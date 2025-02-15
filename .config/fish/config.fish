@@ -224,6 +224,9 @@ zoxide init fish | source
 
 set EDITOR /usr/bin/vscodium
 
+alias vk_radv 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json'
+alias vk_pro 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_pro_icd64.json'
+
 # ## Run fastfetch if session is interactive
 # if status --is-interactive && type -q fastfetch
 #     #  fastfetch --load-config neofetch.jsonc
@@ -252,7 +255,6 @@ else if [ $TERM = xterm-kitty ]
 else
     fastfetch_min
 end
-
 
 
 # Added by LM Studio CLI (lms)

@@ -66,7 +66,8 @@
 	"custom/weather",
 	"clock",
 	"custom/separator#blank_1",
-	"group/system_state"
+	"custom/power",
+	"custom/lock"
 	],
 
 	"group/hardware": {
@@ -87,18 +88,18 @@
 		]
 	},
 
-	"group/system_state":{
-		"orientation": "horizontal",
-		"drawer": {
-			"transition-duration": 300,
-			"transition-left-to-right": true
-		},
-		"modules":[
-			"custom/power",
-			"custom/lock"
+	// "group/system_state":{
+	// 	// "orientation": "horizontal",
+	// 	// "drawer": {
+	// 	// 	"transition-duration": 300,
+	// 	// 	"transition-left-to-right": true
+	// 	// },
+	// 	"modules":[
+	// 		"custom/power",
+	// 		"custom/lock"
 			
-		]
-	},
+	// 	]
+	// },
 
 	"group/tools":{
 		"orientation": "horizontal",
