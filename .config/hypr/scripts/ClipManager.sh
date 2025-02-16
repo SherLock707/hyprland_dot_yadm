@@ -31,9 +31,11 @@ while true; do
             ;;
         10)
             cliphist delete <<<"$result"
+            # echo "DELETE"
             ;;
         11)
             cliphist wipe
+            # echo "WIPE"
             ;;
     esac
 done

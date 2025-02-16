@@ -81,8 +81,8 @@ light.color=#45475A
 mid.light.color=#45475A
 dark.color=#CDD6F4
 mid.color=#181825
-highlight.color=#B5D8E2
-inactive.highlight.color=#B5D8E2
+highlight.color=#EEC9B1
+inactive.highlight.color=#EEC9B1
 text.color=#CDD6F4
 window.text.color=#CDD6F4
 button.text.color=#CDD6F4
@@ -292,8 +292,8 @@ frame.left=4
 frame.right=4
 text.normal.color=#CDD6F4
 text.focus.color=#CDD6F4
-text.press.color=#B5D8E2
-text.toggle.color=#B5D8E2
+text.press.color=#EEC9B1
+text.toggle.color=#EEC9B1
 text.bold=false
 
 [MenuBar]

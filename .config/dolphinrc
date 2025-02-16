@@ -36,6 +36,9 @@ IconSize=16
 [PreviewSettings]
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,svgthumbnail,ffmpegthumbs
 
+[Search]
+Location=Everywhere
+
 [Toolbar mainToolBar]
 ToolButtonStyle=IconOnly
 
