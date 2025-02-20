@@ -4,8 +4,9 @@
         // "type":"small",
         "type":"raw",
         // "source": "arch",
-        "source": "/home/itachi/.config/fastfetch/assets/jinx_chibi_stand_border.six",
-        "width": 21,
+        // "source": "/home/itachi/.config/fastfetch/assets/jinx_chibi_stand_border.six",
+        "source": "/home/itachi/.config/fastfetch/assets/gwen.six",
+        "width": 22,
         "height": 13,
         "padding": {
             "top": 1,

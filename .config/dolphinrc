@@ -3,6 +3,9 @@ MenuBar=Disabled
 [$Version]
 update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detailsmodesettings.upd:move-content-display
 
+[CompactMode]
+PreviewSize=32
+
 [DetailsMode]
 IconSize=32
 PreviewSize=16
@@ -25,7 +28,6 @@ Places Icons Static Size=16
 
 [MainWindow]
 MenuBar=Disabled
-ToolBarsMovable=Disabled
 
 [MainWindow][Toolbar mainToolBar]
 ToolButtonStyle=IconOnly

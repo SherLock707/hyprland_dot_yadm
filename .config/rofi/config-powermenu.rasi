@@ -6,7 +6,6 @@ configuration {
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
-/* @import "~/.config/rofi/pywal-color/pywal-theme.rasi"*/
 @import "~/.config/rofi/color/colors-rofi.rasi" 
 
 /* ---- Global Properties ---- */
@@ -93,6 +92,8 @@ element {
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
+    border:                         1px;
+
 }
 element-text {
     font:                           "Fira Code SemiBold 16";
