@@ -8,6 +8,7 @@
     <Directory>chrome-apps.directory</Directory>
     <Include>
         <Filename>brave-ibblmnobmgdmpoeblocemifbpglakpoi-Default.desktop</Filename>
+        <Filename>brave-jdklklfpinionkgpmghaghehojplfjio-Default.desktop</Filename>
     </Include>
 </Menu>
 </Menu>
