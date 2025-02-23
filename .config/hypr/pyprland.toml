@@ -12,3 +12,11 @@ command = "foot --app-id foot-dropterm"
 class = "foot-dropterm"
 size = "70% 60%"
 margin = 50
+
+# [scratchpads.volume]
+# animation = "fromRight"
+# command = "pavucontrol"
+# class = "org.pulseaudio.pavucontrol"
+# size = "40% 90%"
+# unfocus = "hide"
+# lazy = true
