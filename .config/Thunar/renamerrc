@@ -16,7 +16,7 @@ Start=1
 
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
-Replacement=
-Pattern=[AnimeSakura]\ 
+Replacement=[Ani] Castle Town Dandelion 720p BD Dual Audio Ep- S01E
+Pattern=[Ani] Castle Town Dandelion 720p BD Dual Audio Ep-\ 
 Regexp=FALSE
 

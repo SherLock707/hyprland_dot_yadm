@@ -3,7 +3,7 @@
 SETUVAR --export PYENV_ROOT:/home/itachi/\x2epyenv
 SETUVAR __done_min_cmd_duration:10000
 SETUVAR __done_notification_urgency_level:low
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3800
 SETUVAR fish_color_comment:red
 SETUVAR fish_color_cwd_root:red
 SETUVAR fish_color_history_current:\x2d\x2dbold

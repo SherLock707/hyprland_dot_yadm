@@ -6,9 +6,13 @@ update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detai
 [CompactMode]
 PreviewSize=32
 
+[ContentDisplay]
+DirectorySizeMode=ContentSize
+RecursiveDirectorySizeLimit=3
+
 [DetailsMode]
 IconSize=32
-PreviewSize=22
+PreviewSize=16
 SidePadding=0
 
 [ExtractDialog]
@@ -37,9 +41,6 @@ IconSize=16
 
 [PreviewSettings]
 Plugins=audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,svgthumbnail,ffmpegthumbs
-
-[Search]
-Location=Everywhere
 
 [Toolbar mainToolBar]
 ToolButtonStyle=IconOnly

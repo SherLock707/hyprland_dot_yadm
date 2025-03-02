@@ -179,7 +179,7 @@
 		"class<kitty>": " ",
 		"class<konsole>": " ",
 		"class<foot>": " ",
-		"class<net.lutris.Lutris>": "󰊴 ",
+		"class<*.lutris.*>": "󰊴 ",
 		"class<Gimp-.*>": " ",
 		"class<thunar>": "󰝰 ",
 		"class<org.kde.dolphin>": "󰝰 ",
