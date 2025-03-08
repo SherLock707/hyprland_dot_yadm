@@ -10,10 +10,10 @@ configuration {
     font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     /* icon-theme:                 "Suru_pywall"; */
-    display-drun:               "󰣇";
-	display-run:                "";
-    display-filebrowser:        "";
-    display-window:             "󱂬";
+    display-drun:               "󰣇 ";
+	display-run:                " ";
+    display-filebrowser:        " ";
+    display-window:             "󱂬 ";
 	drun-display-format:        "{name}";
     hover-select:               true;
     me-select-entry:            "MouseSecondary";
@@ -69,9 +69,10 @@ listbox {
     children:                   ["listview" ];
 	padding:					6px;
     border-radius:              12px;
-    border:                     1px;
+    border:                     2px;
     border-color:               @active-background;
 	background-color:		    @background;
+    margin:                     3px;
 }
 
 /* ---- Dummy ---- */
@@ -88,7 +89,7 @@ inputbar {
     border-color:               @foreground;
 	background-color:		    @background;
     children:                   [ "textbox-prompt-colon","entry" ];
-    border:                     1px;
+    border:                     2px;
     border-color:               @active-background;
 }
 
@@ -96,7 +97,7 @@ textbox-prompt-colon {
     enabled:                    true;
 	padding:					6px 0px 6px 10px;
     expand:                     false;
-    str:                           "🐧";
+    str:                           "🔍";
     text-color:                 inherit;
 	background-color:			transparent;
 }
@@ -121,13 +122,15 @@ mode-switcher{
 }
 
 button {
-    padding:                   0px 10px 0px 10px;
-    border-radius:             12px;
+    padding:                  0px 5px 0px 10px;
+    border-radius:             20px;
     background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
-    border:                     1px;
+    border:                     2px;
     border-color:               @active-background;
+    margin:                     2px;
+
 }
 
 button selected {

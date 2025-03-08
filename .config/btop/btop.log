@@ -96,3 +96,21 @@ Use --utf-force argument to force start if you're sure your terminal can handle 
 2025/02/08 (10:29:38) | ===> btop++ v.1.4.0
 2025/02/08 (10:29:38) | ERROR: No UTF-8 locale detected!
 Use --utf-force argument to force start if you're sure your terminal can handle it.
+
+2025/03/05 (20:36:11) | ===> btop++ v.1.4.0
+2025/03/05 (20:36:11) | ERROR: No UTF-8 locale detected!
+Use --utf-force argument to force start if you're sure your terminal can handle it.
+
+2025/03/07 (17:46:02) | ===> btop++ v.1.4.0
+2025/03/07 (17:46:02) | ERROR: No UTF-8 locale detected!
+Use --utf-force argument to force start if you're sure your terminal can handle it.
+
+2025/03/07 (17:46:04) | ===> btop++ v.1.4.0
+2025/03/07 (17:46:04) | WARNING: No UTF-8 locale detected! Forcing start with --utf-force argument.
+2025/03/07 (17:46:04) | WARNING: ROCm SMI: Failed to get maximum GPU temperature, defaulting to 110°C
+2025/03/07 (17:46:04) | WARNING: ROCm SMI: Failed to get PCIe throughput
+
+2025/03/07 (21:51:16) | ===> btop++ v.1.4.0
+2025/03/07 (21:51:16) | WARNING: No UTF-8 locale detected! Forcing start with --utf-force argument.
+2025/03/07 (21:51:16) | WARNING: ROCm SMI: Failed to get maximum GPU temperature, defaulting to 110°C
+2025/03/07 (21:51:16) | WARNING: ROCm SMI: Failed to get PCIe throughput
