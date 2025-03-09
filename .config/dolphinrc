@@ -11,7 +11,6 @@ DirectorySizeMode=ContentSize
 RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
-IconSize=32
 PreviewSize=16
 SidePadding=0
 
@@ -20,6 +19,8 @@ SidePadding=0
 DirHistory[$e]=/run/media/itachi/DATA_SATA_4TB/Downloads/,/run/media/itachi/CoolerDrive/personal/,/run/media/itachi/3886-1DA7/,$HOME/Downloads/New Folder/,/run/media/itachi/DATA_SATA_4TB/Downloads/anomoly_loop/,/run/media/itachi/DATA_SATA_4TB/Downloads/last_case/,/run/media/itachi/DATA_SATA_4TB/Downloads/Devine/
 
 [General]
+OpenNewTabAfterLastTab=true
+UseTabForSwitchingSplitView=true
 Version=202
 ViewPropsTimestamp=2023,12,28,21,28,40.404
 

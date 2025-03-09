@@ -60,3 +60,9 @@ btop_color.target = '~/.config/btop/color/colors-btop.theme'
 
 icon_color_darker.template = 'colors-icons-darker'
 icon_color_darker.target = '~/.config/waybar/color/colors-icons-darker'
+
+folder_16.template = 'folder_16.svg'
+folder_16.target = '~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg'
+
+folder_48.template = 'folder_48.svg'
+folder_48.target = '~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg'
