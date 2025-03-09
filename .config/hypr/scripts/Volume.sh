@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/dunst/icons"
+iDIR="$HOME/.config/swaync/assets"
 sDIR="$HOME/.config/hypr/sounds/freedesktop/"
 UP_FILE="/tmp/vol_change_up"
 DOWN_FILE="/tmp/vol_change_up"

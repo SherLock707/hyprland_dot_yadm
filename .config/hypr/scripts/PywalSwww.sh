@@ -40,3 +40,6 @@ $HOME/.config/hypr/scripts/SetIconColor.sh
 
 # Update QT accent
 $HOME/.config/hypr/scripts/Update_qt_accent.sh
+
+# Update Notification icons
+$HOME/.config/hypr/scripts/SetNotiIconcolor.sh

@@ -223,3 +223,4 @@ dart-sass
 goverlay
 wallust
 ffmpegthumbs
+moreutils

@@ -52,6 +52,9 @@ swaync.target = '~/.config/swaync/color/colors-wallust.css'
 # zathura.template = 'colors-zathura'
 # zathura.target = '~/.config/zathura/zathurarc'
 
+icon_color_complimentary.template = 'colors-icons-complimentary'
+icon_color_complimentary.target = '~/.config/waybar/color/colors-icons-complimentary'
+
 icon_color.template = 'colors-icons'
 icon_color.target = '~/.config/waybar/color/colors-icons'
 
