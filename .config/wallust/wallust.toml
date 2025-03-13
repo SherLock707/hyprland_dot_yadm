@@ -69,3 +69,6 @@ folder_16.target = '~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg'
 
 folder_48.template = 'folder_48.svg'
 folder_48.target = '~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg'
+
+cava.template = 'cava-config'
+cava.target = '~/.config/cava/config'

@@ -10,7 +10,8 @@ animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
 command = "foot --app-id foot-dropterm"
 class = "foot-dropterm"
-size = "70% 60%"
+# class = "kitty-dropterm"
+size = "50% 60%"
 margin = 50
 
 # [scratchpads.volume]

@@ -347,8 +347,8 @@
     // "format": "󰍛 {usage}%",
     "interval": 1,
     "format-alt-click": "click",
-    "format-alt": "󰍛 {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format": "󰍛 {usage}%",
+    "format-alt": "<big>󰍛</big> {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format": "<big>󰍛</big> {usage}%",
     // "format": "󰍛 {usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
     "format-icons": [
         "▁",
@@ -378,7 +378,7 @@
     //"format": "󰋊",
     "path": "/",
     //"format-alt-click": "click",
-    "format": "󰋊 {percentage_used}%",
+    "format": "<big>󰋊</big> {percentage_used}%",
     //"tooltip": true,
     "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)",
   },
@@ -429,8 +429,8 @@
   },
   "memory": {
     "interval": 10,
-    "format": "󰾆 {used:0.1f}G",
-    "format-alt": "󰾆 {percentage}%",
+    "format": "<big>󰾆</big> {used:0.1f}G",
+    "format-alt": "<big>󰾆</big> {percentage}%",
     "format-alt-click": "click",
     "tooltip": true,
     "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
@@ -525,7 +525,7 @@
     "format-critical": " {icon}{temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
-      "󰈸"
+      "<big>󰈸</big>"
     ],
     // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
     "on-click": "foot -e gotop --bytes --celsius --no-nvidia",
@@ -691,14 +691,14 @@
   "custom/gpu_usage": {
     // "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {print $5}'",
     "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {printf \"%.0f\", $5}'",
-    "format": "󰾲 {}%",
+    "format": "<big>󰾲</big> {}%",
     "on-click": "foot -e radeontop -cT",
     "return-type": "",
     "interval": 5
   },
   "custom/gpu_fan": {
     "exec": "sensors | awk '/fan1/{print $2}' | head -1",
-    "format": "󰈐 {}",
+    "format": "<big>󰈐</big> {}",
     "on-click": "corectrl",
     "on-click-right": "corectrl -m Quite",
     "return-type": "",
@@ -706,7 +706,7 @@
   },
   "custom/gpu_temp": {
     "exec": "sensors | awk '/edge/{sub(\"+\", \"\", $2); printf \"%.0f\", $2}'",
-    "format": " {}°C",
+    "format": "<big></big> {}°C",
     "on-click": "missioncenter",
     // "on-click": "foot -e radeontop -cT",
     "return-type": "",
@@ -714,7 +714,7 @@
   },
   "custom/gpu_power": {
     "exec": "sensors | awk '/PPT/{sub(\"\", $2); printf \"%.0f\", $2}'",
-    "format": "󱐋 {}W",
+    "format": "<big>󱐋</big> {}W",
     "on-click": "foot -e watch sensors",
     "return-type": "",
     "interval": 5
