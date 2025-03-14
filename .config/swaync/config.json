@@ -39,7 +39,7 @@
     "buttons-grid",
     "dnd",
     "volume", 
-   "backlight",
+  //  "backlight",
    "mpris",
    "title",
    "notifications"
