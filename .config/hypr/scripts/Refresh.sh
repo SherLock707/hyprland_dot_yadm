@@ -4,7 +4,7 @@ SCRIPTSDIR=$HOME/.config/hypr/scripts
 
 # Kill already running processes
 # _ps=(waybar swaync cava rofi ags)
-_ps=(swaync rofi ags)
+_ps=(rofi ags)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
@@ -14,7 +14,8 @@ done
 ags -q
 
 # relaunch apps
-swaync &
+# swaync &
+swaync-client --reload-css &
 # waybar &
 ags &
 #sleep 1

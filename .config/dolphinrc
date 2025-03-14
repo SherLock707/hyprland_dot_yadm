@@ -11,6 +11,7 @@ DirectorySizeMode=ContentSize
 RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
+IconSize=22
 PreviewSize=16
 SidePadding=0
 

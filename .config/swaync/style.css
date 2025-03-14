@@ -17,7 +17,9 @@
 
 * {
   all: unset;
-  font-size: 18px;
+  font-family: "JetBrains Mono Nerd Font 5";
+  font-weight: bold;
+  font-size: 1.2rem;
   /* font-family: "JetBrainsMono Nerd Font"; */
   /* font-family: "Source Code Pro"; */
   transition: 200ms;
@@ -54,6 +56,8 @@
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .summary {
   color: #cdd6f4;
+  padding-left: 12px;
+  padding-top: 12px;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .time {
@@ -138,6 +142,8 @@
 .control-center .widget-title {
   color: #cdd6f4;
   font-size: 1.3em;
+  padding-top: 10px;  /* Adjust padding as needed */
+  margin-bottom: 5px; /* Space below title */
 }
 
 .control-center .widget-title button {
@@ -146,6 +152,7 @@
   background-color: #313244;
   box-shadow: inset 0 0 0 1px #45475a;
   padding: 8px;
+  margin-left: 15px;
 }
 
 .control-center .widget-title button:hover {
@@ -252,11 +259,15 @@ progress,
 trough {
   border-radius: 12.6px;
   /* min-height: 10px; */
+  /* min-height: 15px; */
+  padding: 3px; 
 }
 
 progressbar {
-  box-shadow: inset 0 0 0 1px #45475a;
+  /* box-shadow: inset 1 1 1 1px #202124; */
   /* min-height: 10px; */
+  padding: 3px; 
+
 }
 
 .notification.critical progress {
@@ -285,10 +296,12 @@ progressbar {
 trough {
   /* min-height: 10px; */
   background-color: #313244;
+  padding: 3px; 
 }
 
 .control-center trough {
   background-color: #45475a;
+  padding: 3px; 
 }
 
 .control-center-dnd {
