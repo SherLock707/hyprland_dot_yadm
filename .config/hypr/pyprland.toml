@@ -10,7 +10,6 @@ animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
 command = "foot --app-id foot-dropterm"
 class = "foot-dropterm"
-# class = "kitty-dropterm"
 size = "50% 60%"
 margin = 50
 
