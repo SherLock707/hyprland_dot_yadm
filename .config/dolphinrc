@@ -11,7 +11,6 @@ DirectorySizeMode=ContentSize
 RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
-PreviewSize=16
 SidePadding=0
 
 [ExtractDialog]

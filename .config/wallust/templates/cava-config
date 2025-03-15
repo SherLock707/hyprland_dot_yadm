@@ -142,14 +142,14 @@ source = auto
 
 gradient = 1
 
-gradient_color_1 = '{{color7 | saturate(1.0) | darken(0.2)}}'
-gradient_color_2 = '{{color7 | saturate(0.9) | darken(0.1)}}'
-gradient_color_3 = '{{color7 | saturate(0.8) | lighten(0.1)}}'
-gradient_color_4 = '{{color7 | saturate(0.7) | lighten(0.2)}}'
-gradient_color_5 = '{{color7 | saturate(0.6) | lighten(0.3)}}'
-gradient_color_6 = '{{color7 | saturate(0.5) | lighten(0.4)}}'
-gradient_color_7 = '{{color7 | saturate(0.4) | lighten(0.6) | blend(color15)}}'
-gradient_color_8 = '{{color7 | saturate(0.3) | lighten(0.8) | blend(color15)}}'
+gradient_color_1 = '{{color7 | saturate(0.5) | darken(0.2)}}'
+gradient_color_2 = '{{color7 | saturate(0.4) | darken(0.1)}}'
+gradient_color_3 = '{{color7 | saturate(0.4) | lighten(0.1)}}'
+gradient_color_4 = '{{color7 | saturate(0.4) | lighten(0.2)}}'
+gradient_color_5 = '{{color7 | saturate(0.3) | lighten(0.3)}}'
+gradient_color_6 = '{{color7 | saturate(0.3) | lighten(0.4)}}'
+gradient_color_7 = '{{color7 | saturate(0.2) | lighten(0.6) | blend(color15)}}'
+gradient_color_8 = '{{color7 | saturate(0.2) | lighten(0.8) | blend(color15)}}'
 
 
 
