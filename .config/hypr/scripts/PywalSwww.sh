@@ -46,3 +46,6 @@ $HOME/.config/hypr/scripts/SetNotiIconcolor.sh
 
 # Update VScodium colour fo cat
 $HOME/.config/hypr/scripts/SetVscodeColor.sh
+
+# Update MPV UI colour
+$HOME/.config/hypr/scripts/setMpvColor.sh
