@@ -43,3 +43,6 @@ $HOME/.config/hypr/scripts/Update_qt_accent.sh
 
 # Update Notification icons
 $HOME/.config/hypr/scripts/SetNotiIconcolor.sh
+
+# Update VScodium colour fo cat
+$HOME/.config/hypr/scripts/SetVscodeColor.sh

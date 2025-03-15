@@ -26,10 +26,8 @@
 }
 
 .floating-notifications.background .notification-row .notification-background {
-  /* box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #313244; */
   border-radius: 12.6px;
   margin: 18px;
-  /* background-color: #1e1e2e; */
   background-color: rgba(30, 30, 46, 0.599);
   color: #cdd6f4;
   padding: 3px;
@@ -145,6 +143,7 @@
   padding-top: 10px;  /* Adjust padding as needed */
   margin-bottom: 5px; /* Space below title */
 }
+
 
 .control-center .widget-title button {
   border-radius: 7px;
@@ -375,3 +374,28 @@ trough {
 .widget-mpris-subtitle {
   font-size: 1.1rem;
 }
+
+/* .widget-buttons-grid > flowbox > flowboxchild > button {
+    margin: 3px;
+    background: @cc-bg;
+    border-radius: 0px;
+    color: @text-color;
+  }
+   */
+
+/* .close-button {
+background: #f7768e;
+color: #f7768e;
+text-shadow: none;
+padding: 0px;
+border-radius: 0px;
+margin-top: 5px;
+margin-right: 5px;
+}
+
+.close-button:hover {
+box-shadow: none;
+background: #f7768e;
+transition: all 0.15s ease-in-out;
+border: none;
+} */

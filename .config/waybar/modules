@@ -179,7 +179,8 @@
 		"class<kitty>": " ",
 		"class<konsole>": " ",
 		"class<foot>": " ",
-		"class<*.lutris.*>": "󰊴 ",
+		"class<net.lutris.Lutris>": "󰊴 ",
+		"class<obsidian>": " ",
 		"class<Gimp-.*>": " ",
 		"class<thunar>": "󰝰 ",
 		"class<org.kde.dolphin>": "󰝰 ",
@@ -697,7 +698,7 @@
     "interval": 5
   },
   "custom/gpu_fan": {
-    "exec": "sensors | awk '/fan1/{print $2}' | head -1",
+    "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
     "format": "<big>󰈐</big> {}",
     "on-click": "corectrl",
     "on-click-right": "corectrl -m Quite",
