@@ -682,8 +682,8 @@
     "format": "{2} {0}",
     "return-type": "json",
     "exec-if": "which waybar-module-pacman-updates",
-    "exec": "waybar-module-pacman-updates",
-    "on-click": "foot -e sudo update --noconfirm", // update system
+    "exec": "waybar-module-pacman-updates --interval-seconds 3600",
+    "on-click": "foot -e update --noconfirm", // update system
     "format-icons": {
       "has-updates": "󱍷<span foreground='green'><sup></sup></span>",
       "updated": "󰂪"

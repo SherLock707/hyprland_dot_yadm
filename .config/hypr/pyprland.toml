@@ -13,6 +13,7 @@ class = "foot-dropterm"
 size = "50% 60%"
 margin = 50
 
+
 # [scratchpads.volume]
 # animation = "fromRight"
 # command = "pavucontrol"

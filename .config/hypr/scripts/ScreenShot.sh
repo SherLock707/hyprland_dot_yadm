@@ -39,6 +39,11 @@ shotnow() {
 	notify_view
 }
 
+# take shots
+shothush() {
+	cd ${dir} && grim - | tee "$file" | wl-copy
+}
+
 shot5() {
 	countdown '5'
 	sleep 1 && cd ${dir} && grim - | tee "$file" | wl-copy
@@ -79,6 +84,8 @@ elif [[ "$1" == "--win" ]]; then
 	shotwin
 elif [[ "$1" == "--area" ]]; then
 	shotarea
+elif [[ "$1" == "--hush" ]]; then
+	shothush
 else
 	echo -e "Available Options : --now --in5 --in10 --win --area"
 fi
