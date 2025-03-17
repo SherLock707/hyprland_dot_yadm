@@ -7,7 +7,7 @@ update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detai
 PreviewSize=32
 
 [ContentDisplay]
-DirectorySizeMode=ContentSize
+DirectorySizeMode=None
 RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
