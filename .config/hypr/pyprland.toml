@@ -12,6 +12,7 @@ command = "foot --app-id foot-dropterm"
 class = "foot-dropterm"
 size = "50% 60%"
 margin = 50
+pinned = true
 
 
 # [scratchpads.volume]
