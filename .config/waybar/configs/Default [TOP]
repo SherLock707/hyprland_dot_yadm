@@ -60,7 +60,7 @@
 	"custom/separator#blank_1",
 	"pulseaudio",
 	"custom/backlight",
-	"custom/hyprshade",
+	// "custom/hyprshade",
 	"custom/separator#blank_1",
 	// "tray",
 	"custom/weather",
