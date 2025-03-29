@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Get the current timestamp
+timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
+
+echo -e "\e[34m🚀 Starting YADM backup...\e[0m"
+
+# Add all tracked files
+echo -e "\e[32m📂 Staging changes...\e[0m"
+yadm add -u
+
+# Commit with timestamp
+echo -e "\e[33m📝 Committing changes...\e[0m"
+yadm commit -m "commit - $timestamp"
+
+# Push changes
+echo -e "\e[35m📤 Pushing to remote...\e[0m"
+yadm push
+
+echo -e "\e[36m✅ Backup complete!\e[0m"

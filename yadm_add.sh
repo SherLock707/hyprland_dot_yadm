@@ -8,7 +8,6 @@ yadm add ~/.config/foot/
 yadm add ~/.config/goverlay/
 yadm add ~/.config/htop/
 yadm add ~/.config/hypr/
-yadm add ~/.config/hyprland-autoname-workspaces/
 yadm add ~/.config/input-remapper-2/
 yadm add ~/.config/kitty/
 yadm add ~/.config/Kvantum/
