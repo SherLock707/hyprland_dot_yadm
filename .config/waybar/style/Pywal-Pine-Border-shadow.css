@@ -204,6 +204,7 @@ tooltip {
 #custom-calculator,
 #custom-hyprshade,
 #custom-hyprpicker,
+#custom-gpu_vram,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);
@@ -230,7 +231,8 @@ tooltip {
 }
 
 #temperature.critical {
-  background-color: @red;
+  border-color: #f38ba8;
+  color: #f38ba8;
 }
 
 #group-motherboard,

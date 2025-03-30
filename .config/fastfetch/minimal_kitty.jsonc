@@ -4,15 +4,18 @@
         // "type":"small",
         "type":"kitty",
         // "source": "arch",
-        "source": "/home/itachi/.config/fastfetch/assets/rem_head_border.png",
+        // "source": "/home/itachi/.config/fastfetch/assets/rem_head_border.png",
+        "source": "/home/itachi/.config/fastfetch/assets\/Grub_1.png",
         // 2B
         // "width": 19,
         // "height": 11,
         // rem head
-        "width": 21,
-        "height": 8,
+        // "width": 21,
+        // "height": 8,
+        "width": 26,
+        "height": 12,
         "padding": {
-            "top": 3,
+            "top": 1,
             "left": 1,
             "right": 1
         }
@@ -78,7 +81,7 @@
         {
             "type": "command",
             "keyColor": "white",
-            "key": "│{#37;2;203;166;246} 󰃲 alive {#white} │ ",
+            "key": "│{#37;2;0;255;0} {#32}󰃲 alive {#white} │ ",
             "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
         },
         // Colors seperator
@@ -95,7 +98,7 @@
         {
             "key": "{#white}│  colors │ ",
             "type": "custom",
-            "format": "{#30;5;0;255;255}𝙹 {#31;5}𝙸 {#32;5}𝙽 {#33;5}𝚇   {#34;5}ジ {#35;5}ン {#36;5}ク {#37;5}ス",
+            "format": "{#30;5;0;255;255} {#31;5} {#32;5} {#33;5} {#34;5} {#35;5} {#36;5} {#37;5}",
             // "format": "{#30;5;0;255;255}R {#31;5}E {#32;5}M {#33;5}𝚇   {#34;5}ジ {#35;5}ン {#36;5}ク {#37;5}ス",
             "keyColor": "white"
         },

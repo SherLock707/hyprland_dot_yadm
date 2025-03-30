@@ -430,12 +430,12 @@
   },
   "memory": {
     "interval": 10,
-    "format": "<big>󰾆</big> {used:0.1f}G",
-    "format-alt": "<big>󰾆</big> {percentage}%",
+    "format": " {used:0.1f}G",
+    "format-alt": " {percentage}%",
     "format-alt-click": "click",
     "tooltip": true,
     "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-    "on-click-right": "kitty --title btop sh -c 'btop'"
+    "on-click-right": "foot -e btop --utf-force"
   },
   "network": {
     "format": "{ifname}",
@@ -527,6 +527,21 @@
     "format": "{icon} {temperatureC}°C",
     "format-icons": [
       "<big>󰈸</big>"
+    ],
+    // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
+    "on-click": "foot -e gotop --bytes --celsius --no-nvidia",
+    "on-click-right": "psensor"
+  },
+  "temperature#gpu": {
+    "interval": 5,
+    "tooltip": false,
+    "input-filename": "/sys/class/hwmon/hwmon5/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "critical-threshold": 70,
+    "format-critical": " {icon}{temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      "<big></big>"
     ],
     // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
     "on-click": "foot -e gotop --bytes --celsius --no-nvidia",
@@ -691,14 +706,23 @@
   },
   "custom/gpu_usage": {
     // "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {print $5}'",
-    "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {printf \"%.0f\", $5}'",
+    // "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {printf \"%.0f\", $5}'",
+    "exec": "sh -c '/usr/bin/cat /sys/class/drm/card?/device/gpu_busy_percent'",
     "format": "<big>󰾲</big> {}%",
     "on-click": "foot -e radeontop -cT",
     "return-type": "",
     "interval": 5
   },
+  "custom/gpu_vram": {
+    "exec": "awk '{printf \"%.1f\", $1 / 1073741824}' /sys/class/drm/card?/device/mem_info_vram_used",
+    "format": " {}G",
+    "on-click": "foot -e radeontop -cT",
+    "return-type": "",
+    "interval": 5
+  },
   "custom/gpu_fan": {
-    "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
+    // "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
+    "exec": "/usr/bin/cat /sys/class/hwmon/hwmon5/fan1_input",
     "format": "<big>󰈐</big> {}",
     "on-click": "corectrl",
     "on-click-right": "corectrl -m Quite",
@@ -714,7 +738,8 @@
     "interval": 5
   },
   "custom/gpu_power": {
-    "exec": "sensors | awk '/PPT/{sub(\"\", $2); printf \"%.0f\", $2}'",
+    // "exec": "sensors | awk '/PPT/{sub(\"\", $2); printf \"%.0f\", $2}'",
+    "exec": "sh -c 'echo $(( $(cat /sys/class/hwmon/hwmon5/power1_average) / 1000000 ))'",
     "format": "<big>󱐋</big> {}W",
     "on-click": "foot -e watch sensors",
     "return-type": "",
@@ -839,6 +864,7 @@
     "max-length": 30,
   },
   "custom/mviz": {
+    // "exec": "~/.config/hypr/scripts/waybar_cava.sh",
     "exec": "~/.config/hypr/scripts/waybar_cava.sh",
     "format": "{}",
     "on-click-middle": "playerctl play-pause",

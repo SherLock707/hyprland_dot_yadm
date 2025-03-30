@@ -119,3 +119,8 @@ Use --utf-force argument to force start if you're sure your terminal can handle 
 2025/03/12 (22:53:22) | WARNING: No UTF-8 locale detected! Forcing start with --utf-force argument.
 2025/03/12 (22:53:22) | WARNING: ROCm SMI: Failed to get maximum GPU temperature, defaulting to 110°C
 2025/03/12 (22:53:22) | WARNING: ROCm SMI: Failed to get PCIe throughput
+
+2025/03/30 (12:47:36) | ===> btop++ v.1.4.0
+2025/03/30 (12:47:36) | WARNING: No UTF-8 locale detected! Forcing start with --utf-force argument.
+2025/03/30 (12:47:36) | WARNING: ROCm SMI: Failed to get maximum GPU temperature, defaulting to 110°C
+2025/03/30 (12:47:36) | WARNING: ROCm SMI: Failed to get PCIe throughput

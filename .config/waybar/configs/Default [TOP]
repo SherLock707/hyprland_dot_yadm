@@ -81,7 +81,9 @@
 			"temperature",
 			"memory",
 			"custom/gpu_usage",
-			"custom/gpu_temp",
+			"temperature#gpu",
+			"custom/gpu_vram",
+			// "custom/gpu_temp",
 			"custom/gpu_power",
 			"custom/gpu_fan",
 			"disk"
