@@ -1,6 +1,6 @@
 # wallust 3.0 beta.*
 
-# `full`, `resized`, `wal`, `thumb`, `fastresize`, `kmeans
+# `full`, `resized`, `wal`, `thumb`, `fastresize`, `kmeans`
 backend = "wal"
 
 # `lab`, `labmixed`, `lch`, `lchmixed`, `lchansi`
@@ -29,6 +29,8 @@ palette = "dark16"
 #  11 - 49    Colors are more similar than opposite
 #  100        Colors are exact opposite
 threshold = 10
+
+# fallback_colors = ["#FFFFFF", "#000000", "#D3D3D3", "#808080"]
 
 [templates]
 # cava.template = 'colors-cava'

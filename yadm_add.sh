@@ -47,3 +47,4 @@ yadm add ~/yadm_add.sh
 yadm add ~/.config/xdg-desktop-portal/
 yadm add ~/misc/
 yadm add ~/.config/gotop/
+yadm add ~/.config/hellwal/

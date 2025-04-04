@@ -24,6 +24,9 @@ UseTabForSwitchingSplitView=true
 Version=202
 ViewPropsTimestamp=2023,12,28,21,28,40.404
 
+[IconsMode]
+PreviewSize=144
+
 [KFileDialog Settings]
 Places Icons Auto-resize=false
 Places Icons Static Size=16
