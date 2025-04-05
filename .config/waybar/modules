@@ -1,10 +1,3 @@
-//  ██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗ 
-//  ██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-//  ██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝
-//  ██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-//  ╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║
-//   ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-//                                                     
 {
   // HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
   // CIRCLES Style
@@ -224,6 +217,7 @@
     //   "10": "十",
     // }
 },
+
   // GROUP
   "group/motherboard": {
     "orientation": "horizontal",
@@ -580,6 +574,7 @@
       "foot-dropterm"
     ]
   },
+  //CUSTOM:
   "custom/cycle_wall": {
     "format": " ",
     "on-click": "~/.config/hypr/scripts/WallpaperSelect.sh",
@@ -683,15 +678,14 @@
     "interval": "once",
     "tooltip": false
   },
-  //CUSTOM:
-  "custom/pacman": {
-    "format": " {}",
-    "interval": 7200, // every two hours
-    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" | column -t |tr '\n' '\r'", // # of updates and tooltip details
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "foot -e sudo update --noconfirm", // update system
-    "signal": 8
-  },
+  // "custom/pacman": {
+  //   "format": " {}",
+  //   "interval": 7200, // every two hours
+  //   "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" | column -t |tr '\n' '\r'", // # of updates and tooltip details
+  //   "exec-if": "exit 0", // always run; consider advanced run conditions
+  //   "on-click": "foot -e sudo update --noconfirm", // update system
+  //   "signal": 8
+  // },
   "custom/pacman2": {
     // "format": "{icon} {}",
     "format": "{2} {0}",
@@ -705,16 +699,16 @@
     }
   },
   "custom/gpu_usage": {
-    // "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {print $5}'",
-    // "exec": "radeontop -d - -l 1 | awk -F'[% ]+' '/gpu/ {printf \"%.0f\", $5}'",
-    "exec": "sh -c '/usr/bin/cat /sys/class/drm/card?/device/gpu_busy_percent'",
+    // "exec": "sh -c '/usr/bin/cat /sys/class/drm/card?/device/gpu_busy_percent'",
+    "exec": "sh -c '/usr/bin/cat /sys/class/hwmon/hwmon5/device/gpu_busy_percent'",
     "format": "<big>󰾲</big> {}%",
     "on-click": "foot -e radeontop -cT",
     "return-type": "",
     "interval": 5
   },
   "custom/gpu_vram": {
-    "exec": "awk '{printf \"%.1f\", $1 / 1073741824}' /sys/class/drm/card?/device/mem_info_vram_used",
+    // "exec": "awk '{printf \"%.1f\", $1 / 1073741824}' /sys/class/drm/card?/device/mem_info_vram_used",
+    "exec": "awk '{printf \"%.1f\", $1 / 1073741824}'  /sys/class/hwmon/hwmon5/device/mem_info_vram_used",
     "format": " {}G",
     "on-click": "foot -e radeontop -cT",
     "return-type": "",
@@ -729,14 +723,14 @@
     "return-type": "",
     "interval": 5
   },
-  "custom/gpu_temp": {
-    "exec": "sensors | awk '/edge/{sub(\"+\", \"\", $2); printf \"%.0f\", $2}'",
-    "format": "<big></big> {}°C",
-    "on-click": "missioncenter",
-    // "on-click": "foot -e radeontop -cT",
-    "return-type": "",
-    "interval": 5
-  },
+  // "custom/gpu_temp": {
+  //   "exec": "sensors | awk '/edge/{sub(\"+\", \"\", $2); printf \"%.0f\", $2}'",
+  //   "format": "<big></big> {}°C",
+  //   "on-click": "missioncenter",
+  //   // "on-click": "foot -e radeontop -cT",
+  //   "return-type": "",
+  //   "interval": 5
+  // },
   "custom/gpu_power": {
     // "exec": "sensors | awk '/PPT/{sub(\"\", $2); printf \"%.0f\", $2}'",
     "exec": "sh -c 'echo $(( $(cat /sys/class/hwmon/hwmon5/power1_average) / 1000000 ))'",
