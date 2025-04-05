@@ -223,6 +223,17 @@ tooltip {
     border: 0.2px solid @main-fg;
 }
 
+#custom-menu,
+#custom-power_outage_switch {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#custom-power,
+#custom-lock {
+    padding-left: 10px;
+}
+
 #custom-mviz
 {
     color: @maroon;

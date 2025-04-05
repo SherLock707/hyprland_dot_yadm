@@ -193,6 +193,17 @@ tooltip {
     padding-right: 6px;
 }
 
+#custom-menu,
+#custom-power_outage_switch {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#custom-power,
+#custom-lock {
+    padding-left: 10px;
+}
+
 #temperature.critical {
   background-color: @red;
 }

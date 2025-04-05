@@ -193,6 +193,16 @@ tooltip {
     border: 1px solid alpha(@color7, 0.7);
 }
 
+#custom-menu,
+#custom-power_outage_switch {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#custom-power,
+#custom-lock {
+    padding-left: 10px;
+}
 
 #network {
     min-width: 200px;

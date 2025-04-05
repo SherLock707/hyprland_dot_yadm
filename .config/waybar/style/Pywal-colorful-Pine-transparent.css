@@ -144,8 +144,6 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#
-
 #backlight,
 #backlight-slider,
 #battery,
@@ -224,6 +222,17 @@ tooltip {
     padding-left: 6px;
     padding-right: 6px;
     border: 1px solid alpha(@mauve, 0.7);
+}
+
+#custom-menu,
+#custom-power_outage_switch {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#custom-power,
+#custom-lock {
+    padding-left: 10px;
 }
 
 #custom-mviz

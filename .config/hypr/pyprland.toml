@@ -5,7 +5,7 @@ plugins = ["scratchpads"]
 [scratchpads.term_scratchpad]
 animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
-command = "foot --app-id foot-dropterm"
+command = "foot --app-id foot-dropterm -e zellij"
 class = "foot-dropterm"
 size = "50% 60%"
 margin = 50

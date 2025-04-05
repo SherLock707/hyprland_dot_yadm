@@ -1,12 +1,8 @@
-
-/* Rose Pine */
-
 @import 'color/colors-waybar.css';
 
 @define-color bar-bg rgba(0, 0, 0, 0);
 @define-color main-bg #26233a;
-/* @define-color main-fg #ebbcba; */
-@define-color main-fg @color7; /* 6 7 13 3 11*/
+@define-color main-fg @color7;
 @define-color wb-act-bg #31748f;
 @define-color wb-act-fg #9ccfd8;
 @define-color wb-hvr-bg #eb6f92;
@@ -32,7 +28,6 @@ tooltip {
     border-radius: 8px;
     border-width: 0px;
     border: 0.5px solid @main-fg;
-
     border-bottom: 3px;
     border-style: solid;
     border-color: @main-fg;
@@ -54,9 +49,7 @@ tooltip {
 }
 
 #workspaces.rw button {
-    /* box-shadow: none; */
     border: 0.2px solid alpha(@main-fg, 0.8);
-	/* text-shadow: none; */
     padding: 1px;
     border-radius: 9px;
     margin-top: 3px;
@@ -70,7 +63,6 @@ tooltip {
 }
 
 #workspaces button.active {
-    /* background: @wb-act-bg; */
     background: @color5;
     color: @wb-act-fg;
     margin-left: 3px;
@@ -161,6 +153,11 @@ tooltip {
 #window,
 #wireplumber,
 #workspaces,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
 #custom-pacman,
 #custom-pacman2,
 #custom-gpu_usage,
@@ -191,11 +188,6 @@ tooltip {
 #custom-weather.severe,
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
-#privacy,
-#gamemode,
-#power-profiles-daemon,
-#mpris,
-#systemd-failed-units,
 #custom-netstatus,
 #custom-controllerstatus,
 #custom-chatgpt,
@@ -220,6 +212,20 @@ tooltip {
     border-color: @main-fg;
 }
 
+/* .custom_module {
+    color: @main-fg;
+    background: alpha(@main-bg, 0.7);
+    opacity: 1;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 0.5px solid @main-fg;
+
+    border-bottom: 3px;
+    border-style: solid;
+    border-color: @main-fg;
+} */
 
 #network {
     min-width: 200px;
@@ -281,3 +287,5 @@ tooltip {
 	min-width: 10px;
 	border-radius: 5px;
 }
+
+@import 'style/common/common.css';

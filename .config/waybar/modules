@@ -606,7 +606,7 @@
     "tooltip": false,
   },
   "custom/menu": {
-    "format": "󰣇 ",
+    "format": "<big>󰣇</big>",
     // "format": " ",
     "tooltip": false,
     "on-click": "rofi -show drun -modi run,drun,filebrowser",

@@ -1,0 +1,11 @@
+#custom-menu,
+#custom-power_outage_switch {
+    padding-left: 6px;
+    padding-right: 10px;
+}
+
+#custom-power,
+#custom-lock,
+#custom-netstatus {
+    padding-left: 10px;
+}
