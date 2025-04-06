@@ -959,7 +959,7 @@
     "tooltip-format": "Games running: {count}"
   },
   "systemd-failed-units": {
-    "hide-on-ok": false, // Do not hide if there is zero failed units.
+    "hide-on-ok": true, // Do not hide if there is zero failed units.
     "format": "✗ {nr_failed}",
     "format-ok": "✓",
     "system": true, // Monitor failed systemwide units.
@@ -998,16 +998,7 @@
 },
 "custom/hyprshade": {
     "format": "<big>󰖔</big> ",
-    // "format": "{icon}",
-    // "format-icons": {
-    //   "success": "<big><span foreground='#FAA0A0'>󰖔</span></big>", 
-    //   "fail": "<big><span foreground='#C1E1C1'> </span></big>"
-    // },
-    // "exec": "[ -n \"$(pgrep hyprsunset)\" ] && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
-    // "return-type": "json",
-    // "interval": 5,
     "on-click": "pgrep hyprsunset && pkill hyprsunset|| hyprsunset -t 3500",
-    // "on-click": "pgrep hyprsunset && pkill hyprsunset && echo '{\"alt\": \"fail\"}' || (hyprsunset -t 3500 >/dev/null && echo '{\"alt\": \"success\"}')",
     "tooltip": true,
     "tooltip-format": "hyprsunset toggle"
 },

@@ -5,12 +5,20 @@ plugins = ["scratchpads"]
 [scratchpads.term_scratchpad]
 animation = "fromTop"
 # command = "kitty --class kitty-dropterm"
-command = "foot --app-id foot-dropterm -e zellij"
+command = "foot --app-id foot-dropterm -e 'zellij'"
 class = "foot-dropterm"
 size = "50% 60%"
 margin = 50
 pinned = true
 
+[scratchpads.kew_player]
+animation = "fromTop"
+command = "foot --app-id foot-kew -e kew"
+class = "foot-kew"
+position = "82% 4%"
+size = "17% 50%"
+margin = 50
+pinned = true
 
 # [scratchpads.volume]
 # animation = "fromRight"
