@@ -122,10 +122,6 @@ function a2c
     aria2c "$argv"
 end
 
-# function fastfetch_min 
-#     /bin/fastfetch -c ~/.config/fastfetch/minimal.jsonc
-# end
-
 function fastfetch_min
     if test "$argv[1]" = "foot"
         /bin/fastfetch -c ~/.config/fastfetch/minimal_foot.jsonc
@@ -133,6 +129,31 @@ function fastfetch_min
         /bin/fastfetch -c ~/.config/fastfetch/minimal_kitty.jsonc
     else
         /bin/fastfetch -c ~/.config/fastfetch/minimal_gen.jsonc
+    end
+end
+
+
+function __set_fastfetch_config
+    set -l config
+    switch $TERM
+        case foot
+            set config ~/.config/fastfetch/foot.jsonc
+        case xterm-kitty
+            set config ~/.config/fastfetch/kitty.jsonc
+        case '*'
+            set config ''
+    end
+
+    if test -n "$config"
+        alias fastfetch "fastfetch --load-config $config"
+    end
+
+    if test -z "$ZELLIJ"
+        if test -n "$config"
+            fastfetch_min (basename $config .jsonc)
+        else
+            fastfetch_min
+        end
     end
 end
 
@@ -218,8 +239,6 @@ alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 
 # alias aria2c 'a2c'
 
-alias mpv_up 'mpv --glsl-shaders="shaders=~/shaders/Anime4K_Clamp_Highlights.glsl:~/shaders/Anime4K_Restore_CNN_VL.glsl:~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~/shaders/Anime4K_Restore_CNN_M.glsl:~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~/shaders/Anime4K_Upscale_CNN_x2_M.glsl"'
-
 zoxide init fish | source
 
 set EDITOR /usr/bin/vscodium
@@ -227,14 +246,7 @@ set EDITOR /usr/bin/vscodium
 alias vk_radv 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json'
 alias vk_pro 'VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_pro_icd64.json'
 
-# ## Run fastfetch if session is interactive
-# if status --is-interactive && type -q fastfetch
-#     #  fastfetch --load-config neofetch.jsonc
-#     fastfetch --load-config ~/.config/fastfetch/2.jsonc
-# end
-
-# alias fastfetch_min 'fastfetch --load-config ~/.config/fastfetch/minimal.jsonc'
-
+alias zc 'zellij -l gotop_cava attach --create gotop_cava'
 
 # Add pyenv executable to PATH by running
 # the following interactively:
@@ -243,17 +255,11 @@ set -Ux PYENV_ROOT $HOME/.pyenv
 set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 pyenv init - fish | source
 
-
-if [ $TERM = foot ]
-  alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/foot.jsonc'
-#   ~/.config/fastfetch/assets/buildin-art.sh
-#   fastfetch --load-config ~/.config/fastfetch/foot.jsonc
-  fastfetch_min "foot"
-else if [ $TERM = xterm-kitty ]
-  alias fastfetch 'fastfetch --load-config ~/.config/fastfetch/kitty.jsonc'
-  fastfetch_min "kitty"
-else
+# Always run fastfetch_min in Zellij
+if test -n "$ZELLIJ"
     fastfetch_min
+else
+    __set_fastfetch_config
 end
 
 
