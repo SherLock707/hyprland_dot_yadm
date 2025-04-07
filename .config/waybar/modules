@@ -642,7 +642,6 @@
     "format-alt-click": "click",
     "interval": 3600,
     "return-type": "json",
-    // "exec": "python3 ~/.config/hypr/scripts/weather2.py",
     "exec": "~/.config/hypr/scripts/Weather.py",
     "exec-if": "ping wttr.in -c1",
     "tooltip": true,
@@ -692,7 +691,7 @@
     "return-type": "json",
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates --interval-seconds 3600",
-    "on-click": "foot -e update --noconfirm", // update system
+    "on-click": "foot -e update --noconfirm",
     "format-icons": {
       "has-updates": "󱍷<span foreground='green'><sup></sup></span>",
       "updated": "󰂪"
@@ -715,7 +714,6 @@
     "interval": 5
   },
   "custom/gpu_fan": {
-    // "exec": "sensors | awk '/fan1/{print $2}' | tail -1",
     "exec": "/usr/bin/cat ~/.amdgpu_hwmon/fan1_input",
     "format": "<big>󰈐</big> {}",
     "on-click": "corectrl",

@@ -30,6 +30,9 @@ done
 wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
+# Temp
+~/dumps/hellwal/hellwal --skip-term-colors -i "$wallpaper_path"
+
 # OPENRGB
 # NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"
 # COLOR_CODE=$(sed 's/#//' "$NEW_COLOR_FILE")
@@ -49,3 +52,6 @@ $HOME/.config/hypr/scripts/SetVscodeColor.sh
 
 # Update MPV UI colour
 $HOME/.config/hypr/scripts/setMpvColor.sh
+
+# Update Obsidian colour
+$HOME/.config/hypr/scripts/setObsidianColor.sh
