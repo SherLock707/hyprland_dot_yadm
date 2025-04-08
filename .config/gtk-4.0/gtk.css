@@ -1,4 +1,4 @@
-@import '../waybar/color/colors-waybar.css';
+@import '../../.cache/hellwal/colors-waybar.css';
 
 @keyframes ripple {
   to {

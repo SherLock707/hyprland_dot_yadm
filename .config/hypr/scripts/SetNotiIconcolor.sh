@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ICON_DIR="$HOME/.config/swaync/assets/"
-NEW_COLOR_1=$(cat "$HOME/.config/waybar/color/colors-icons-complimentary")
-NEW_COLOR_2=$(cat "$HOME/.config/waybar/color/colors-icons")
+NEW_COLOR_1=$(cat "$HOME/.cache/hellwal/colors-icons")
+NEW_COLOR_2=$(cat "$HOME/.cache/hellwal/colors-icons-complimentary")
 
 # Ensure colors start with #
 NEW_COLOR_1="#${NEW_COLOR_1#\#}"

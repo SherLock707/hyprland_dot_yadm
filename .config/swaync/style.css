@@ -1,7 +1,8 @@
-@import '../waybar/color/colors-waybar.css';
+@import '../../.cache/hellwal/colors-waybar.css';
+/* @import '../waybar/color/colors-waybar.css'; */
 
 @define-color accent @color7;
-@define-color accent2 @color13;
+@define-color accent2 @color14;
 
 @define-color cc-bg rgba(26, 27, 38, 1);
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
@@ -82,7 +83,6 @@
   border-radius: 5px;
   background: linear-gradient(
     90deg,
-    /* rgba(164, 89, 235, 0.8), */
     @accent,
     @accent2
     
@@ -254,21 +254,17 @@
   color: #cdd6f4;
 }
 
-progressbar,
-progress,
-trough {
-  border-radius: 12.6px;
-  /* min-height: 10px; */
-  /* min-height: 15px; */
-  padding: 3px; 
-}
-
 progressbar {
-  /* box-shadow: inset 1 1 1 1px #202124; */
-  /* min-height: 10px; */
-  padding: 3px; 
-
+  padding: 3px;
+  border-radius: 12px;
 }
+
+trough,
+progress {
+  padding: 3px;
+  border-radius: 12px;
+}
+
 
 .notification.critical progress {
   background-color: #f38ba8;
@@ -282,13 +278,10 @@ progressbar {
   background: linear-gradient(
     45deg,
     /* rgba(164, 89, 235, 0.8), */
-    /* rgba(25, 227, 250, 0.8),
-    rgba(250, 154, 250, 0.8) */
-    alpha(@color8, 0.8),
-    alpha(@color7, 0.8)
-    
-    /* @accent2,
-    @accent */
+    /* alpha(@accent2, 0.8),
+    alpha(@accent, 0.8) */
+    @accent2,
+    @accent
     
   );
 }
@@ -343,9 +336,7 @@ trough {
   border-radius: 8px;
   border: 1px solid #6c7086;
 }
-
-
-
+/* 
 .widget-mpris {
   color: @color7;
   background: @noti-bg-darker;
@@ -353,49 +344,33 @@ trough {
   margin: 5px 10px 5px 10px;
   border: 1px solid @accent;
   border-radius: 8px;
-  /* margin: 7px; */
-  /* padding: 2px; */
 }
 
+
 .widget-mpris > box > button {
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .widget-mpris-player {
+  background-color: @noti-bg-darker;
   padding: 5px 10px;
   margin: 10px;
 }
 
+.widget-mpris button {
+  color: alpha(@color7, .6);
+}
+
+.widget-mpris-album-art {
+  border-radius: 16px;
+}
+  
 .widget-mpris-title {
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .widget-mpris-subtitle {
-  font-size: 1.1rem;
-}
-
-/* .widget-buttons-grid > flowbox > flowboxchild > button {
-    margin: 3px;
-    background: @cc-bg;
-    border-radius: 0px;
-    color: @text-color;
-  }
-   */
-
-/* .close-button {
-background: #f7768e;
-color: #f7768e;
-text-shadow: none;
-padding: 0px;
-border-radius: 0px;
-margin-top: 5px;
-margin-right: 5px;
-}
-
-.close-button:hover {
-box-shadow: none;
-background: #f7768e;
-transition: all 0.15s ease-in-out;
-border: none;
+  font-weight: 500;
+  font-size: 0.8rem;
 } */

@@ -27,11 +27,11 @@ done
 
 # execute pywal skipping tty and terminal
 # wal -i $wallpaper_path -s -t
-wallust run "$wallpaper_path" -s
+# wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
 # Temp
-~/dumps/hellwal/hellwal --skip-term-colors -i "$wallpaper_path"
+hellwal --skip-term-colors -i "$wallpaper_path"
 
 # OPENRGB
 # NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"
@@ -55,3 +55,7 @@ $HOME/.config/hypr/scripts/setMpvColor.sh
 
 # Update Obsidian colour
 $HOME/.config/hypr/scripts/setObsidianColor.sh
+
+# Update folder icon color
+cp -f ~/.cache/hellwal/folder_16.svg ~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg
+cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg

@@ -5,7 +5,7 @@ file_path="$HOME/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-M
 kvconfig_path="$HOME/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-Mauve-pywal.kvconfig"
 
 # Define the colors file path
-colors_file="$HOME/.config/waybar/color/colors-icons"
+colors_file="$HOME/.cache/hellwal/colors-icons"
 
 # Read the new color from the 7th line of the colors file
 new_color=$(cat "$colors_file")

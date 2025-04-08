@@ -1,5 +1,5 @@
 @define-color text #%% foreground.hex %%;
-@define-color background rgba(#%% background.hex alpha=0.25 %%);
+@define-color background rgba(%% background.rgb %%, 0.25);
 @define-color background-alt #%% background.hex %%;
 @define-color cursor #%% cursor.hex %%;
 @define-color hovered #%% color12.hex %%;

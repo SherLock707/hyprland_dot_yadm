@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_PATH="$HOME/.config/mpv/script-opts/uosc.conf"
-COLOR_FILE="$HOME/.config/waybar/color/colors-icons"
+COLOR_FILE="$HOME/.cache/hellwal/colors-icons"
 
 # Read the new color value
 if [[ ! -f "$COLOR_FILE" ]]; then
