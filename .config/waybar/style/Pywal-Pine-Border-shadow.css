@@ -6,6 +6,7 @@
 @define-color main-fg @color7;
 @define-color wb-act-bg #31748f;
 @define-color wb-act-fg #9ccfd8;
+/* @define-color wb-act-fg @color10; */
 @define-color wb-hvr-bg #eb6f92;
 @define-color wb-hvr-fg #f6c177;
 

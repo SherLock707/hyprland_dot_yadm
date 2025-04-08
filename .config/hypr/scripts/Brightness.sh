@@ -86,7 +86,7 @@ get_icon() {
 
 # Show notification
 notify_user() {
-	notify-send -e -a brightness -h string:x-canonical-private-synchronous:brightness_notif \
+	notify-send -e -a brightness -h string:x-canonical-private-synchronous:brightness_notif -h boolean:SWAYNC_BYPASS_DND:true \
 		-h int:value:$current -u low -i "$icon" "Brightness : $current%"
 }
 
