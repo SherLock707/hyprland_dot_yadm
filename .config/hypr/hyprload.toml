@@ -26,8 +26,7 @@ plugins = [
         # by default, there are no rules added
         # see the dedicated `shape rules` section below!
         # shaperule = <shape-name>, <mode> (optional), <property>: <value>, ...
-        # shaperule = <shape-name>, <mode> (optional), <property>: <value>, ...
-        ...
+        # shaperule = <shape-name>, <mode> (optional), <property>: <value>, .
 
         #  for mode = rotate
         # rotate {

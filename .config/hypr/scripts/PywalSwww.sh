@@ -45,7 +45,7 @@ $HOME/.config/hypr/scripts/SetIconColor.sh
 $HOME/.config/hypr/scripts/Update_qt_accent.sh
 
 # Update Notification icons
-$HOME/.config/hypr/scripts/SetNotiIconcolor.sh
+$HOME/.config/hypr/scripts/SetNotiIconcolorV2.sh
 
 # Update VScodium colour fo cat
 $HOME/.config/hypr/scripts/SetVscodeColor.sh
@@ -56,6 +56,12 @@ $HOME/.config/hypr/scripts/setMpvColor.sh
 # Update Obsidian colour
 $HOME/.config/hypr/scripts/setObsidianColor.sh
 
+# Update Browser new tab colour
+$HOME/.config/hypr/scripts/setBrowserTabColor.sh
+
 # Update folder icon color
 cp -f ~/.cache/hellwal/folder_16.svg ~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg
 cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg
+
+# # Copy cava config
+cp -f ~/.cache/hellwal/config-cava ~/.config/cava/config
