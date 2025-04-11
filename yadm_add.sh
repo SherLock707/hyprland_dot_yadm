@@ -49,3 +49,4 @@ yadm add ~/misc/
 yadm add ~/.config/gotop/
 yadm add ~/.config/hellwal/
 yadm add ~/.config/kew/kewrc
+yadm add ~/.config/browser_custom/

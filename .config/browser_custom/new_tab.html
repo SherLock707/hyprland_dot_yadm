@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>New Tab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="cloud-container">
+    <svg class="cloud" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 40H48C53 40 57 36 57 31C57 27 54 23 50 22C49 16 44 12 38 12C35 12 32 13 30 15C28 13 26 12 24 12C19 12 15 16 15 21C11 22 8 26 8 30C8 35 13 40 20 40Z" fill="#b4befe" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="font-family: monospace;">
+  
+      <!-- Centered Text -->
+  <text id="cmd" x="50%" y="300" text-anchor="middle" font-size="20" fill="#cdd6f4">
+    sudo rm -rf /
+  </text>
+
+  <!-- Blinking cursor aligned to end of text -->
+  <rect id="cursor" x="480" y="283" width="8" height="20" fill="#cdd6f4">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  </rect>
+</svg>
+  
+  <div class="container" id="container"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>

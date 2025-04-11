@@ -1,0 +1,97 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("neon_cat.svg") center center no-repeat;
+  background-size: cover;
+  /* 🔥 Fills screen and keeps aspect ratio */
+  z-index: -1;
+}
+
+/* Bubble pop */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+background-color: #111;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+overflow: hidden;
+margin: 0;
+}
+
+.container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  
+    /* Sane limits */
+    width: 100%;
+    height: 15%;
+    max-width: 100vw;
+    max-height: 15vh;
+    min-width: 100px;
+    /* min-height: 20px; */
+  
+    /* overflow: auto; Allows scrolling if content overflows */
+}
+  
+
+.square {
+  /* background-color: #181825; */
+  background-color: rgba(24, 24, 37, 0.3);
+  box-shadow: 0 0 2px #000;
+  height: 24px;
+  width: 24px;
+  margin: 4px;
+  transition: 5s ease;
+  border-radius: 50%;
+}
+
+.square:hover {
+  transition-duration: 0s;
+}
+
+/* Cloud */
+
+.cloud-container {
+    position: absolute;
+    top: 10%;
+    left: -100px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .cloud {
+    width: 200px;
+    animation: drift 120s linear infinite;
+  }
+  
+  @keyframes drift {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(120vw);
+    }
+  }
