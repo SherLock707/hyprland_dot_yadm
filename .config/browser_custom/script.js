@@ -24,3 +24,18 @@ for (let i = 0; i < SQUARES; i++) {
   square.addEventListener("mouseout", () => removeColor(square));
   container.appendChild(square);
 }
+
+
+// const cloud = document.querySelector('.cloud');
+//   for (let i = 0; i < 10; i++) {
+//     const drop = document.createElementNS("http://www.w3.org/2000/svg", "use");
+//     drop.setAttribute("href", "#arch-logo");
+//     drop.setAttribute("x", 20 + i * 8);
+//     drop.setAttribute("y", 40);
+//     drop.setAttribute("class", "rain");
+//     drop.setAttribute("style", `
+//       --delay: ${Math.random() * 5}s;
+//       transform: rotate(${Math.floor(Math.random() * 30 - 15)}deg);
+//     `);
+//     cloud.appendChild(drop);
+//   }

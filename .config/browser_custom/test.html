@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Map Test</title>
+  <style>
+    .map-wrapper {
+      border: 3px solid red;
+      padding: 20px;
+      width: fit-content;
+    }
+    .map-image {
+      opacity: 1;
+      filter: none;
+      width: 80vw;
+    }
+  </style>
+</head>
+<body>
+  <div class="map-wrapper">
+    <img src="hallownest_map_outline.png" alt="Map" class="map-image" />
+  </div>
+</body>
+</html>
+
+
+
+<svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg"
+    style="font-family: monospace;">
+
+    <!-- Centered Text -->
+    <text id="cmd" x="50%" y="300" text-anchor="middle" font-size="20" fill="#cdd6f4">
+      sudo rm -rf /
+    </text>
+
+    <!-- Blinking cursor aligned to end of text -->
+    <rect id="cursor" x="480" y="283" width="8" height="20" fill="#cdd6f4">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </rect>
+  </svg>
