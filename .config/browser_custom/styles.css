@@ -87,6 +87,7 @@ margin: 0;
   .cloud {
     width: 200px;
     animation: drift 420s linear infinite;
+    opacity: 0.7;
   }
   
   @keyframes drift {

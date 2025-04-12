@@ -136,8 +136,8 @@ int main(int argc, char **argv) {
             "{\"text\":\""
             "<span %s><big>󰾲</big></span> %d%% "
             "<span %s></span> %d°C "
-            "<span %s></span> %.1fG "
-            "<span %s><big>󰈐</big></span> %d "
+            "<span %s></span> %.1fG "
+            "<span %s><big>󰈐</big></span> %d "
             "<span %s><big>󱐋</big></span>%dW\",",
             usage_fg_str, usage,
             temp_fg_str, temp,
@@ -154,3 +154,6 @@ int main(int argc, char **argv) {
 
     return 0;
 }
+
+
+//gcc -O2 -o waybar-gpu waybar-gpu.c
