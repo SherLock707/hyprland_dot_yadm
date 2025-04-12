@@ -88,7 +88,7 @@ void get_color_str(const char *class_str, char *out, size_t len) {
 }
 
 int main(int argc, char **argv) {
-    int interval = (argc > 1) ? atoi(argv[1]) : 5;
+    int interval = (argc > 1) ? atoi(argv[1]) : -1;
 
     char hwmon_path[MAX_PATH];
     find_amdgpu_hwmon(hwmon_path, sizeof(hwmon_path));
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
     snprintf(path_vram_used, sizeof(path_vram_used), "%s/device/mem_info_vram_used", hwmon_path);
     snprintf(path_vram_total, sizeof(path_vram_total), "%s/device/mem_info_vram_total", hwmon_path);
 
-    while (1) {
+    do {
         // Read metrics
         float temp_raw = read_scaled(path_temp, 1000.0f);
         int temp = (int)(temp_raw + 0.5f);
@@ -149,11 +149,43 @@ int main(int argc, char **argv) {
         // Use temp class as overall severity (or you could compute highest-severity class)
         printf("\"class\":\"%s\"}\n", class_temp_str);
         fflush(stdout);
-        sleep(interval);
-    }
+        if (interval > 0)
+            sleep(interval);
+    } while (interval > 0);  // Run once if interval is not provided
+
 
     return 0;
 }
 
 
 //gcc -O2 -o waybar-gpu waybar-gpu.c
+//gcc -Ofast -o waybar-gpu waybar-gpu.c
+
+
+// benchmark:
+// waybar-gpu
+// ________________________________________________________
+// Executed in    1.81 millis    fish           external
+//    usr time    0.26 millis  261.00 micros    0.00 millis
+//    sys time    1.56 millis   76.00 micros    1.48 millis
+
+
+// waybar-gpu-o3 
+// ________________________________________________________
+// Executed in    1.45 millis    fish           external
+//    usr time    0.34 millis  345.00 micros    0.00 millis
+//    sys time    1.15 millis  136.00 micros    1.02 millis
+
+ 
+// waybar-gpu-Ofast
+// ________________________________________________________
+// Executed in    1.31 millis    fish           external
+//    usr time    0.27 millis  271.00 micros    0.00 micros
+//    sys time    1.07 millis  106.00 micros  960.00 micros
+
+ 
+// waybar-gpu-Os
+// ________________________________________________________
+// Executed in    1.89 millis    fish           external
+//    usr time    0.00 millis    0.00 micros    0.00 millis
+//    sys time    1.89 millis  455.00 micros    1.44 millisg
