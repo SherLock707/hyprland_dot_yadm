@@ -1011,5 +1011,11 @@
     "format": "  ",
     "on-click": "pypr toggle kew_player",
     "escape": true
+  },
+  "custom/gpu_aio":{
+    "format": "{}",
+    "exec": "~/.config/waybar/custom_modules/waybar-gpu 1",
+    "return-type": "json",
+    "escape": false
   }
 }

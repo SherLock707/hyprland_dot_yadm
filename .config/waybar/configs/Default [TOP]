@@ -81,12 +81,13 @@
 			"cpu", 
 			"temperature",
 			"memory",
-			"custom/gpu_usage",
-			"temperature#gpu",
-			"custom/gpu_vram",
+			// "custom/gpu_usage",
+			// "temperature#gpu",
+			// "custom/gpu_vram",
 			// "custom/gpu_temp",
-			"custom/gpu_power",
-			"custom/gpu_fan",
+			// "custom/gpu_power",
+			// "custom/gpu_fan",
+			"custom/gpu_aio",
 			"disk"
 		]
 	},

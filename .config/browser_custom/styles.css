@@ -86,7 +86,7 @@ margin: 0;
   
   .cloud {
     width: 200px;
-    animation: drift 120s linear infinite;
+    animation: drift 420s linear infinite;
   }
   
   @keyframes drift {
@@ -131,7 +131,7 @@ margin: 0;
     display: inline-block;
     padding: 4px;
     position: relative;
-    left: 20px;
+    left: 24px;
     top: -170px; /* or however much you want to nudge it up */
     z-index: 1; /* lower than other elements like clouds */
   }
@@ -140,5 +140,5 @@ margin: 0;
   .map-image {
     width: 100%;
     max-width: 1100px;
-    opacity: 0.9;
+    opacity: 1.0;
   }
