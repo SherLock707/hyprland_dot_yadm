@@ -8,9 +8,8 @@
 #define MAX_PATH 256
 
 // Define colors
-#define WARNING_COLOR "#fab387"
-#define CRITICAL_COLOR "#f38ba8"
-#define OPTIMAL_COLOR ""
+const char *WARNING_COLOR = "#fab387";
+const char *CRITICAL_COLOR = "#f38ba8";
 
 // Read integer from a sysfs file
 int read_int(const char *path) {
@@ -57,25 +56,33 @@ int find_amdgpu_hwmon(char *out_path, size_t len) {
     return -1;
 }
 
-// Classification for different parameters
-const char *class_temp(float c)        { return (c < 50) ? "optimal" : (c < 80) ? "moderate" : "critical"; }
-const char *class_usage(int u)         { return (u < 50) ? "optimal" : (u < 85) ? "moderate" : "critical"; }
-const char *class_power(float w)       { return (w < 80) ? "optimal" : (w < 160) ? "moderate" : "critical"; }
-const char *class_fan_rpm(int rpm)     { return (rpm > 2000) ? "critical" : (rpm > 1500) ? "moderate" : "optimal"; }
-const char *class_vram_usage(float v)  { return (v > 11.0f) ? "critical" : (v > 6.0f) ? "moderate" : "optimal"; }
-
-// Helper: Map classification to foreground color string
-const char *class_to_color(const char *class) {
-    if (*class == 'c') return CRITICAL_COLOR;
-    if (*class == 'm') return WARNING_COLOR;
-    return OPTIMAL_COLOR;
+// Classification functions
+const char *class_temp(float c) {
+    return (c < 50) ? "optimal" : (c < 80) ? "moderate" : "critical";
 }
 
-// Helper: Set span string if needed
-void build_color_span(char *out, size_t size, const char *class) {
-    const char *color = class_to_color(class);
-    if (*color)
-        snprintf(out, size, "foreground='%s'", color);
+const char *class_usage(int u) {
+    return (u < 50) ? "optimal" : (u < 85) ? "moderate" : "critical";
+}
+
+const char *class_power(float w) {
+    return (w < 80) ? "optimal" : (w < 160) ? "moderate" : "critical";
+}
+
+const char *class_fan_rpm(int rpm) {
+    return (rpm > 2000) ? "critical" : (rpm > 1500) ? "moderate" : "optimal";
+}
+
+const char *class_vram_usage(float vram_usage) {
+    return (vram_usage > 11.0f) ? "critical" : (vram_usage > 6.0f) ? "moderate" : "optimal";
+}
+
+// Return style string or empty for optimal
+void get_color_str(const char *class_str, char *out, size_t len) {
+    if (strcmp(class_str, "critical") == 0)
+        snprintf(out, len, "foreground='%s'", CRITICAL_COLOR);
+    else if (strcmp(class_str, "moderate") == 0)
+        snprintf(out, len, "foreground='%s'", WARNING_COLOR);
     else
         out[0] = '\0';
 }
@@ -92,14 +99,12 @@ int main(int argc, char **argv) {
     snprintf(path_temp, sizeof(path_temp), "%s/temp1_input", hwmon_path);
     snprintf(path_fan, sizeof(path_fan), "%s/fan1_input", hwmon_path);
     snprintf(path_power, sizeof(path_power), "%s/power1_average", hwmon_path);
-
     snprintf(path_usage, sizeof(path_usage), "%s/device/gpu_busy_percent", hwmon_path);
     snprintf(path_vram_used, sizeof(path_vram_used), "%s/device/mem_info_vram_used", hwmon_path);
     snprintf(path_vram_total, sizeof(path_vram_total), "%s/device/mem_info_vram_total", hwmon_path);
 
     while (1) {
-        char temp_fg[64], usage_fg[64], power_fg[64], fan_fg[64], vram_fg[64];
-
+        // Read metrics
         float temp_raw = read_scaled(path_temp, 1000.0f);
         int temp = (int)(temp_raw + 0.5f);
         int fan_rpm = read_int(path_fan);
@@ -110,25 +115,40 @@ int main(int argc, char **argv) {
         unsigned long long vram_total = read_ull(path_vram_total);
         float vram_gib = (vram_total > 0) ? ((float)vram_used / 1073741824.0f) : 0.0f;
 
+        // Classify
         const char *class_temp_str = class_temp(temp_raw);
         const char *class_usage_str = class_usage(usage);
         const char *class_power_str = class_power(power_raw);
         const char *class_fan_str = class_fan_rpm(fan_rpm);
         const char *class_vram_str = class_vram_usage(vram_gib);
 
-        build_color_span(temp_fg, sizeof(temp_fg), class_temp_str);
-        build_color_span(usage_fg, sizeof(usage_fg), class_usage_str);
-        build_color_span(power_fg, sizeof(power_fg), class_power_str);
-        build_color_span(fan_fg, sizeof(fan_fg), class_fan_str);
-        build_color_span(vram_fg, sizeof(vram_fg), class_vram_str);
+        // Generate color styles
+        char temp_fg_str[64], usage_fg_str[64], power_fg_str[64];
+        char fan_fg_str[64], vram_fg_str[64];
+        get_color_str(class_temp_str, temp_fg_str, sizeof(temp_fg_str));
+        get_color_str(class_usage_str, usage_fg_str, sizeof(usage_fg_str));
+        get_color_str(class_power_str, power_fg_str, sizeof(power_fg_str));
+        get_color_str(class_fan_str, fan_fg_str, sizeof(fan_fg_str));
+        get_color_str(class_vram_str, vram_fg_str, sizeof(vram_fg_str));
 
-        printf("{\"text\":\"<span %s><big>󰾲</big></span> %d%% <span %s></span> %d°C <span %s></span> %.1fG <span %s><big>󰈐</big></span> %d <span %s><big>󱐋</big></span>%dW\",",
-                usage_fg, usage, temp_fg, temp, vram_fg, vram_gib, fan_fg, fan_rpm, power_fg, power);
+        // Output formatted JSON
+        printf(
+            "{\"text\":\""
+            "<span %s><big>󰾲</big></span> %d%% "
+            "<span %s></span> %d°C "
+            "<span %s></span> %.1fG "
+            "<span %s><big>󰈐</big></span> %d "
+            "<span %s><big>󱐋</big></span>%dW\",",
+            usage_fg_str, usage,
+            temp_fg_str, temp,
+            vram_fg_str, vram_gib,
+            fan_fg_str, fan_rpm,
+            power_fg_str, power
+        );
 
+        // Use temp class as overall severity (or you could compute highest-severity class)
         printf("\"class\":\"%s\"}\n", class_temp_str);
         fflush(stdout);
-
-        // Sleep before updating again
         sleep(interval);
     }
 
