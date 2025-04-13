@@ -1017,5 +1017,13 @@
     "exec": "~/.config/waybar/custom_modules/waybar-gpu 1",
     "return-type": "json",
     "escape": false
-  }
+  },
+  "custom/palette": {
+    "format":"  ",
+    "exec": "~/.config/hypr/scripts/palette-tooltip.sh",
+    "interval": 300,
+    "tooltip": true,
+    "return-type": "json",
+    "markup": "pango"
+}
 }

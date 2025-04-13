@@ -57,6 +57,7 @@
   color: #cdd6f4;
   padding-left: 12px;
   padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .time {

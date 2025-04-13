@@ -201,6 +201,7 @@ tooltip {
 #custom-hyprpicker,
 #custom-gpu_vram,
 #custom-gpu_aio,
+#custom-palette,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);
