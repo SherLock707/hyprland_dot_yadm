@@ -11,10 +11,10 @@ yadm add -u
 
 # Commit with timestamp
 echo -e "\e[33m📝 Committing changes...\e[0m"
-#yadm commit -m "commit - $timestamp"
-commit_msg_raw=$(~/.config/scripts/yd_commit_ollama.sh)
-echo $commit_msg_raw
-yadm commit -m "$commit_msg_raw"
+yadm commit -m "commit - $timestamp"
+# commit_msg_raw=$(~/.config/scripts/yd_commit_ollama.sh)
+# echo $commit_msg_raw
+# yadm commit -m "$commit_msg_raw"
 
 # Push changes
 echo -e "\e[35m📤 Pushing to remote...\e[0m"
