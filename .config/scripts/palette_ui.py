@@ -4,6 +4,7 @@ from fabric.widgets.box import Box
 from fabric.widgets.label import Label
 from fabric.widgets.window import Window
 from fabric.widgets.button import Button
+from fabric.widgets.image import Image
 from fabric.utils import exec_shell_command_async, idle_add
 
 import os
@@ -78,11 +79,12 @@ def color_button(label): # define a "factory function"
 color_dict = parse_css_colors("~/.cache/hellwal/colors-waybar.css")
 
 if __name__ == "__main__":
-    box_1 = Box(
+    img = Image('/home/itachi/.config/rofi/.current_wallpaper', size=(400,-1))
+    box_main = Box(
         orientation="v", # vertical
         spacing=5 # adds some spacing between the children
     )
-    
+    box_main.add(img)
     for name, _ in color_dict.items():
         # print(f"{name} => {hex_value}")
         colour_btn = color_button(name)
@@ -96,9 +98,9 @@ if __name__ == "__main__":
             ]
         )
 
-        box_1.add(box_tmp)
+        box_main.add(box_tmp)
 
-    window = Window(child=box_1, type='popup')
+    window = Window(child=box_main, type='popup')
     app = Application("palette", window)
 
     app.run() # run the event loop (run the config)

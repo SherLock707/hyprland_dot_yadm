@@ -30,8 +30,34 @@ done
 # wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
-# Temp
-hellwal --skip-term-colors -i "$wallpaper_path"
+# Brightness adjust =========================================================
+THRESHOLD=0.5
+
+# Use magick to get mean brightness as a float
+BRIGHTNESS=$(magick "$wallpaper_path" -colorspace Gray -quiet -format "%[fx:mean]" info: 2>/dev/null)
+
+# Remove potential whitespace
+BRIGHTNESS="${BRIGHTNESS//[[:space:]]/}"
+
+# Compare brightness with threshold
+awk -v val="$BRIGHTNESS" -v thresh="$THRESHOLD" '
+BEGIN {
+    if (val > thresh) {
+        exit 0  # Bright
+    } else {
+        exit 1  # Dark
+    }
+}
+'
+
+if [ $? -eq 0 ]; then
+    hellwal --skip-term-colors -q -i "$wallpaper_path"
+else
+    hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path"
+fi
+# =============================================================================
+
+# hellwal --skip-term-colors -q -i "$wallpaper_path" # -b 0.3
 
 # OPENRGB
 # NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"

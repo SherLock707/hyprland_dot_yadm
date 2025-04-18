@@ -224,3 +224,4 @@ goverlay
 wallust
 ffmpegthumbs
 moreutils
+kcolorchooser

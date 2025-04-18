@@ -23,7 +23,7 @@ defaults = {
 	progress = 'windowed',
 	progress_size = 2,
 	progress_line_width = 20,
-	timeline_persistency = '',
+	timeline_persistency = 'paused',
 	timeline_border = 1,
 	timeline_step = '5',
 	timeline_cache = true,
@@ -33,15 +33,15 @@ defaults = {
 	controls_size = 32,
 	controls_margin = 8,
 	controls_spacing = 2,
-	controls_persistency = '',
+	controls_persistency = 'paused',
 
 	volume = 'right',
 	volume_size = 40,
-	volume_persistency = '',
+	volume_persistency = 'paused',
 	volume_border = 1,
 	volume_step = 1,
 
-	speed_persistency = '',
+	speed_persistency = 'paused',
 	speed_step = 0.1,
 	speed_step_is_factor = false,
 
@@ -52,7 +52,7 @@ defaults = {
 
 	top_bar = 'no-border',
 	top_bar_size = 40,
-	top_bar_persistency = '',
+	top_bar_persistency = 'paused',
 	top_bar_controls = 'right',
 	top_bar_title = 'yes',
 	top_bar_alt_title = '',
