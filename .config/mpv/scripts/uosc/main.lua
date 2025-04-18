@@ -23,7 +23,7 @@ defaults = {
 	progress = 'windowed',
 	progress_size = 2,
 	progress_line_width = 20,
-	timeline_persistency = 'paused',
+	timeline_persistency = '',
 	timeline_border = 1,
 	timeline_step = '5',
 	timeline_cache = true,
@@ -33,11 +33,11 @@ defaults = {
 	controls_size = 32,
 	controls_margin = 8,
 	controls_spacing = 2,
-	controls_persistency = 'paused',
+	controls_persistency = '',
 
 	volume = 'right',
 	volume_size = 40,
-	volume_persistency = 'paused',
+	volume_persistency = '',
 	volume_border = 1,
 	volume_step = 1,
 
