@@ -14,7 +14,7 @@ from fabric.widgets.wayland import WaylandWindow as Window
 
 # Constants
 THEME_PATH = os.path.expanduser("~/.config/hellwal/themes/custom.hellwal")
-WALLPAPER_PATH = os.path.expanduser("/home/itachi/.config/rofi/.current_wallpaper")
+WALLPAPER_PATH = os.path.expanduser("~/.config/rofi/.current_wallpaper")
 SCRIPT_PATH = os.path.expanduser("~/.config/hypr/scripts/PywalSwww.sh")
 COLOR_JSON_PATH = os.path.expanduser("~/.cache/hellwal/colors.json")
 
