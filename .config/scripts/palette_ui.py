@@ -100,9 +100,6 @@ if __name__ == "__main__":
 
         box_main.add(box_tmp)
 
-    # window = Window(child=box_main, type='popup')
-    # app = Application("palette", window)
-
     app = Application(
         "palette-app",
         Window(
