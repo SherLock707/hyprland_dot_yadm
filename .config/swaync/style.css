@@ -281,8 +281,8 @@ progress {
     /* rgba(164, 89, 235, 0.8), */
     /* alpha(@accent2, 0.8),
     alpha(@accent, 0.8) */
-    @accent2,
-    @accent
+    @accent,
+    @accent2
     
   );
 }

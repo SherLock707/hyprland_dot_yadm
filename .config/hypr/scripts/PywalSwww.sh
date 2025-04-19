@@ -53,11 +53,11 @@ BEGIN {
 if [ $? -eq 0 ]; then
     hellwal --skip-term-colors -q -i "$wallpaper_path"
 else
-    hellwal --skip-term-colors -b 0.3 -q -i "$wallpaper_path"
+    hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path"
 fi
 # =============================================================================
 
-# hellwal --skip-term-colors -q -i "$wallpaper_path" # -b 0.3
+# hellwal --skip-term-colors -q -i "$wallpaper_path"
 
 # OPENRGB
 # NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"

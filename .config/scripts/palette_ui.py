@@ -57,14 +57,16 @@ def complementary_color(hex_color: str) -> str:
     return '#000000' if brightness > 186 else '#ffffff'
 
 def copy_button(label):
-    return Button(label="󰆏", on_clicked=lambda *_: copy_to_clipboard(color_dict[label]))
+    return Button(label="󰆏", style="min-width: 5px;", on_clicked=lambda *_: copy_to_clipboard(color_dict[label]))
 
 def edit_button(label, colour_btn):
-    return Button(label="", on_clicked=lambda *_: pick_color(label, colour_btn))
+    return Button(label="", style="min-width: 5px;", on_clicked=lambda *_: pick_color(label, colour_btn))
 
 def color_button(label):
     return Button(label=label, style=f"background: {color_dict[label]}; color: {complementary_color(color_dict[label])}; font-weight: bold;", h_expand=True)
 
+def refresh_theme():
+    print("refreshing!")
 
 color_dict = parse_css_colors("~/.cache/hellwal/colors-waybar.css")
 
@@ -72,22 +74,27 @@ if __name__ == "__main__":
     img = Image('/home/itachi/.config/rofi/.current_wallpaper', size=(400,-1))
     box_main = Box(
         orientation="v",
-        spacing=5
+        spacing=5,
+        style="padding: 5px;"
     )
     box_main.add(img)
     for name, _ in color_dict.items():
         colour_btn = color_button(name)
-        box_tmp = Box(
-            spacing=12,
-            orientation="h",
-            children=[
-                colour_btn,
-                copy_button(name),
-                edit_button(name, colour_btn)
-            ]
+        box_main.add(
+            Box(
+                spacing=12,
+                orientation="h",
+                children=[
+                    copy_button(name),
+                    colour_btn,
+                    edit_button(name, colour_btn)
+                ]
+            )
         )
 
-        box_main.add(box_tmp)
+    box_main.add(
+       Button(label="", on_clicked=lambda *_: refresh_theme())
+    )
 
     window = Window(
         child=box_main,
