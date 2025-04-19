@@ -120,7 +120,6 @@ if __name__ == "__main__":
     window = Window(
         child=box_main,
         type='popup',
-        WindowType = Gtk.WindowType.TOPLEVEL,
         layer="overlay",
         anchor="top left",
         keyboard_mode='on-demand',
