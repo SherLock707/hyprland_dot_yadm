@@ -1,76 +1,93 @@
 import os
 import json
+import re
 import pyperclip
+from functools import partial
 
 from fabric import Application
 from fabric.widgets.box import Box
 from fabric.widgets.label import Label
-# from fabric.widgets.window import Window
 from fabric.widgets.button import Button
 from fabric.widgets.image import Image
 from fabric.utils import exec_shell_command_async
 from fabric.widgets.wayland import WaylandWindow as Window
 
-import gi
-gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+# Constants
+THEME_PATH = os.path.expanduser("~/.config/hellwal/themes/custom.hellwal")
+WALLPAPER_PATH = os.path.expanduser("/home/itachi/.config/rofi/.current_wallpaper")
+SCRIPT_PATH = os.path.expanduser("~/.config/hypr/scripts/PywalSwww.sh")
+COLOR_JSON_PATH = os.path.expanduser("~/.cache/hellwal/colors.json")
+
+# Global color dictionary
+color_dict = {}
+
+# Color cache for performance
+_complementary_cache = {}
+
+# ===================== Core Logic =====================
 
 def apply_color(color_button, label, color):
-    color_button.set_style(f"background: {color}")
+    color = color.strip()
+    if not color.startswith('#'):
+        return  # skip invalid
+    color_button.set_style(f"background: {color}; color: {complementary_color(color)}; font-weight: bold;")
     color_dict[label] = color
-    # write_css_colors(color_dict, "~/.cache/hellwal/colors-waybar_updated.css")
 
 def pick_color(label, color_button):
-    return exec_shell_command_async(f"kcolorchooser --color={color_dict[label]} --print", lambda result: apply_color(color_button, label, result))
+    current_color = color_dict[label]
+    cmd = f"kcolorchooser --color={current_color} --print"
+    return exec_shell_command_async(cmd, lambda result: apply_color(color_button, label, result))
 
 def copy_to_clipboard(text):
     try:
         pyperclip.copy(text)
     except pyperclip.PyperclipException:
-        print("Pyperclip could not find a copy/paste mechanism for your system.")
+        print("Clipboard not available on this system.")
 
-def parse_css_colors(path: str) -> dict:
-    path = os.path.expanduser(path)
-    colors = {}
-    with open(path, 'r') as f:
-        for line in f:
-            match = re.match(r'@define-color\s+([\w-]+)\s+(#[0-9a-fA-F]{6});', line.strip())
-            if match:
-                var, color = match.groups()
-                colors[var] = color.lower()
-    return colors
 
-def write_css_colors(colors: dict, path: str):
-    path = os.path.expanduser(path)
-    lines = [f"@define-color {key} {value};\n" for key, value in colors.items()]
-    with open(path, 'w') as f:
-        f.writelines(lines)
+def read_color(path: str) -> dict:
+    try:
+        with open(os.path.expanduser(path), 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, FileNotFoundError) as e:
+        print(f"Failed to load color file: {e}")
+        return {}
 
-def read_color(path):
-    """Reads and returns data from a JSON file."""
-    path = os.path.expanduser(path)
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-def write_theme(path):
-    """Writes the color dictionary to a .hellwal theme file in custom format."""
+def write_theme(path: str):
     with open(path, 'w', encoding='utf-8') as f:
         for key, value in color_dict.items():
             f.write(f"%% {key}  = {value} %%\n")
 
-
 def complementary_color(hex_color: str) -> str:
+    if hex_color in _complementary_cache:
+        return _complementary_cache[hex_color]
     hex_color = hex_color.lstrip('#')
     if len(hex_color) != 6:
-        raise ValueError("Invalid hex color format. Must be #RRGGBB")
+        return '#ffffff'
     try:
-        r = int(hex_color[0:2], 16)
-        g = int(hex_color[2:4], 16)
-        b = int(hex_color[4:6], 16)
+        r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
     except ValueError:
-        raise ValueError("Invalid hexadecimal characters in the color code.")
+        return '#ffffff'
     brightness = 0.299 * r + 0.587 * g + 0.114 * b
-    return '#000000' if brightness > 186 else '#ffffff'
+    result = '#000000' if brightness > 186 else '#ffffff'
+    _complementary_cache[hex_color] = result
+    return result
+
+def refresh_theme():
+    print("Refreshing theme...")
+    write_theme(THEME_PATH)
+    if os.path.exists(THEME_PATH):
+        exec_shell_command_async(f"{SCRIPT_PATH} theme-only")
+
+# ===================== UI Components =====================
+
+def color_button(label: str) -> Button:
+    color = color_dict[label]
+    return Button(
+        label=label,
+        style=f"background: {color}; color: {complementary_color(color)}; font-weight: bold;",
+        h_expand=True
+    )
 
 def copy_button(label):
     return Button(label="󰆏", style="min-width: 5px;", on_clicked=lambda *_: copy_to_clipboard(color_dict[label]))
@@ -78,44 +95,37 @@ def copy_button(label):
 def edit_button(label, colour_btn):
     return Button(label="", style="min-width: 5px;", on_clicked=lambda *_: pick_color(label, colour_btn))
 
-def color_button(label):
-    return Button(label=label, style=f"background: {color_dict[label]}; color: {complementary_color(color_dict[label])}; font-weight: bold;", h_expand=True)
+def make_color_row(label: str) -> Box:
+    color_btn = color_button(label)
+    return Box(
+        spacing=12,
+        orientation="h",
+        children=[
+            copy_button(label),
+            color_btn,
+            edit_button(label, color_btn)
+        ]
+    )
 
-def refresh_theme():
-    print("refreshing!")
-    theme_path = os.path.expanduser("~/.config/hellwal/themes/custom.hellwal")
-    write_theme(theme_path)
-    if os.path.exists(theme_path):
-        exec_shell_command_async(f"{os.path.expanduser('~/.config/hypr/scripts/PywalSwww.sh')} theme-only")
+# ===================== Main Application =====================
 
+def main():
+    global color_dict
+    color_dict = read_color(COLOR_JSON_PATH)
 
-color_dict = read_color("~/.cache/hellwal/colors.json")
+    img = Image(WALLPAPER_PATH, size=(400, -1))
 
-if __name__ == "__main__":
-    img = Image('/home/itachi/.config/rofi/.current_wallpaper', size=(400,-1))
     box_main = Box(
         orientation="v",
         spacing=5,
         style="padding: 10px;"
     )
     box_main.add(img)
-    for name, _ in color_dict.items():
-        colour_btn = color_button(name)
-        box_main.add(
-            Box(
-                spacing=12,
-                orientation="h",
-                children=[
-                    copy_button(name),
-                    colour_btn,
-                    edit_button(name, colour_btn)
-                ]
-            )
-        )
 
-    box_main.add(
-       Button(label="", on_clicked=lambda *_: refresh_theme())
-    )
+    for label in color_dict:
+        box_main.add(make_color_row(label))
+
+    box_main.add(Button(label="", on_clicked=lambda *_: refresh_theme()))
 
     window = Window(
         child=box_main,
@@ -123,12 +133,15 @@ if __name__ == "__main__":
         layer="overlay",
         anchor="top left",
         keyboard_mode='on-demand',
-        margin='10px 0px 0px 350px', #“top right bottom left”
-        style=f"background : #1E1E2E; border: 2px solid {color_dict['color7']}; border-radius: 10px;",
+        margin="10px 0px 0px 350px",
+        style=f"background: #1E1E2E; border: 2px solid {color_dict.get('color7', '#ffffff')}; border-radius: 10px;",
         on_destroy=lambda w, *_: w.application.quit()
     )
+
     window.add_keybinding("Escape", lambda w, *_: w.application.quit())
 
     app = Application("palette-app", window)
-
     app.run()
+
+if __name__ == "__main__":
+    main()
