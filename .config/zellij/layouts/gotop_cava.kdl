@@ -1,0 +1,14 @@
+layout {
+    pane split_direction="horizontal" {
+        pane size="70%" {
+            borderless true
+            name "〽️"
+            command "gotop"
+        }
+        pane size="30%" {
+            borderless true
+            name "🎧"
+            command "cava"
+        }
+    }
+}

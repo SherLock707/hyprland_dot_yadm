@@ -1,4 +1,7 @@
-import fabric
+import os
+import re
+import pyperclip
+
 from fabric import Application
 from fabric.widgets.box import Box
 from fabric.widgets.label import Label
@@ -8,11 +11,6 @@ from fabric.widgets.image import Image
 from fabric.utils import exec_shell_command_async
 from fabric.widgets.wayland import WaylandWindow
 
-import os
-import re
-import pyperclip
-
-import subprocess
 
 def apply_color(color_button, label, color):
     color_button.set_style(f"background: {color}")
@@ -23,15 +21,12 @@ def pick_color(label, color_button):
     return exec_shell_command_async(f"kcolorchooser --color={color_dict[label]} --print", lambda result: apply_color(color_button, label, result))
 
 def copy_to_clipboard(text):
-    """Copies the given text to the clipboard."""
     try:
         pyperclip.copy(text)
-        print("Text copied to clipboard!")
     except pyperclip.PyperclipException:
         print("Pyperclip could not find a copy/paste mechanism for your system.")
 
 def parse_css_colors(path: str) -> dict:
-    """Parses @define-color CSS rules into a dict."""
     path = os.path.expanduser(path)
     colors = {}
     with open(path, 'r') as f:
@@ -43,7 +38,6 @@ def parse_css_colors(path: str) -> dict:
     return colors
 
 def write_css_colors(colors: dict, path: str):
-    """Writes the color dict back into CSS format at given path."""
     path = os.path.expanduser(path)
     lines = [f"@define-color {key} {value};\n" for key, value in colors.items()]
     with open(path, 'w') as f:
@@ -59,21 +53,16 @@ def complementary_color(hex_color: str) -> str:
         b = int(hex_color[4:6], 16)
     except ValueError:
         raise ValueError("Invalid hexadecimal characters in the color code.")
-    
-    # Calculate luminance using perceived brightness
     brightness = 0.299 * r + 0.587 * g + 0.114 * b
-
-    # Threshold for deciding text color (commonly 186, but 128 is stricter)
     return '#000000' if brightness > 186 else '#ffffff'
 
-def copy_button(label): # define a "factory function"
+def copy_button(label):
     return Button(label="󰆏", on_clicked=lambda *_: copy_to_clipboard(color_dict[label]))
 
-def edit_button(label, colour_btn): # define a "factory function"
-    # return Button(label="", on_clicked=lambda *_: colour_btn.set_style(f"background: {pick_color(hex_value)}"))
+def edit_button(label, colour_btn):
     return Button(label="", on_clicked=lambda *_: pick_color(label, colour_btn))
 
-def color_button(label): # define a "factory function"
+def color_button(label):
     return Button(label=label, style=f"background: {color_dict[label]}; color: {complementary_color(color_dict[label])}; font-weight: bold;", h_expand=True)
 
 
@@ -100,13 +89,13 @@ if __name__ == "__main__":
 
         box_main.add(box_tmp)
 
-    app = Application(
-        "palette-app",
-        Window(
-            child = box_main, 
-            type = 'popup',
-            on_destroy = lambda w, *_: w.application.quit()
-        )
+    window = Window(
+        child=box_main,
+        type='popup',
+        on_destroy=lambda w, *_: w.application.quit()
     )
+    window.add_keybinding("Escape", lambda w, *_: w.application.quit())
+
+    app = Application("palette-app", window)
 
     app.run()

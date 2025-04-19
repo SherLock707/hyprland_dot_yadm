@@ -51,3 +51,4 @@ yadm add ~/.config/hellwal/
 yadm add ~/.config/kew/kewrc
 yadm add ~/.config/browser_custom/
 yadm add ~/.local/share/themes/catppuccin-mocha-mauve/
+yadm add ~/.config/zellij/
