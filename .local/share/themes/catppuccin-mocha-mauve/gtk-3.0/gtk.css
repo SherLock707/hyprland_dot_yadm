@@ -99,8 +99,8 @@ popover.background .menuitem.button.flat:selected, .csd treeview.view:selected, 
  * Base States *
  ***************/
 .background {
-  background-color: #1e1e2e;
-  /* background-color: mix(@color7, #1e1e2e, 90%); */
+  /* background-color: #1e1e2e; */
+  background-color: mix(@color7, #1e1e2e, 0.95);
   color: #eff1f5;
 }
 
@@ -683,7 +683,7 @@ actionbar > revealer > box .linked > button:not(.suggested-action):not(.destruct
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1), background-size 300ms cubic-bezier(0, 0, 0.2, 1), background-image 1200ms cubic-bezier(0, 0, 0.2, 1);
   outline: none;
   box-shadow: inset 0 0 0 9999px transparent;
-  background-color: alpha(@color7, 0.3);
+  background-color: alpha(@color7, 0.4);
   /* background-color: rgba(255, 255, 255, 0.08); */
   background-image: radial-gradient(circle, transparent 10%, transparent 0%);
   background-repeat: no-repeat;
