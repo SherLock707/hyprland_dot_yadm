@@ -13,10 +13,11 @@ from fabric.utils import exec_shell_command_async
 from fabric.widgets.wayland import WaylandWindow as Window
 
 # Constants
-THEME_PATH = os.path.expanduser("~/.config/hellwal/themes/custom.hellwal")
-WALLPAPER_PATH = os.path.expanduser("~/.config/rofi/.current_wallpaper")
-SCRIPT_PATH = os.path.expanduser("~/.config/hypr/scripts/PywalSwww.sh")
-COLOR_JSON_PATH = os.path.expanduser("~/.cache/hellwal/colors.json")
+USER=os.path.expanduser("~")
+THEME_PATH = f"{USER}/.config/hellwal/themes/custom.hellwal"
+WALLPAPER_PATH = f"{USER}/.config/rofi/.current_wallpaper"
+SCRIPT_PATH = f"{USER}/.config/hypr/scripts/PywalSwww.sh"
+COLOR_JSON_PATH = f"{USER}/.cache/hellwal/colors.json"
 
 # Global color dictionary
 color_dict = {}
