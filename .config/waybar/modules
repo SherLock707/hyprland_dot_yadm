@@ -1019,7 +1019,7 @@
     "escape": false
   },
   "custom/palette": {
-    "format":"  ",
+    "format":" ",
     "exec": "~/.config/hypr/scripts/palette-tooltip.sh",
     "on-click": "~/.venv/bin/python ~/.config/scripts/palette_ui.py",
     "interval": 300,

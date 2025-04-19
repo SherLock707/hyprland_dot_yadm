@@ -30,32 +30,37 @@ done
 # wallust run "$wallpaper_path" -s
 # matugen --mode dark image $wallpaper_path
 
-# Brightness adjust =========================================================
-THRESHOLD=0.5
+if [ "$1" != "theme-only" ]; then
 
-# Use magick to get mean brightness as a float
-BRIGHTNESS=$(magick "$wallpaper_path" -colorspace Gray -quiet -format "%[fx:mean]" info: 2>/dev/null)
+    # Brightness adjust =========================================================
+    THRESHOLD=0.5
 
-# Remove potential whitespace
-BRIGHTNESS="${BRIGHTNESS//[[:space:]]/}"
+    # Use magick to get mean brightness as a float
+    BRIGHTNESS=$(magick "$wallpaper_path" -colorspace Gray -quiet -format "%[fx:mean]" info: 2>/dev/null)
 
-# Compare brightness with threshold
-awk -v val="$BRIGHTNESS" -v thresh="$THRESHOLD" '
-BEGIN {
-    if (val > thresh) {
-        exit 0  # Bright
-    } else {
-        exit 1  # Dark
+    # Remove potential whitespace
+    BRIGHTNESS="${BRIGHTNESS//[[:space:]]/}"
+
+    # Compare brightness with threshold
+    awk -v val="$BRIGHTNESS" -v thresh="$THRESHOLD" '
+    BEGIN {
+        if (val > thresh) {
+            exit 0  # Bright
+        } else {
+            exit 1  # Dark
+        }
     }
-}
-'
+    '
 
-if [ $? -eq 0 ]; then
-    hellwal --skip-term-colors -q -i "$wallpaper_path"
+    if [ $? -eq 0 ]; then
+        hellwal --skip-term-colors -q -i "$wallpaper_path"
+    else
+        hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path"
+    fi
+    # =============================================================================
 else
-    hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path"
+    hellwal --skip-term-colors --theme ~/.config/hellwal/themes/custom.hellwal
 fi
-# =============================================================================
 
 # hellwal --skip-term-colors -q -i "$wallpaper_path"
 
