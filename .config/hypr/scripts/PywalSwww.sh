@@ -90,6 +90,11 @@ $HOME/.config/hypr/scripts/setObsidianColor.sh
 # Update Browser new tab colour
 $HOME/.config/hypr/scripts/setBrowserTabColor.sh
 
+# Hot reload GTK theme
+gsettings set org.gnome.desktop.interface gtk-theme ''
+# sleep 0.1
+gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-mauve
+
 # Update folder icon color
 cp -f ~/.cache/hellwal/folder_16.svg ~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg
 cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg

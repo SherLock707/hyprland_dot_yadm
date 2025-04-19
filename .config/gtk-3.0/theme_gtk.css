@@ -100,7 +100,6 @@ popover.background .menuitem.button.flat:selected, .csd treeview.view:selected, 
  ***************/
 .background {
   background-color: #1e1e2e;
-  /* background-color: mix(@color7, #1e1e2e, 90%); */
   color: #eff1f5;
 }
 

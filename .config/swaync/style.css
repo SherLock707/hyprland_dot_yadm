@@ -287,15 +287,25 @@ progress {
   );
 }
 
-trough {
-  /* min-height: 10px; */
+notification trough {
+  min-height: 10px;
   background-color: #313244;
   padding: 3px; 
 }
 
 .control-center trough {
-  background-color: #45475a;
-  padding: 3px; 
+  min-height: 10px;
+  background-color: #45475a; 
+}
+
+.control-center progressbar {
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.control-center progress {
+  border-radius: 10px;
+  background: linear-gradient(45deg, @accent, @accent2);
 }
 
 .control-center-dnd {

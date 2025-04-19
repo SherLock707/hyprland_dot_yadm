@@ -135,7 +135,7 @@ def main():
         anchor="top left",
         keyboard_mode='on-demand',
         margin="10px 0px 0px 350px",
-        style=f"background: #1E1E2E; border: 2px solid {color_dict.get('color7', '#ffffff')}; border-radius: 10px;",
+        style=f"border: 2px solid {color_dict.get('color7', '#ffffff')}; border-radius: 20px;",
         on_destroy=lambda w, *_: w.application.quit()
     )
 
