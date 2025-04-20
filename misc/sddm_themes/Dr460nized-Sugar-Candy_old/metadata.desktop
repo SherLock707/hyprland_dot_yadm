@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Dr460nized Sugar Candy
+Description=Dr460nized Sugar Candy for SDDM
+Author=Based on Marian Arlt
+Copyright=Copyright (C) 2018 Marian Arlt
+License=GPL-3.0-or-later
+Type=sddm-theme
+Version=2.0
+Website=https://framagit.org/MarianArlt/sddm-sugar-candy
+Screenshot=Previews/PartialBlur.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=marianarlt@icloud.com
+Theme-Id=dr460nized-sugar-candy
+Theme-API=2.11
