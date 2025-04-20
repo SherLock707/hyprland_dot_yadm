@@ -38,8 +38,6 @@
   "widgets": [
     "buttons-grid",
     "dnd",
-    "volume", 
-   "backlight",
    "mpris",
    "title",
    "notifications"

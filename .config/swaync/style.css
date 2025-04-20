@@ -84,8 +84,8 @@
   border-radius: 5px;
   background: linear-gradient(
     90deg,
-    @accent,
-    @accent2
+    alpha(@accent, 0.5),
+    alpha(@accent2, 0.5)
     
   );
   border: 1px;
@@ -147,8 +147,9 @@
 
 
 .control-center .widget-title button {
-  border-radius: 7px;
+  border-radius: 10px;
   color: #cdd6f4;
+  min-width: 50px;
   background-color: #313244;
   box-shadow: inset 0 0 0 1px #45475a;
   padding: 8px;
@@ -264,49 +265,34 @@ trough,
 progress {
   padding: 3px;
   border-radius: 12px;
+  background-color: #313244;
 }
 
 
-.notification.critical progress {
+/* .notification.critical progress {
+  background-color: #f38ba8;
+} */
+progress {
   background-color: #f38ba8;
 }
 
-.notification.low progress,
+/* .notification.low progress,
 .notification.normal progress {
-  /* min-height: 10px; */
-  /* background-color: #89b4fa; */
-  /* background-color: @color11; */
   background: linear-gradient(
     45deg,
-    /* rgba(164, 89, 235, 0.8), */
-    /* alpha(@accent2, 0.8),
-    alpha(@accent, 0.8) */
     @accent,
     @accent2
-    
+  );
+} */
+
+progress {
+  background: linear-gradient(
+    45deg,
+    @accent,
+    @accent2
   );
 }
 
-notification trough {
-  min-height: 10px;
-  background-color: #313244;
-  padding: 3px; 
-}
-
-.control-center trough {
-  min-height: 10px;
-  background-color: #45475a; 
-}
-
-.control-center progressbar {
-  padding: 3px;
-  border-radius: 10px;
-}
-
-.control-center progress {
-  border-radius: 10px;
-  background: linear-gradient(45deg, @accent, @accent2);
-}
 
 .control-center-dnd {
   margin-top: 5px;
@@ -315,6 +301,7 @@ notification trough {
   border: 1px solid #45475a;
   box-shadow: none;
 }
+
 
 .control-center-dnd:checked {
   background: #313244;
@@ -326,7 +313,8 @@ notification trough {
 }
 
 .widget-dnd {
-  margin: 0px;
+  padding: 10px;
+  margin: 5px;
   font-size: 1.1rem;
 }
 
@@ -334,18 +322,18 @@ notification trough {
   font-size: initial;
   border-radius: 8px;
   background: #313244;
-  border: 1px solid #45475a;
+  border: 1px solid mix(@color7, #45475a, 0.5);
   box-shadow: none;
 }
 
 .widget-dnd > switch:checked {
-  background: #313244;
+  background: #ed939d;
 }
 
 .widget-dnd > switch slider {
   background: #45475a;
   border-radius: 8px;
-  border: 1px solid #6c7086;
+  border: 2px solid @color7;
 }
 
 .widget-mpris {
@@ -385,3 +373,81 @@ notification trough {
   font-weight: 500;
   font-size: 0.8rem;
 } 
+
+
+
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 2px;
+  /* margin:  5px 5px 5px 5px; */
+  border-radius: 0px;
+  /* background: @noti-bg-darker; */
+}
+
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  margin: 2px;
+  min-height: 30px;
+  min-width: 65px;
+  background: alpha(@accent, 0.5);
+  border-radius: 10px;
+  color: @text-color;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: rgba(122, 162, 247, 1);
+  color: @cc-bg;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:checked {
+  background: @accent2;
+  color: @cc-bg;
+}
+
+.widget-menubar > box > .menu-button-bar > button {
+  border: none;
+  background: transparent;
+}
+
+.topbar-buttons > button {
+  border: none;
+  background: transparent;
+}
+
+.widget-volume {
+  /* background: @noti-bg-darker; */
+  padding: 10px;
+  margin: 5px 10px;
+  border-radius: 0px;
+  font-size: 2rem;
+  color: @accent;
+}
+
+
+/* Notifications expanded-group */
+
+.notification-group {
+  margin: 0 4px 8px 4px;
+}
+.notification-group-headers {
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.notification-group-icon {
+  padding: 4px;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background: @surface;
+  margin: 4px;
+  border-radius: 20px;
+  padding: 8px;
+}
+
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+  background: @hover;
+}

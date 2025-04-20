@@ -142,14 +142,14 @@ source = auto
 
 gradient = 1
 
-gradient_color_1 = '#%%color4.hex%%'
-gradient_color_2 = '#%%color12.hex%%'
-gradient_color_3 = '#%%color5.hex%%'
-gradient_color_4 = '#%%color6.hex%%'
-gradient_color_5 = '#%%color13.hex%%'
-gradient_color_6 = '#%%color14.hex%%'
+gradient_color_1 = '#%%color7.hex%%'
+gradient_color_2 = '#%%color7.hex%%'
+gradient_color_3 = '#%%color7.hex%%'
+gradient_color_4 = '#%%color7.hex%%'
+gradient_color_5 = '#%%color7.hex%%'
+gradient_color_6 = '#%%color7.hex%%'
 gradient_color_7 = '#%%color7.hex%%'
-gradient_color_8 = '#%%color15.hex%%'
+gradient_color_8 = '#%%color7.hex%%'
 
 
 

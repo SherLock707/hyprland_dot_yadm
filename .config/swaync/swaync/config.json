@@ -5,18 +5,17 @@
   "layer": "overlay",
   "cssPriority": "user",
 
-  "control-center-width": 500,
+  "control-center-width": 360,
   "control-center-height": 860,
   "control-center-margin-top": 8,
   "control-center-margin-bottom": 8,
   "control-center-margin-right": 8,
   "control-center-margin-left": 0,
 
-  "notification-window-width": 500,
-  "notification-icon-size": 64,
+  "notification-window-width": 400,
+  "notification-icon-size": 48,
   "notification-body-image-height": 160,
   "notification-body-image-width": 200,
-  
 
   "timeout": 4,
   "timeout-low": 2,
@@ -79,31 +78,32 @@
     },
     "buttons-grid": {
       "actions": [
-           {
-               "label": "󰐥",
-               "command": "systemctl poweroff"
-           },
-           {
-               "label": "󰜉",
-               "command": "systemctl reboot"
-           },
-           {
-               "label": "󰌾",
-               "command": "~/.config/hypr/scripts/LockScreen.sh"
-           },
-           {
-               "label": "󰍃",
-               "command": "hyprctl dispatch exit"
-           },
-           {
-               "label": "󰀝",
-               "command": "~/.config/hypr/scripts/AirplaneMode.sh"
-           },
-           {
-               "label": "󰕾",
-               "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-           }
-       ]
+        {
+          "label": " ",
+          "type": "toggle",
+          "active": true,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli r wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+        {
+          "label": "",
+          "type": "toggle",
+          "active": true,
+          "command": "",
+          "update-command": ""
+        },
+        {
+          "label": " ",
+          "type": "toggle",
+          "active": true,
+          "command": "amixer set Capture toggle",
+          "update-command": ""
+        },
+        {
+          "label": "",
+          "command": "wlogout -b 4"
+        }
+      ]
     }
   }
 }
