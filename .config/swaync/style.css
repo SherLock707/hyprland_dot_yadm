@@ -152,8 +152,9 @@
   min-width: 50px;
   background-color: #313244;
   box-shadow: inset 0 0 0 1px #45475a;
-  padding: 8px;
+  padding: 2px;
   margin-left: 15px;
+  border: 1px solid @accent;
 }
 
 .control-center .widget-title button:hover {
