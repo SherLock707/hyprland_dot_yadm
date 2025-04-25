@@ -1,3 +1,15 @@
+:root {
+  --page-border-color: #eca9d9;
+  --page-border-thickness: 4px;
+}
+
+/* :root {
+  --page-border-color: #eca9d9; /* This is still set by JS or manually */
+  --page-glow-spread: 8px;     /* Adjust initial size/thickness of the glow */
+  --page-glow-blur: 15px;      /* Adjust softness/fade distance (larger = softer) */
+
+} */
+
 html,
 body {
   margin: 0;
@@ -33,6 +45,8 @@ justify-content: center;
 height: 100vh;
 overflow: hidden;
 margin: 0;
+/* border: var(--page-border-thickness) solid var(--page-border-color); */
+/* box-shadow: inset 0 0 var(--page-glow-blur) var(--page-glow-spread) var(--page-border-color); */
 }
 
 .container {

@@ -989,6 +989,11 @@
     "on-click": "brave --app=https://music.youtube.com",
     "tooltip-format": "Open Youtube Music"
   },
+  "custom/tvtime": {
+    "format": "<big> 󱜀</big> ",
+    "on-click": "brave --app=https://app.tvtime.com/shows/watchlist",
+    "tooltip-format": "Open TvTime"
+  },
   "custom/calculator": {
     "format": " ",
     "on-click": "qalculate-gtk",

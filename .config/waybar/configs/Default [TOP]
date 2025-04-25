@@ -113,6 +113,8 @@
 			"transition-left-to-right": true
 		},
 		"modules":[
+			"custom/tvtime",
+			"custom/separator#blank_1",
 			"custom/chatgpt",
 			"custom/separator#blank_1",
 			"custom/hyprpicker",

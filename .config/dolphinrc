@@ -20,6 +20,8 @@ DirHistory[$e]=/run/media/itachi/DATA_SATA_4TB/Downloads/,/run/media/itachi/Cool
 
 [General]
 OpenNewTabAfterLastTab=true
+ShowStatusBar=FullWidth
+ShowZoomSlider=true
 UseTabForSwitchingSplitView=true
 Version=202
 ViewPropsTimestamp=2023,12,28,21,28,40.404
