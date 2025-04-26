@@ -87,6 +87,9 @@ $HOME/.config/hypr/scripts/setMpvColor.sh
 # Update Obsidian colour
 $HOME/.config/hypr/scripts/setObsidianColor.sh
 
+# Update Terminal accent colour
+$HOME/.config/hypr/scripts/setTermColor.sh
+
 # Update Browser new tab colour
 $HOME/.config/hypr/scripts/setBrowserTabColor.sh
 
@@ -100,4 +103,4 @@ cp -f ~/.cache/hellwal/folder_16.svg ~/.local/share/icons/BeautyLine_pywal/place
 cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/places/48/folder.svg
 
 # # Copy cava config
-cp -f ~/.cache/hellwal/config-cava ~/.config/cava/config
+# cp -f ~/.cache/hellwal/config-cava ~/.config/cava/config

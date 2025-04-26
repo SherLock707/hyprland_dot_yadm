@@ -119,7 +119,7 @@ def main():
     box_main = Box(
         orientation="v",
         spacing=5,
-        style=f"padding: 10px; border: 2px solid {color_dict.get('color7', '#ffffff')}; border-radius: 20px; background-color: alpha(#181825, 0.5);",
+        style=f"padding: 10px; border: 2px solid {color_dict.get('color7', '#ffffff')}; border-bottom: 4.5px solid {color_dict.get('color7', '#ffffff')}; border-radius: 20px; background-color: alpha(#1e1e2e, 0.7);",
     )
     box_main.add(img)
 
@@ -134,7 +134,7 @@ def main():
         anchor="top left",
         keyboard_mode="on-demand",
         margin="10px 0px 0px 350px",
-        style=f"background-color: transparent",
+        style=f"background-color: transparent;",
         on_destroy=lambda w, *_: w.application.quit()
     )
 

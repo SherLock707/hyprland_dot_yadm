@@ -125,12 +125,12 @@ source = auto
 # ncurses output method and a terminal that can change color definitions such as Gnome-terminal or rxvt.
 # if supported, ncurses mode will be forced on if user defined colors are used.
 # default is to keep current terminal color
-; background = default
-; foreground = default
+# ; background = default
+# ; foreground = default
 
 # SDL only support hex code colors, these are the default:
-; background = '#111111'
-; foreground = '#33cccc'
+# ; background = '#111111'
+# ; foreground = '#33cccc'
 
 
 # Gradient mode, only hex defined colors (and thereby ncurses mode) are supported,
@@ -140,16 +140,16 @@ source = auto
 
 [color]
 
-gradient = 1
+# gradient = 1
 
-gradient_color_1 = '#eca9d9'
-gradient_color_2 = '#eca9d9'
-gradient_color_3 = '#eca9d9'
-gradient_color_4 = '#eca9d9'
-gradient_color_5 = '#eca9d9'
-gradient_color_6 = '#eca9d9'
-gradient_color_7 = '#eca9d9'
-gradient_color_8 = '#eca9d9'
+# gradient_color_1 = '#eca9d9'
+# gradient_color_2 = '#eca9d9'
+# gradient_color_3 = '#eca9d9'
+# gradient_color_4 = '#eca9d9'
+# gradient_color_5 = '#eca9d9'
+# gradient_color_6 = '#eca9d9'
+# gradient_color_7 = '#eca9d9'
+# gradient_color_8 = '#eca9d9'
 
 
 
