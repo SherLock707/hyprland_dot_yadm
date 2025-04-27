@@ -17,7 +17,7 @@
 ### 🖼️ **Qt Theme**: Catppuccin-Mocha-Mauve*  
 ### 🖱️ **Cursor**: [Bibata Ice](https://github.com/ful1e5/Bibata_Cursor)  
 ### 🖼️ **Icon Theme**: [BeautyLine](https://github.com/gvolpe/BeautyLine)  
-*Moded
+_*Moded_
 
 ## 🖥️ Setup
 ### Wall
