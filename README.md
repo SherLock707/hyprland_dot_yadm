@@ -11,6 +11,9 @@
 ### 🎨 **ColourScheme Gen**: [Hellwal](https://github.com/danihek/hellwal)  
 ### 🔐 **Lockscreen**: [Hyprlock](https://github.com/hyprwm/hyprlock)  
 ### 🖥️ **Scratchpad/Dropdown Terminal**: [Pyprland](https://github.com/hyprland-community/pyprland)  
+### 💻 **Display manager**: [SDDM](https://github.com/sddm/sddm)  
+### 🖼️ **Wallpaper switcher**: [Waypaper](https://github.com/anufrievroman/waypaper)  
+### 🖼️ **Wallpaper setter**: [Swww](https://github.com/LGFae/swww)  
 ### 🌄 **Wallpaper**: [Link](https://github.com/SherLock707/hyprland_dot_yadm/tree/main/Pictures/wallpapers)  
 ### 🖋️ **Font**: Open Sans  
 ### 🎨 **GTK Theme**: Catppuccin-Mocha-Mauve*  
