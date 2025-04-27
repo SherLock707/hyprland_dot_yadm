@@ -41,7 +41,9 @@
 ### Misc2
 ![mix2](https://github.com/user-attachments/assets/77ecafde-563c-4643-a704-fe1890974d03)
 </details>
-----
+
+---
+
 <details>
 <summary><h3>Old</h3></summary>
 
