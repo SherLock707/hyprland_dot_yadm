@@ -128,8 +128,8 @@ paru -S catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-mocha papirus-icon-t
 <summary><h3>DOTFILES</h3></summary>
 
 ```sh
-git clone https://github.com/SherLock707/hyprland_itachi $HOME/Downloads/hyprland-dots/
-cd $HOME/Downloads/hyprland-dots/
+git clone https://github.com/SherLock707/hyprland_dot_yadm $HOME/Downloads/hyprland_dot_yadm/
+cd $HOME/Downloads/hyprland_dot_yadm/
 rsync -avxHAXP --exclude '.git*' .* ~/
 ```
 </details>
