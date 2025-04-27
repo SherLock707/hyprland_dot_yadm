@@ -1,17 +1,24 @@
-# Hypr Sweet Catppuccin
+# Hyprland Arch
 
-- **Window Manager** • [Hyprland](https://github.com/hyprwm/Hyprland)🎨 Tiles
-  Everywhere!
-- **Shell** • [Fish](https://github.com/fish-shell/fish-shell) 🐠
-  [starship](https://github.com/starship/starship) Cross Shell Platform!
-- **Terminal** • [Foot](https://codeberg.org/dnkl/foot) 💻 The fast, lightweight and minimalistic Wayland terminal emulator.
-- **Panel** • [Waybar](https://aur.archlinux.org/packages/waybar-hyprland-git)🍧
-  Highly customizable Wayland bar for Sway and Wlroots based compositors.
-- **Notify Daemon** • [Swaync](https://github.com/ErikReider/SwayNotificationCenter) 🍃
-  Minimalist and functional!
-- **Launcher** • [Rofi](https://github.com/davatorium/rofi) 🚀 Realmente rápido
-  y customizable!
-- **File Manager** • [Dolphin](https://github.com/KDE/dolphin)🐬 Featureful and reliable!
+- **WM** • [Hyprland](https://github.com/hyprwm/Hyprland)
+- **Shell** • [Fish](https://github.com/fish-shell/fish-shell)
+- **Prompt** • [starship](https://github.com/starship/starship) 
+- **Terminal** • [Foot](https://codeberg.org/dnkl/foot)
+- **Bar** • [Waybar](https://github.com/Alexays/Waybar)
+- **Notification Daemon** • [Swaync](https://github.com/ErikReider/SwayNotificationCenter) 
+- **Launcher** • [Rofi](https://github.com/davatorium/rofi)
+- **File Manager** • [Dolphin](https://github.com/KDE/dolphin)
+- **ColourScheme Gen** • [Hellwal](https://github.com/danihek/hellwal)
+- **Lockscreen** • [Hyprlock](https://github.com/hyprwm/hyprlock)
+- **Scratchpad/Dropdown terminal** • [Pyprland](https://github.com/hyprland-community/pyprland)
+
+- **Wallpaper** • [Link](https://github.com/SherLock707/hyprland_dot_yadm/tree/main/Pictures/wallpapers)
+- **Font** • Open Sans
+- **GTK Theme** • Catppuccin-Mocha-Mauve*
+- **Qt Theme** • Catppuccin-Mocha-Mauve*
+- **Cursor** • [Bibata Ice](https://github.com/ful1e5/Bibata_Cursor)
+- **Icon Theme** • [BeautyLine](https://github.com/gvolpe/BeautyLine) *
+*Moded
 
 ## 🖥️ Setup
 ### Wall
