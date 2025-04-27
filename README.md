@@ -19,6 +19,7 @@
 
 <details>
 <summary><h3>MORE!!</h3></summary>
+
 ### Home
 ![home](https://github.com/user-attachments/assets/a9dd667a-ff6f-4756-8de2-412ee192b340)
 
