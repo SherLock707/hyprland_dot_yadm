@@ -16,7 +16,8 @@
 ### 🎨 **GTK Theme**: Catppuccin-Mocha-Mauve*  
 ### 🖼️ **Qt Theme**: Catppuccin-Mocha-Mauve*  
 ### 🖱️ **Cursor**: [Bibata Ice](https://github.com/ful1e5/Bibata_Cursor)  
-### 🖼️ **Icon Theme**: [BeautyLine](https://github.com/gvolpe/BeautyLine)  
+### 🖼️ **Icon Theme**: [BeautyLine](https://github.com/gvolpe/BeautyLine)
+### ⚙️ **Dotfile manager**: [YADM](https://github.com/yadm-dev/yadm)
 _*Moded_
 
 ## 🖥️ Setup
