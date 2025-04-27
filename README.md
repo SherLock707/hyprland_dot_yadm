@@ -16,6 +16,31 @@
 ## 🖥️ Setup
 ### Wall
 ![wall](https://github.com/user-attachments/assets/a9dd667a-ff6f-4756-8de2-412ee192b340)
+
+<details>
+<summary><h3>MORE!!</h3></summary>
+### Home
+![home](https://github.com/user-attachments/assets/a9dd667a-ff6f-4756-8de2-412ee192b340)
+
+### lockscreen
+![lock](https://github.com/user-attachments/assets/0880ac40-a7c7-46a6-a873-e3ffa3ad7621)
+
+### Term
+![terms](https://github.com/user-attachments/assets/7d0c8232-8c2a-4991-a54c-be4552ce3b09)
+
+### Games
+![lutris](https://github.com/user-attachments/assets/1851bf2f-524d-4e0c-a0e7-8e704014042b)
+
+### Dev
+![obs_vscode](https://github.com/user-attachments/assets/b1c9ad73-38ed-41bd-8386-cb45b4ad2ab9)
+
+### Misc1
+![mix1](https://github.com/user-attachments/assets/ddfada4c-11e8-4f6e-878e-80750f670fdc)
+
+### Misc2
+![mix2](https://github.com/user-attachments/assets/77ecafde-563c-4643-a704-fe1890974d03)
+</details>
+
 <details>
 <summary><h3>Old</h3></summary>
 ![rice1](https://github.com/SherLock707/hyprland_itachi/assets/26952545/a2f9d5a2-1f47-4445-a09e-06ae6b0e5dd1)
