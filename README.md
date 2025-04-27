@@ -14,12 +14,15 @@
 - **File Manager** • [Dolphin](https://github.com/KDE/dolphin)🐬 Featureful and reliable!
 
 ## 🖥️ Setup
+
+<details>
+<summary><h3>Old</h3></summary>
 ![rice1](https://github.com/SherLock707/hyprland_itachi/assets/26952545/a2f9d5a2-1f47-4445-a09e-06ae6b0e5dd1)
 
 ![rice2](https://github.com/SherLock707/hyprland_itachi/assets/26952545/ca1611ac-43aa-4765-9bfc-872f0b715449)
 
 ![rice3](https://github.com/SherLock707/hyprland_itachi/assets/26952545/a6a82e2e-a45b-4ea6-acd0-3ee5b38d3cca)
-
+</details>
 
 ## INSTALLATION (Arch Based Only)
 
