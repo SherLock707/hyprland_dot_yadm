@@ -34,7 +34,7 @@ _*Moded_
 <summary><h3>MORE!!</h3></summary>
 
 ### Home
-![home](https://github.com/user-attachments/assets/a9dd667a-ff6f-4756-8de2-412ee192b340)
+![home](https://github.com/user-attachments/assets/a05256d4-d967-4e1c-8a97-774df8a6a854)
 
 ### lockscreen
 ![lock](https://github.com/user-attachments/assets/0880ac40-a7c7-46a6-a873-e3ffa3ad7621)
