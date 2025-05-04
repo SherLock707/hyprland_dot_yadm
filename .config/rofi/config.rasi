@@ -2,12 +2,11 @@
 /* Main Config (main) */
 
 /* ---- Load pywal colors (custom wal template) ---- */
-/* @import "~/.config/rofi/color/colors-rofi.rasi" */
 @import "~/.cache/hellwal/colors-rofi.rasi"
 
 /* ---- Configuration ---- */
 configuration {
-    modi:                       "drun,run,filebrowser,calc";
+    modi:                       "drun,run,filebrowser";
     font:                       "Fira Code SemiBold 14";
     show-icons:                 true;
     /* icon-theme:                 "Suru_pywall"; */
@@ -21,7 +20,7 @@ configuration {
     me-accept-entry:            "MousePrimary";
     window-format:              "{w} · {c} · {t}";
 	dpi:						1;
-    
+
 }
 
 /* ---- Window ---- */
