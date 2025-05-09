@@ -95,8 +95,10 @@ $HOME/.config/hypr/scripts/setBrowserTabColor.sh
 
 # Hot reload GTK theme
 gsettings set org.gnome.desktop.interface gtk-theme ''
-# sleep 0.1
+gsettings set org.gnome.desktop.interface icon-theme ""
+sleep 0.1
 gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-mauve
+gsettings set org.gnome.desktop.interface icon-theme "'BeautyLine_pywal'"
 
 # Update folder icon color
 cp -f ~/.cache/hellwal/folder_16.svg ~/.local/share/icons/BeautyLine_pywal/places/16/folder.svg

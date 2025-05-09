@@ -24,17 +24,6 @@
 	<other-files/>
 </action>
 <action>
-	<icon>audacious</icon>
-	<name>Add to audacious playlist</name>
-	<submenu></submenu>
-	<unique-id>1681893052016505-1</unique-id>
-	<command>audacious -e %U</command>
-	<description></description>
-	<range>*</range>
-	<patterns>*</patterns>
-	<audio-files/>
-</action>
-<action>
 	<icon>kdeconnectindicator</icon>
 	<name>KDEConnect</name>
 	<submenu></submenu>
