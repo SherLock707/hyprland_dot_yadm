@@ -1027,7 +1027,7 @@
     "format":" ",
     "exec": "~/.config/hypr/scripts/palette-tooltip.sh",
     "on-click": "~/.venv/bin/python ~/.config/scripts/palette_ui.py",
-    "on-click-right": "~/.config/hypr/scripts/setTermColor.sh",
+    "on-click-right": "~/.config/hypr/scripts/setTermColor.sh & ~/.config/hypr/scripts/setOpenRGB.sh",
     "interval": 300,
     "tooltip": true,
     "return-type": "json",
