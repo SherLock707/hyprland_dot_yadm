@@ -31,32 +31,34 @@ done
 # matugen --mode dark image $wallpaper_path
 
 if [ "$1" != "theme-only" ]; then
+    
+    hellwal --skip-term-colors -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
 
-    # Brightness adjust =========================================================
-    THRESHOLD=0.5
+    # # Brightness adjust =========================================================
+    # THRESHOLD=0.5
 
-    # Use magick to get mean brightness as a float
-    BRIGHTNESS=$(magick "$wallpaper_path" -colorspace Gray -quiet -format "%[fx:mean]" info: 2>/dev/null)
+    # # Use magick to get mean brightness as a float
+    # BRIGHTNESS=$(magick "$wallpaper_path" -colorspace Gray -quiet -format "%[fx:mean]" info: 2>/dev/null)
 
-    # Remove potential whitespace
-    BRIGHTNESS="${BRIGHTNESS//[[:space:]]/}"
+    # # Remove potential whitespace
+    # BRIGHTNESS="${BRIGHTNESS//[[:space:]]/}"
 
-    # Compare brightness with threshold
-    awk -v val="$BRIGHTNESS" -v thresh="$THRESHOLD" '
-    BEGIN {
-        if (val > thresh) {
-            exit 0  # Bright
-        } else {
-            exit 1  # Dark
-        }
-    }
-    '
+    # # Compare brightness with threshold
+    # awk -v val="$BRIGHTNESS" -v thresh="$THRESHOLD" '
+    # BEGIN {
+    #     if (val > thresh) {
+    #         exit 0  # Bright
+    #     } else {
+    #         exit 1  # Dark
+    #     }
+    # }
+    # '
 
-    if [ $? -eq 0 ]; then
-        hellwal --skip-term-colors -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
-    else
-        hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
-    fi
+    # if [ $? -eq 0 ]; then
+    #     hellwal --skip-term-colors -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
+    # else
+    #     hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
+    # fi
     # =============================================================================
 else
     hellwal --skip-term-colors --theme ~/.config/hellwal/themes/custom.hellwal
