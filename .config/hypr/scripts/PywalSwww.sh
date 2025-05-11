@@ -79,19 +79,22 @@ $HOME/.config/hypr/scripts/Update_qt_accent.sh
 $HOME/.config/hypr/scripts/SetNotiIconcolorV2.sh
 
 # Update VScodium colour fo cat
-$HOME/.config/hypr/scripts/SetVscodeColor.sh
+$HOME/.config/hypr/scripts/SetVscodeColor.sh &
 
 # Update MPV UI colour
-$HOME/.config/hypr/scripts/setMpvColor.sh
+$HOME/.config/hypr/scripts/setMpvColor.sh &
 
 # Update Obsidian colour
-$HOME/.config/hypr/scripts/setObsidianColor.sh
+$HOME/.config/hypr/scripts/setObsidianColor.sh &
 
 # Update Terminal accent colour
-$HOME/.config/hypr/scripts/setTermColor.sh
+$HOME/.config/hypr/scripts/setTermColor.sh &
 
 # Update Browser new tab colour
-$HOME/.config/hypr/scripts/setBrowserTabColor.sh
+$HOME/.config/hypr/scripts/setBrowserTabColor.sh &
+
+# Update OPEN RGB fan
+$HOME/.config/hypr/scripts/setOpenRGB.sh &
 
 # Hot reload GTK theme
 gsettings set org.gnome.desktop.interface gtk-theme ''
