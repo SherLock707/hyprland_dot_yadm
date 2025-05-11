@@ -66,7 +66,7 @@ shotwin() {
 }
 
 shotarea() {
-	cd ${dir} && grim -g "$(slurp)" - | tee "$file" | wl-copy
+	cd ${dir} && grim -g "$(slurp && sleep 0.1)" - | tee "$file" | wl-copy
 	notify_view
 }
 

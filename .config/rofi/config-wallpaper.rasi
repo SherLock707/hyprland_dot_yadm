@@ -1,5 +1,7 @@
 
 /* Main Config wallpaper */
+/* ---- Load pywal colors (custom wal template) ---- */
+@import "~/.cache/hellwal/colors-rofi.rasi"
 
 /* ---- Configuration ---- */
 configuration {
@@ -15,13 +17,8 @@ configuration {
     me-select-entry:       "MouseSecondary";
     me-accept-entry:       "MousePrimary";
     window-format:         "{w} · {c} · {t}";
-	dpi:					1;
-    
+	dpi:					1;   
 }
-
-/* ---- Load pywal colors (custom wal template) ---- */
-/* @import "~/.config/rofi/color/colors-rofi.rasi" */
-@import "~/.cache/hellwal/colors-rofi.rasi"
 
 /* ---- Window ---- */
 window {
@@ -44,8 +41,6 @@ window {
     border-radius:          12px;
     transparency:           "real";
 	background-image:   	url("~/.config/rofi/.current_wallpaper_blur.png", height);
-    
-    /*background-color:            #00000088; */
 }
 
 /* ---- Mainbox ---- */
@@ -129,6 +124,8 @@ listview {
 	border-radius:          10px;
 }
 
+@import "./common.rasi"
+
 /* ---- Element ---- */
 element {
     enabled:                true;
@@ -141,93 +138,10 @@ element {
     border:                 0px;
 }
 
-element normal.normal {
-    background-color:       inherit;
-    text-color:             @foreground;
-    border-color:           @foreground;
-}
-
-element normal.urgent {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element normal.active {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element selected.normal {
-    background-color:      @selected-normal-background;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element selected.urgent {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element selected.active {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element alternate.normal {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element alternate.urgent {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
-element alternate.active {
-    background-color:      inherit;
-    text-color:            @foreground;
-    border-color:           @foreground;
-}
-
 element-icon {
     background-color:      transparent;
     text-color:            inherit;
     size:                  160px;
     cursor:                inherit;
     padding:               -30px 0px -30px 0px;
-}
-
-
-element-text {
-	font:                  "Fira Code SemiBold 12";
-    background-color:      transparent;
-    text-color:            inherit;
-    cursor:                inherit;
-    padding:               0px 0px 0px 40px;
-}
-
-/*****----- Message -----*****/
-message {
-    background-color:       @background;
-    margin:				    20px 0px 0px 0px;
-    border-radius: 			10px;
-}
-
-textbox {
-    padding:                15px;
-    background-color:       @background;
-    text-color:             @foreground;
-}
-
-error-message {
-    padding:                15px;
-    border-radius:          20px;
-    background-color:       @background;
-    text-color:             @foreground;
 }

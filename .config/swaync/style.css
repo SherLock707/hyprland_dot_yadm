@@ -262,9 +262,10 @@ progressbar {
   border-radius: 12px;
 }
 
-trough,
-progress {
-  padding: 3px;
+trough {
+  padding: 6px;
+  padding-left: 0px;
+  padding-right: 0px;
   border-radius: 12px;
   background-color: #313244;
 }
@@ -273,9 +274,6 @@ progress {
 /* .notification.critical progress {
   background-color: #f38ba8;
 } */
-progress {
-  background-color: #f38ba8;
-}
 
 /* .notification.low progress,
 .notification.normal progress {
@@ -287,8 +285,10 @@ progress {
 } */
 
 progress {
+  padding: 6px;
+  border-radius: 12px;
   background: linear-gradient(
-    45deg,
+    40deg,
     @accent,
     @accent2
   );

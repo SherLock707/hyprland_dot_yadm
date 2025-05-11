@@ -53,9 +53,9 @@ if [ "$1" != "theme-only" ]; then
     '
 
     if [ $? -eq 0 ]; then
-        hellwal --skip-term-colors -q -i "$wallpaper_path"
+        hellwal --skip-term-colors -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
     else
-        hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path"
+        hellwal --skip-term-colors -b 0.1 -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
     fi
     # =============================================================================
 else
@@ -67,7 +67,7 @@ fi
 # OPENRGB
 # NEW_COLOR_FILE="$HOME/.config/waybar/color/colors-icons-darker"
 # COLOR_CODE=$(sed 's/#//' "$NEW_COLOR_FILE")
-# openrgb -c "$COLOR_CODE" &
+# openrgb -d 2 -c "$COLOR_CODE" &
 
 #Update icon colours
 $HOME/.config/hypr/scripts/SetIconColor.sh

@@ -135,7 +135,7 @@ button {
 
 button selected {
     background-color:          @selected-normal-background;
-    text-color:                @foreground;
+    text-color:                @selected-normal-foreground;
     border:                    1px;
     border-color:              @background;
 	
@@ -188,7 +188,7 @@ element normal.active {
 
 element selected.normal {
     background-color:           @selected-normal-background;
-    text-color:                 @foreground;
+    text-color:                 @selected-normal-foreground;
 }
 
 element selected.urgent {

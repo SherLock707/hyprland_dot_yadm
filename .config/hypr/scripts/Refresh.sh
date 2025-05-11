@@ -12,7 +12,6 @@ for _prs in "${_ps[@]}"; do
 done
 
 ags -q
-
 # relaunch apps
 swaync &
 # swaync-client --reload-css &
@@ -20,3 +19,5 @@ swaync &
 ags &
 #sleep 1
 #${SCRIPTSDIR}/RainbowBorders.sh &
+
+# hyprswitch init -q --custom-css ~/.config/hyprswitch/style.css  --size-factor 4.5 --workspaces-per-row 5 &

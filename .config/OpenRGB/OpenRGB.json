@@ -22,9 +22,9 @@
         "setcustom": false,
         "setminimized": true,
         "setprofile": true,
-        "setserver": false,
-        "setserverhost": false,
-        "setserverport": false
+        "setserver": true,
+        "setserverhost": true,
+        "setserverport": true
     },
     "CorsairDominatorSettings": {
         "model": "CMT"
@@ -1334,7 +1334,7 @@
         ]
     },
     "Theme": {
-        "theme": "dark"
+        "theme": "auto"
     },
     "UserInterface": {
         "RunZoneChecks": false,

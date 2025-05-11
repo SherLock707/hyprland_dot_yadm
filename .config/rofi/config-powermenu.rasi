@@ -1,17 +1,16 @@
 /* --- Configuration for Rofi Power ---- */
 
+/* ---- Load pywal colors (custom wal template) ---- */
+@import "~/.cache/hellwal/colors-rofi.rasi" 
+
 /* ---- Configuration ---- */
 configuration {
     show-icons:                     false;
 }
 
-/* ---- Load pywal colors (custom wal template) ---- */
-/* @import "~/.config/rofi/color/colors-rofi.rasi" */
-@import "~/.cache/hellwal/colors-rofi.rasi" 
-
 /* ---- Global Properties ---- */
 * {
-    font:                           "JetBrains Mono Nerd Font 12";
+    font: "JetBrains Mono Nerd Font 12";
 }
 
 /* ---- Main Window ---- */
