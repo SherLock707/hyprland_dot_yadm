@@ -295,8 +295,8 @@ progress {
     180deg,
     /* @accent,
     @accent2 */
-    @accent 60%,
-    alpha(@accent2, 0.6)
+    @accent 70%,
+    alpha(@accent2, 0.4)
   );
 }
 
