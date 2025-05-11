@@ -83,14 +83,18 @@
 .notification-action {
   border-radius: 5px;
   background: linear-gradient(
-    90deg,
-    alpha(@accent, 0.5),
-    alpha(@accent2, 0.5)
+    180deg,
+    alpha(@accent, 0.6) 60%,
+    alpha(@accent2, 0.9) 
     
   );
   border: 1px;
   margin: 5px;
 }
+
+  /* @accent 0%,
+  @accent 50%,
+  alpha(@accent2, 0.1) 100% */
 
 .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
   box-shadow: inset 0 0 0 1px #45475a;
@@ -288,9 +292,11 @@ progress {
   padding: 6px;
   border-radius: 12px;
   background: linear-gradient(
-    40deg,
-    @accent,
-    @accent2
+    180deg,
+    /* @accent,
+    @accent2 */
+    @accent 60%,
+    alpha(@accent2, 0.6)
   );
 }
 
