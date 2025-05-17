@@ -14,6 +14,6 @@
   </linearGradient>
 </defs>
  <circle fill="url(#carbon)" cx="8" cy="8" r="7"/>
- <circle fill="#e5c6e0" cx="8" cy="12" r="1"/>
- <path fill="#e5c6e0" fill-rule="evenodd" d="M 7,10 9,10 9,3 7,3 Z"/>
+ <circle fill="#dda885" cx="8" cy="12" r="1"/>
+ <path fill="#dda885" fill-rule="evenodd" d="M 7,10 9,10 9,3 7,3 Z"/>
 </svg>

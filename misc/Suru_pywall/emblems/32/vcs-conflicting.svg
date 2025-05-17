@@ -62,7 +62,7 @@
 </defs>
  <g transform="scale(2)">
   <circle fill="url(#cyberorange)" cx="8" cy="8" r="7"/>
-  <rect fill="#e5c6e0" width="2" height="10" x="-.98" y="-16.29" transform="rotate(135)"/>
-  <rect fill="#e5c6e0" width="2" height="10" x="-12.29" y="-5.01" transform="rotate(-135)"/>
+  <rect fill="#dda885" width="2" height="10" x="-.98" y="-16.29" transform="rotate(135)"/>
+  <rect fill="#dda885" width="2" height="10" x="-12.29" y="-5.01" transform="rotate(-135)"/>
  </g>
 </svg>

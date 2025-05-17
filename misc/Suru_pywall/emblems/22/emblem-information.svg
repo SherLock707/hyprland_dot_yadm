@@ -62,7 +62,7 @@
 </defs>
  <g transform="matrix(1,0,0,-1,-1,23)">
   <circle fill="url(#carbon)" cx="12" cy="12" r="10"/>
-  <circle fill="#e5c6e0" cx="12" cy="18" r="1"/>
-  <path fill="#e5c6e0" fill-rule="evenodd" d="m 11,15 2,0 0,-10 -2,0 z"/>
+  <circle fill="#dda885" cx="12" cy="18" r="1"/>
+  <path fill="#dda885" fill-rule="evenodd" d="m 11,15 2,0 0,-10 -2,0 z"/>
  </g>
 </svg>

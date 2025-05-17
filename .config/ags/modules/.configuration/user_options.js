@@ -69,8 +69,9 @@ let configOptions = {
     'icons': {
         substitutions: {
             'codium-url-handler': "vscodium",
-            // 'code-url-handler': "visual-studio-code",
-            // 'Code': "visual-studio-code",
+            'code-url-handler': "visual-studio-code",
+            'Code': "visual-studio-code",
+            'codium': "visual-studio-code",
             // 'GitHub Desktop': "github-desktop",
             // 'Minecraft* 1.20.1': "minecraft",
             // 'gnome-tweaks': "org.gnome.tweaks",

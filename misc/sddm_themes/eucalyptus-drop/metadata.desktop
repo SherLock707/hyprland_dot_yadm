@@ -1,0 +1,17 @@
+[SddmGreeterTheme]
+Name=Eucalyptus Drop
+Description=Theme for SDDM
+Author=Matt Jolly
+Copyright=Copyright (C) 2022 Matt Jolly
+License=GPL-3.0-or-later
+Type=sddm-theme
+Version=2.0.0
+Website=https://gitlab.com/Matt.Jolly/sddm-eucalyptus-drop
+Screenshot=Previews/PartialBlur.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=Matt.Jolly@footclan.ninja
+Theme-Id=eucalyptus-drop
+Theme-API=2.11
+QtVersion=6

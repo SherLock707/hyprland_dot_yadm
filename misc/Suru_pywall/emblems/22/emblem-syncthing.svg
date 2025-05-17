@@ -62,12 +62,12 @@
 </defs>
  <g transform="translate(-1,-1)">
   <circle fill="url(#cyberblue)" cx="12" cy="12" r="10"/>
-  <path fill="#e5c6e0" d="M 12,5 A 7,7 0 0 0 5,12 7,7 0 0 0 12,19 7,7 0 0 0 19,12 7,7 0 0 0 12,5 Z M 12,6 A 6,6 0 0 1 18,12 6,6 0 0 1 12,18 6,6 0 0 1 6,12 6,6 0 0 1 12,6 Z"/>
-  <path fill="none" stroke="#ffffff" d="M 5.5,13.5 13.5,12.5 18,9.5"/>
-  <path fill="none" stroke="#ffffff" d="M 16.5,16.5 13.5,12.5"/>
-  <circle fill="#e5c6e0" cx="16.5" cy="16.5" r="1.5"/>
-  <circle fill="#e5c6e0" cx="18" cy="9.5" r="1.5"/>
-  <circle fill="#e5c6e0" cx="13.5" cy="12.5" r="1.5"/>
-  <circle fill="#e5c6e0" cx="5.5" cy="13.5" r="1.5"/>
+  <path fill="#dda885" d="M 12,5 A 7,7 0 0 0 5,12 7,7 0 0 0 12,19 7,7 0 0 0 19,12 7,7 0 0 0 12,5 Z M 12,6 A 6,6 0 0 1 18,12 6,6 0 0 1 12,18 6,6 0 0 1 6,12 6,6 0 0 1 12,6 Z"/>
+  <path fill="none" stroke="#dda885" d="M 5.5,13.5 13.5,12.5 18,9.5"/>
+  <path fill="none" stroke="#dda885" d="M 16.5,16.5 13.5,12.5"/>
+  <circle fill="#dda885" cx="16.5" cy="16.5" r="1.5"/>
+  <circle fill="#dda885" cx="18" cy="9.5" r="1.5"/>
+  <circle fill="#dda885" cx="13.5" cy="12.5" r="1.5"/>
+  <circle fill="#dda885" cx="5.5" cy="13.5" r="1.5"/>
  </g>
 </svg>

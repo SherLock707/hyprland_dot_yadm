@@ -14,8 +14,8 @@
   </linearGradient>
 </defs>
  <rect fill="url(#fitdance)" width="14" height="14" x="1" y="1" rx="2" ry="2"/>
- <path fill="#e5c6e0" d="m 3,6 a 5,5 0 0 0 5,5 5,5 0 0 0 5,-5 z"/>
- <rect fill="#e5c6e0" width="2" height="3" x="5" y="3"/>
- <rect fill="#e5c6e0" width="4" height="3.5" x="6" y="9.5"/>
- <rect fill="#e5c6e0" width="2" height="3" x="9" y="3"/>
+ <path fill="#dda885" d="m 3,6 a 5,5 0 0 0 5,5 5,5 0 0 0 5,-5 z"/>
+ <rect fill="#dda885" width="2" height="3" x="5" y="3"/>
+ <rect fill="#dda885" width="4" height="3.5" x="6" y="9.5"/>
+ <rect fill="#dda885" width="2" height="3" x="9" y="3"/>
 </svg>

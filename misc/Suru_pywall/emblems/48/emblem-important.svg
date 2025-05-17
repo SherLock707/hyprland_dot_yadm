@@ -61,6 +61,6 @@
   </linearGradient>
 </defs>
  <circle fill="url(#carbon)" cx="24" cy="24" r="20"/>
- <circle fill="#e5c6e0" cx="24" cy="36" r="2"/>
- <path fill="#e5c6e0" fill-rule="evenodd" d="m 22,31 4,0 0,-20 -4,0 z"/>
+ <circle fill="#dda885" cx="24" cy="36" r="2"/>
+ <path fill="#dda885" fill-rule="evenodd" d="m 22,31 4,0 0,-20 -4,0 z"/>
 </svg>

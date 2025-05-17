@@ -61,5 +61,5 @@
   </linearGradient>
 </defs>
  <circle fill="url(#goldcarbon)" cx="24" cy="24" r="20"/>
- <path fill="#e5c6e0" d="M 21,10 V 21 H 10 V 27 H 21 V 38 H 27 V 27 H 38 V 21 H 27 V 10 Z"/>
+ <path fill="#dda885" d="M 21,10 V 21 H 10 V 27 H 21 V 38 H 27 V 27 H 38 V 21 H 27 V 10 Z"/>
 </svg>

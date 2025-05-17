@@ -61,5 +61,5 @@
   </linearGradient>
 </defs>
  <circle fill="url(#cyberturquoise)" cx="8" cy="8" r="7"/>
- <rect fill="#e5c6e0" width="2" height="10" x="7" y="-13" transform="rotate(90)"/>
+ <rect fill="#dda885" width="2" height="10" x="7" y="-13" transform="rotate(90)"/>
 </svg>

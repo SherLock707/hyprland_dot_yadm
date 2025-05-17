@@ -1,10 +1,8 @@
+@import '../../../.cache/hellwal/colors-waybar.css';
+
 *:not(popover) {
   all: unset;
 }
-
-@import '../../waybar/color/colors-waybar.css';
-/* @import '../../../.cache/wal/colors-waybar-rgba.css'; */
-
 
 widget {
   border-radius: 0.818rem;
@@ -188,5 +186,3 @@ widget {
   border-bottom-right-radius: 1.705rem;
   border: 0rem solid;
 }
-
-/*# sourceMappingURL=style.css.map */

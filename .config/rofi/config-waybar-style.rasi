@@ -30,7 +30,7 @@ window {
     spacing:                    0px;
     padding:                    2px;
     margin:                     0px; 
-    border:                     2px;
+    border:                     2px 2px 4px 2px;
     border-color:               @active-background;
     cursor:                     "default";
     location:                   center;
@@ -81,7 +81,7 @@ inputbar {
     padding:                    8px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:			@backrgound90;
+	background-color:			@background;
     children:                   [ "textbox-prompt-colon", "entry" ];
     border:                     1px;
     border-color:               @active-background;

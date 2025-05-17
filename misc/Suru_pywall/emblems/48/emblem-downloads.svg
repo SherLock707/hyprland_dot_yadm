@@ -61,6 +61,6 @@
   </linearGradient>
 </defs>
  <circle fill="url(#carbon)" cx="24" cy="24" r="20"/>
- <path fill="#e5c6e0" d="m 21,10 0,13 -4,0 7,8 7,-8 -4,0 0,-13 z"/>
- <rect fill="#e5c6e0" width="4" height="16" x="32" y="-32" transform="matrix(0,1,-1,0,0,0)"/>
+ <path fill="#dda885" d="m 21,10 0,13 -4,0 7,8 7,-8 -4,0 0,-13 z"/>
+ <rect fill="#dda885" width="4" height="16" x="32" y="-32" transform="matrix(0,1,-1,0,0,0)"/>
 </svg>

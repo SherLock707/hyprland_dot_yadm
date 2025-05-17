@@ -61,6 +61,6 @@
   </linearGradient>
 </defs>
  <circle fill="url(#carbon)" cx="16" cy="16" r="14"/>
- <rect fill="#e5c6e0" width="4" height="18" x="10" y="7"/>
- <rect fill="#e5c6e0" width="4" height="18" x="18" y="7"/>
+ <rect fill="#dda885" width="4" height="18" x="10" y="7"/>
+ <rect fill="#dda885" width="4" height="18" x="18" y="7"/>
 </svg>

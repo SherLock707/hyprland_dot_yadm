@@ -62,6 +62,6 @@
 </defs>
  <g transform="scale(2)">
   <circle fill="url(#goldcarbon)" cx="8" cy="8" r="7"/>
-  <path fill="#e5c6e0" d="M 7,3 V 7 H 3 V 9 H 7 V 13 H 9 V 9 H 13 V 7 H 9 V 3 Z"/>
+  <path fill="#dda885" d="M 7,3 V 7 H 3 V 9 H 7 V 13 H 9 V 9 H 13 V 7 H 9 V 3 Z"/>
  </g>
 </svg>

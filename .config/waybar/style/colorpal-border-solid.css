@@ -1,0 +1,108 @@
+@import '../../.cache/hellwal/colors-waybar.css';
+
+@define-color bar-bg rgba(0, 0, 0, 0);
+@define-color main-bg #26233a;
+@define-color main-fg @color7;
+@define-color wb-act-bg #31748f;
+@define-color wb-act-fg #9ccfd8;
+@define-color wb-hvr-bg #eb6f92;
+@define-color wb-hvr-fg #f6c177;
+
+tooltip {
+    background: @main-bg;
+    color: @main-fg;
+    border-radius: 8px;
+    border-width: 0px;
+    border: 1.5px solid @main-fg;
+    border-style: solid;
+    border-color: @main-fg;
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#cava,
+#custom-mviz,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state label,
+#keyboard-state label.locked,
+#keyboard-state,
+#memory,
+#mode,
+#mpd,
+#network,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#mpris,
+#window,
+#wireplumber,
+#workspaces,
+#privacy,
+#gamemode,
+#power-profiles-daemon,
+#mpris,
+#systemd-failed-units,
+#custom-pacman,
+#custom-pacman2,
+#custom-gpu_usage,
+#custom-gpu_temp,
+#custom-gpu_fan,
+#custom-gpu_power,
+#custom-clipboard,
+#custom-backlight,
+#custom-cycle_wall,
+#custom-keybinds,
+#custom-light_dark,
+#custom-lock,
+#custom-notification,
+#custom-swaync,
+#custom-power_outage_switch,
+#custom-menu,
+#custom-power_vertical,
+#custom-power,
+#custom-speaker,
+#custom-updater,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default, 
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-netstatus,
+#custom-controllerstatus,
+#custom-chatgpt,
+#custom-gemini,
+#custom-ytmusic,
+#custom-tvtime,
+#custom-kew,
+#custom-calculator,
+#custom-hyprshade,
+#custom-hyprpicker,
+#custom-gpu_vram,
+#custom-gpu_aio,
+#custom-palette,
+#custom-weather.sunnyDay {
+    color: @main-fg;
+    background: alpha(@main-bg, 0.7);
+    opacity: 1;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: 1.5px solid @main-fg;
+    border-style: solid;
+    border-color: @main-fg;
+}
+
+@import 'style/common/common.css';

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" version="1.1">
  <defs>
   <style id="current-color-scheme" type="text/css">
-   .ColorScheme-Text { color: #e5c6e0; } .ColorScheme-Highlight { color: #1AD6AB; }
+   .ColorScheme-Text { color: #dda885; } .ColorScheme-Highlight { color: #1AD6AB; }
   </style>
   <linearGradient id="arrongin" x1="0" x2="0" y1="0" y2="1">
    <stop id="stop3" offset="0%" stop-color="#dd9b44"/>
@@ -91,7 +91,7 @@
  <path fill="url(#oomox)"     opacity="1.0" d="M 23 4 C 17.412709 4 12.83578 8.5475158 12.111328 14 L 16.150391 14 C 16.80517 10.696456 19.56204 8 23 8 L 25 8 C 28.947189 8 32 11.552811 32 15.5 L 32 20 C 32 23.947189 28.947189 27 25 27 L 23 27 C 19.052811 27 16 23.947189 16 20 L 12 20 C 12 26.094 16.906 31 23 31 L 25 31 C 31.094 31 36 26.094 36 20 L 36 15.5 C 36 9.406 31.094 4 25 4 L 23 4 z"/>
  <path fill="#1e1e1e"         opacity="0.2" d="m8 42v1c0 1.108 0.892 2 2 2h28c1.108 0 2-0.892 2-2v-1c0 1.108-0.892 2-2 2h-28c-1.108 0-2-0.892-2-2z"/>
  <rect fill="url(#redcarbon)" opacity="1.0" width="24" height="32" x="-44" y="-40" rx="2" ry="2" transform="matrix(0,-1,-1,0,0,0)"/>
- <path fill="#ffffff"         opacity="0.2" d="m10 20c-1.108 0-2 0.892-2 2v1c0-1.108 0.892-2 2-2h28c1.108 0 2 0.892 2 2v-1c0-1.108-0.892-2-2-2h-28z"/>
+ <path fill="#dda885"         opacity="0.2" d="m10 20c-1.108 0-2 0.892-2 2v1c0-1.108 0.892-2 2-2h28c1.108 0 2 0.892 2 2v-1c0-1.108-0.892-2-2-2h-28z"/>
  <rect fill="#efefef"         opacity="0.4" width="32" height="14" x="8" y="24" rx="0" ry="0"/>
  <path fill="#1e1e1e"         opacity="0.4" d="m8 40v2c0 1.108 0.892 2 2 2h28c1.108 0 2-0.892 2-2v-2c0 1.108-0.892 2-2 2h-28c-1.108 0-2-0.892-2-2z"/>
  <path fill="#efefef"         opacity="1.0" d="M 23 4 C 17.412709 4 12.83578 8.5475158 12.111328 14 L 12.287109 14 C 13.404641 9.0028437 17.758025 5 23 5 L 25 5 C 31.094 5 36 10.406 36 16.5 L 36 15.5 C 36 9.406 31.094 4 25 4 L 23 4 z"/>

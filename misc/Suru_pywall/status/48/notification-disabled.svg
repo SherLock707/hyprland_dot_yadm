@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" version="1.1">
  <defs>
   <style id="current-color-scheme" type="text/css">
-   .ColorScheme-Text { color: #e5c6e0; } .ColorScheme-Highlight { color: #1AD6AB; }
+   .ColorScheme-Text { color: #dda885; } .ColorScheme-Highlight { color: #1AD6AB; }
   </style>
   <linearGradient id="arrongin" x1="0" x2="0" y1="0" y2="1">
    <stop id="stop3" offset="0%" stop-color="#dd9b44"/>
@@ -95,7 +95,7 @@
  <g transform="translate(3,0)">
   <circle fill="url(#redcarbon)" cx="34" cy="36" r="10"/>
   <path opacity="0.2" d="M 43.979,36.414 A 10,10 0 0 1 34,46 10,10 0 0 1 24.021,36.586 10,10 0 0 0 24,37 10,10 0 0 0 34,47 10,10 0 0 0 44,37 10,10 0 0 0 43.979,36.414 Z"/>
-  <g fill="#ffffff" transform="matrix(0.70711,-0.70711,0.70711,0.70711,-15.497,34.846)">
+  <g fill="#dda885" transform="matrix(0.70711,-0.70711,0.70711,0.70711,-15.497,34.846)">
    <rect width="12" height="2" x="28" y="35"/>
    <rect width="12" height="2" x="-42" y="33" transform="matrix(0,-1,1,0,0,0)"/>
   </g>

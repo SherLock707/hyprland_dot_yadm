@@ -62,8 +62,8 @@
 </defs>
  <g>
   <circle fill="url(#carbon)" cx="16" cy="16" r="14"/>
-  <path fill="#e5c6e0" d="M 12 11 A 5 5 0 0 0 7 16 A 5 5 0 0 0 12 21 A 5 5 0 0 0 17 16 A 5 5 0 0 0 12 11 z M 12 14 A 2 2 0 0 1 14 16 A 2 2 0 0 1 12 18 A 2 2 0 0 1 10 16 A 2 2 0 0 1 12 14 z"/>
-  <rect fill="#e5c6e0" width="10" height="2" x="16" y="15"/>
-  <rect fill="#e5c6e0" width="2" height="2" x="22" y="17"/>
+  <path fill="#dda885" d="M 12 11 A 5 5 0 0 0 7 16 A 5 5 0 0 0 12 21 A 5 5 0 0 0 17 16 A 5 5 0 0 0 12 11 z M 12 14 A 2 2 0 0 1 14 16 A 2 2 0 0 1 12 18 A 2 2 0 0 1 10 16 A 2 2 0 0 1 12 14 z"/>
+  <rect fill="#dda885" width="10" height="2" x="16" y="15"/>
+  <rect fill="#dda885" width="2" height="2" x="22" y="17"/>
  </g>
 </svg>

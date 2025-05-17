@@ -61,5 +61,5 @@
   </linearGradient>
 </defs>
  <circle fill="url(#ubuntu)" cx="12" cy="12" r="10"/>
- <path fill="#e5c6e0" d="M 10,5 V 13 H 14 V 5 Z M 10,15 V 19 H 14 V 15 Z"/>
+ <path fill="#dda885" d="M 10,5 V 13 H 14 V 5 Z M 10,15 V 19 H 14 V 15 Z"/>
 </svg>
