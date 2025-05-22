@@ -2,7 +2,7 @@
 update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,icons_remove_effects.upd:IconsRemoveEffects,kwin.upd:animation-speed,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
-ChangeSelectionColor=
+ChangeSelectionColor=false
 Color=56,56,56
 ColorAmount=0
 ColorEffect=0
@@ -13,7 +13,7 @@ IntensityAmount=0.1
 IntensityEffect=2
 
 [ColorEffects:Inactive]
-ChangeSelectionColor=true
+ChangeSelectionColor=false
 Color=112,111,110
 ColorAmount=0.025
 ColorEffect=2
@@ -77,20 +77,6 @@ ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
 ForegroundNormal=35,38,41
 ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
-
-[Colors:Selection]
-BackgroundAlternate=163,212,250
-BackgroundNormal=61,174,233
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=255,255,255
-ForegroundInactive=112,125,138
-ForegroundLink=253,188,75
-ForegroundNegative=176,55,69
-ForegroundNeutral=198,92,0
-ForegroundNormal=255,255,255
-ForegroundPositive=23,104,57
 ForegroundVisited=155,89,182
 
 [Colors:Tooltip]
