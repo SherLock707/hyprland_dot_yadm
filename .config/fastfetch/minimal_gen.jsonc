@@ -32,7 +32,8 @@
         {
             "key": "{#white}│{#38;2;250;179;135} 󰻀 distro {#white}│ ",
             "type": "os",
-            "format": "Arch Linux x86_64",
+            // "format": "Arch Linux x86_64",
+            "format": "{2}",
             "keyColor": "38;2;250;179;135"
         },
         {
