@@ -692,7 +692,7 @@
     "format": "{2} {0}",
     "return-type": "json",
     "exec-if": "which waybar-module-pacman-updates",
-    "exec": "waybar-module-pacman-updates --interval-seconds 3600",
+    "exec": "waybar-module-pacman-updates --color-semver-updates 'f38ba8,a6e3a1,89b4fa,f38ba8,cdd6f4'", //--interval-seconds 3600
     "on-click": "foot -e update --noconfirm",
     "format-icons": {
       "has-updates": "󱍷<span foreground='green'><sup></sup></span>",
