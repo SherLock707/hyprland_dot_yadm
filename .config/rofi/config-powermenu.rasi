@@ -88,7 +88,7 @@ listview {
 element {
     enabled:                        true;
     padding:                        40px;
-    border-radius:                  30px;
+    border-radius:                  40px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
