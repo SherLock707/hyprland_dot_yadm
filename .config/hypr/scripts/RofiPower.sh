@@ -19,7 +19,7 @@ rofi_cmd() {
     done
 
     chosen_option=$(printf "%s\n" "${options_with_icons[@]}" | \
-	rofi -dmenu -i -p " $USER@$host" -mesg " Uptime: $uptime_info" \
+	rofi -dmenu -i -p " $USER@$host" -mesg " Uptime: $uptime_info" \
 	-kb-select-1 "l" \
 	-kb-select-2 "u" \
 	-kb-select-3 "o" \
