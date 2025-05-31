@@ -7,8 +7,9 @@ uptime_info=$(uptime -p | sed -e 's/up //g')
 host=$(hostnamectl hostname)
 
 # Options with Icons and Text
-options=("Lock(l)" "Suspend(u)" "Logout(e)" "Reboot(r)" "Shutdown(s)" "Hibernate(h)")
-icons=("" "" "󰿅" "󰜉" "" "󰒲")
+# options=("Lockₗ" "Suspendᵤ" "Logoutₑ" "Rebootᵣ" "Shutdownₛ" "Hibernateₕ")
+options=("<u>L</u>ock" "S<u>u</u>spend" "L<u>o</u>gout" "<u>R</u>eboot" "<u>S</u>hutdown" "<u>H</u>ibernate")
+icons=("" "" "󰿅" "󰜉" "" "󰒲")
 
 # Rofi CMD
 rofi_cmd() {
@@ -18,10 +19,10 @@ rofi_cmd() {
     done
 
     chosen_option=$(printf "%s\n" "${options_with_icons[@]}" | \
-	rofi -dmenu -i -p " $USER@$host" -mesg " Uptime: $uptime_info" \
+	rofi -dmenu -i -p " $USER@$host" -mesg " Uptime: $uptime_info" \
 	-kb-select-1 "l" \
 	-kb-select-2 "u" \
-	-kb-select-3 "e" \
+	-kb-select-3 "o" \
 	-kb-select-4 "r" \
 	-kb-select-5 "s" \
 	-kb-select-6 "h" \
@@ -38,7 +39,7 @@ run_rofi() {
 # Execute Command
 run_cmd() {
     case $1 in
-        "")
+        "")
             $SwayLock &
             ;;
         "")

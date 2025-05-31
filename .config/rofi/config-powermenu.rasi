@@ -76,8 +76,8 @@ listview {
     reverse:                        false;
     fixed-height:                   false;
     fixed-columns:                  true;
-    spacing:                        40px;
-    padding:                        4% 40px;
+    spacing:                        10px;
+    padding:                        2% 20px;
     background-color:               transparent;
     cursor:                         "default";
     border:                         0px;
@@ -87,21 +87,22 @@ listview {
 /* ---- Elements ---- */
 element {
     enabled:                        true;
-    padding:                        20px;
+    padding:                        40px;
     border-radius:                  30px;
     background-color:               transparent;
     text-color:                     @foreground;
     cursor:                         pointer;
     border:                         1px;
-
 }
+
 element-text {
-    font:                           "Fira Code SemiBold 16";
+    font:                           "Fira Code SemiBold 18";
     background-color:               transparent;
     text-color:                     inherit;
     cursor:                         inherit;
     vertical-align:                 0.5;
     horizontal-align:               0.5;
+    markup:                         true;
 }
 element selected.normal {
     background-color:               @selected-normal-background;
