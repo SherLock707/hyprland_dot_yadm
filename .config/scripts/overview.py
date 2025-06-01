@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 """
-Enhanced Hyprland Overview Widget with Proper Window Scaling to Fill Workspace
+Fixed Hyprland Overview Widget with Proper Display Aspect Ratio and Workspace Padding
+FIXED: Right-side gap issue in window positioning
 """
 
 import json
@@ -92,19 +93,19 @@ class WindowWidget(EventBox):
             title_text = self.window_class[:max_chars]
             
         # Only show title if window is large enough
-        if window_height > 35:
+        if window_height > 25:
             title_label = Label(
                 label=title_text,
-                style="color: white; font-size: 10px; font-weight: bold;"
+                style="color: white; font-size: 8px; font-weight: bold;"
             )
             title_label.set_halign(Gtk.Align.CENTER)
             window_content.add(title_label)
         
         # Show class if there's enough space
-        if window_height > 55:
+        if window_height > 45:
             class_label = Label(
                 label=self.window_class[:max_chars],
-                style="color: rgba(255, 255, 255, 0.7); font-size: 8px;"
+                style="color: rgba(255, 255, 255, 0.7); font-size: 6px;"
             )
             class_label.set_halign(Gtk.Align.CENTER)
             window_content.add(class_label)
@@ -124,8 +125,8 @@ class WindowWidget(EventBox):
         self.set_style(
             f"background: {bg_color}; "
             f"border: 1px solid {border_color}; "
-            "border-radius: 3px; "
-            "padding: 2px;"
+            "border-radius: 2px; "
+            "padding: 1px;"
         )
         
         # Connect events
@@ -150,15 +151,15 @@ class WindowWidget(EventBox):
             self.set_style(
                 "background: rgba(255, 200, 100, 0.25); "
                 "border: 1px solid rgba(255, 200, 100, 1); "
-                "border-radius: 3px; "
-                "padding: 2px;"
+                "border-radius: 2px; "
+                "padding: 1px;"
             )
         else:
             self.set_style(
                 "background: rgba(255, 255, 255, 0.2); "
                 "border: 1px solid rgba(255, 255, 255, 0.6); "
-                "border-radius: 3px; "
-                "padding: 2px;"
+                "border-radius: 2px; "
+                "padding: 1px;"
             )
         return False
     
@@ -168,42 +169,51 @@ class WindowWidget(EventBox):
             self.set_style(
                 "background: rgba(255, 200, 100, 0.15); "
                 "border: 1px solid rgba(255, 200, 100, 0.8); "
-                "border-radius: 3px; "
-                "padding: 2px;"
+                "border-radius: 2px; "
+                "padding: 1px;"
             )
         else:
             self.set_style(
                 "background: rgba(255, 255, 255, 0.1); "
                 "border: 1px solid rgba(255, 255, 255, 0.4); "
-                "border-radius: 3px; "
-                "padding: 2px;"
+                "border-radius: 2px; "
+                "padding: 1px;"
             )
         return False
 
 
 class WorkspaceWidget(EventBox):
-    """Enhanced workspace widget with proper window scaling to fill workspace"""
+    """Fixed workspace widget with proper window positioning and no right-side gaps"""
     
-    def __init__(self, workspace: Dict, clients: List[Dict], is_active: bool, overview_widget, width: int, height: int):
+    def __init__(self, workspace: Dict, clients: List[Dict], is_active: bool, overview_widget, width: int, height: int, monitor_info: Dict, monitor_width: int, monitor_height: int):
         super().__init__()
         self.workspace = workspace
         self.workspace_id = workspace.get("id", 0)
         self.overview_widget = overview_widget
+        self.monitor_info = monitor_info
+        self.monitor_width = monitor_width
+        self.monitor_height = monitor_height
+        
+        # Define workspace padding (small padding on left, right, bottom - no top padding)
+        self.padding_left = 3
+        self.padding_right = 3
+        self.padding_bottom = 3
+        self.padding_top = 0  # No top padding as requested
         
         # Use provided dimensions
         self.set_size_request(width, height)
         
         # Create main container
-        main_container = Box(orientation="v", spacing=4)
+        main_container = Box(orientation="v", spacing=1)
         
-        # Workspace header (smaller to save space)
+        # Workspace header (compact)
         header = Box(orientation="h", spacing=8)
         
         # Workspace number/name
         ws_name = workspace.get("name", str(self.workspace_id))
         header_label = Label(
             label=f"WS {ws_name}",
-            style="color: white; font-size: 11px; font-weight: bold;"
+            style="color: white; font-size: 9px; font-weight: bold;"
         )
         header_label.set_halign(Gtk.Align.START)
         header.add(header_label)
@@ -212,124 +222,114 @@ class WorkspaceWidget(EventBox):
         workspace_clients = [c for c in clients if c.get("workspace", {}).get("id") == self.workspace_id]
         count_label = Label(
             label=f"({len(workspace_clients)})",
-            style="color: rgba(255, 255, 255, 0.7); font-size: 9px;"
+            style="color: rgba(255, 255, 255, 0.7); font-size: 8px;"
         )
         count_label.set_halign(Gtk.Align.END)
         header.add(count_label)
         
         main_container.add(header)
         
-        # Create workspace area with proper scaling
-        workspace_area_height = height - 35  # Account for header
-        workspace_area_width = width - 20   # Account for padding
+        # FIXED: Calculate the actual available space for windows correctly
+        # Account for: widget padding (12px), header space (15px), but NOT double-counting workspace padding
+        widget_padding = 12  # This is the main widget's internal padding
+        header_height = 15   # Space taken by header + spacing
+        
+        # The total available space within the widget (excluding widget's own padding)
+        total_available_width = width - widget_padding
+        total_available_height = height - widget_padding - header_height
+        
+        # The usable space for windows (excluding workspace padding)
+        usable_width = total_available_width - self.padding_left - self.padding_right
+        usable_height = total_available_height - self.padding_bottom  # No top padding
+        
+        # Account for waybar space at top (simulate waybar height)
+        waybar_height_scaled = int(30 * (total_available_height / self.monitor_height))
+        workspace_start_y = waybar_height_scaled
+        window_area_height = usable_height - waybar_height_scaled
+        
+        print(f"Debug: Workspace {self.workspace_id} - Widget: {width}x{height}")
+        print(f"Debug: Total available: {total_available_width}x{total_available_height}")
+        print(f"Debug: Usable for windows: {usable_width}x{window_area_height}")
+        print(f"Debug: Waybar space: {waybar_height_scaled}px")
         
         if workspace_clients:
-            # Create a fixed container for accurate positioning
-            workspace_container = Gtk.Fixed()
-            workspace_container.set_size_request(workspace_area_width, workspace_area_height)
+            # Get monitor dimensions for proper scaling
+            monitor_x = monitor_info.get("x", 0)
+            monitor_y = monitor_info.get("y", 0)
             
-            # Get monitor information to calculate workspace bounds
-            monitors = HyprlandClient.get_monitors()
-            monitor_info = None
+            # FIXED: Use the FULL usable area without artificial centering
+            # This eliminates the right-side gap by using edge-to-edge scaling
+            scale_x = usable_width / self.monitor_width
+            scale_y = window_area_height / self.monitor_height
             
-            # Find the monitor for this workspace (simplified - assumes single monitor)
-            if monitors:
-                monitor_info = monitors[0]  # Use first monitor for now
+            # No centering offsets - use the full available space
+            offset_x = 0
+            offset_y = 0
             
-            if monitor_info:
-                monitor_width = monitor_info.get("width", 1920)
-                monitor_height = monitor_info.get("height", 1080)
-            else:
-                # Fallback values
-                monitor_width = 1920
-                monitor_height = 1080
+            print(f"Debug: Monitor: {self.monitor_width}x{self.monitor_height}")
+            print(f"Debug: Scale factors: x={scale_x:.4f}, y={scale_y:.4f}")
+            print(f"Debug: Using edge-to-edge scaling - no centering gaps")
+            print(f"Debug: Full usable area: {usable_width}x{window_area_height}")
             
-            # Calculate scale factors to fit workspace area
-            scale_x = workspace_area_width / monitor_width
-            scale_y = workspace_area_height / monitor_height
+            # Create workspace container using Gtk.Layout for absolute positioning
+            workspace_container = Gtk.Layout()
+            workspace_container.set_size_request(total_available_width, total_available_height)
             
-            print(f"Debug: Workspace {self.workspace_id} - Monitor: {monitor_width}x{monitor_height}")
-            print(f"Debug: Workspace area: {workspace_area_width}x{workspace_area_height}")
-            print(f"Debug: Scale factors: {scale_x}, {scale_y}")
-            
-            # Calculate the bounds of all windows to determine how to scale them
-            if workspace_clients:
-                min_x = min(client.get("at", [0, 0])[0] for client in workspace_clients)
-                max_x = max(client.get("at", [0, 0])[0] + client.get("size", [200, 150])[0] for client in workspace_clients)
-                min_y = min(client.get("at", [0, 0])[1] for client in workspace_clients)
-                max_y = max(client.get("at", [0, 0])[1] + client.get("size", [200, 150])[1] for client in workspace_clients)
+            # Position each window with uniform scaling and proper centering
+            for client in workspace_clients:
+                # Get window position and size (absolute coordinates)
+                window_at = client.get("at", [0, 0])
+                window_size = client.get("size", [200, 150])
                 
-                # Calculate the actual used area
-                used_width = max_x - min_x
-                used_height = max_y - min_y
+                # Convert to monitor-relative coordinates
+                relative_x = window_at[0] - monitor_x  
+                relative_y = window_at[1] - monitor_y
                 
-                # If used area is smaller than monitor, scale to fit the used area instead
-                if used_width < monitor_width and used_height < monitor_height:
-                    scale_x = workspace_area_width / max(used_width, 200)  # Minimum width
-                    scale_y = workspace_area_height / max(used_height, 150)  # Minimum height
-                    
-                    print(f"Debug: Used area: {used_width}x{used_height}")
-                    print(f"Debug: Adjusted scale factors: {scale_x}, {scale_y}")
+                # FIXED: Apply direct scaling without centering constraints
+                scaled_x = int(relative_x * scale_x) + self.padding_left + offset_x
+                scaled_y = int(relative_y * scale_y) + workspace_start_y + offset_y
                 
-                # Use uniform scaling but make it larger to fill more space
-                base_scale = min(scale_x, scale_y)
-                # Boost the scale to make windows more prominent - fill more of the workspace
-                display_scale = base_scale * 2.0  # Make windows much larger
+                # Scale window size using respective scale factors
+                scaled_width = max(8, int(window_size[0] * scale_x))
+                scaled_height = max(6, int(window_size[1] * scale_y))
                 
-                print(f"Debug: Base scale: {base_scale}, Display scale: {display_scale}")
+                # FIXED: Simple boundary checking - only prevent overflow beyond usable area
+                # Right boundary is padding_left + usable_width
+                max_x = self.padding_left + usable_width - scaled_width
+                max_y = workspace_start_y + window_area_height - scaled_height
+                min_x = self.padding_left
+                min_y = workspace_start_y
                 
-                # Position each window with proper scaling
-                for client in workspace_clients:
-                    # Get window position and size
-                    window_at = client.get("at", [0, 0])
-                    window_size = client.get("size", [200, 150])
+                # Only clamp if actually going outside boundaries
+                if scaled_x < min_x:
+                    scaled_x = min_x
+                elif scaled_x > max_x:
+                    scaled_x = max_x
                     
-                    # Calculate scaled position (relative to min_x, min_y if we're scaling to used area)
-                    if used_width < monitor_width and used_height < monitor_height:
-                        relative_x = window_at[0] - min_x
-                        relative_y = window_at[1] - min_y
-                        scaled_x = int(relative_x * display_scale)
-                        scaled_y = int(relative_y * display_scale)
-                    else:
-                        scaled_x = int(window_at[0] * display_scale)
-                        scaled_y = int(window_at[1] * display_scale)
-                    
-                    # Calculate scaled window size - make them fill more space
-                    base_window_width = max(60, int(window_size[0] * display_scale))
-                    base_window_height = max(40, int(window_size[1] * display_scale))
-                    
-                    # Ensure windows are reasonably sized - boost small windows
-                    min_window_width = workspace_area_width // 4  # At least 1/4 of workspace width
-                    min_window_height = workspace_area_height // 4  # At least 1/4 of workspace height
-                    
-                    scaled_width = max(base_window_width, min_window_width)
-                    scaled_height = max(base_window_height, min_window_height)
-                    
-                    # But don't make them larger than the workspace
-                    scaled_width = min(scaled_width, workspace_area_width - 10)
-                    scaled_height = min(scaled_height, workspace_area_height - 10)
-                    
-                    # Ensure positions are within bounds, accounting for window size
-                    scaled_x = max(0, min(scaled_x, workspace_area_width - scaled_width))
-                    scaled_y = max(0, min(scaled_y, workspace_area_height - scaled_height))
-                    
-                    print(f"Debug: Window {client.get('class', 'Unknown')}")
-                    print(f"  Original: pos({window_at[0]}, {window_at[1]}) size({window_size[0]}x{window_size[1]})")
-                    print(f"  Scaled: pos({scaled_x}, {scaled_y}) size({scaled_width}x{scaled_height})")
-                    
-                    # Create window widget with calculated size
-                    window_widget = WindowWidget(client, scaled_width, scaled_height, overview_widget)
-                    
-                    # Position the window widget
-                    workspace_container.put(window_widget, scaled_x, scaled_y)
+                if scaled_y < min_y:
+                    scaled_y = min_y
+                elif scaled_y > max_y:
+                    scaled_y = max_y
+                
+                # Only adjust size if position clamping caused overlap
+                if scaled_x + scaled_width > self.padding_left + usable_width:
+                    scaled_width = self.padding_left + usable_width - scaled_x
+                if scaled_y + scaled_height > workspace_start_y + window_area_height:
+                    scaled_height = workspace_start_y + window_area_height - scaled_y
+                
+                print(f"Debug: Window '{client.get('class', 'Unknown')}':")
+                print(f"  Original: pos({window_at[0]}, {window_at[1]}) size({window_size[0]}x{window_size[1]})")
+                print(f"  Relative: pos({relative_x}, {relative_y})")
+                print(f"  Final: pos({scaled_x}, {scaled_y}) size({scaled_width}x{scaled_height})")
+                print(f"  Usable area right edge: {self.padding_left + usable_width}")
+                
+                # Create window widget
+                window_widget = WindowWidget(client, scaled_width, scaled_height, overview_widget)
+                
+                # Position the window widget
+                workspace_container.put(window_widget, scaled_x, scaled_y)
             
-            # Wrap in a frame to show workspace bounds
-            frame = Gtk.Frame()
-            frame.set_shadow_type(Gtk.ShadowType.IN)
-            frame.add(workspace_container)
-            frame.set_size_request(workspace_area_width, workspace_area_height)
-            
-            main_container.add(frame)
+            main_container.add(workspace_container)
             
         else:
             # Empty workspace indicator
@@ -339,8 +339,14 @@ class WorkspaceWidget(EventBox):
             )
             empty_label.set_halign(Gtk.Align.CENTER)
             empty_label.set_valign(Gtk.Align.CENTER)
-            empty_label.set_size_request(workspace_area_width, workspace_area_height)
-            main_container.add(empty_label)
+            empty_label.set_size_request(usable_width, window_area_height)
+            
+            # Create a container with padding for the empty label
+            empty_container = Gtk.Layout()
+            empty_container.set_size_request(total_available_width, total_available_height)
+            empty_container.put(empty_label, self.padding_left + (usable_width - 50) // 2, workspace_start_y + (window_area_height - 20) // 2)
+            
+            main_container.add(empty_container)
         
         self.add(main_container)
         
@@ -352,11 +358,25 @@ class WorkspaceWidget(EventBox):
             border_style = "border: 1px solid rgba(255, 255, 255, 0.3);"
             bg_style = "background: rgba(255, 255, 255, 0.05);"
         
-        self.set_style(f"{bg_style} {border_style} border-radius: 8px; margin: 8px; padding: 8px;")
+        self.set_style(f"{bg_style} {border_style} border-radius: 6px; padding: 6px; margin: 3px;")
         
         # Connect hover events
         self.connect("enter-notify-event", self.on_enter)
         self.connect("leave-notify-event", self.on_leave)
+        
+        # Add click handler to switch to workspace
+        self.connect("button-press-event", self.on_workspace_click)
+        
+    def on_workspace_click(self, widget, event):
+        """Handle workspace click - switch to workspace"""
+        if event.button == 1:
+            print(f"Switching to workspace: {self.workspace_id}")
+            try:
+                exec_shell_command(f"hyprctl dispatch workspace {self.workspace_id}")
+                self.overview_widget.close_overview()
+            except Exception as e:
+                print(f"Error switching workspace: {e}")
+        return True
         
     def on_enter(self, widget, event):
         """Highlight on hover"""
@@ -367,13 +387,13 @@ class WorkspaceWidget(EventBox):
             self.set_style(
                 "background: rgba(100, 150, 255, 0.3); "
                 "border: 2px solid rgba(100, 150, 255, 1); "
-                "border-radius: 8px; margin: 8px; padding: 8px;"
+                "border-radius: 6px; padding: 6px; margin: 3px;"
             )
         else:
             self.set_style(
                 "background: rgba(255, 255, 255, 0.1); "
                 "border: 1px solid rgba(255, 255, 255, 0.5); "
-                "border-radius: 8px; margin: 8px; padding: 8px;"
+                "border-radius: 6px; padding: 6px; margin: 3px;"
             )
         return False
     
@@ -386,21 +406,51 @@ class WorkspaceWidget(EventBox):
             self.set_style(
                 "background: rgba(100, 150, 255, 0.2); "
                 "border: 2px solid rgba(100, 150, 255, 1); "
-                "border-radius: 8px; margin: 8px; padding: 8px;"
+                "border-radius: 6px; padding: 6px; margin: 3px;"
             )
         else:
             self.set_style(
                 "background: rgba(255, 255, 255, 0.05); "
                 "border: 1px solid rgba(255, 255, 255, 0.3); "
-                "border-radius: 8px; margin: 8px; padding: 8px;"
+                "border-radius: 6px; padding: 6px; margin: 3px;"
             )
         return False
 
 
-def main(percent=60):
-    """Enhanced main function with proper window scaling"""
+def calculate_optimal_grid_layout(num_workspaces: int, screen_aspect_ratio: float, monitor_aspect_ratio: float):
+    """Calculate optimal grid layout considering display aspect ratio"""
     
-    print("Debug: Starting Enhanced Hyprland Overview with Proper Window Scaling")
+    # Try different grid configurations
+    best_layout = (5, 2)  # Default fallback
+    best_efficiency = 0
+    
+    for cols in range(2, 7):  # 2-6 columns
+        rows = (num_workspaces + cols - 1) // cols  # Ceiling division
+        if rows < 1:
+            rows = 1
+            
+        # Calculate how much screen space this layout would use efficiently
+        grid_aspect = (cols * monitor_aspect_ratio) / rows
+        
+        # Efficiency based on how well the grid aspect matches screen aspect
+        if grid_aspect > screen_aspect_ratio:
+            efficiency = screen_aspect_ratio / grid_aspect
+        else:
+            efficiency = grid_aspect / screen_aspect_ratio
+            
+        print(f"Debug: Layout {cols}x{rows} - Grid aspect: {grid_aspect:.2f}, Efficiency: {efficiency:.2f}")
+        
+        if efficiency > best_efficiency:
+            best_efficiency = efficiency
+            best_layout = (cols, rows)
+    
+    return best_layout
+
+
+def main(percent=70):
+    """Fixed main function with proper display aspect ratio"""
+    
+    print("Debug: Starting Fixed Hyprland Overview - Right Gap Issue Resolved")
     
     # Get data from Hyprland
     workspaces = HyprlandClient.get_workspaces()
@@ -412,6 +462,14 @@ def main(percent=60):
     
     print(f"Debug: Found {len(workspaces)} workspaces, {len(clients)} windows")
     print(f"Debug: Active workspace: {active_id}")
+    
+    # Get primary monitor info
+    monitor_info = monitors[0] if monitors else {"width": 3440, "height": 1440, "x": 0, "y": 0}
+    monitor_width = monitor_info.get("width", 3440)
+    monitor_height = monitor_info.get("height", 1440)
+    monitor_aspect = monitor_width / monitor_height
+    
+    print(f"Debug: Monitor: {monitor_width}x{monitor_height} (aspect: {monitor_aspect:.2f})")
     
     # Create a comprehensive list of workspaces (including empty ones up to 10)
     workspace_ids = set([ws.get("id", 0) for ws in workspaces])
@@ -426,37 +484,93 @@ def main(percent=60):
     screen = Gdk.Screen.get_default()
     screen_width = screen.get_width()
     screen_height = screen.get_height()
+    screen_aspect = screen_width / screen_height
     
     # Use configurable percentage of screen width and height
     overview_width = int(screen_width * (percent / 100))
     overview_height = int(screen_height * (percent / 100))
     
-    print(f"Debug: Screen size: {screen_width}x{screen_height}")
-    print(f"Debug: Calculated overview size: {overview_width}x{overview_height}")
+    print(f"Debug: Screen size: {screen_width}x{screen_height} (aspect: {screen_aspect:.2f})")
+    print(f"Debug: Overview size: {overview_width}x{overview_height}")
+    
+    # Use fixed 5x2 grid layout as requested
+    cols = 5
+    rows = 2
+    print(f"Debug: Using fixed grid layout: {cols}x{rows}")
     
     # Create main container
     main_container = Box(
         orientation="v",
-        spacing=15,
-        style="padding: 20px; background-color: rgba(30, 30, 46, 0.95); border-radius: 12px;"
+        spacing=10,
+        style="padding: 15px; background-color: rgba(30, 30, 46, 0.95); border-radius: 12px;"
     )
     
-    # Create workspace grid
-    workspace_grid = Gtk.FlowBox()
-    workspace_grid.set_max_children_per_line(5)
-    workspace_grid.set_column_spacing(10)
-    workspace_grid.set_row_spacing(10)
-    workspace_grid.set_homogeneous(True)
-    workspace_grid.set_selection_mode(Gtk.SelectionMode.NONE)
+    # Create workspace grid using Gtk.Grid for better control  
+    workspace_grid = Gtk.Grid()
+    workspace_grid.set_column_spacing(6)
+    workspace_grid.set_row_spacing(6)
+    workspace_grid.set_column_homogeneous(True)
+    workspace_grid.set_row_homogeneous(True)
+    workspace_grid.set_halign(Gtk.Align.CENTER)
+    workspace_grid.set_valign(Gtk.Align.CENTER)
     
-    # Calculate workspace size
-    available_width = overview_width - 60
-    available_height = overview_height - 60
+    # Calculate workspace size maintaining display aspect ratio
+    available_width = overview_width - 50  # Account for main container padding
+    available_height = overview_height - 50
     
-    workspace_width = (available_width - 20) // 3
-    workspace_height = (available_height - 30) // 4
+    # Calculate individual workspace size accounting for grid spacing
+    total_h_spacing = (cols - 1) * 6  # Horizontal spacing between columns
+    total_v_spacing = (rows - 1) * 6  # Vertical spacing between rows
     
-    print(f"Debug: Workspace size: {workspace_width}x{workspace_height}")
+    # Available space for actual workspace widgets
+    grid_content_width = available_width - total_h_spacing
+    grid_content_height = available_height - total_v_spacing
+    
+    # FIXED: Calculate workspace dimensions maintaining MONITOR aspect ratio
+    # For ultrawide monitors, we need to maintain the 2.39:1 aspect ratio
+    
+    # Option 1: Width-constrained (fit by width)
+    workspace_width_by_width = grid_content_width // cols
+    workspace_height_by_width = int(workspace_width_by_width / monitor_aspect)
+    
+    # Option 2: Height-constrained (fit by height)  
+    workspace_height_by_height = grid_content_height // rows
+    workspace_width_by_height = int(workspace_height_by_height * monitor_aspect)
+    
+    # Choose the option that fits within available space
+    if workspace_height_by_width <= grid_content_height // rows:
+        # Width-constrained works
+        workspace_width = workspace_width_by_width
+        workspace_height = workspace_height_by_width
+        print(f"Debug: Using width-constrained sizing")
+    else:
+        # Height-constrained works better
+        workspace_width = workspace_width_by_height
+        workspace_height = workspace_height_by_height
+        print(f"Debug: Using height-constrained sizing")
+    
+    # Ensure minimum size while maintaining aspect ratio
+    min_width = 200
+    min_height = int(min_width / monitor_aspect)
+    
+    if workspace_width < min_width:
+        workspace_width = min_width
+        workspace_height = min_height
+    
+    print(f"Debug: Grid layout - Available: {available_width}x{available_height}")
+    print(f"Debug: Spacing - H: {total_h_spacing}, V: {total_v_spacing}")
+    print(f"Debug: Individual workspace size: {workspace_width}x{workspace_height}")
+    print(f"Debug: Workspace aspect ratio: {workspace_width/workspace_height:.2f} (monitor: {monitor_aspect:.2f})")
+    
+    # Verify aspect ratio match
+    workspace_aspect = workspace_width / workspace_height
+    aspect_diff = abs(workspace_aspect - monitor_aspect)
+    print(f"Debug: Aspect ratio difference: {aspect_diff:.3f} (should be close to 0)")
+    
+    # Set the grid size explicitly
+    grid_width = workspace_width * cols + total_h_spacing
+    grid_height = workspace_height * rows + total_v_spacing
+    workspace_grid.set_size_request(grid_width, grid_height)
     
     class OverviewApp:
         def __init__(self, app=None):
@@ -468,19 +582,30 @@ def main(percent=60):
     
     overview_app = OverviewApp()
     
-    # Add workspace widgets
-    for workspace in workspaces:
+    # Add workspace widgets to grid
+    for i, workspace in enumerate(workspaces):
+        if i >= cols * rows:  # Don't exceed grid capacity
+            break
+            
         workspace_id = workspace.get("id", 0)
         is_active = workspace_id == active_id
-        workspace_widget = WorkspaceWidget(workspace, clients, is_active, overview_app, workspace_width, workspace_height)
-        workspace_grid.add(workspace_widget)
+        workspace_widget = WorkspaceWidget(
+            workspace, clients, is_active, overview_app, 
+            workspace_width, workspace_height, monitor_info,
+            monitor_width, monitor_height  # Pass monitor dimensions
+        )
+        
+        # Calculate grid position
+        row = i // cols
+        col = i % cols
+        workspace_grid.attach(workspace_widget, col, row, 1, 1)
     
     main_container.add(workspace_grid)
     
     # Create centered window
     window = Window(
         child=main_container,
-        layer="overlay",
+        layer="overlay", 
         anchor="",
         keyboard_mode="on-demand",
         margin="0px",
@@ -489,23 +614,10 @@ def main(percent=60):
     
     # Set window size
     window.set_default_size(overview_width, overview_height)
-    window.set_size_request(overview_width, overview_height)
-    main_container.set_size_request(overview_width, overview_height)
-    workspace_grid.set_size_request(overview_width - 40, overview_height - 40)
-    
-    def on_window_realize(widget):
-        try:
-            if hasattr(widget, 'resize'):
-                widget.resize(overview_width, overview_height)
-            print(f"Debug: Window realized with target size {overview_width}x{overview_height}")
-        except Exception as e:
-            print(f"Debug: Could not resize window: {e}")
-    
-    window.connect("realize", on_window_realize)
     
     # Add keybindings
     window.add_keybinding("Escape", lambda w, *_: w.application.quit())
-    window.add_keybinding("F5", lambda w, *_: main(width_percent, height_percent))
+    window.add_keybinding("F5", lambda w, *_: main(percent))
     
     # Create application
     app = Application("hyprland-overview", window)
@@ -517,8 +629,6 @@ def main(percent=60):
     main_container.show_all()
     window.show_all()
     
-    print("Debug: About to run application")
-    
     # Run
     app.run()
 
@@ -527,21 +637,15 @@ if __name__ == "__main__":
     import sys
     
     # Allow configurable width and height via command line arguments
-    percent = 50
+    percent = 70  # Increased default for better visibility
     
     if len(sys.argv) > 1:
         try:
             percent = int(sys.argv[1])
         except ValueError:
-            print("Invalid width percentage, using default 70%")
+            print("Invalid percentage, using default 70%")
     
-    if len(sys.argv) > 2:
-        try:
-            percent = int(sys.argv[2])
-        except ValueError:
-            print("Invalid height percentage, using default 60%")
-    
-    print(f"Debug: Starting with dimensions {percent}% x {percent}%")
+    print(f"Debug: Starting with dimensions {percent}%")
     
     try:
         main(percent)
