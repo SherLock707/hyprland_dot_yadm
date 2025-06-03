@@ -17,4 +17,4 @@ print('{:02x}{:02x}{:02x}'.format(round(r*255), round(g*255), round(b*255)))
 ")
 
 # Set the new color using openrgb
-openrgb -d 2 -c "$new_color"
+openrgb -c "$new_color" # -d 2

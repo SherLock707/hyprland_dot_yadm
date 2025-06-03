@@ -24,6 +24,7 @@
     background: rgba(30, 30, 46, 0.8);
     foreground: #%%foreground%%;
     border-color: #%%color7%%;
+    transparent-background: rgba(0,0,0,0.7);
 }
 
 #window {
@@ -78,7 +79,7 @@
 }
 
 #element.normal.normal {
-    background-color: @normal-background;
+    background-color: @transparent-background;
     text-color: @normal-foreground;
 }
 
@@ -108,7 +109,7 @@
 }
 
 #element.alternate.normal {
-    background-color: @alternate-normal-background;
+    background-color: @transparent-background;
     text-color: @alternate-normal-foreground;
 }
 

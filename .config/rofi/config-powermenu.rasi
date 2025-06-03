@@ -104,6 +104,7 @@ element-text {
     horizontal-align:               0.5;
     markup:                         true;
 }
+
 element selected.normal {
     background-color:               @selected-normal-background;
     text-color:                     @background;
@@ -117,6 +118,7 @@ message {
     text-color:                     @foreground;
     border:                         0px;
 }
+
 textbox {
     font:                           "Fira Code SemiBold 8";
     background-color:               @background;

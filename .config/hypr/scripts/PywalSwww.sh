@@ -72,13 +72,13 @@ fi
 # openrgb -d 2 -c "$COLOR_CODE" &
 
 #Update icon colours
-$HOME/.config/hypr/scripts/SetIconColor.sh
+$HOME/.config/hypr/scripts/SetIconColor.sh &
 
 # Update QT accent
-$HOME/.config/hypr/scripts/Update_qt_accent.sh
+$HOME/.config/hypr/scripts/Update_qt_accent.sh  &
 
 # Update Notification icons
-$HOME/.config/hypr/scripts/SetNotiIconcolorV2.sh
+$HOME/.config/hypr/scripts/SetNotiIconcolorV2.sh  &
 
 # Update VScodium colour fo cat
 $HOME/.config/hypr/scripts/SetVscodeColor.sh &
