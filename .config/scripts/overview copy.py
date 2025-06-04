@@ -598,7 +598,6 @@ def main(percent=70):
     
     window.set_default_size(overview_width, overview_height)
     window.add_keybinding("Escape", lambda w, *_: w.application.quit())
-    window.add_keybinding("Super tab", lambda w, *_: w.application.quit())
     window.add_keybinding("F5", lambda w, *_: main(percent))
     
     app = Application("hyprland-overview", window)
