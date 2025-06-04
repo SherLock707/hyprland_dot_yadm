@@ -3,6 +3,7 @@
 import json
 import cairo
 import gi
+import os
 from typing import Dict, List
 
 gi.require_version("Gtk", "3.0")
@@ -17,6 +18,23 @@ from fabric.widgets.wayland import WaylandWindow as Window
 from fabric.utils import exec_shell_command
 
 TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
+
+def load_css():
+    """Load CSS from external file"""
+    css_provider = Gtk.CssProvider()
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    css_file = os.path.join(script_dir, "overview_style.css")
+    
+    try:
+        css_provider.load_from_path(css_file)
+        Gtk.StyleContext.add_provider_for_screen(
+            Gdk.Screen.get_default(),
+            css_provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        )
+    except Exception as e:
+        print(f"Warning: Could not load CSS file {css_file}: {e}")
+        print("Falling back to inline styles")
 
 def create_surface_from_widget(widget: Gtk.Widget) -> cairo.ImageSurface:
     alloc = widget.get_allocation()
@@ -77,6 +95,7 @@ class DraggableWindow(EventBox):
         self.set_size_request(window_width, window_height)
         
         window_content = Box(orientation="v", spacing=1)
+        window_content.get_style_context().add_class("workspace-content")
         
         max_chars = max(5, window_width // 8)
         title_text = client.get("title", "")[:max_chars]
@@ -85,17 +104,17 @@ class DraggableWindow(EventBox):
             
         if window_height > 25:
             title_label = Label(
-                label=title_text + ("..." if len(client.get("title", "")) > max_chars else ""),
-                style="color: white; font-size: 8px; font-weight: bold;"
+                label=title_text + ("..." if len(client.get("title", "")) > max_chars else "")
             )
+            title_label.get_style_context().add_class("window-title")
             title_label.set_halign(Gtk.Align.CENTER)
             window_content.add(title_label)
         
         if window_height > 45:
             class_label = Label(
-                label=client.get("class", "Unknown")[:max_chars],
-                style="color: rgba(255, 255, 255, 0.7); font-size: 6px;"
+                label=client.get("class", "Unknown")[:max_chars]
             )
+            class_label.get_style_context().add_class("window-class")
             class_label.set_halign(Gtk.Align.CENTER)
             window_content.add(class_label)
         
@@ -122,18 +141,18 @@ class DraggableWindow(EventBox):
         
     def _update_style(self):
         is_floating = self.client.get("floating", False)
+        style_context = self.get_style_context()
+        
+        # Remove old classes
+        style_context.remove_class("window-floating")
+        style_context.remove_class("window-floating-hover")
+        style_context.remove_class("window-tiled")
+        style_context.remove_class("window-tiled-hover")
+        
         if is_floating:
-            self.set_style(
-                "background: rgba(255, 200, 100, 0.15); "
-                "border: 1px solid rgba(255, 200, 100, 0.8); "
-                "border-radius: 2px; padding: 1px;"
-            )
+            style_context.add_class("window-floating")
         else:
-            self.set_style(
-                "background: rgba(255, 255, 255, 0.1); "
-                "border: 1px solid rgba(255, 255, 255, 0.4); "
-                "border-radius: 2px; padding: 1px;"
-            )
+            style_context.add_class("window-tiled")
         
     def _on_drag_data_get(self, widget, context, data, info, time):
         data.set_text(self.window_address, len(self.window_address))
@@ -217,19 +236,18 @@ class DraggableWindow(EventBox):
     def _on_enter(self, widget, event):
         if self.is_dragging:
             return False
+        
         is_floating = self.client.get("floating", False)
+        style_context = self.get_style_context()
+        
+        # Remove old classes
+        style_context.remove_class("window-floating")
+        style_context.remove_class("window-tiled")
+        
         if is_floating:
-            self.set_style(
-                "background: rgba(255, 200, 100, 0.25); "
-                "border: 1px solid rgba(255, 200, 100, 1); "
-                "border-radius: 2px; padding: 1px;"
-            )
+            style_context.add_class("window-floating-hover")
         else:
-            self.set_style(
-                "background: rgba(255, 255, 255, 0.2); "
-                "border: 1px solid rgba(255, 255, 255, 0.6); "
-                "border-radius: 2px; padding: 1px;"
-            )
+            style_context.add_class("window-tiled-hover")
         return False
     
     def _on_leave(self, widget, event):
@@ -272,22 +290,19 @@ class WorkspaceDropZone(EventBox):
         
     def _create_workspace_content(self, clients: List[Dict]):
         main_container = Box(orientation="v", spacing=2)
+        main_container.get_style_context().add_class("workspace-content")
         
         # Header
         header = Box(orientation="h", spacing=8)
         ws_name = self.workspace.get("name", str(self.workspace_id))
-        header_label = Label(
-            label=f"WS {ws_name}",
-            style="color: white; font-size: 9px; font-weight: bold;"
-        )
+        header_label = Label(label=f"WS {ws_name}")
+        header_label.get_style_context().add_class("workspace-header")
         header_label.set_halign(Gtk.Align.START)
         header.add(header_label)
         
         workspace_clients = [c for c in clients if c.get("workspace", {}).get("id") == self.workspace_id]
-        count_label = Label(
-            label=f"({len(workspace_clients)})",
-            style="color: rgba(255, 255, 255, 0.7); font-size: 8px;"
-        )
+        count_label = Label(label=f"({len(workspace_clients)})")
+        count_label.get_style_context().add_class("workspace-count")
         count_label.set_halign(Gtk.Align.END)
         header.add(count_label)
         
@@ -301,10 +316,8 @@ class WorkspaceDropZone(EventBox):
             self._position_windows(workspace_clients, workspace_container)
             main_container.add(workspace_container)
         else:
-            empty_label = Label(
-                label="Drop here",
-                style="color: rgba(255, 255, 255, 0.5); font-size: 10px; font-style: italic;"
-            )
+            empty_label = Label(label="Drop here")
+            empty_label.get_style_context().add_class("empty-workspace")
             empty_label.set_halign(Gtk.Align.CENTER)
             empty_label.set_valign(Gtk.Align.CENTER)
             empty_label.set_size_request(self.content_width, self.content_height)
@@ -315,7 +328,7 @@ class WorkspaceDropZone(EventBox):
             
             main_container.add(empty_container)
         
-        # Add padding
+        # Add padding with CSS class instead of inline style
         main_container.set_style(f"padding: {self.padding}px;")
         self.add(main_container)
     
@@ -373,18 +386,18 @@ class WorkspaceDropZone(EventBox):
             container.put(window_widget, scaled_x, scaled_y)
     
     def _update_style(self):
+        style_context = self.get_style_context()
+        
+        # Remove all workspace classes
+        style_context.remove_class("workspace-active")
+        style_context.remove_class("workspace-inactive")
+        style_context.remove_class("workspace-drag-hover-active")
+        style_context.remove_class("workspace-drag-hover-inactive")
+        
         if self.is_active:
-            self.set_style(
-                "background: rgba(100, 150, 255, 0.2); "
-                "border: 2px solid rgba(100, 150, 255, 1); "
-                "border-radius: 6px; margin: 3px;"
-            )
+            style_context.add_class("workspace-active")
         else:
-            self.set_style(
-                "background: rgba(255, 255, 255, 0.05); "
-                "border: 1px solid rgba(255, 255, 255, 0.3); "
-                "border-radius: 6px; margin: 3px;"
-            )
+            style_context.add_class("workspace-inactive")
     
     def _on_drag_data_received(self, widget, context, x, y, data, info, time):
         window_address = data.get_data().decode()
@@ -398,18 +411,17 @@ class WorkspaceDropZone(EventBox):
             Gtk.drag_finish(context, False, False, time)
         
     def _on_drag_motion(self, widget, context, x, y, time):
+        style_context = self.get_style_context()
+        
+        # Remove current classes
+        style_context.remove_class("workspace-active")
+        style_context.remove_class("workspace-inactive")
+        
         if self.is_active:
-            self.set_style(
-                "background: rgba(100, 150, 255, 0.3); "
-                "border: 2px solid rgba(100, 150, 255, 1); "
-                "border-radius: 6px; margin: 3px;"
-            )
+            style_context.add_class("workspace-drag-hover-active")
         else:
-            self.set_style(
-                "background: rgba(255, 255, 255, 0.15); "
-                "border: 2px solid rgba(255, 255, 255, 0.6); "
-                "border-radius: 6px; margin: 3px;"
-            )
+            style_context.add_class("workspace-drag-hover-inactive")
+            
         Gdk.drag_status(context, Gdk.DragAction.MOVE, time)
         return True
         
@@ -426,6 +438,9 @@ class WorkspaceDropZone(EventBox):
         return True
 
 def main(percent=70):
+    # Load CSS styles
+    load_css()
+    
     workspaces = HyprlandClient.get_workspaces()
     clients = HyprlandClient.get_clients()
     active_workspace = HyprlandClient.get_active_workspace()
@@ -455,11 +470,8 @@ def main(percent=70):
     
     cols, rows = 5, 2
     
-    main_container = Box(
-        orientation="v",
-        spacing=10,
-        style="padding: 15px; background-color: rgba(30, 30, 46, 0.95); border-radius: 12px;"
-    )
+    main_container = Box(orientation="v", spacing=10)
+    main_container.get_style_context().add_class("main-container")
     
     workspace_grid = Gtk.Grid()
     workspace_grid.set_column_spacing(8)
@@ -598,7 +610,7 @@ def main(percent=70):
 if __name__ == "__main__":
     import sys
     
-    percent = 70
+    percent = 78
     if len(sys.argv) > 1:
         try:
             percent = int(sys.argv[1])
