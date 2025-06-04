@@ -3,8 +3,8 @@
 /* Main container styles */
 .main-container {
     padding: 15px;
-    background-color: rgba(30, 30, 46, 0.95);
-    border-radius: 12px;
+    background-color: rgba(15, 15, 21, 0.7);
+    border-radius: 14px;
     border: 2px solid @color7;
 }
 
@@ -14,7 +14,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 3px solid rgba(100, 150, 255, 1);
+    border: 3px solid alpha(@color7, 1);
     border-radius: 6px;
     margin: 3px;
 }
@@ -25,91 +25,91 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid alpha(@color6, 0.3);
     border-radius: 6px;
     margin: 3px;
 }
 
 /* Active workspace drag hover */
 .workspace-drag-hover-active {
-    background: linear-gradient(135deg, 
-        rgba(100, 150, 255, 0.5) 0%, 
-        rgba(100, 150, 255, 0.3) 50%, 
-        rgba(100, 150, 255, 0.5) 100%);
-    border: 3px solid rgba(100, 150, 255, 1);
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 6px solid alpha(@color14, 1);
     border-radius: 6px;
     margin: 3px;
-    box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+    box-shadow: 0 0 10px alpha(@color14, 0.5);
 }
 
 /* Inactive workspace drag hover */
 .workspace-drag-hover-inactive {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        rgba(255, 255, 255, 0.2) 100%);
-    border: 3px solid rgba(255, 255, 255, 0.6);
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid alpha(@color12, 0.6);
     border-radius: 6px;
     margin: 3px;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px alpha(@color12, 0.3);
 }
 
 /* Floating window styles */
 .window-floating {
-    background: alpha(@color7, 0.3);
+    background: alpha(@color6, 0.4);
     border: 2px solid alpha(@color6, 0.8);
-    border-radius: 5px;
+    border-radius: 12px;
     padding: 1px;
 }
 
 .window-floating-hover {
-    background: alpha(@color6, 0.3);
+    background: alpha(@color6, 0.8);
     border: 3px solid alpha(@color6, 1);
-    border-radius: 5px;
+    border-radius: 12px;
     padding: 1px;
     box-shadow: 0 0 4px alpha(@color7, 0.5);
 }
 
 /* Tiled window styles */
 .window-tiled {
-    background: alpha(@color7, 0.3);
-    border: 2px solid alpha(@color7, 0.4);
-    border-radius: 5px;
-    padding: 1px;
+    background: alpha(@color7, 0.4);
+    border: 2px solid alpha(@color7, 0.8);
+    border-radius: 12px;
+    padding: 2px;
 }
 
 .window-tiled-hover {
-    background: rgba(255, 255, 255, 0.);
-    border: 2px solid alpha(@color7, 0.6);
-    border-radius: 5px;
+    background: alpha(@color7, 0.8);
+    border: 2px solid alpha(@color7, 1);
+    border-radius: 12px;
     padding: 1px;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 4px alpha(@color7, 0.3);
 }
 
 /* Text styles */
 .workspace-header {
     color: white;
-    font-size: 9px;
+    font-size: 12px;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .workspace-count {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 8px;
+    font-size: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .window-title {
     color: white;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .window-class {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 6px;
+    font-size: 14px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
 }
 
@@ -122,17 +122,14 @@
 
 /* Workspace content container */
 .workspace-content {
-    /* Remove z-index and position properties as they're not well supported */
     margin: 2px;
 }
 
 /* Alternative approach for wallpaper effect if needed */
 .workspace-active.wallpaper-bg {
-    /* If you want to add wallpaper programmatically, 
-       you can set background-image via Python code instead */
     background-color: rgba(30, 50, 80, 0.6);
 }
 
 .workspace-inactive.wallpaper-bg {
-    background-color: rgba(40, 40, 50, 0.6);
+    background-color: rgba(149, 149, 188, 0.6);
 }

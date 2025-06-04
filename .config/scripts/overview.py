@@ -295,7 +295,7 @@ class WorkspaceDropZone(EventBox):
         # Header
         header = Box(orientation="h", spacing=8)
         ws_name = self.workspace.get("name", str(self.workspace_id))
-        header_label = Label(label=f"WS {ws_name}")
+        header_label = Label(label=f"{ws_name}")
         header_label.get_style_context().add_class("workspace-header")
         header_label.set_halign(Gtk.Align.START)
         header.add(header_label)
@@ -316,7 +316,7 @@ class WorkspaceDropZone(EventBox):
             self._position_windows(workspace_clients, workspace_container)
             main_container.add(workspace_container)
         else:
-            empty_label = Label(label="Drop here")
+            empty_label = Label(label="Empty")
             empty_label.get_style_context().add_class("empty-workspace")
             empty_label.set_halign(Gtk.Align.CENTER)
             empty_label.set_valign(Gtk.Align.CENTER)
