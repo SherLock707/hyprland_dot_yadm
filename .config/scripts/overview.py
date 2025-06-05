@@ -78,7 +78,6 @@ def add_icons_to_windows(clients):
     class_to_icon = {}
     for cls in unique_classes:
         substituted = substitute_class_names.get(cls, cls)
-        print(f"Sub {substituted} for {cls}")
         icon_path = get_icon_for_app(substituted)
         class_to_icon[cls] = icon_path  # Map original name -> icon
 
@@ -231,6 +230,7 @@ class DraggableWindow(EventBox):
         # Add drawing area to render SVG icon centered
         if self.svg_handle:
             drawing_area = Gtk.DrawingArea()
+            drawing_area.set_margin_top(window_height*0.03)
             drawing_area.set_has_window(False)
 
             # Size roughly half the window size, adjust as needed
@@ -373,10 +373,6 @@ class DraggableWindow(EventBox):
 
         width = widget.get_allocated_width()
         height = widget.get_allocated_height()
-
-        # Clear background 
-        # cr.set_source_rgba(0, 0, 0, 0)
-        # cr.paint()
 
         # SVG original dimensions
         dim = self.svg_handle.get_dimensions()
