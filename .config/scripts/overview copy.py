@@ -8,8 +8,9 @@ from typing import Dict, List
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
+gi.require_version("Rsvg", "2.0")
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, Gio, Rsvg
 from fabric import Application
 from fabric.widgets.box import Box
 from fabric.widgets.label import Label
@@ -18,6 +19,70 @@ from fabric.widgets.wayland import WaylandWindow as Window
 from fabric.utils import exec_shell_command
 
 TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
+
+# -----------------ICON --------------------------------
+DESKTOP_DIRS = [
+    "/usr/share/applications",
+    os.path.expanduser("~/.local/share/applications"),
+]
+
+def find_desktop_file(app_name):
+    for base in DESKTOP_DIRS:
+        for fname in os.listdir(base):
+            if not fname.endswith(".desktop"):
+                continue
+            if app_name.lower() in fname.lower():
+                return os.path.join(base, fname)
+    return None
+
+def get_icon_path_from_desktop_file(path, size=64):
+    if not os.path.exists(path):
+        print("Icon path does not exist")
+        return None
+
+    app_info = Gio.DesktopAppInfo.new_from_filename(path)
+    icon = app_info.get_icon()
+
+    if not icon:
+        print("No Icon")
+        return None
+
+    theme = Gtk.IconTheme.get_default()
+
+    if isinstance(icon, Gio.ThemedIcon):
+        for name in icon.get_names():
+            info = theme.lookup_icon(name, size, 0)
+            # if info:
+            return info.get_filename()
+    elif isinstance(icon, Gio.FileIcon):
+        return icon.get_file().get_path()
+
+    print("No Icon-end")
+    return None
+
+def get_icon_for_app(app_name):
+    desktop = find_desktop_file(app_name)
+    if desktop:
+        return get_icon_path_from_desktop_file(desktop)
+    return None
+
+def add_icons_to_windows(clients):
+    # Step 1: Get unique classes
+    unique_classes = {client.get("class") for client in clients if client.get("class")}
+
+    # Step 2: Build map of class -> icon path
+    class_to_icon = {cls: get_icon_for_app(cls) for cls in unique_classes}
+
+    # Step 3: Assign icon paths back to clients
+    # for client in clients:
+    #     cls = client.get("class")
+    #     if cls:
+    #         client["icon"] = class_to_icon.get(cls, None)
+
+    return class_to_icon
+
+
+# ---------------------------------------------------------------------
 
 def load_css():
     """Load CSS from external file"""
@@ -91,42 +156,58 @@ class DraggableWindow(EventBox):
         self.button_press_time = 0
         self.button_press_pos = (0, 0)
         self.drag_threshold = 5  # pixels
-        
+
         self.set_size_request(window_width, window_height)
-        
-        window_content = Box(orientation="v", spacing=1)
+
+        window_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
         window_content.get_style_context().add_class("workspace-content")
-        
+
         max_chars = max(5, window_width // 8)
         title_text = client.get("title", "")[:max_chars]
         if not title_text:
             title_text = client.get("class", "Unknown")[:max_chars]
-            
+
         if window_height > 25:
-            title_label = Label(
-                label=title_text + ("..." if len(client.get("title", "")) > max_chars else "")
-            )
+            title_label = Gtk.Label(label=title_text + ("..." if len(client.get("title", "")) > max_chars else ""))
             title_label.get_style_context().add_class("window-title")
             title_label.set_halign(Gtk.Align.CENTER)
             window_content.add(title_label)
-        
+
         if window_height > 45:
-            class_label = Label(
-                label=client.get("class", "Unknown")[:max_chars]
-            )
+            class_label = Gtk.Label(label=client.get("class", "Unknown")[:max_chars])
             class_label.get_style_context().add_class("window-class")
             class_label.set_halign(Gtk.Align.CENTER)
             window_content.add(class_label)
-        
+
+        # Load SVG icon if path given
+        self.svg_handle = None
+        svg_path = client.get("icon")
+        if svg_path:
+            try:
+                self.svg_handle = Rsvg.Handle.new_from_file(svg_path)
+            except Exception as e:
+                print(f"Error loading SVG icon '{svg_path}': {e}")
+
+        # Add drawing area to render SVG icon centered
+        if self.svg_handle:
+            drawing_area = Gtk.DrawingArea()
+            drawing_area.set_has_window(False)
+            print(drawing_area)
+            # Size roughly half the window size, adjust as needed
+            icon_size = min(window_width, window_height) // 3
+            drawing_area.set_size_request(icon_size, icon_size)
+            drawing_area.connect("draw", self.on_draw_svg)
+            window_content.add(drawing_area)
+
         self.add(window_content)
         self._update_style()
-        
+
         self.drag_source_set(
             Gdk.ModifierType.BUTTON1_MASK,
             TARGET,
-            Gdk.DragAction.MOVE
+            Gdk.DragAction.MOVE,
         )
-        
+
         self.connect("drag-data-get", self._on_drag_data_get)
         self.connect("drag-begin", self._on_drag_begin)
         self.connect("drag-end", self._on_drag_end)
@@ -135,51 +216,48 @@ class DraggableWindow(EventBox):
         self.connect("motion-notify-event", self._on_motion_notify)
         self.connect("enter-notify-event", self._on_enter)
         self.connect("leave-notify-event", self._on_leave)
-        
+
         # Enable motion events
         self.set_events(self.get_events() | Gdk.EventMask.POINTER_MOTION_MASK)
-        
+
     def _update_style(self):
         is_floating = self.client.get("floating", False)
         style_context = self.get_style_context()
-        
-        # Remove old classes
+
         style_context.remove_class("window-floating")
         style_context.remove_class("window-floating-hover")
         style_context.remove_class("window-tiled")
         style_context.remove_class("window-tiled-hover")
-        
+
         if is_floating:
             style_context.add_class("window-floating")
         else:
             style_context.add_class("window-tiled")
-        
+
     def _on_drag_data_get(self, widget, context, data, info, time):
         data.set_text(self.window_address, len(self.window_address))
-        
+
     def _on_drag_begin(self, widget, context):
         self.is_dragging = True
         self.drag_started = True
         surface = create_surface_from_widget(self)
         Gtk.drag_set_icon_surface(context, surface)
-        
+
     def _on_drag_end(self, widget, context):
         self.is_dragging = False
-        # Reset drag_started after a short delay to handle the button release
         GLib.timeout_add(100, self._reset_drag_flag)
-        
+
     def _reset_drag_flag(self):
         self.drag_started = False
         self.button_press_time = 0
         return False
-        
+
     def _on_button_press(self, widget, event):
-        if event.button == 1:  # Left click
+        if event.button == 1:
             self.button_press_time = event.time
             self.button_press_pos = (event.x, event.y)
-            # Don't handle the click immediately - wait to see if it's a drag
             return True
-        elif event.button == 3:  # Right click - handle immediately
+        elif event.button == 3:
             try:
                 workspace_id = self.client.get("workspace", {}).get("id", 1)
                 exec_shell_command(f"hyprctl dispatch workspace {workspace_id}")
@@ -188,38 +266,33 @@ class DraggableWindow(EventBox):
                 print(f"Error switching workspace: {e}")
             return True
         return False
-    
+
     def _on_motion_notify(self, widget, event):
-        # If we have a button press but haven't started dragging yet,
-        # check if we've moved enough to consider it a drag
-        if (self.button_press_time > 0 and not self.drag_started and 
-            event.state & Gdk.ModifierType.BUTTON1_MASK):
-            
+        if (
+            self.button_press_time > 0
+            and not self.drag_started
+            and event.state & Gdk.ModifierType.BUTTON1_MASK
+        ):
             dx = abs(event.x - self.button_press_pos[0])
             dy = abs(event.y - self.button_press_pos[1])
-            
+
             if dx > self.drag_threshold or dy > self.drag_threshold:
-                # This is a drag operation, let the drag system handle it
-                # The drag will be initiated by GTK's drag system
                 pass
-        
+
         return False
-        
+
     def _on_button_release(self, widget, event):
         if event.button == 1 and self.button_press_time > 0:
-            # Check if this was a click (not a drag)
             time_diff = event.time - self.button_press_time
             dx = abs(event.x - self.button_press_pos[0])
             dy = abs(event.y - self.button_press_pos[1])
-            
-            # Consider it a click if:
-            # 1. We didn't start a drag operation AND
-            # 2. The mouse didn't move much AND
-            # 3. It was a quick press/release
-            if (not self.drag_started and 
-                dx <= self.drag_threshold and dy <= self.drag_threshold and
-                time_diff < 500):  # 500ms threshold for click
-                
+
+            if (
+                not self.drag_started
+                and dx <= self.drag_threshold
+                and dy <= self.drag_threshold
+                and time_diff < 500
+            ):
                 try:
                     workspace_id = self.client.get("workspace", {}).get("id", 1)
                     exec_shell_command(f"hyprctl dispatch workspace {workspace_id}")
@@ -227,33 +300,63 @@ class DraggableWindow(EventBox):
                     self.overview_widget.close_overview()
                 except Exception as e:
                     print(f"Error focusing window: {e}")
-            
-            # Reset button press tracking
+
             self.button_press_time = 0
-        
+
         return True
-    
+
     def _on_enter(self, widget, event):
         if self.is_dragging:
             return False
-        
+
         is_floating = self.client.get("floating", False)
         style_context = self.get_style_context()
-        
-        # Remove old classes
+
         style_context.remove_class("window-floating")
         style_context.remove_class("window-tiled")
-        
+
         if is_floating:
             style_context.add_class("window-floating-hover")
         else:
             style_context.add_class("window-tiled-hover")
         return False
-    
+
     def _on_leave(self, widget, event):
         if self.is_dragging:
             return False
         self._update_style()
+        return False
+
+    def on_draw_svg(self, widget, cr):
+        if not self.svg_handle:
+            return False
+
+        width = widget.get_allocated_width()
+        height = widget.get_allocated_height()
+
+        # Clear background 
+        # cr.set_source_rgba(0, 0, 0, 0)
+        # cr.paint()
+
+        # SVG original dimensions
+        dim = self.svg_handle.get_dimensions()
+        svg_width = dim.width
+        svg_height = dim.height
+
+        # Calculate scale preserving aspect ratio
+        scale_x = width / svg_width
+        scale_y = height / svg_height
+        scale = min(scale_x, scale_y)
+
+        # Center SVG
+        offset_x = (width - svg_width * scale) / 2
+        offset_y = (height - svg_height * scale) / 2
+
+        cr.translate(offset_x, offset_y)
+        cr.scale(scale, scale)
+
+        self.svg_handle.render_cairo(cr)
+
         return False
 
 class WorkspaceDropZone(EventBox):
@@ -265,6 +368,7 @@ class WorkspaceDropZone(EventBox):
         self.overview_widget = overview_widget
         self.monitor_info = monitor_info
         self.is_active = is_active
+        # print("ACTIVE:", self.is_active, "|", self.workspace_id)
         
         # Calculate actual content area dimensions
         self.padding = 2
@@ -446,6 +550,14 @@ def main(percent=70):
     active_workspace = HyprlandClient.get_active_workspace()
     monitors = HyprlandClient.get_monitors()
 
+    class_to_icon = add_icons_to_windows(clients)
+
+    # Add 'icon' svg path to dict
+    for client in clients:
+        cls = client.get("class")
+        if cls:
+            client["icon"] = class_to_icon.get(cls, None)
+
     active_id = active_workspace.get("id", -1)
     monitor_info = monitors[0] if monitors else {"width": 3440, "height": 1440, "x": 0, "y": 0}
     
@@ -536,6 +648,11 @@ def main(percent=70):
             clients = HyprlandClient.get_clients()
             active_workspace = HyprlandClient.get_active_workspace()
             active_id = active_workspace.get("id", -1)
+
+            for client in clients:
+                cls = client.get("class")
+                if cls:
+                    client["icon"] = class_to_icon.get(cls, None)
             
             # Add empty workspaces
             workspace_ids = set([ws.get("id", 0) for ws in workspaces])

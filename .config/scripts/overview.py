@@ -6,8 +6,11 @@ import gi
 import os
 from typing import Dict, List
 
+from hyprpy import Hyprland
+
 gi.require_version("Gtk", "3.0")
-gi.require_version("Gdk", "3.0")
+# gi.require_version("Gdk", "3.0")
+gi.require_version("Rsvg", "2.0")
 
 from gi.repository import Gtk, Gdk, GLib, Gio, Rsvg
 from fabric import Application
@@ -19,11 +22,13 @@ from fabric.utils import exec_shell_command
 
 TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 
-# -----------------ICON --------------------------------
+# ---------------------------ICON --------------------------------
 DESKTOP_DIRS = [
     "/usr/share/applications",
     os.path.expanduser("~/.local/share/applications"),
 ]
+
+substitute_class_names = {"vscode": "codium"}
 
 def find_desktop_file(app_name):
     for base in DESKTOP_DIRS:
@@ -66,17 +71,16 @@ def get_icon_for_app(app_name):
     return None
 
 def add_icons_to_windows(clients):
-    # Step 1: Get unique classes
+    # Step 1: Get unique original classes
     unique_classes = {client.get("class") for client in clients if client.get("class")}
 
-    # Step 2: Build map of class -> icon path
-    class_to_icon = {cls: get_icon_for_app(cls) for cls in unique_classes}
-
-    # Step 3: Assign icon paths back to clients
-    # for client in clients:
-    #     cls = client.get("class")
-    #     if cls:
-    #         client["icon"] = class_to_icon.get(cls, None)
+    # Step 2: Build icon map using substituted names
+    class_to_icon = {}
+    for cls in unique_classes:
+        substituted = substitute_class_names.get(cls, cls)
+        print(f"Sub {substituted} for {cls}")
+        icon_path = get_icon_for_app(substituted)
+        class_to_icon[cls] = icon_path  # Map original name -> icon
 
     return class_to_icon
 
@@ -84,21 +88,27 @@ def add_icons_to_windows(clients):
 # ---------------------------------------------------------------------
 
 def load_css():
-    """Load CSS from external file"""
-    css_provider = Gtk.CssProvider()
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    css_file = os.path.join(script_dir, "overview_style.css")
-    
+    # script_dir = os.path.dirname(os.path.abspath(__file__))
+    css_path = os.path.expanduser("~/.config/scripts/overview_style.css")
+
+    if not os.path.isfile(css_path):
+        print(f"Warning: CSS file not found: {css_path}")
+        print("Falling back to inline styles")
+        return
+
     try:
-        css_provider.load_from_path(css_file)
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path(css_path)
+        screen = Gdk.Screen.get_default()
         Gtk.StyleContext.add_provider_for_screen(
-            Gdk.Screen.get_default(),
+            screen,
             css_provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
-    except Exception as e:
-        print(f"Warning: Could not load CSS file {css_file}: {e}")
+    except GLib.Error as e:
+        print(f"Warning: Failed to load CSS from {css_path}: {e}")
         print("Falling back to inline styles")
+
 
 def create_surface_from_widget(widget: Gtk.Widget) -> cairo.ImageSurface:
     alloc = widget.get_allocation()
@@ -144,181 +154,36 @@ class HyprlandClient:
         except:
             return []
 
-class DraggableWindow2(EventBox):
-    def __init__(self, client: Dict, window_width: int, window_height: int, overview_widget):
-        super().__init__()
-        self.client = client
-        self.overview_widget = overview_widget
-        self.window_address = client.get("address", "")
-        self.is_dragging = False
-        self.drag_started = False
-        self.button_press_time = 0
-        self.button_press_pos = (0, 0)
-        self.drag_threshold = 5  # pixels
-        
-        self.set_size_request(window_width, window_height)
-        
-        window_content = Box(orientation="v", spacing=1)
-        window_content.get_style_context().add_class("workspace-content")
-        
-        max_chars = max(5, window_width // 8)
-        title_text = client.get("title", "")[:max_chars]
-        if not title_text:
-            title_text = client.get("class", "Unknown")[:max_chars]
-            
-        if window_height > 25:
-            title_label = Label(
-                label=title_text + ("..." if len(client.get("title", "")) > max_chars else "")
-            )
-            title_label.get_style_context().add_class("window-title")
-            title_label.set_halign(Gtk.Align.CENTER)
-            window_content.add(title_label)
-        
-        if window_height > 45:
-            class_label = Label(
-                label=client.get("class", "Unknown")[:max_chars]
-            )
-            class_label.get_style_context().add_class("window-class")
-            class_label.set_halign(Gtk.Align.CENTER)
-            window_content.add(class_label)
-        
-        self.add(window_content)
-        self._update_style()
-        
-        self.drag_source_set(
-            Gdk.ModifierType.BUTTON1_MASK,
-            TARGET,
-            Gdk.DragAction.MOVE
-        )
-        
-        self.connect("drag-data-get", self._on_drag_data_get)
-        self.connect("drag-begin", self._on_drag_begin)
-        self.connect("drag-end", self._on_drag_end)
-        self.connect("button-press-event", self._on_button_press)
-        self.connect("button-release-event", self._on_button_release)
-        self.connect("motion-notify-event", self._on_motion_notify)
-        self.connect("enter-notify-event", self._on_enter)
-        self.connect("leave-notify-event", self._on_leave)
-        
-        # Enable motion events
-        self.set_events(self.get_events() | Gdk.EventMask.POINTER_MOTION_MASK)
-        
-    def _update_style(self):
-        is_floating = self.client.get("floating", False)
-        style_context = self.get_style_context()
-        
-        # Remove old classes
-        style_context.remove_class("window-floating")
-        style_context.remove_class("window-floating-hover")
-        style_context.remove_class("window-tiled")
-        style_context.remove_class("window-tiled-hover")
-        
-        if is_floating:
-            style_context.add_class("window-floating")
-        else:
-            style_context.add_class("window-tiled")
-        
-    def _on_drag_data_get(self, widget, context, data, info, time):
-        data.set_text(self.window_address, len(self.window_address))
-        
-    def _on_drag_begin(self, widget, context):
-        self.is_dragging = True
-        self.drag_started = True
-        surface = create_surface_from_widget(self)
-        Gtk.drag_set_icon_surface(context, surface)
-        
-    def _on_drag_end(self, widget, context):
-        self.is_dragging = False
-        # Reset drag_started after a short delay to handle the button release
-        GLib.timeout_add(100, self._reset_drag_flag)
-        
-    def _reset_drag_flag(self):
-        self.drag_started = False
-        self.button_press_time = 0
-        return False
-        
-    def _on_button_press(self, widget, event):
-        if event.button == 1:  # Left click
-            self.button_press_time = event.time
-            self.button_press_pos = (event.x, event.y)
-            # Don't handle the click immediately - wait to see if it's a drag
-            return True
-        elif event.button == 3:  # Right click - handle immediately
-            try:
-                workspace_id = self.client.get("workspace", {}).get("id", 1)
-                exec_shell_command(f"hyprctl dispatch workspace {workspace_id}")
-                self.overview_widget.close_overview()
-            except Exception as e:
-                print(f"Error switching workspace: {e}")
-            return True
-        return False
+class HyprlandClient_soc:
+    def __init__(self):
+        self.instance = Hyprland()
+
+    def get_workspaces(self) -> List[Dict]:
+        workspace = self.instance.get_workspaces()
+        ws_list = []
+        for ws in workspace:
+            if ws.id > 0:
+                ws_list.append({'id': ws.id, 'name': ws.name, 'monitor': ws.monitor_name, 'monitorID': ws.monitor.id, 'windows': ws.window_count})
+        return ws_list
     
-    def _on_motion_notify(self, widget, event):
-        # If we have a button press but haven't started dragging yet,
-        # check if we've moved enough to consider it a drag
-        if (self.button_press_time > 0 and not self.drag_started and 
-            event.state & Gdk.ModifierType.BUTTON1_MASK):
-            
-            dx = abs(event.x - self.button_press_pos[0])
-            dy = abs(event.y - self.button_press_pos[1])
-            
-            if dx > self.drag_threshold or dy > self.drag_threshold:
-                # This is a drag operation, let the drag system handle it
-                # The drag will be initiated by GTK's drag system
-                pass
-        
-        return False
-        
-    def _on_button_release(self, widget, event):
-        if event.button == 1 and self.button_press_time > 0:
-            # Check if this was a click (not a drag)
-            time_diff = event.time - self.button_press_time
-            dx = abs(event.x - self.button_press_pos[0])
-            dy = abs(event.y - self.button_press_pos[1])
-            
-            # Consider it a click if:
-            # 1. We didn't start a drag operation AND
-            # 2. The mouse didn't move much AND
-            # 3. It was a quick press/release
-            if (not self.drag_started and 
-                dx <= self.drag_threshold and dy <= self.drag_threshold and
-                time_diff < 500):  # 500ms threshold for click
-                
-                try:
-                    workspace_id = self.client.get("workspace", {}).get("id", 1)
-                    exec_shell_command(f"hyprctl dispatch workspace {workspace_id}")
-                    exec_shell_command(f"hyprctl dispatch focuswindow address:{self.window_address}")
-                    self.overview_widget.close_overview()
-                except Exception as e:
-                    print(f"Error focusing window: {e}")
-            
-            # Reset button press tracking
-            self.button_press_time = 0
-        
-        return True
+    def get_clients(self) -> List[Dict]:
+        clients = self.instance.get_windows()
+        cl_list = []
+        for cl in clients:
+            cl_list.append({'address': cl.address, 'at': [cl.position_x, cl.position_y], 'size': [cl.width, cl.height], 'workspace': {'id': cl.workspace_id, 'name':cl.workspace_name},
+                            'floating': cl.is_floating, 'class': cl.wm_class, 'title': cl.title, 'pid': cl.pid})
+        return cl_list
     
-    def _on_enter(self, widget, event):
-        if self.is_dragging:
-            return False
-        
-        is_floating = self.client.get("floating", False)
-        style_context = self.get_style_context()
-        
-        # Remove old classes
-        style_context.remove_class("window-floating")
-        style_context.remove_class("window-tiled")
-        
-        if is_floating:
-            style_context.add_class("window-floating-hover")
-        else:
-            style_context.add_class("window-tiled-hover")
-        return False
+    def get_active_workspace(self) -> Dict:
+        active_ws = self.instance.get_active_workspace()
+        return {'id': active_ws.id}
     
-    def _on_leave(self, widget, event):
-        if self.is_dragging:
-            return False
-        self._update_style()
-        return False
+    def get_monitors(self) -> List[Dict]:
+        monitors = self.instance.get_monitors()
+        mon_list = []
+        for mon in monitors:
+            mon_list.append({'id': mon.id, 'name': mon.name, 'width': mon.width, 'height': mon.height})
+        return mon_list
 
 class DraggableWindow(EventBox):
     def __init__(self, client: Dict, window_width: int, window_height: int, overview_widget):
@@ -366,8 +231,10 @@ class DraggableWindow(EventBox):
         # Add drawing area to render SVG icon centered
         if self.svg_handle:
             drawing_area = Gtk.DrawingArea()
+            drawing_area.set_has_window(False)
+
             # Size roughly half the window size, adjust as needed
-            icon_size = min(window_width, window_height) // 2
+            icon_size = min(window_width, window_height) // 3
             drawing_area.set_size_request(icon_size, icon_size)
             drawing_area.connect("draw", self.on_draw_svg)
             window_content.add(drawing_area)
@@ -507,11 +374,9 @@ class DraggableWindow(EventBox):
         width = widget.get_allocated_width()
         height = widget.get_allocated_height()
 
-        # Clear background (optional)
-        cr.set_source_rgba(0, 0, 0, 0)
-        # cr.set_operator(cairo.OPERATOR_SOURCE)
-        cr.paint()
-        # cr.set_operator(cairo.OPERATOR_OVER)
+        # Clear background 
+        # cr.set_source_rgba(0, 0, 0, 0)
+        # cr.paint()
 
         # SVG original dimensions
         dim = self.svg_handle.get_dimensions()
@@ -715,77 +580,148 @@ class WorkspaceDropZone(EventBox):
                 print(f"Error switching workspace: {e}")
         return True
 
+
 def main(percent=70):
     # Load CSS styles
     load_css()
+
+    HyprlandClient_obj = HyprlandClient_soc()
     
-    workspaces = HyprlandClient.get_workspaces()
-    clients = HyprlandClient.get_clients()
-    active_workspace = HyprlandClient.get_active_workspace()
-    monitors = HyprlandClient.get_monitors()
-
-    class_to_icon = add_icons_to_windows(clients)
-
-    # Add 'icon' svg path to dict
-    for client in clients:
-        cls = client.get("class")
-        if cls:
-            client["icon"] = class_to_icon.get(cls, None)
-
+    # Batch all Hyprland client calls to reduce IPC overhead
+    workspaces, clients, active_workspace, monitors = get_hyprland_data_batch(HyprlandClient_obj)
+    
+    # Pre-calculate commonly used values
     active_id = active_workspace.get("id", -1)
     monitor_info = monitors[0] if monitors else {"width": 3440, "height": 1440, "x": 0, "y": 0}
-    
-    # Get monitor dimensions
     monitor_width = monitor_info.get("width", 3440)
     monitor_height = monitor_info.get("height", 1440)
     monitor_aspect = monitor_width / monitor_height
     
-    workspace_ids = set([ws.get("id", 0) for ws in workspaces])
-    for i in range(1, 11):
-        if i not in workspace_ids:
-            workspaces.append({"id": i, "name": str(i), "windows": 0})
-    
+    # Optimize workspace preparation
+    workspace_ids = {ws.get("id", 0) for ws in workspaces}  # Use set directly
+    workspaces.extend({"id": i, "name": str(i), "windows": 0} 
+                     for i in range(1, 11) if i not in workspace_ids)
     workspaces.sort(key=lambda w: w.get("id", 0))
     
-    screen = Gdk.Screen.get_default()
-    screen_width = screen.get_width()
-    screen_height = screen.get_height()
+    # Cache icon mapping once 
+    class_to_icon = add_icons_to_windows(clients)
+    for client in clients:
+        cls = client.get("class")
+        if cls and cls in class_to_icon:  # Avoid redundant .get() calls
+            client["icon"] = class_to_icon[cls]
     
-    overview_width = int(screen_width * (percent / 100))
-    overview_height = int(screen_height * (percent / 100))
+    # Pre-calculate screen and layout dimensions
+    screen = Gdk.Screen.get_default()
+    overview_width = int(screen.get_width() * (percent / 100))
+    overview_height = int(screen.get_height() * (percent / 100))
     
     cols, rows = 5, 2
+    workspace_width, workspace_height = calculate_workspace_dimensions(
+        overview_width, overview_height, cols, rows, monitor_aspect
+    )
     
-    main_container = Box(orientation="v", spacing=10)
-    main_container.get_style_context().add_class("main-container")
+    # Create UI components
+    main_container = create_main_container()
+    workspace_grid = create_workspace_grid()
     
-    workspace_grid = Gtk.Grid()
-    workspace_grid.set_column_spacing(8)
-    workspace_grid.set_row_spacing(8)
-    workspace_grid.set_column_homogeneous(True)
-    workspace_grid.set_row_homogeneous(True)
-    workspace_grid.set_halign(Gtk.Align.CENTER)
-    workspace_grid.set_valign(Gtk.Align.CENTER)
+    class OverviewApp:
+        def __init__(self):
+            self.app = None
+            self.main_container = main_container
+            self.workspace_grid = workspace_grid
+            self.workspace_width = workspace_width
+            self.workspace_height = workspace_height
+            self.monitor_info = monitor_info
+            self.cols = cols
+            self.rows = rows
+            self.class_to_icon = class_to_icon  # Cache for refresh
+        
+        def close_overview(self):
+            if self.app:
+                self.app.quit()
+                
+        def refresh_overview(self):
+            # Batch data fetching for refresh too
+            workspaces, clients = get_hyprland_data_batch(HyprlandClient_obj, skip=True)
+            active_id = active_workspace.get("id", -1)
+
+            # Reuse cached icon mapping
+            for client in clients:
+                cls = client.get("class")
+                if cls and cls in self.class_to_icon:
+                    client["icon"] = self.class_to_icon[cls]
+            
+            # Optimize workspace preparation (same as above)
+            workspace_ids = {ws.get("id", 0) for ws in workspaces}
+            workspaces.extend({"id": i, "name": str(i), "windows": 0} 
+                             for i in range(1, 11) if i not in workspace_ids)
+            workspaces.sort(key=lambda w: w.get("id", 0))
+            
+            # Clear and recreate widgets
+            clear_grid_children(self.workspace_grid)
+            populate_workspace_grid(
+                self.workspace_grid, workspaces[:self.cols * self.rows], 
+                clients, active_id, self, self.cols
+            )
+            
+            self.workspace_grid.show_all()
+            return False
     
-    # Calculate workspace dimensions
-    available_width = overview_width - 50  # Account for main container padding
+    overview_app = OverviewApp()
+    
+    # Populate initial workspace grid
+    populate_workspace_grid(
+        workspace_grid, workspaces[:cols * rows], 
+        clients, active_id, overview_app, cols
+    )
+    
+    main_container.add(workspace_grid)
+    
+    # Create window with pre-calculated dimensions
+    window = create_overview_window(
+        main_container, overview_width, overview_height, percent
+    )
+    
+    app = Application("hyprland-overview", window)
+    overview_app.app = app
+    
+    # Show everything at once to reduce redraws
+    main_container.show_all()
+    window.show_all()
+    app.run()
+
+
+def get_hyprland_data_batch(HyprlandClient_obj, skip=False):
+    """Batch all Hyprland IPC calls to reduce overhead"""
+    if skip:
+        clients = HyprlandClient_obj.get_clients()
+        workspaces = HyprlandClient_obj.get_workspaces()
+        return workspaces, clients
+
+    workspaces = HyprlandClient_obj.get_workspaces()
+    clients = HyprlandClient_obj.get_clients()
+    active_workspace = HyprlandClient_obj.get_active_workspace()
+    monitors = HyprlandClient_obj.get_monitors()
+
+    return workspaces, clients, active_workspace, monitors
+
+def calculate_workspace_dimensions(overview_width, overview_height, cols, rows, monitor_aspect):
+    """Pre-calculate workspace dimensions to avoid repeated calculations"""
+    available_width = overview_width - 50
     available_height = overview_height - 50
     
-    # Account for grid spacing
     total_h_spacing = (cols - 1) * 8
     total_v_spacing = (rows - 1) * 8
     
     grid_content_width = available_width - total_h_spacing
     grid_content_height = available_height - total_v_spacing
     
-    # Calculate individual workspace size maintaining monitor aspect ratio
     workspace_width_by_cols = grid_content_width // cols
     workspace_height_by_aspect = int(workspace_width_by_cols / monitor_aspect)
     
     workspace_height_by_rows = grid_content_height // rows
     workspace_width_by_aspect = int(workspace_height_by_rows * monitor_aspect)
     
-    # Choose the constraint that fits
     if workspace_height_by_aspect <= grid_content_height // rows:
         workspace_width = workspace_width_by_cols
         workspace_height = workspace_height_by_aspect
@@ -800,84 +736,49 @@ def main(percent=70):
     if workspace_width < min_width:
         workspace_width = min_width
         workspace_height = min_height
-    
-    class OverviewApp:
-        def __init__(self, app=None, main_container=None, workspace_grid=None):
-            self.app = app
-            self.main_container = main_container
-            self.workspace_grid = workspace_grid
-            self.workspace_width = workspace_width
-            self.workspace_height = workspace_height
-            self.monitor_info = monitor_info
-            self.cols = cols
-            self.rows = rows
         
-        def close_overview(self):
-            if self.app:
-                self.app.quit()
-                
-        def refresh_overview(self):
-            # Get updated data
-            workspaces = HyprlandClient.get_workspaces()
-            clients = HyprlandClient.get_clients()
-            active_workspace = HyprlandClient.get_active_workspace()
-            active_id = active_workspace.get("id", -1)
+    return workspace_width, workspace_height
 
-            for client in clients:
-                cls = client.get("class")
-                if cls:
-                    client["icon"] = class_to_icon.get(cls, None)
-            
-            # Add empty workspaces
-            workspace_ids = set([ws.get("id", 0) for ws in workspaces])
-            for i in range(1, 11):
-                if i not in workspace_ids:
-                    workspaces.append({"id": i, "name": str(i), "windows": 0})
-            
-            workspaces.sort(key=lambda w: w.get("id", 0))
-            
-            # Clear existing workspace widgets
-            for child in self.workspace_grid.get_children():
-                self.workspace_grid.remove(child)
-            
-            # Recreate workspace widgets with updated data
-            for i, workspace in enumerate(workspaces):
-                if i >= self.cols * self.rows:
-                    break
-                    
-                workspace_id = workspace.get("id", 0)
-                is_active = workspace_id == active_id
-                workspace_widget = WorkspaceDropZone(
-                    workspace, clients, is_active, self,
-                    self.workspace_width, self.workspace_height, self.monitor_info
-                )
-                
-                row = i // self.cols
-                col = i % self.cols
-                self.workspace_grid.attach(workspace_widget, col, row, 1, 1)
-            
-            self.workspace_grid.show_all()
-            return False  # Don't repeat the timeout
-    
-    overview_app = OverviewApp(None, main_container, workspace_grid)
-    
+def create_main_container():
+    """Create main container with optimized settings"""
+    main_container = Box(orientation="v", spacing=10)
+    main_container.get_style_context().add_class("main-container")
+    return main_container
+
+def create_workspace_grid():
+    """Create workspace grid with optimized settings"""
+    workspace_grid = Gtk.Grid()
+    workspace_grid.set_column_spacing(8)
+    workspace_grid.set_row_spacing(8)
+    workspace_grid.set_column_homogeneous(True)
+    workspace_grid.set_row_homogeneous(True)
+    workspace_grid.set_halign(Gtk.Align.CENTER)
+    workspace_grid.set_valign(Gtk.Align.CENTER)
+    return workspace_grid
+
+def clear_grid_children(grid):
+    """Efficiently clear grid children"""
+    children = grid.get_children()
+    for child in children:
+        grid.remove(child)
+
+def populate_workspace_grid(grid, workspaces, clients, active_id, overview_app, cols):
+    """Populate workspace grid efficiently"""
     for i, workspace in enumerate(workspaces):
-        if i >= cols * rows:
-            break
-            
         workspace_id = workspace.get("id", 0)
         is_active = workspace_id == active_id
         workspace_widget = WorkspaceDropZone(
             workspace, clients, is_active, overview_app,
-            workspace_width, workspace_height, monitor_info
+            overview_app.workspace_width, overview_app.workspace_height, 
+            overview_app.monitor_info
         )
         
         row = i // cols
         col = i % cols
-        workspace_grid.attach(workspace_widget, col, row, 1, 1)
-    
-    main_container.add(workspace_grid)
-    
+        grid.attach(workspace_widget, col, row, 1, 1)
+
+def create_overview_window(main_container, overview_width, overview_height, percent):
+    """Create the overview window with pre-configured settings"""
     window = Window(
         child=main_container,
         layer="overlay",
@@ -891,23 +792,11 @@ def main(percent=70):
     window.add_keybinding("Escape", lambda w, *_: w.application.quit())
     window.add_keybinding("F5", lambda w, *_: main(percent))
     
-    app = Application("hyprland-overview", window)
-    overview_app.app = app
-    
-    main_container.show_all()
-    window.show_all()
-    app.run()
+    return window
+
 
 if __name__ == "__main__":
-    import sys
-    
     percent = 78
-    if len(sys.argv) > 1:
-        try:
-            percent = int(sys.argv[1])
-        except ValueError:
-            print("Invalid percentage, using default 70%")
-    
     try:
         main(percent)
     except Exception as e:
