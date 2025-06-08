@@ -12,8 +12,6 @@ window#waybar {
     background: @bar-bg;
 }
 
-
-
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;
@@ -92,24 +90,28 @@ window#waybar {
     background: @wb-act-bg;
     color: @wb-act-color;
     margin-left: 3px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
+    animation: gradient_f 40s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-color;
-    padding-left: 3px;
-    padding-right: 3px;
+    /* padding-left: 3px;
+    padding-right: 3px; */
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #network {
     min-width: 200px;
+}
+
+#custom-gpu_aio {
+    min-width: 240px;
 }
 
 #cpu,

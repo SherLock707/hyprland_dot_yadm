@@ -109,7 +109,7 @@
 }
 
 .window-class {
-    color: rgba(255, 255, 255, 0.7);
+    color: alpha(@color14, 0.9);
     font-size: 14px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
 }
