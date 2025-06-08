@@ -13,7 +13,7 @@ import Qt.labs.platform
 
 /**
  * Loads and manages the shell configuration file.
- * The config file is by default at XDG_CONFIG_HOME/illogical-impulse/config.json.
+ * The config file is by default at XDG_CONFIG_HOME/quickshell/config.json.
  * Automatically reloaded when the file changes, but does not provide a way to save changes.
  */
 Singleton {

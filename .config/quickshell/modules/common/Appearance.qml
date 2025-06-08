@@ -4,6 +4,7 @@ import "root:/modules/common/functions/color_utils.js" as ColorUtils
 pragma Singleton
 pragma ComponentBehavior: Bound
 
+
 Singleton {
     id: root
     property QtObject m3colors
@@ -13,17 +14,17 @@ Singleton {
     property QtObject rounding
     property QtObject font
     property QtObject sizes
-    property string syntaxHighlightingTheme
 
-    // [!] Enabling transparency can affect readability when using light theme.
-    property real transparency: 0
-    property real contentTransparency: 0
+    property real transparency: 0.5
+    property real contentTransparency: 0.1
     // property real transparency: 0.15
     // property real contentTransparency: 0.5
-
+    property string background_image: "file:///home/itachi/.config/rofi/.current_wallpaper"
+    
     m3colors: QtObject {
         property bool darkmode: true
         property bool transparent: true
+
         property color m3background: "#161217"
         property color m3onBackground: "#EAE0E7"
         property color m3surfaceContainerLow: "#1F1A1F"
@@ -32,7 +33,7 @@ Singleton {
         property color m3surfaceContainerHighest: "#383339"
         property color m3onSurface: "#EAE0E7"
         property color m3onSurfaceVariant: "#CFC3CD"
-        property color m3outline: "#988E97"
+        property color m3outline: "#cba6f7"
         property color m3scrim: "#000000"
         property color m3shadow: "#000000"
         property color m3primary: "#E5B6F2"
@@ -44,45 +45,24 @@ Singleton {
         property color m3onSecondaryContainer: "#F2DCF3"
         property color m3outlineVariant: "#4C444D"
 
-
+        property color colTooltip: "#1e1e2e"
+        property color colOnTooltip: "#F8F9FA"
     }
 
     colors: QtObject {
         property color colSubtext: m3colors.m3outline
         property color colLayer0: ColorUtils.transparentize(m3colors.m3background, root.transparency)
-        property color colOnLayer0: m3colors.m3onBackground
-        property color colLayer0Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.9, root.contentTransparency))
-        property color colLayer0Active: ColorUtils.transparentize(ColorUtils.mix(colLayer0, colOnLayer0, 0.8, root.contentTransparency))
         property color colLayer1: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3surfaceContainerLow, m3colors.m3background, 0.7), root.contentTransparency);
         property color colOnLayer1: m3colors.m3onSurfaceVariant;
-        property color colOnLayer1Inactive: ColorUtils.mix(colOnLayer1, colLayer1, 0.45);
         property color colLayer2: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3surfaceContainer, m3colors.m3surfaceContainerHigh, 0.55), root.contentTransparency)
         property color colOnLayer2: m3colors.m3onSurface;
-        property color colOnLayer2Disabled: ColorUtils.mix(colOnLayer2, m3colors.m3background, 0.4);
-        property color colLayer3: ColorUtils.transparentize(ColorUtils.mix(m3colors.m3surfaceContainerHigh, m3colors.m3onSurface, 0.96), root.contentTransparency)
-        property color colOnLayer3: m3colors.m3onSurface;
         property color colLayer1Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer1, colOnLayer1, 0.92), root.contentTransparency)
         property color colLayer1Active: ColorUtils.transparentize(ColorUtils.mix(colLayer1, colOnLayer1, 0.85), root.contentTransparency);
         property color colLayer2Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer2, colOnLayer2, 0.90), root.contentTransparency)
         property color colLayer2Active: ColorUtils.transparentize(ColorUtils.mix(colLayer2, colOnLayer2, 0.80), root.contentTransparency);
-        property color colLayer2Disabled: ColorUtils.transparentize(ColorUtils.mix(colLayer2, m3colors.m3background, 0.8), root.contentTransparency);
-        property color colLayer3Hover: ColorUtils.transparentize(ColorUtils.mix(colLayer3, colOnLayer3, 0.90), root.contentTransparency)
-        property color colLayer3Active: ColorUtils.transparentize(ColorUtils.mix(colLayer3, colOnLayer3, 0.80), root.contentTransparency);
         property color colPrimary: m3colors.m3primary
         property color colPrimaryHover: ColorUtils.mix(colors.colPrimary, colLayer1Hover, 0.87)
         property color colPrimaryActive: ColorUtils.mix(colors.colPrimary, colLayer1Active, 0.7)
-        property color colPrimaryContainer: m3colors.m3primaryContainer
-        property color colPrimaryContainerHover: ColorUtils.mix(colors.colPrimaryContainer, colLayer1Hover, 0.7)
-        property color colPrimaryContainerActive: ColorUtils.mix(colors.colPrimaryContainer, colLayer1Active, 0.6)
-        property color colSecondaryHover: ColorUtils.mix(m3colors.m3secondary, colLayer1Hover, 0.85)
-        property color colSecondaryActive: ColorUtils.mix(m3colors.m3secondary, colLayer1Active, 0.4)
-        property color colSecondaryContainerHover: ColorUtils.mix(m3colors.m3secondaryContainer, colLayer1Hover, 0.6)
-        property color colSecondaryContainerActive: ColorUtils.mix(m3colors.m3secondaryContainer, colLayer1Active, 0.54)
-        property color colSurfaceContainerHighestHover: ColorUtils.mix(m3colors.m3surfaceContainerHighest, m3colors.m3onSurface, 0.95)
-        property color colSurfaceContainerHighestActive: ColorUtils.mix(m3colors.m3surfaceContainerHighest, m3colors.m3onSurface, 0.85)
-        property color colTooltip: "#3C4043" // m3colors.m3inverseSurface in the specs, but the m3 website actually uses this color
-        property color colOnTooltip: "#F8F9FA" // m3colors.m3inverseOnSurface in the specs, but the m3 website actually uses this color
-        property color colScrim: ColorUtils.transparentize(m3colors.m3scrim, 0.5)
         property color colShadow: ColorUtils.transparentize(m3colors.m3shadow, 0.7)
     }
 
@@ -93,16 +73,17 @@ Singleton {
         property int normal: 17
         property int large: 23
         property int verylarge: 30
+        property int veryverylarge: 60
         property int full: 9999
-        property int screenRounding: large
-        property int windowRounding: 18
+        property int screenRounding: veryverylarge
+        property int windowRounding: veryverylarge
     }
 
     font: QtObject {
         property QtObject family: QtObject {
-            property string main: "Rubik"
-            property string title: "Gabarito"
-            property string iconMaterial: "Material Symbols Rounded"
+            property string main: "Open Sans"
+            property string title: "JetBrains Mono NF"
+            property string iconMaterial: "FiraConde Nerd Font"
             property string iconNerd: "SpaceMono NF"
             property string monospace: "JetBrains Mono NF"
             property string reading: "Readex Pro"
@@ -221,16 +202,6 @@ Singleton {
 
     sizes: QtObject {
         property real barHeight: 40
-        property real barCenterSideModuleWidth: 360
-        property real barCenterSideModuleWidthShortened: 280
-        property real barCenterSideModuleWidthHellaShortened: 190
-        property real barShortenScreenWidthThreshold: 1200 // Shorten if screen width is at most this value
-        property real barHellaShortenScreenWidthThreshold: 1000 // Shorten even more...
-        property real sidebarWidth: 460
-        property real sidebarWidthExtended: 750
-        property real osdWidth: 200
-        property real mediaControlsWidth: 440
-        property real mediaControlsHeight: 160
         property real notificationPopupWidth: 410
         property real searchWidthCollapsed: 260
         property real searchWidth: 450
@@ -239,6 +210,4 @@ Singleton {
         property real fabShadowRadius: 5
         property real fabHoveredShadowRadius: 7
     }
-
-    syntaxHighlightingTheme: Appearance.m3colors.darkmode ? "Monokai" : "ayu Light"
 }

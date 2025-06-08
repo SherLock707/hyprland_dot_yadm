@@ -43,9 +43,10 @@ Rectangle { // Window
 
     radius: Appearance.rounding.windowRounding * root.scale
     color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2
-    border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
+    // border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
+    border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.4)
     border.pixelAligned : false
-    border.width : 1
+    border.width : 2
 
     Behavior on x {
         animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)

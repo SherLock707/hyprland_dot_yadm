@@ -53,7 +53,7 @@ Item {
     // Shared wallpaper image - loaded once and reused
     Image {
         id: sharedWallpaper
-        source: "file:///home/itachi/.config/rofi/.current_wallpaper"
+        source: Appearance.background_image
         visible: false // Hidden as it's only used as a source
         cache: true
         asynchronous: true
@@ -68,6 +68,8 @@ Item {
         property real padding: 10
         anchors.fill: parent
         anchors.margins: Appearance.sizes.elevationMargin
+        border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.2)
+        border.width : 2
 
         implicitWidth: workspaceColumnLayout.implicitWidth + padding * 2
         implicitHeight: workspaceColumnLayout.implicitHeight + padding * 2
@@ -97,6 +99,7 @@ Item {
                             property color hoveredWorkspaceColor: ColorUtils.mix(defaultWorkspaceColor, Appearance.colors.colLayer1Hover, 0.1)
                             property color hoveredBorderColor: Appearance.colors.colLayer2Hover
                             property bool hoveredWhileDragging: false
+                            readonly property int padding: ConfigOptions.overview.windowPadding
 
                             Layout.preferredWidth: root.workspaceImplicitWidth
                             Layout.preferredHeight: root.workspaceImplicitHeight
@@ -107,14 +110,13 @@ Item {
                             height: root.workspaceImplicitHeight
                             color: "transparent"
                             radius: Appearance.rounding.screenRounding * root.scale
-                            border.width: 2
-                            border.color: hoveredWhileDragging ? hoveredBorderColor : "transparent"
                             clip: true
 
                             // Use ShaderEffectSource to reference the shared image
                             ShaderEffectSource {
                                 id: wallpaperSource
                                 anchors.fill: parent
+                                anchors.margins: 2 // Leave space for border
                                 sourceItem: sharedWallpaper
                                 hideSource: true
                                 live: false
@@ -135,21 +137,38 @@ Item {
                                 }
                             }
 
+                            // Border overlay - on top of wallpaper
+                            Rectangle {
+                                anchors.fill: parent
+                                color: "transparent"
+                                radius: parent.radius
+                                border.width: 1
+                                border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.6)
+                                z: 10 // Ensure it's on top
+                                anchors.margins: workspace.padding
+                            }
+
                             StyledText {
-                                anchors.centerIn: parent
+                                // Position in top-left corner with padding
+                                anchors.top: parent.top
+                                anchors.left: parent.left
+                                anchors.topMargin: 12  // Padding from top edge
+                                anchors.leftMargin: 12 // Padding from left edge
+                                
                                 text: workspaceValue
                                 font.pixelSize: root.workspaceNumberSize * root.scale
                                 font.weight: Font.DemiBold
                                 color: ColorUtils.transparentize(Appearance.colors.colOnLayer1, 0.8)
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
-                                z: 1
+                                horizontalAlignment: Text.AlignLeft
+                                verticalAlignment: Text.AlignTop
+                                z: 15 // Above border
                             }
 
                             MouseArea {
                                 id: workspaceArea
                                 anchors.fill: parent
                                 acceptedButtons: Qt.LeftButton
+                                z: 20 // Above all visual elements
                                 onClicked: {
                                     if (root.draggingTargetWorkspace === -1) {
                                         GlobalStates.overviewOpen = false
@@ -160,6 +179,7 @@ Item {
 
                             DropArea {
                                 anchors.fill: parent
+                                z: 20 // Same level as MouseArea
                                 onEntered: {
                                     root.draggingTargetWorkspace = workspaceValue
                                     if (root.draggingFromWorkspace == root.draggingTargetWorkspace) return;

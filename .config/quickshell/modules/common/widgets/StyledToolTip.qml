@@ -33,7 +33,7 @@ ToolTip {
             id: backgroundRectangle
             anchors.bottom: contentItemBackground.bottom
             anchors.horizontalCenter: contentItemBackground.horizontalCenter
-            color: Appearance?.colors.colTooltip ?? "#3C4043"
+            color: Appearance?.m3colors.colTooltip ?? "#3C4043"
             radius: Appearance?.rounding.verysmall ?? 7
             width: internalVisibleCondition ? (tooltipTextObject.width + 2 * padding) : 0
             height: internalVisibleCondition ? (tooltipTextObject.height + 2 * padding) : 0
@@ -52,7 +52,7 @@ ToolTip {
                 text: content
                 font.pixelSize: Appearance?.font.pixelSize.smaller ?? 14
                 font.hintingPreference: Font.PreferNoHinting // Prevent shaky text
-                color: Appearance?.colors.colOnTooltip ?? "#FFFFFF"
+                color: Appearance?.m3colors.colOnTooltip ?? "#FFFFFF"
                 wrapMode: Text.Wrap
             }
         }   

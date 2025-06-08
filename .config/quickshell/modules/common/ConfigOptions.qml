@@ -10,10 +10,11 @@ Singleton {
     }
 
     property QtObject overview: QtObject {
-        property real scale: 0.18 // Relative to screen size
+        property real scale: 0.16 // Relative to screen size
         property real numOfRows: 2
         property real numOfCols: 5
         property bool showXwaylandIndicator: true
+        property real windowPadding: 6 
     }
 
     property QtObject resources: QtObject {

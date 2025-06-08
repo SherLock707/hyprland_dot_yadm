@@ -203,7 +203,7 @@ Item { // Wrapper
                     Layout.leftMargin: 15
                     iconSize: Appearance.font.pixelSize.huge
                     color: Appearance.m3colors.m3onSurface
-                    text: root.searchingText.startsWith(ConfigOptions.search.prefix.clipboard) ? 'content_paste_search' : 'search'
+                    text: root.searchingText.startsWith(ConfigOptions.search.prefix.clipboard) ? 'content_paste_search' : ''
                 }
                 TextField { // Search box
                     id: searchInput

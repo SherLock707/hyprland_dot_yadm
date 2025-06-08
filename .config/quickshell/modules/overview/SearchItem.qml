@@ -183,14 +183,6 @@ RippleButton {
                         }
                     }
                 }
-                Repeater { // Favicons for links
-                    model: root.query == root.itemName ? [] : root.urls
-                    Favicon {
-                        required property var modelData
-                        size: parent.height
-                        url: modelData
-                    }
-                }
                 StyledText { // Item name/content
                     Layout.fillWidth: true
                     id: nameText
