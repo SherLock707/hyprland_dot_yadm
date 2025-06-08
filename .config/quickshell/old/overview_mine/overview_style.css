@@ -1,0 +1,150 @@
+@import '../../.cache/hellwal/colors-waybar.css';
+
+/* Main container styles */
+.main-container {
+    padding: 15px;
+    background-color: rgba(15, 15, 21, 0.7);
+    border-radius: 14px;
+    border: 2px solid @color7;
+}
+
+/* Active workspace styles */
+.workspace-active {
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid @color7;
+    border-radius: 6px;
+    margin: 3px;
+}
+
+/* Inactive workspace styles */
+.workspace-inactive {
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(@color6, 0.3);
+    border-radius: 6px;
+    margin: 3px;
+}
+
+/* Active workspace drag hover */
+.workspace-drag-hover-active {
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 6px solid @color14;
+    border-radius: 6px;
+    margin: 3px;
+    box-shadow: 0 0 10px rgba(@color14, 0.5);
+}
+
+/* Inactive workspace drag hover */
+.workspace-drag-hover-inactive {
+    background-image: url('../rofi/.current_wallpaper');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 3px solid rgba(@color12, 0.6);
+    border-radius: 6px;
+    margin: 3px;
+    box-shadow: 0 0 8px rgba(@color12, 0.3);
+}
+
+/* Floating window styles */
+.window-floating {
+    background: rgba(@color6, 0.4);
+    border: 2px solid rgba(@color6, 0.8);
+    border-radius: 12px;
+    padding: 1px;
+}
+
+.window-floating-hover {
+    background: rgba(@color6, 0.8);
+    border: 3px solid @color6;
+    border-radius: 12px;
+    padding: 1px;
+    box-shadow: 0 0 4px rgba(@color7, 0.5);
+}
+
+/* Tiled window styles */
+.window-tiled {
+    background: rgba(@color7, 0.4);
+    border: 2px solid rgba(@color7, 0.8);
+    border-radius: 12px;
+    padding: 2px;
+}
+
+.window-tiled-hover {
+    background: rgba(@color7, 0.8);
+    border: 2px solid @color7;
+    border-radius: 12px;
+    padding: 1px;
+    box-shadow: 0 0 4px rgba(@color7, 0.3);
+}
+
+/* Text styles */
+.workspace-header {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.workspace-count {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.window-title {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin-top: 2px;
+}
+
+.window-class {
+    color: rgba(@color14, 0.9);
+    font-size: 14px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.empty-workspace {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Workspace content container */
+.workspace-content {
+    margin: 2px;
+}
+
+/* Alternative approach for wallpaper effect if needed */
+.workspace-active.wallpaper-bg {
+    background-color: rgba(30, 50, 80, 0.6);
+}
+
+.workspace-inactive.wallpaper-bg {
+    background-color: rgba(149, 149, 188, 0.6);
+}
+
+/* QML-specific styles for QuickShell */
+QQuickItem {
+    /* Ensure proper rendering */
+}
+
+/* Additional QML styling support */
+Rectangle {
+    /* Default rectangle styling */
+}
+
+Text {
+    /* Default text styling */
+}

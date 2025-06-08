@@ -1,0 +1,12 @@
+{
+  "ui": {
+    "theme": "dark",
+    "scale": 1.25
+  },
+  "features": {
+    "animations": true
+  },
+  "hacks": {
+    "arbitraryRaceConditionDelay": 300
+  }
+}

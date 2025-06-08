@@ -53,3 +53,4 @@ yadm add ~/.config/browser_custom/
 yadm add ~/.local/share/themes/catppuccin-mocha-mauve/
 yadm add ~/.config/zellij/
 yadm add ~/.config/satty/
+yadm add ~/.config/quickshell/
