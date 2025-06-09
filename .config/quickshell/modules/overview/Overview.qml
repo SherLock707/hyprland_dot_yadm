@@ -13,6 +13,8 @@ import Quickshell.Hyprland
 Scope {
     id: overviewScope
     property bool dontAutoCancelSearch: false
+    property bool searchEnabled: ConfigOptions.search.searchEnabled
+    
     Variants {
         id: overviewVariants
         model: Quickshell.screens
@@ -27,7 +29,6 @@ Scope {
 
             WlrLayershell.namespace: "quickshell:overview"
             WlrLayershell.layer: WlrLayer.Overlay
-            // WlrLayershell.keyboardFocus: GlobalStates.overviewOpen ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
             color: "transparent"
 
             mask: Region {
@@ -36,7 +37,6 @@ Scope {
             HyprlandWindow.visibleMask: Region {
                 item: GlobalStates.overviewOpen ? columnLayout : null
             }
-
 
             anchors {
                 top: true
@@ -59,10 +59,12 @@ Scope {
                 target: GlobalStates
                 function onOverviewOpenChanged() {
                     if (!GlobalStates.overviewOpen) {
-                        searchWidget.disableExpandAnimation()
+                        if (overviewScope.searchEnabled && searchWidget) {
+                            searchWidget.disableExpandAnimation()
+                        }
                         overviewScope.dontAutoCancelSearch = false;
                     } else {
-                        if (!overviewScope.dontAutoCancelSearch) {
+                        if (!overviewScope.dontAutoCancelSearch && overviewScope.searchEnabled && searchWidget) {
                             searchWidget.cancelSearch()
                         }
                         delayedGrabTimer.start()
@@ -84,7 +86,9 @@ Scope {
             implicitHeight: columnLayout.implicitHeight
 
             function setSearchingText(text) {
-                searchWidget.setSearchingText(text);
+                if (overviewScope.searchEnabled && searchWidget) {
+                    searchWidget.setSearchingText(text);
+                }
             }
 
             ColumnLayout {
@@ -92,8 +96,9 @@ Scope {
                 visible: GlobalStates.overviewOpen
                 anchors {
                     horizontalCenter: parent.horizontalCenter
-                    top: !ConfigOptions.bar.bottom ? parent.top : undefined
-                    bottom: ConfigOptions.bar.bottom ? parent.bottom : undefined
+                    top: ConfigOptions.overview.position === 0 ? parent.top : undefined
+                    verticalCenter: ConfigOptions.overview.position === 1 ? parent.verticalCenter : undefined
+                    bottom: ConfigOptions.overview.position === 2 ? parent.bottom : undefined
                 }
 
                 Keys.onPressed: (event) => {
@@ -103,16 +108,26 @@ Scope {
                 }
 
                 Item {
-                    height: 1 // Prevent Wayland protocol error
-                    width: 1 // Prevent Wayland protocol error
+                    height: 1
+                    width: 1
                 }
 
+                // Conditionally render SearchWidget - only exists when searchEnabled is true
                 SearchWidget {
                     id: searchWidget
                     Layout.alignment: Qt.AlignHCenter
+                    visible: overviewScope.searchEnabled
+                    height: overviewScope.searchEnabled ? implicitHeight : 0
+                    Layout.preferredHeight: overviewScope.searchEnabled ? implicitHeight : 0
                     onSearchingTextChanged: (text) => {
                         root.searchingText = searchingText
                     }
+                }
+
+                Item {
+                    Layout.preferredHeight: overviewScope.searchEnabled ? 0 : 20
+                    Layout.fillWidth: true
+                    visible: !overviewScope.searchEnabled
                 }
 
                 Loader {
@@ -120,16 +135,16 @@ Scope {
                     active: GlobalStates.overviewOpen
                     sourceComponent: OverviewWidget {
                         panelWindow: root
-                        visible: (root.searchingText == "")
+                        // Show OverviewWidget when search is disabled OR when search text is empty
+                        visible: !overviewScope.searchEnabled || (root.searchingText == "")
                     }
                 }
             }
-
         }
     }
 
     IpcHandler {
-		target: "overview"
+        target: "overview"
 
         function toggle() {
             GlobalStates.overviewOpen = !GlobalStates.overviewOpen
@@ -143,7 +158,17 @@ Scope {
         function toggleReleaseInterrupt() {
             GlobalStates.superReleaseMightTrigger = false
         }
-	}
+        // Add function to control search
+        function toggleSearch() {
+            overviewScope.searchEnabled = !overviewScope.searchEnabled
+        }
+        function enableSearch() {
+            overviewScope.searchEnabled = true
+        }
+        function disableSearch() {
+            overviewScope.searchEnabled = false
+        }
+    }
 
     GlobalShortcut {
         name: "overviewToggle"
@@ -153,6 +178,7 @@ Scope {
             GlobalStates.overviewOpen = !GlobalStates.overviewOpen   
         }
     }
+    
     GlobalShortcut {
         name: "overviewClose"
         description: qsTr("Closes overview")
@@ -161,6 +187,7 @@ Scope {
             GlobalStates.overviewOpen = false
         }
     }
+    
     GlobalShortcut {
         name: "overviewToggleRelease"
         description: qsTr("Toggles overview on release")
@@ -177,6 +204,7 @@ Scope {
             GlobalStates.overviewOpen = !GlobalStates.overviewOpen   
         }
     }
+    
     GlobalShortcut {
         name: "overviewToggleReleaseInterrupt"
         description: qsTr("Interrupts possibility of overview being toggled on release. ") +
@@ -187,11 +215,15 @@ Scope {
             GlobalStates.superReleaseMightTrigger = false
         }
     }
+    
+    // Only enable clipboard/emoji shortcuts when search is enabled
     GlobalShortcut {
         name: "overviewClipboardToggle"
         description: qsTr("Toggle clipboard query on overview widget")
 
         onPressed: {
+            if (!overviewScope.searchEnabled) return; // Skip if search disabled
+            
             if (GlobalStates.overviewOpen && overviewScope.dontAutoCancelSearch) {
                 GlobalStates.overviewOpen = false;
                 return;
@@ -215,6 +247,8 @@ Scope {
         description: qsTr("Toggle emoji query on overview widget")
 
         onPressed: {
+            if (!overviewScope.searchEnabled) return; // Skip if search disabled
+            
             if (GlobalStates.overviewOpen && overviewScope.dontAutoCancelSearch) {
                 GlobalStates.overviewOpen = false;
                 return;
@@ -233,4 +267,13 @@ Scope {
         }
     }
 
+    // Optional: Add shortcut to toggle search functionality
+    GlobalShortcut {
+        name: "overviewToggleSearch"
+        description: qsTr("Toggle search functionality in overview")
+
+        onPressed: {
+            overviewScope.searchEnabled = !overviewScope.searchEnabled
+        }
+    }
 }

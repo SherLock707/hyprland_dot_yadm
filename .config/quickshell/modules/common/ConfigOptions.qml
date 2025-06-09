@@ -15,6 +15,7 @@ Singleton {
         property real numOfCols: 5
         property bool showXwaylandIndicator: true
         property real windowPadding: 6 
+        property real position: 1 // 0: top | 1: middle | 2: bottom
     }
 
     property QtObject resources: QtObject {
@@ -26,6 +27,7 @@ Singleton {
     }
 
     property QtObject search: QtObject {
+    property bool searchEnabled: false
     property int nonAppResultDelay: 30 // This prevents lagging when typing
     property QtObject prefix: QtObject {
             property string action: "/"
