@@ -17,6 +17,7 @@ Singleton {
 
     property real transparency: 0.5
     property real contentTransparency: 0.1
+    property real workpaceTransparency: 0.8
     // property real transparency: 0.15
     // property real contentTransparency: 0.5
     property string background_image: "file:///home/itachi/.config/rofi/.current_wallpaper"

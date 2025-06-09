@@ -53,11 +53,12 @@ Item {
     // Shared wallpaper image - loaded once and reused
     Image {
         id: sharedWallpaper
-        source: Appearance.background_image
+        source: Appearance.background_image || ""
         visible: false // Hidden as it's only used as a source
         cache: true
         asynchronous: true
         smooth: true
+        opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
     }
 
     StyledRectangularShadow {
@@ -75,6 +76,7 @@ Item {
         implicitHeight: workspaceColumnLayout.implicitHeight + padding * 2
         radius: Appearance.rounding.screenRounding * root.scale + padding
         color: Appearance.colors.colLayer0
+
 
         ColumnLayout { // Workspaces
             id: workspaceColumnLayout
@@ -111,28 +113,51 @@ Item {
                             color: "transparent"
                             radius: Appearance.rounding.screenRounding * root.scale
                             clip: true
+                            opacity: Appearance.workpaceTransparency // Adds slight transparency (0.0 = fully transparent, 1.0 = fully opaque)
 
-                            // Use ShaderEffectSource to reference the shared image
-                            ShaderEffectSource {
-                                id: wallpaperSource
+
+                            // Efficient wallpaper using ShaderEffectSource
+                            Rectangle {
+                                id: wallpaperContainer
                                 anchors.fill: parent
                                 anchors.margins: 2 // Leave space for border
-                                sourceItem: sharedWallpaper
-                                hideSource: true
-                                live: false
-                                visible: sharedWallpaper.status === Image.Ready && parent.width > 0 && parent.height > 0
+                                radius: workspace.radius - 2
+                                color: workspace.defaultWorkspaceColor // Fallback color
+                                clip: true
                                 
-                                // Crop to fit the workspace rectangle
-                                sourceRect: Qt.rect(
-                                    0, 0, 
-                                    sharedWallpaper.sourceSize.width, 
-                                    sharedWallpaper.sourceSize.height
-                                )
+                                ShaderEffectSource {
+                                    id: wallpaperSource
+                                    anchors.fill: parent
+                                    sourceItem: sharedWallpaper
+                                    visible: sharedWallpaper.status === Image.Ready
+                                    smooth: true
+                                    
+                                    // Scale to fill while preserving aspect ratio
+                                    transform: Scale {
+                                        property real aspectRatio: sharedWallpaper.implicitWidth / Math.max(1, sharedWallpaper.implicitHeight)
+                                        property real containerRatio: wallpaperContainer.width / Math.max(1, wallpaperContainer.height)
+                                        
+                                        xScale: aspectRatio > containerRatio ? 
+                                            wallpaperContainer.height * aspectRatio / wallpaperContainer.width : 1
+                                        yScale: aspectRatio > containerRatio ? 
+                                            1 : wallpaperContainer.width / (wallpaperContainer.height * aspectRatio)
+                                        
+                                        origin.x: wallpaperContainer.width / 2
+                                        origin.y: wallpaperContainer.height / 2
+                                    }
+                                }
                                 
-                                // Optional: Add a dark overlay for better text readability
+                                // Fallback when image fails to load or isn't ready
                                 Rectangle {
                                     anchors.fill: parent
-                                    color: hoveredWhileDragging ? hoveredWorkspaceColor : "transparent"
+                                    color: workspace.defaultWorkspaceColor
+                                    visible: sharedWallpaper.status !== Image.Ready
+                                }
+                                
+                                // Optional: Add overlay for better text readability and hover effects
+                                Rectangle {
+                                    anchors.fill: parent
+                                    color: hoveredWhileDragging ? hoveredWorkspaceColor : "black"
                                     opacity: hoveredWhileDragging ? 0.3 : 0.1
                                 }
                             }
@@ -145,7 +170,6 @@ Item {
                                 border.width: 1
                                 border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.6)
                                 z: 10 // Ensure it's on top
-                                anchors.margins: workspace.padding
                             }
 
                             StyledText {
