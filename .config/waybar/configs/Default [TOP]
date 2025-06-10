@@ -31,7 +31,7 @@
 	"privacy",
 	"gamemode",
 	"systemd-failed-units",
-	"custom/kew",
+	// "custom/kew",
 	"custom/separator#blank_1",
 	// "cava",
 	// "mpris",

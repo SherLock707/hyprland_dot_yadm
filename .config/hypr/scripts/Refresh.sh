@@ -4,19 +4,21 @@ SCRIPTSDIR=$HOME/.config/hypr/scripts
 
 # Kill already running processes
 # _ps=(waybar swaync cava rofi ags)
-_ps=(rofi swaync ags)
+_ps=(rofi)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
     fi
 done
 
-ags -q
+# swaync-client -R -rs
+swaync-client -rs
+# ags -q
 # relaunch apps
-swaync &
+# swaync &
 # swaync-client --reload-css &
 # waybar &
-ags &
+# ags &
 #sleep 1
 #${SCRIPTSDIR}/RainbowBorders.sh &
 
