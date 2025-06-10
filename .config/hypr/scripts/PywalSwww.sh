@@ -65,3 +65,5 @@ cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/place
 
 # # Copy cava config
 # cp -f ~/.cache/hellwal/config-cava ~/.config/cava/config
+
+notify-send -u low -a "Theme engine" "Theme refreshed"

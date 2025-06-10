@@ -16,7 +16,7 @@ from fabric.widgets.wayland import WaylandWindow as Window
 USER=os.path.expanduser("~")
 THEME_PATH = f"{USER}/.config/hellwal/themes/custom.hellwal"
 WALLPAPER_PATH = f"{USER}/.config/rofi/.current_wallpaper"
-SCRIPT_PATH = f"{USER}/.config/hypr/scripts/PywalSwww.sh"
+SCRIPT_PATH = f"{USER}/.config/hypr/scripts/ThemeEngine.sh"
 COLOR_JSON_PATH = f"{USER}/.cache/hellwal/colors.json"
 
 # Global color dictionary
