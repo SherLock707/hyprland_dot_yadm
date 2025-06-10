@@ -544,16 +544,7 @@
   "tray": {
     "icon-size": 17,
     "spacing": 8,
-    "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
-    "on-click-right": "pavucontrol -t 3",
-    "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
-    "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-    "format-icons": [
-      "",
-      "",
-      "󰕾",
-      ""
-    ],
+    "show-passive-items": true
   },
   "wlr/taskbar": {
     "format": "{icon}",

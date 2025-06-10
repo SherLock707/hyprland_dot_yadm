@@ -1,8 +1,11 @@
-# Make sure that kew is closed before editing this file in order for changes to take effect.
+# Configuration file for kew terminal music player.
+# Make sure that kew is not running before editing this file in order for changes to take effect.
+
 
 [miscellaneous]
+
 path=/home/itachi/Music
-version=3.2.0
+version=3.3.3
 allowNotifications=1
 hideLogo=0
 hideHelp=0
@@ -20,20 +23,71 @@ quitOnStop=0
 # Glimmering text on the bottom row.
 hideGlimmeringText=0
 
+# Replay gain check first, can be either 0=track, 1=album or 2=disabled.
+replayGainCheckFirst=0
+
+# Save Repeat and Shuffle Settings.
+saveRepeatShuffleSettings=1
+
+repeatState=0
+
+shuffleEnabled=0
+
+
 [visualizer]
+
 visualizerEnabled=1
 visualizerHeight=5
 visualizerBrailleMode=0
 
-# How colors are laid out in the spectrum visualizer. 0=default, 1=brightness depending on bar height, 2=reversed.
+# How colors are laid out in the spectrum visualizer. 0=lighten, 1=brightness depending on bar height, 2=reversed, 3=reversed darken.
 visualizerColorType=0
 
-# How fast the visualizer moves (higher values = faster) Normal values: 0.23 and 0.13.
-tweenFactor=0.23
-tweenFactorFall=0.13
+# 0=Thin bars, 1=Bars twice the width, 2=Auto (depends on window size).
+visualizerBarWidth=2
 
-# How the progress bar looks. 0=Dots, 1=Line
-progressBarType=0
+
+[progress bar]
+
+# Progress bar in track view
+# The progress bar can be configured in many ways.
+# When copying the values below, be sure to include values that are empty spaces or things will get messed up.
+# Be sure to have the actual uncommented values last.
+# For instance use the below values for a pill muncher mode:
+
+#progressBarElapsedEvenChar= 
+#progressBarElapsedOddChar= 
+#progressBarApproachingEvenChar=•
+#progressBarApproachingOddChar=·
+#progressBarCurrentEvenChar=ᗧ
+#progressBarCurrentOddChar=ᗧ
+
+# To have a thick line: 
+
+#progressBarElapsedEvenChar=━
+#progressBarElapsedOddChar=━
+#progressBarApproachingEvenChar=━
+#progressBarApproachingOddChar=━
+#progressBarCurrentEvenChar=━
+#progressBarCurrentOddChar=━
+
+# To have dots (the original): 
+
+#progressBarElapsedEvenChar=■
+#progressBarElapsedOddChar= 
+#progressBarApproachingEvenChar==
+#progressBarApproachingOddChar= 
+#progressBarCurrentEvenChar=■
+#progressBarCurrentOddChar= 
+
+# Current values: 
+
+progressBarElapsedEvenChar=━
+progressBarElapsedOddChar=━
+progressBarApproachingEvenChar=━
+progressBarApproachingOddChar=━
+progressBarCurrentEvenChar=━
+progressBarCurrentOddChar=━
 
 [colors]
 
@@ -55,14 +109,18 @@ titleColor=6
 # Color of enqueued songs in library view:
 enqueuedColor=6
 
+
 [track cover]
+
 coverEnabled=1
 coverAnsi=0
 
+
 [mouse]
+
 mouseEnabled=1
 
-# Mouse actions are 0=none, 1=select song, 2=toggle pause, 3=scroll up, 4=scroll down, 5=seek forward, 6=seek backward, 7=volume up, 8=volume down, 9=switch to next view, 10=switch to previous view
+# Mouse actions are 0=None, 1=Select song, 2=Toggle pause, 3=Scroll up, 4=Scroll down, 5=Seek forward, 6=Seek backward, 7=Volume up, 8=Volume down, 9=Switch to next view, 10=Switch to previous view
 mouseLeftClickAction=0
 mouseMiddleClickAction=1
 mouseRightClickAction=2
@@ -73,7 +131,9 @@ mouseScrollDownAction=4
 mouseAltScrollUpAction=7
 mouseAltScrollDownAction=8
 
+
 [key bindings]
+
 volumeUp=+
 volumeUpAlt==
 volumeDown=-
@@ -98,14 +158,18 @@ moveSongDown=g
 enqueueAndPlay=^M
 sortLibrary=o
 quit=q
+altQuit=
 
 # Alt keys for the different main views, normally F2-F7:
 showPlaylistAlt=Z
 showLibraryAlt=X
 showTrackAlt=C
 showSearchAlt=V
-showRadioSearchAlt=B
-showKeysAlt=N
+showKeysAlt=
+
+# Keys for scrolling page up and page down:
+prevPage=[5~
+nextPage=[6~
 
 # For special keys use terminal codes: OS, for F4 for instance. This can depend on the terminal.
 # You can find out the codes for the keys by using tools like showkey.
