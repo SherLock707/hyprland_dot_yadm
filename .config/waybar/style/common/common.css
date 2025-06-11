@@ -110,6 +110,10 @@ window#waybar {
     min-width: 200px;
 }
 
+#custom-backlight {
+    padding-right: 10px;
+}
+
 #custom-gpu_aio {
     min-width: 240px;
 }

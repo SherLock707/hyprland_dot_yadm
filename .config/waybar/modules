@@ -796,7 +796,7 @@
   "custom/backlight": {
     "interval": 60,
     "exec": "~/.config/hypr/scripts/Brightness.sh",
-    "format": "<big>{text}</big> ",
+    "format": "{text}",
     // "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
     "tooltip": true,
     "icon-size": 20,

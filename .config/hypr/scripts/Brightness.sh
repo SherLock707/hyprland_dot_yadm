@@ -21,12 +21,24 @@ get_backlight_icon() {
 	brightness=$(ddcutil --brief --bus "$bus" getvcp 10 | awk '{print $4}')
 	
 	# Return appropriate icon based on brightness level
-	if [[ $brightness -le 20 ]]; then
-		icon="󰃞"
+	if [[ $brightness -le 10 ]]; then
+		icon="<big>󰃚</big>"
+	elif [[ $brightness -le 20 ]]; then
+		icon="<big>󰃛</big>"
+	elif [[ $brightness -le 30 ]]; then
+		icon="<big>󰃜</big>"
+	elif [[ $brightness -le 40 ]]; then
+		icon="<big>󰖙</big>"
 	elif [[ $brightness -le 50 ]]; then
-		icon="󰃟"
+		icon="<big>󰃝</big>"
+	elif [[ $brightness -le 60 ]]; then
+		icon="<big></big>"
+	elif [[ $brightness -le 70 ]]; then
+		icon="<big>󰃞</big>"
+	elif [[ $brightness -le 80 ]]; then
+		icon="<big>󰃟</big>"
 	else
-		icon="󰃠"
+		icon="<big>󰃠</big>"
 	fi
 	
 	# Return Waybar module JSON
