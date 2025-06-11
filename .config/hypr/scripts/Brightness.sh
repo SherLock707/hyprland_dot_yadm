@@ -1,57 +1,5 @@
 #!/bin/bash
 
-# iDIR="$HOME/.config/swaync/assets"
-# notification_timeout=1000
-
-# # Get brightness
-# get_backlight() {
-# 	echo $(ddcutil getvcp 10 | awk '/current value/ {gsub(/,/, "", $9); print $9}')
-# }
-
-# # Get icons
-# get_icon() {
-# 	current=$(get_backlight | sed 's/%//')
-# 	if   [ "$current" -le "20" ]; then
-# 		icon="$iDIR/brightness-20.png"
-# 	elif [ "$current" -le "40" ]; then
-# 		icon="$iDIR/brightness-40.png"
-# 	elif [ "$current" -le "60" ]; then
-# 		icon="$iDIR/brightness-60.png"
-# 	elif [ "$current" -le "80" ]; then
-# 		icon="$iDIR/brightness-80.png"
-# 	else
-# 		icon="$iDIR/brightness-100.png"
-# 	fi
-# }
-
-# # Notify
-# notify_user() {
-# 	notify-send -e -a brightness -h string:x-canonical-private-synchronous:brightness_notif -h int:value:$current -u low -i "$icon" "Brightness : $current%"
-# }
-
-# # Change brightness
-# change_backlight() {
-# 	# brightnessctl set "$1" && get_icon && notify_user
-# 	# ddcutil --sleep-multiplier 0.1 setvcp 10 $1 && get_icon && notify_user
-# 	ddcutil --noverify --bus 7 --sleep-multiplier .03 setvcp 10 $1 && get_icon && notify_user
-# }
-
-# # Execute accordingly
-# case "$1" in
-# 	"--get")
-# 		get_backlight
-# 		;;
-# 	"--inc")
-# 		change_backlight "+ 10"
-# 		;;
-# 	"--dec")
-# 		change_backlight "- 10"
-# 		;;
-# 	*)
-# 		get_backlight
-# 		;;
-# esac
-
 iDIR="$HOME/.config/swaync/assets"
 notification_timeout=1000
 cache_file="/tmp/brightness_cache_$USER"
@@ -66,6 +14,23 @@ get_backlight() {
 		brightness=$(<"$cache_file")
 	fi
 	echo "$brightness"
+}
+
+get_backlight_icon() {
+	# Always get fresh brightness value for display
+	brightness=$(ddcutil --brief --bus "$bus" getvcp 10 | awk '{print $4}')
+	
+	# Return appropriate icon based on brightness level
+	if [[ $brightness -le 20 ]]; then
+		icon="󰃞"
+	elif [[ $brightness -le 50 ]]; then
+		icon="󰃟"
+	else
+		icon="󰃠"
+	fi
+	
+	# Return Waybar module JSON
+	printf '{"text": "%s", "tooltip": "Brightness: %d%%", "percentage": %d}\n' "$icon" "$brightness" "$brightness"
 }
 
 # Get appropriate icon
@@ -106,11 +71,15 @@ change_backlight() {
 	(( new < 0 )) && new=0
 
 	# Apply and update cache
-	ddcutil --noverify --bus "$bus" --sleep-multiplier 0.03 setvcp 10 $1
+	ddcutil --noconfig --noverify --bus "$bus" --sleep-multiplier 0.03 setvcp 10 $1
 	echo "$new" > "$cache_file"
 
 	get_icon
 	notify_user
+}
+
+direct_set(){
+	ddcutil --noconfig --noverify --bus "$bus" --sleep-multiplier 0.03 setvcp 10 $1
 }
 
 # Main control logic
@@ -124,7 +93,10 @@ case "$1" in
 	"--dec")
 		change_backlight "- 10"
 		;;
+	"--direct")
+		direct_set $2
+		;;
 	*)
-		get_backlight
+		get_backlight_icon
 		;;
 esac

@@ -50,7 +50,7 @@ main() {
     swww img "${wallDIR}/${RANDOM_PIC}" $SWWW_PARAMS
     # exit 0
     sleep 0.5
-    ${SCRIPTSDIR}/ThemeEngine.sh 
+    ${SCRIPTSDIR}/ThemeEngine.sh
     sleep 0.2
     ${SCRIPTSDIR}/Refresh.sh
     exit 0

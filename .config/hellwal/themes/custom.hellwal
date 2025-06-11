@@ -1,7 +1,7 @@
 %% background  = #000000 %%
-%% foreground  = #f0c6ff %%
-%% cursor  = #f0c6ff %%
-%% border  = #f0c6ff %%
+%% foreground  = #ffffff %%
+%% cursor  = #ffffff %%
+%% border  = #ffffff %%
 %% color0  = #000000 %%
 %% color1  = #0a071b %%
 %% color2  = #121114 %%
@@ -9,12 +9,12 @@
 %% color4  = #2a2541 %%
 %% color5  = #474c76 %%
 %% color6  = #5f508d %%
-%% color7  = #be9ddf %%
-%% color8  = #000000 %%
+%% color7  = #bc9bdb %%
+%% color8  = #000003 %%
 %% color9  = #0c0821 %%
 %% color10  = #161519 %%
 %% color11  = #28122e %%
 %% color12  = #342e51 %%
 %% color13  = #585f93 %%
 %% color14  = #7664b0 %%
-%% color15  = #f0c6ff %%
+%% color15  = #ffffff %%

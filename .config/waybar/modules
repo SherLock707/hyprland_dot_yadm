@@ -1,6 +1,5 @@
 {
-  // HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
-  // CIRCLES Style
+  // HYPRLAND WORKSPACES.
   "hyprland/workspaces": {
     "active-only": false,
     "all-outputs": true,
@@ -14,12 +13,12 @@
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
     },
     "format-icons": {
       "active": "",
-      "default": "",
-    },
+      "default": ""
+    }
   },
   // ROMAN Numerals style
   "hyprland/workspaces#roman": {
@@ -35,7 +34,7 @@
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
     },
     "format-icons": {
       "1": "I",
@@ -47,8 +46,8 @@
       "7": "VII",
       "8": "VIII",
       "9": "IX",
-      "10": "X",
-    },
+      "10": "X"
+    }
   },
   // PACMAN Style
   "hyprland/workspaces#pacman": {
@@ -69,15 +68,15 @@
       "7": [],
       "8": [],
       "9": [],
-      "10": [],
+      "10": []
     },
     "format-icons": {
       "active": " 󰮯 ",
       "default": "󰊠",
       "persistent": "󰊠",
       "empty": "󱙝",
-      "special": "",
-    },
+      "special": ""
+    }
   },
   // BLANK Style
   "hyprland/workspaces#blank": {
@@ -93,15 +92,15 @@
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
     },
     "format-icons": {
       "active": "     ",
       "default": " ",
       "persistent": " ",
       "empty": " ",
-      "special": " ",
-    },
+      "special": " "
+    }
   },
   "hyprland/workspaces#kanji": {
     "disable-scroll": true,
@@ -112,7 +111,7 @@
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
+      "5": []
     },
     "format-icons": {
       "1": "一",
@@ -124,14 +123,12 @@
       "7": "七",
       "8": "八",
       "9": "九",
-      "10": "十",
+      "10": "十"
     }
   },
   //  NUMBERS and ICONS style
   "hyprland/workspaces#4": {
-    "format": "{name}",
     "format": " {name} {icon} ",
-    //"format": " {icon} ",
     "show-special": false,
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -150,8 +147,8 @@
       "9": "",
       "10": "10",
       "focused": "",
-      "default": "",
-    },
+      "default": ""
+    }
   },
   // NUMBERS and ICONS style with window rewrite
 "hyprland/workspaces#rw": {
@@ -198,12 +195,12 @@
       "3": [],
       "4": [],
       "5": [],
-      "6": [],
+      "6": []
       // "7": [],
       // "8": [],
       // "9": [],
       // "10": []
-    },
+    }
     // "format-icons": {
     //   "1": "一",
     //   "2": "二",
@@ -225,21 +222,21 @@
       "cpu",
       "memory",
       "temperature",
-      "disk",
+      "disk"
     ]
   },
   "group/laptop": {
     "orientation": "horizontal",
     "modules": [
       "backlight",
-      "battery",
+      "battery"
     ]
   },
   "group/audio": {
     "orientation": "horizontal",
     "modules": [
       "pulseaudio",
-      "pulseaudio#microphone",
+      "pulseaudio#microphone"
     ]
   },
   "backlight": {
@@ -268,7 +265,7 @@
     "on-update": "",
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
-    "smooth-scrolling-threshold": 1,
+    "smooth-scrolling-threshold": 1
   },
   "battery": {
     "interval": 60,
@@ -299,7 +296,7 @@
     "tooltip": true,
     "tooltip-format": "{timeTo} {power}w",
     "on-click-middle": "~/.config/hypr/scripts/ChangeBlur.sh",
-    "on-click-right": "~/.config/hypr/scripts/RofiPower.sh",
+    "on-click-right": "~/.config/hypr/scripts/RofiPower.sh"
   },
   "bluetooth": {
     "format": "",
@@ -309,7 +306,7 @@
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
     "tooltip": true,
-    "on-click": "blueman-manager",
+    "on-click": "blueman-manager"
   },
   "clock": {
     "interval": 1,
@@ -366,7 +363,7 @@
     //   "▇",
     //   "█"
     // ],
-    "on-click-right": "gnome-system-monitor",
+    "on-click-right": "gnome-system-monitor"
   },
   "disk": {
     "interval": 30,
@@ -375,7 +372,7 @@
     //"format-alt-click": "click",
     "format": "<big>󰋊</big> {percentage_used}%",
     //"tooltip": true,
-    "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)",
+    "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)"
   },
   "hyprland/language": {
     "format": "Lang: {}",
@@ -386,7 +383,7 @@
   },
   "hyprland/submap": {
     "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
-    "tooltip": false,
+    "tooltip": false
   },
   "hyprland/window": {
     "format": "{}",
@@ -399,28 +396,28 @@
       "(.*) - fish": "> [$1]",
       "(.*)mpv": "  [$1]",
       "(.*)foot": "  [$1]",
-      "(.*)~": "  $1",
-    },
+      "(.*)~": "  $1"
+    }
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": " ",
-      "deactivated": " ",
+      "deactivated": " "
     },
-    "start-activated": true,
+    "start-activated": true
   },
   "keyboard-state": {
     //"numlock": true,
     "capslock": true,
     "format": {
       "numlock": "N {icon}",
-      "capslock": "󰪛 {icon}",
+      "capslock": "󰪛 {icon}"
     },
     "format-icons": {
       "locked": "",
       "unlocked": ""
-    },
+    }
   },
   "memory": {
     "interval": 10,
@@ -489,14 +486,14 @@
       ],
       "ignored-sinks": [
         "Easy Effects Sink"
-      ],
+      ]
     },
     "scroll-step": 5.0,
     "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
     "on-click-right": "pavucontrol -t 3",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-    "smooth-scrolling-threshold": 1,
+    "smooth-scrolling-threshold": 1
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
@@ -506,7 +503,7 @@
     "on-click-right": "pavucontrol -t 4",
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --mic-inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --mic-dec",
-    "scroll-step": 5,
+    "scroll-step": 5
   },
   "temperature": {
     "interval": 5,
@@ -579,19 +576,19 @@
   "custom/keybinds": {
     "format": "󰺁 HINT!",
     "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/KeyHints.sh",
+    "on-click": "~/.config/hypr/scripts/KeyHints.sh"
   },
   "custom/light_dark": {
     "format": "",
     "on-click": "~/.config/hypr/scripts/DarkLight.sh",
     "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh",
     "on-click-middle": "~/.config/hypr/scripts/Wallpaper.sh swww",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/lock": {
     "format": " ",
     "on-click": "~/.config/hypr/scripts/LockScreen.sh",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/menu": {
     "format": "<big>󰣇</big>",
@@ -600,7 +597,7 @@
     "on-click": "rofi -show drun -modi run,drun,filebrowser",
     // "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
     "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh",
+    "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh"
   },
   "custom/playerctl": {
     "format": "<span>{}</span>",
@@ -613,13 +610,13 @@
     "scroll-step": 5.0,
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
-    "smooth-scrolling-threshold": 1,
+    "smooth-scrolling-threshold": 1
   },
   "custom/power": {
     "format": "⏻ ",
     "tooltip": false,
     "on-click": "~/.config/hypr/scripts/RofiPower.sh",
-    "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh",
+    "on-click-right": "~/.config/hypr/scripts/ChangeBlur.sh"
   },
   // NOTE:! This is only for Arch and Arch Based Distros  
   "custom/updater": {
@@ -627,7 +624,7 @@
     "exec": "checkupdates | wc -l",
     "exec-if": "[[ $(checkupdates | wc -l) ]]",
     "interval": 15,
-    "on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
+    "on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'"
   },
   "custom/weather": {
     "format": "{}",
@@ -637,7 +634,7 @@
     "return-type": "json",
     "exec": "~/.config/hypr/scripts/Weather.py",
     "exec-if": "ping wttr.in -c1",
-    "tooltip": true,
+    "tooltip": true
   },
   // Separators
   "custom/separator#dot": {
@@ -734,7 +731,7 @@
     "format": "󱃔 ",
     "tooltip": false,
     "on-click": "~/.config/hypr/scripts/ClipManager.sh",
-    "on-click-right": "~/.config/hypr/scripts/ClipManager.sh",
+    "on-click-right": "~/.config/hypr/scripts/ClipManager.sh"
   },
   "custom/notification": {
     "exec": "count=$(dunstctl count history); paused=$(dunstctl is-paused); icon=$( [ \"$paused\" == \"false\" ] && echo -n \"\" || echo -n \"\" ); echo -n \"$icon $count\"",
@@ -765,7 +762,7 @@
     "exec": "swaync-client -swb",
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
-    "escape": true,
+    "escape": true
   },
   "custom/netstatus": {
     "tooltip": true,
@@ -777,7 +774,7 @@
     },
     "return-type": "json",
     // "exec": "ping -W 0.1 -c 1 1.1.1.1 > /dev/null && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
-    "exec": "~/.config/hypr/scripts/net_usage.sh",
+    "exec": "~/.config/hypr/scripts/net_usage.sh"
     // "escape": true
   },
   "custom/controllerstatus": {
@@ -798,25 +795,18 @@
   },
   "custom/backlight": {
     "interval": 60,
-    "align": 0,
-    "rotate": 0,
-    // "exec": "ddcutil getvcp 10 | awk '/current value/ {print $NF}'",
-    // "format": "{icon} {percent}%",
-    // "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "format": "{icon} ",
+    "exec": "~/.config/hypr/scripts/Brightness.sh",
+    "format": "<big>{text}</big> ",
     // "format-icons": ["󰛩", "󱩎", "󱩏", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󰛨"],
-    "format-icons": [
-      "<big>󰃠</big>"
-    ],
-    "tooltip-format": "backlight {}%",
     "tooltip": true,
     "icon-size": 20,
-    "on-click": "ddcutil setvcp 10 100 && notify-send -a brightness -h string:x-dunst-stack-tag:brightness_notif -h int:value:100 -u low -i \"~/.config/dunst/icons/brightness-100.png\" \"Brightness : 100%\"",
-    "on-click-middle": "ddcutil setvcp 10 60 && notify-send -a brightness -h string:x-dunst-stack-tag:brightness_notif -h int:value:60 -u low -i \"~/.config/dunst/icons/brightness-60.png\" \"Brightness : 60%\"",
-    "on-click-right": "ddcutil setvcp 10 20 && notify-send -a brightness -h string:x-dunst-stack-tag:brightness_notif -h int:value:20 -u low -i \"~/.config/dunst/icons/brightness-20.png\" \"Brightness : 20%\"",
+    "on-click": "~/.config/hypr/scripts/Brightness.sh --direct 100",
+    "on-click-middle": "~/.config/hypr/scripts/Brightness.sh --direct 50",
+    "on-click-right": "~/.config/hypr/scripts/Brightness.sh --direct 20",
     "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
     "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
+    "return-type": "json"
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",
@@ -843,10 +833,10 @@
     "status-icons": {
       "paused": "",
       "playing": "",
-      "stopped": "",
+      "stopped": ""
     },
     // "ignored-players": ["firefox"]
-    "max-length": 30,
+    "max-length": 30
   },
   "custom/mviz": {
     // "exec": "~/.config/hypr/scripts/waybar_cava.sh",
@@ -857,7 +847,7 @@
     "on-click-right": "playerctl next",
     "scroll-step": 5.0,
     "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
-    "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+    "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec"
   },
   "custom/power_outage_switch": {
     "format": "{icon}",
@@ -870,7 +860,7 @@
     "exec": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ]  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
     // "exec-if": "pgrep -f 'python3 power_check.py' > /dev/null",
     "interval": 5,
-    "on-click": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && rm '/tmp/POWER_OUTAGE_KILLSWITCH' || touch '/tmp/POWER_OUTAGE_KILLSWITCH'",
+    "on-click": "[ -e '/tmp/POWER_OUTAGE_KILLSWITCH' ] && rm '/tmp/POWER_OUTAGE_KILLSWITCH' || touch '/tmp/POWER_OUTAGE_KILLSWITCH'"
   },
   "privacy": {
     "icon-spacing": 4,
@@ -926,18 +916,6 @@
       "on-click-right": "mode"
     }
   },
-//   "mpris": {
-//     "format": " : {player_icon} {dynamic}",
-//     "format-paused": " : {status_icon} <i>{dynamic}</i>",
-//     "player-icons": {
-//       "default": "▶",
-//       "mpv": "🎵"
-//     },
-//     "status-icons": {
-//       "paused": "⏸"
-//     },
-//     // "ignored-players": ["firefox"]
-// },
   "gamemode": {
     "format": "{glyph}",
     "format-alt": "{glyph}{count}",
