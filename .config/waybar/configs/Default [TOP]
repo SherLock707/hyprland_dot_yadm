@@ -18,8 +18,6 @@
 	"custom/menu",
 	"custom/separator#blank_1",
 	"tray",
-	// "custom/separator#blank_1",
-	// "custom/mviz",
 	"custom/separator#blank_1",
 	"wlr/taskbar",
 	"custom/separator#blank_1",
@@ -31,40 +29,26 @@
 	"privacy",
 	"gamemode",
 	"systemd-failed-units",
-	// "custom/kew",
 	"custom/separator#blank_1",
-	// "cava",
-	// "mpris",
-	// "mpd",
 	"hyprland/window"
 	],
 
 "modules-center": [
-	// "hyprland/workspaces#pacman"
-	// "custom/separator#blank_1",
-	// "wlr/taskbar"
 	"hyprland/workspaces#rw"
-	// "hyprland/workspaces#kanji"
-	// "hyprland/workspaces#roman"
-	// "hyprland/workspaces"
 	], 
 
 "modules-right": [
 	"network#speed",
 	"custom/separator#blank_1",
-	// "custom/notification",
 	"custom/swaync",
 	"custom/pacman2",
-	// "custom/pacman",
 	"idle_inhibitor",
 	"custom/separator#blank_1",
 	"group/hardware",
 	"custom/separator#blank_1",
 	"pulseaudio",
 	"custom/backlight",
-	// "custom/hyprshade",
 	"custom/separator#blank_1",
-	// "tray",
 	"custom/weather",
 	"clock",
 	"custom/separator#blank_1",
@@ -74,20 +58,10 @@
 
 	"group/hardware": {
 		"orientation": "horizontal",
-		// "drawer": {
-		// 	"transition-duration": 500,
-		// 	"transition-left-to-right": true,
-		// },
 		"modules": [
 			"cpu", 
 			"temperature",
 			"memory",
-			// "custom/gpu_usage",
-			// "temperature#gpu",
-			// "custom/gpu_vram",
-			// "custom/gpu_temp",
-			// "custom/gpu_power",
-			// "custom/gpu_fan",
 			"custom/gpu_aio",
 			"disk"
 		]

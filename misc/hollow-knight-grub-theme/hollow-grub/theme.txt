@@ -1,0 +1,51 @@
+title-text: ""
+desktop-image: "wallpaper.png"
+#Boot menu
++ boot_menu {
+	left = 39%
+	top = 50%
+	width = 800
+	height = 500
+
+	item_padding = 20
+	item_spacing = 28
+	item_height = 30
+	item_icon_space = 0
+	item_color = "#FFFFFF"
+	item_font = "Trajan Pro Bold 25"
+	item_align = "center"
+	selected_item_pixmap_style = "pointer_*.png"
+	
+	icon_width = 0
+	icon_height = 0
+}
+
+#Title
++ image {
+	file = "logo.png"
+	top = 20%
+	left = 37%
+}
+
+#Timeout
++ label {
+	id = "__timeout__"
+	
+	left = 70%
+	top = 82%
+	text = "Silksong release date in %d"	
+	align = "center"
+	font = "Trajan Pro Bold 12"
+	color = "white"
+}
+
+#Keybinds
+ + label {
+	left = 15%
+	top = 82%
+	color = "white"
+	align = "center"
+
+	text = "@KEYMAP_SHORT@"
+	font = "Trajan Pro Bold 15"
+ }
