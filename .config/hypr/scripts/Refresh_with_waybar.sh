@@ -10,7 +10,7 @@ for _prs in "${_ps[@]}"; do
     fi
 done
 
-ags -q
+# ags -q
 
 # relaunch apps
 swaync &

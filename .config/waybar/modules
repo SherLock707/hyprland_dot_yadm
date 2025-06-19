@@ -594,10 +594,9 @@
     "format": "<big>󰣇</big>",
     // "format": " ",
     "tooltip": false,
-    "on-click": "rofi -show drun -modi run,drun,filebrowser",
-    // "on-click": "pkill rofi || rofi -show drun -modi run,drun,filebrowser",
-    "on-click-middle": "~/.config/hypr/scripts/WallpaperSelect.sh",
-    "on-click-right": "~/.config/hypr/scripts/WaybarLayout.sh"
+    "on-click": "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window",
+    "on-click-middle": "waypaper",
+    "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh"
   },
   "custom/playerctl": {
     "format": "<span>{}</span>",
