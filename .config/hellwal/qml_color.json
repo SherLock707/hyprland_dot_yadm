@@ -1,0 +1,21 @@
+{
+    "background": "#1e1e2e",
+    "onBackground": "#bac2de",
+    "surfaceContainerLow": "#%%color4.hex%%",
+    "surfaceContainer": "#%%color6.hex%%",
+    "surfaceContainerHigh": "#%%color3.hex%%",
+    "surfaceContainerHighest": "#%%color2.hex%%",
+    "onSurface": "#EAE0E7",
+    "onSurfaceVariant": "#CFC3CD",
+    "outline": "#%%color7.hex%%",
+    "scrim": "#000000",
+    "shadow": "#000000",
+    "primary": "#%%color7.hex%%",
+    "primaryContainer": "#%%color7.hex%%",
+    "secondary": "#D5C0D7",
+    "secondaryContainer": "#%%color5.hex%%",
+    "onPrimary": "#FFFFFF",
+    "onPrimaryContainer": "#21005D",
+    "onSecondaryContainer": "#F2DCF3",
+    "outlineVariant": "#%%color5.hex%%"
+}
