@@ -101,7 +101,6 @@ Singleton {
             }
         }
 
-        console.log(parents.join("."));
         console.log(`[ConfigLoader] Setting live config value: ${nestedKey} = ${convertedValue}`);
         obj[keys[keys.length - 1]] = convertedValue;
     }

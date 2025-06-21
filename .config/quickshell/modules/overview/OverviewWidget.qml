@@ -25,7 +25,7 @@ Item {
     property var windowAddresses: HyprlandData.addresses
     property var monitorData: HyprlandData.monitors.find(m => m.id === root.monitor.id)
     property real scale: ConfigOptions.overview.scale
-    property color activeBorderColor: Appearance.m3colors.m3secondary
+    property color activeBorderColor: Appearance.m3colors.m3accentSecondary
 
     property real workspaceImplicitWidth: Math.max(100, (monitorData?.transform % 2 === 1) ? 
         ((monitor.height - monitorData?.reserved[0] - monitorData?.reserved[2]) * root.scale / monitor.scale) :
@@ -35,7 +35,6 @@ Item {
         ((monitor.height - monitorData?.reserved[1] - monitorData?.reserved[3]) * root.scale / monitor.scale))
 
     property real workspaceNumberMargin: 80
-    // property real workspaceNumberSize: Math.min(workspaceImplicitHeight, workspaceImplicitWidth) * monitor.scale
     property real workspaceNumberSize: (ConfigOptions.overview.workspaceNumberSize > 0) 
         ? ConfigOptions.overview.workspaceNumberSize 
         : Math.min(workspaceImplicitHeight, workspaceImplicitWidth) * monitor.scale
@@ -72,7 +71,7 @@ Item {
         property real padding: 10
         anchors.fill: parent
         anchors.margins: Appearance.sizes.elevationMargin
-        border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.2)
+        border.color : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.2)
         border.width : 2
 
         implicitWidth: workspaceColumnLayout.implicitWidth + padding * 2
@@ -171,7 +170,7 @@ Item {
                                 color: "transparent"
                                 radius: parent.radius
                                 border.width: 1
-                                border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.6)
+                                border.color: hoveredWhileDragging ? hoveredBorderColor : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.6)
                                 z: 10 // Ensure it's on top
                             }
 
