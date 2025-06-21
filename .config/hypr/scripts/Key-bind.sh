@@ -22,4 +22,4 @@ if [[ -z "$KEYBINDS" ]]; then
 fi
 
 # Use rofi to display the keybinds
-echo "$KEYBINDS" | rofi -dmenu -i -p "Keybinds" -config ~/.config/rofi/config-keybinds.rasi
+echo "$KEYBINDS" | rofi -matching fuzzy -dmenu -i -p "Keybinds" -config ~/.config/rofi/config-keybinds.rasi

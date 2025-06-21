@@ -594,7 +594,7 @@
     "format": "<big>󰣇</big>",
     // "format": " ",
     "tooltip": false,
-    "on-click": "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window",
+    "on-click": "pkill rofi || rofi -matching fuzzy -show drun -modi drun,filebrowser,run,window",
     "on-click-middle": "waypaper",
     "on-click-right": "~/.config/hypr/scripts/WaybarStyles.sh"
   },

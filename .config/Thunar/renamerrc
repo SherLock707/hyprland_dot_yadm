@@ -22,7 +22,7 @@ OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
 
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
-Replacement=
-Pattern=-
+Replacement=S01E
+Pattern=Yuusha ga Shinda -\ 
 Regexp=FALSE
 

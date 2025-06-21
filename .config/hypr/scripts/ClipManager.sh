@@ -9,6 +9,7 @@
 while true; do
     result=$(
         rofi -dmenu \
+            -matching fuzzy \
             -kb-custom-1 "Control-Delete" \
             -kb-custom-2 "Alt-Delete" \
             -config ~/.config/rofi/config-clipboard.rasi < <(cliphist list)
