@@ -212,6 +212,7 @@ alias untar 'tar -zxvf '
 alias upd /usr/bin/garuda-update
 alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
+alias rm 'trash-put -v --'
 
 alias dup 'find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD'
 
