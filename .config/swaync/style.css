@@ -84,8 +84,8 @@
   border-radius: 5px;
   background: linear-gradient(
     180deg,
-    alpha(@accent, 0.6) 60%,
-    alpha(@accent2, 0.9) 
+    alpha(@accent, 0.6) 70%,
+    alpha(@accent2, 0.4) 
     
   );
   border: 1px;

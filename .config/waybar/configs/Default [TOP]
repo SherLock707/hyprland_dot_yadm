@@ -1,72 +1,68 @@
-
-
 {
-"include": "~/.config/waybar/modules",
-"layer": "top",
-"exclusive": true,
-"passthrough": false,
-"position": "top",
-"spacing": 3,
-"fixed-center": true,
-"ipc": true,
-"margin-top": 6,
-"margin-left": 8,
-"margin-right": 8,
-"reload_style_on_change": true,
-
-"modules-left": [
-	"custom/menu",
-	"custom/separator#blank_1",
-	"tray",
-	"custom/separator#blank_1",
-	"wlr/taskbar",
-	"custom/separator#blank_1",
-	"custom/palette",
-	"custom/netstatus",
-	"custom/power_outage_switch",
-	"custom/controllerstatus",
-	"group/tools",
-	"privacy",
-	"gamemode",
-	"systemd-failed-units",
-	"custom/separator#blank_1",
-	"hyprland/window"
+	"include": [
+		"~/.config/waybar/modules",
+		"~/.config/waybar/custom_module"
 	],
-
-"modules-center": [
-	"hyprland/workspaces#rw"
-	], 
-
-"modules-right": [
-	"network#speed",
-	"custom/separator#blank_1",
-	"custom/swaync",
-	"custom/pacman2",
-	"idle_inhibitor",
-	"custom/separator#blank_1",
-	"group/hardware",
-	"custom/separator#blank_1",
-	"pulseaudio",
-	"custom/backlight",
-	"custom/separator#blank_1",
-	"custom/weather",
-	"clock",
-	"custom/separator#blank_1",
-	"custom/power",
-	"custom/lock"
+	"layer": "top",
+	"exclusive": true,
+	"passthrough": false,
+	"position": "top",
+	"spacing": 3,
+	"fixed-center": true,
+	"ipc": true,
+	"margin-top": 6,
+	"margin-left": 8,
+	"margin-right": 8,
+	"reload_style_on_change": true,
+	"modules-left": [
+		"custom/menu",
+		"custom/separator#blank_1",
+		"tray",
+		"custom/separator#blank_1",
+		"wlr/taskbar",
+		"custom/separator#blank_1",
+		"custom/palette",
+		"custom/netstatus",
+		"custom/power_outage_switch",
+		"custom/controllerstatus",
+		"group/tools",
+		"privacy",
+		"gamemode",
+		"systemd-failed-units",
+		"custom/separator#blank_1",
+		"hyprland/window"
 	],
-
+	"modules-center": [
+		"hyprland/workspaces#rw"
+	],
+	"modules-right": [
+		"network#speed",
+		"custom/separator#blank_1",
+		"custom/swaync",
+		"custom/pacman2",
+		"idle_inhibitor",
+		"custom/separator#blank_1",
+		"group/hardware",
+		"custom/separator#blank_1",
+		"pulseaudio",
+		"custom/backlight",
+		"custom/separator#blank_1",
+		"custom/weather",
+		"clock",
+		"custom/separator#blank_1",
+		"custom/power",
+		"custom/lock"
+	],
 	"group/hardware": {
 		"orientation": "horizontal",
 		"modules": [
-			"cpu", 
+			"cpu",
 			"temperature",
 			"memory",
 			"custom/gpu_aio",
 			"disk"
 		]
 	},
-
 	// "group/system_state":{
 	// 	// "orientation": "horizontal",
 	// 	// "drawer": {
@@ -76,17 +72,15 @@
 	// 	"modules":[
 	// 		"custom/power",
 	// 		"custom/lock"
-			
 	// 	]
 	// },
-
-	"group/tools":{
+	"group/tools": {
 		"orientation": "horizontal",
 		"drawer": {
 			"transition-duration": 300,
 			"transition-left-to-right": true
 		},
-		"modules":[
+		"modules": [
 			"custom/tvtime",
 			"custom/separator#blank_1",
 			"custom/chatgpt",
@@ -100,5 +94,4 @@
 			"custom/ytmusic"
 		]
 	}
-
 }
