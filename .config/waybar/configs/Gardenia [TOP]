@@ -1,7 +1,8 @@
 {
   "include": [
-    "~/.config/waybar/modules",
-    "~/.config/waybar/custom_module"
+		"~/.config/waybar/modules.jsonc",
+		"~/.config/waybar/modules_custom.jsonc",
+		"~/.config/waybar/modules_workspaces.jsonc"
   ],
   "layer": "top",
   //"mode": "dock",
