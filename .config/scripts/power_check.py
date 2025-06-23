@@ -14,8 +14,8 @@ def ping_host(host):
         return False
 
 def main():
-    host_to_ping = "192.168.1.88"
-    router_to_ping = "192.168.1.1"
+    host_to_ping = "192.168.0.88"
+    router_to_ping = "192.168.0.1"
     failed = 5
     count_down = 3
     suspended = False
