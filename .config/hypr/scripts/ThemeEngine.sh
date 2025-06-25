@@ -29,7 +29,7 @@ magick convert "$wallpaper_path" -resize 40% -filter Gaussian -blur 0x8 "$HOME/.
 if [ "$1" != "theme-only" ]; then
     hellwal --skip-term-colors -q -i "$wallpaper_path" --static-background "#000000" --static-foreground "#ffffff"
 else
-    hellwal --skip-term-colors --theme ~/.config/hellwal/themes/custom.hellwal
+    hellwal --skip-term-colors --theme ~/.config/hellwal/themes/custom.hellwal --static-background "#000000" --static-foreground "#ffffff"
 fi
 
 # Launch all theme update scripts in parallel
