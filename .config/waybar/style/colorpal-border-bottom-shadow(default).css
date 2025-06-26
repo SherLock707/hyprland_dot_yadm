@@ -93,6 +93,7 @@ tooltip {
 #custom-gpu_vram,
 #custom-gpu_aio,
 #custom-palette,
+#custom-arch_news,
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);
@@ -106,5 +107,24 @@ tooltip {
     border-style: solid;
     border-color: @main-fg;
 }
+
+tooltip #custom-arch_news.arch_news_active {
+    color: #89b4fa;
+}
+
+/* #custom-arch_news.arch-news-inactive {
+    background-color: #313244;
+    color: #cdd6f4;
+}
+
+#custom-arch_news.arch-news-error {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+#custom-arch_news:hover {
+    background-color: #b4befe;
+    color: #1e1e2e;
+} */
 
 @import 'style/common/common.css';

@@ -317,11 +317,19 @@
   "custom/palette": {
     "format":" ",
     "exec": "~/.config/hypr/scripts/palette-tooltip.sh",
-    "on-click": "~/.venv/bin/python ~/.config/scripts/palette_ui.py",
+    "on-click": "~/.venv/bin/python ~/.config/waybar/custom_modules/palette_ui.py",
     "on-click-right": "~/.config/hypr/scripts/setTermColor.sh & ~/.config/hypr/scripts/setOpenRGB.sh",
     "interval": 300,
     "tooltip": true,
     "return-type": "json",
     "markup": "pango"
+  },
+  "custom/arch_news": {
+    "format": "<big></big>{}",
+    "return-type": "json",
+    "exec": "~/.venv/bin/python ~/.config/waybar/custom_modules/arch_news.py 14",
+    "tooltip": true,
+    "interval": 3600,
+    "on-click": "xdg-open https://archlinux.org/news/"
   }
 }
