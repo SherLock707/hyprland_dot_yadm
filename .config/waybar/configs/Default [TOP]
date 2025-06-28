@@ -30,7 +30,7 @@
 		"group/tools",
 		"privacy",
 		"gamemode",
-		"systemd-failed-units",
+		// "systemd-failed-units",
 		"custom/separator#blank_1",
 		"hyprland/window"
 	],

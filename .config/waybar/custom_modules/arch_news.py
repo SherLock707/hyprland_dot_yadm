@@ -52,7 +52,7 @@ class ArchNewsModule:
 
         if self.news_data["headlines"]:
             if isinstance(self.news_data["headlines"][0], dict):
-                tooltip = "\n".join(
+                tooltip = "\n\n".join(
                     f" <span color=\"#a6e3a1\">{item['title']} ({item['date']})</span>"
                     for item in self.news_data["headlines"]
                 )

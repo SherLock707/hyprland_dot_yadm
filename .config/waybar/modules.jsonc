@@ -301,10 +301,10 @@
     // ],
     "thermal-zone": 0,
     "critical-threshold": 70,
-    "format-critical": " {icon}{temperatureC}°C",
-    "format": "{icon} {temperatureC}°C",
+    "format-critical": "{icon}{temperatureC}°C",
+    "format": "{icon}{temperatureC}°C",
     "format-icons": [
-      "<big>󰈸</big>"
+      "<big></big>"
     ],
     // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
     "on-click": "foot -e gotop --bytes --celsius --no-nvidia",

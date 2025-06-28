@@ -108,9 +108,13 @@ tooltip {
     border-color: @main-fg;
 }
 
-tooltip #custom-arch_news.arch_news_active {
+/* tooltip #custom-arch_news.arch_news_active {
     color: #89b4fa;
-}
+} */
+ 
+/* #custom-arch_news.arch_news_active tooltip label {
+    min-width: 800px;
+} */
 
 /* #custom-arch_news.arch-news-inactive {
     background-color: #313244;
@@ -126,5 +130,41 @@ tooltip #custom-arch_news.arch_news_active {
     background-color: #b4befe;
     color: #1e1e2e;
 } */
+
+/* Combined CPU + Temperature + Memory styling */
+/* Remove borders from CPU, Temperature, and Memory modules */
+#cpu,
+#temperature,
+#memory {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+/* Add left border and border-radius to CPU (first module) */
+#cpu {
+    border-left: 0.5px solid @main-fg;
+    border-top: 0.5px solid @main-fg;
+    border-bottom: 3px solid @main-fg;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+/* Add right border and border-radius to Memory (last module) */
+#memory {
+    border-right: 0.5px solid @main-fg;
+    border-top: 0.5px solid @main-fg;
+    border-bottom: 3px solid @main-fg;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Temperature (middle module) - only top and bottom borders */
+#temperature {
+    border-top: 0.5px solid @main-fg;
+    border-bottom: 3px solid @main-fg;
+}
 
 @import 'style/common/common.css';
