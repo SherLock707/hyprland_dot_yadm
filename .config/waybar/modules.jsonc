@@ -294,7 +294,7 @@
   },
   "temperature": {
     "interval": 5,
-    "tooltip": false,
+    "tooltip": true,
     // "hwmon-path": [
     //   "/sys/class/hwmon/hwmon1/temp1_input",
     //   "/sys/class/thermal/thermal_zone0/temp"
@@ -304,7 +304,7 @@
     "format-critical": "{icon}{temperatureC}°C",
     "format": "{icon}{temperatureC}°C",
     "format-icons": [
-      "<big></big>"
+      ""
     ],
     // "on-click-right": "foot --title nvtop sh -c 'nvtop'"
     "on-click": "foot -e gotop --bytes --celsius --no-nvidia",
