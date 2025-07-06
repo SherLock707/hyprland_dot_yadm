@@ -327,7 +327,7 @@
   "custom/arch_news": {
     "format": "<big></big>{}",
     "return-type": "json",
-    "exec": "~/.venv/bin/python ~/.config/waybar/custom_modules/arch_news.py 14",
+    "exec": "~/.config/waybar/custom_modules/arch_news 14",
     "tooltip": true,
     "interval": 3600,
     "on-click": "xdg-open https://archlinux.org/news/"
