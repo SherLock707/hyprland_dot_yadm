@@ -267,7 +267,7 @@ progressbar {
 }
 
 trough {
-  padding: 6px;
+  padding: 10px;
   padding-left: 0px;
   padding-right: 0px;
   border-radius: 12px;
@@ -289,7 +289,7 @@ trough {
 } */
 
 progress {
-  padding: 6px;
+  padding: 12px;
   border-radius: 12px;
   background: linear-gradient(
     180deg,
