@@ -82,14 +82,13 @@
 
 .notification-action {
   border-radius: 5px;
+  border: 1px;
+  margin: 5px;
   background: linear-gradient(
     180deg,
     alpha(@accent, 0.6) 70%,
     alpha(@accent2, 0.4) 
-    
   );
-  border: 1px;
-  margin: 5px;
 }
 
   /* @accent 0%,
