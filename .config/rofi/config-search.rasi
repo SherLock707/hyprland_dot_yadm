@@ -1,27 +1,24 @@
 @import "~/.config/rofi/config.rasi" 
 
-/* ---- Window ---- */
+
 window {
-	width: 35%;
-	height: 10%;
+    width:                      20%;
+    height:						7.4%;
+
 }
 
-/* ---- Inputbar ---- */
-inputbar {
-    enabled: true;
-    padding: 1px;
-    margin: 2px;
-}
 
-/* ---- Mainbox ---- */
-mainbox {
-	padding: 2px;
-    children: [ "entry"];
-}
-
-/* ---- Entry ---- */ 
 entry {
-	placeholder: "🔎 Google Search";
-    placeholder-color:inherit;
+    placeholder:                "Search Google";
 }
 
+
+imagebox {
+enabled:                    false;
+}
+
+inputbar {
+    enabled:                    true;
+    height: 100px;
+    padding: 20px;
+}
