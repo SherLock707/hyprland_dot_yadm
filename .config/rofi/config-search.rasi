@@ -2,14 +2,14 @@
 
 
 window {
-    width:                      20%;
+    width:                      30%;
     height:						7.4%;
 
 }
 
 
 entry {
-    placeholder:                "Search Google";
+    placeholder:                "";
 }
 
 
@@ -19,6 +19,5 @@ enabled:                    false;
 
 inputbar {
     enabled:                    true;
-    height: 100px;
     padding: 20px;
 }

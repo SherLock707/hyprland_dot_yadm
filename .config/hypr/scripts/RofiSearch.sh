@@ -7,4 +7,4 @@
 
 rofi_config="$HOME/.config/rofi/config-search.rasi"
 
-echo "" | rofi -dmenu -config "$rofi_config" -p "Search:" | xargs -I{} xdg-open https://www.google.com/search?q={}
+pkill rofi || echo "" | rofi -dmenu -config "$rofi_config" -p "Search:" | xargs -I{} xdg-open https://www.google.com/search?q={}
