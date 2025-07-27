@@ -7,7 +7,7 @@ mpv_args="--glsl-shaders=\"~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/A
 # UI
 
 external_menu() {
-    rofi "$1" -sort -dmenu -i -width 1500 -p "$2" "$3"
+   rofi "$1" -sort -dmenu -i -width 1500 -p "$2" "$3" -ballot-unselected-str "󰎁 "
 }
 
 launcher() {

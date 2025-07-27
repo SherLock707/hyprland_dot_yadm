@@ -22,7 +22,7 @@ OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
 
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
-Replacement=\ S01E
-Pattern=_-_
-Regexp=FALSE
+Replacement=
+Pattern=\ \ \\[.*.\\]
+Regexp=TRUE
 
