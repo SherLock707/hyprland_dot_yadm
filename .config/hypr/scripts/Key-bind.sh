@@ -12,7 +12,10 @@ fi
 KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
 
 # Combine the contents of the keybinds files and filter for keybinds
-KEYBINDS=$(cat "$KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
+# KEYBINDS=$(cat "$KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
+KEYBINDS=$(grep -E '^(bind|bindl|binde|bindm)' "$KEYBINDS_CONF" \
+  | sed 's/^bind[a-z]* = / /; s/\$mainMod/ /g; s/,/ /g; s/exec/ /g; s/  \+/ /g; s/^ //')
+
 
 
 # check for any keybinds to display
