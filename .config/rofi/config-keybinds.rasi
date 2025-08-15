@@ -25,7 +25,7 @@ configuration {
 window {
     /* width:						700px; */
 	/*height:						500px;*/
-    width:                      35%;
+    width:                      30%;
     height:						50%;
     x-offset:                   0px;
     y-offset:                   0px;
@@ -106,7 +106,7 @@ entry {
 listview {
 	enabled:					 true;
 	columns:					 1;
-	lines:						 9;
+	lines:						 10;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
