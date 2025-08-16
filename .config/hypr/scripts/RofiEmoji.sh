@@ -1,8 +1,9 @@
 #!/bin/bash
 
-sed '1,/^### DATA ###$/d' $0 | 
-rofi -dmenu -config ~/.config/rofi/config.rasi| 
-cut -d ' ' -f 1 | tr -d '\n' | wl-copy
+sed '1,/^### DATA ###$/d' "$0" |
+sed 's/^\([^ ]*\) \(.*\)$/\1 <span size="10">\2<\/span>/' |
+rofi -dmenu -markup-rows -config ~/.config/rofi/config-emoji.rasi |
+awk '{print $1}' | tr -d '\n' | wl-copy
 
 exit
 
