@@ -150,7 +150,7 @@ Breadcrumb Navigation=false
 Decoration position=2
 LocationCombo Completionmode=5
 PathCombo Completionmode=5
-Preview Width=395
+Preview Width=265
 Show Bookmarks=false
 Show Full Path=false
 Show Inline Previews=true
@@ -162,7 +162,7 @@ Sort directories first=true
 Sort hidden files last=false
 Sort reversed=true
 Speedbar Width=197
-View Style=Simple
+View Style=Detail
 
 [KShortcutsDialog Settings]
 Dialog Size=600,480
