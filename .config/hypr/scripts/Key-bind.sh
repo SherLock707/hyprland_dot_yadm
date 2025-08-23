@@ -6,6 +6,7 @@ pkill yad || true
 # Check if rofi is already running
 if pidof rofi > /dev/null; then
   pkill rofi
+  exit
 fi
 
 # Define the config files
