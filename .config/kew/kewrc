@@ -5,7 +5,7 @@
 [miscellaneous]
 
 path=/home/itachi/Music
-version=3.3.3
+version=3.4.1
 allowNotifications=1
 hideLogo=0
 hideHelp=0
@@ -32,6 +32,9 @@ saveRepeatShuffleSettings=1
 repeatState=0
 
 shuffleEnabled=0
+
+# Set the window title to the title of the currently playing track
+trackTitleAsWindowTitle=1
 
 
 [visualizer]
@@ -92,7 +95,7 @@ progressBarCurrentOddChar=━
 [colors]
 
 # Use the configuration file colors below
-useConfigColors=0
+useConfigColors=1
 
 # Color values are 0=Black, 1=Red, 2=Green, 3=Yellow, 4=Blue, 5=Magenta, 6=Cyan, 7=White
 # These mostly affect the library view.
@@ -151,7 +154,7 @@ toggleShuffle=s
 seekBackward=a
 seekForward=d
 savePlaylist=x
-addToMainPlaylist=.
+addToFavoritesPlaylist=.
 updateLibrary=u
 moveSongUp=t
 moveSongDown=g

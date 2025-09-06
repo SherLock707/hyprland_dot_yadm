@@ -145,7 +145,7 @@ function __set_fastfetch_config
     end
 
     if test -n "$config"
-        alias fastfetch "fastfetch --load-config $config"
+        alias fastfetch "fastfetch -c $config"
     end
 
     if test -z "$ZELLIJ"
