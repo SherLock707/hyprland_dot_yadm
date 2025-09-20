@@ -2,9 +2,8 @@
 
 
 window {
-    width:                      30%;
-    height:						7.4%;
-
+    height:						7%;
+    width: 25%;
 }
 
 
@@ -19,5 +18,6 @@ enabled:                    false;
 
 inputbar {
     enabled:                    true;
-    padding: 20px;
+    margin:                     12px;
+    padding: 2px;
 }
