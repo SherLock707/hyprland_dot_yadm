@@ -78,7 +78,7 @@
             "type": "command",
             "keyColor": "white",
             "key": "│{#37;1;203;166;246} 󰃲 alive {#white} │ ",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); total_days=$(((current - birth_install)/86400)); ((total_days>=365)) && echo \"$((total_days/365)) years, $((total_days%365)) days\" || echo \"$total_days days\""
         },
         // Colors seperator
         {
