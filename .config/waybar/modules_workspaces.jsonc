@@ -164,7 +164,7 @@
         "window-rewrite-default": " ",
         "window-rewrite": {
             "title<.*Picture-in-Picture.*>": " ",
-            "class<*.brave.*>": "<span font=\"Font Awesome 5 Free\"> </span> ",
+            "class<*.brave.*>": "<span font=\"Font Awesome 5 Free\"></span> ",
             "class<kitty>": " ",
             "class<konsole>": " ",
             "class<foot>": " ",
