@@ -136,17 +136,23 @@ body {
   justify-content: center;
   align-items: flex-start;
   position: fixed;          /* ✅ fixes relative to viewport */
-  top: 10%;                /* ✅ adds space from top of screen */
-  left: 50%;
+  top: 0;                /* ✅ adds space from top of screen */
+  left: 54%;
   transform: translateX(-50%);
   width: 100%;
+  height: 80%;
   z-index: 10;              /* ensure it stays above clouds, below UI */
 }
 
+
 .map-image {
-  flex: 1 1 50%;            /* each takes 50% of available width */
-  max-width: 50%;
-  height: auto;
-  opacity: 1;
-  object-fit: contain;      /* maintain aspect ratio */
+  display: none; /* hide all images by default */
+  height: 90%;
+  object-fit: contain;
+  flex: 1 1 100%;
+  max-width: 90%; /* leave a little margin from edges */
+  object-fit: contain;
+}
+.map-image.active {
+  display: block; /* show only the active image */
 }

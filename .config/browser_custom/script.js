@@ -84,3 +84,9 @@ for (let i = 0; i < SQUARES; i++) {
   square.addEventListener("mouseout", () => removeColor(square));
   container.appendChild(square);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const maps = document.querySelectorAll('.map-image');
+  const randomIndex = Math.floor(Math.random() * maps.length);
+  maps[randomIndex].classList.add('active'); // reveal only the random image
+});
