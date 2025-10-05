@@ -16,7 +16,7 @@
 @define-color bg-selected rgb(0, 128, 255);
 
 * {
-  /* all: unset; */
+  all: unset;
   font-family: "JetBrains Mono Nerd Font 5";
   font-weight: bold;
   font-size: 1.2rem;
@@ -293,10 +293,10 @@ progress {
 }
 
 .widget-mpris-player {
-  box-shadow: none;
   border: 1px solid @accent;
   margin: 6px 10px;
   border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 .widget-mpris-player:only-child {
@@ -304,19 +304,26 @@ progress {
 }
 
 .widget-mpris-album-art {
+  padding: 10px;
   border-radius: 10px;
 }
 
 .widget-mpris-title {
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: x-large;
+  font-weight: bold;
   color: @accent;
+  text-shadow: 
+    0 0 10px rgba(255,255,255,0.9),   /* stronger glow */
+    0 0 20px rgba(255,255,255,0.7),   /* extended glow */
+    2px 2px 6px rgba(0,0,0,0.7),      /* depth shadow */
+    -1px -1px 2px rgba(0,0,0,0.5);    /* subtle contrast */
+  border-radius: 0.2em;
 }
 
+
 .widget-mpris-subtitle {
-  font-weight: 500;
-  font-size: 0.8rem;
-  color: @text-color;
+  font-size: large;
+  color: @accent;
 }
 
 /* --- Button Grid --- */
@@ -329,8 +336,8 @@ progress {
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
   margin: 2px;
-  /* min-height: 30px;
-  min-width: 65px; */
+  min-height: 30px;
+  min-width: 65px;
   background: alpha(@accent, 0.5);
   border-radius: 10px;
   color: white;

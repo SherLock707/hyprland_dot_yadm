@@ -1,15 +1,12 @@
 :root {
   --page-border-color: #eca9d9;
   --page-border-thickness: 4px;
+  /* You can add these if you plan to re-enable the glow effect later */
+  --page-glow-spread: 8px;
+  --page-glow-blur: 15px;
 }
 
-/* :root {
-  --page-border-color: #eca9d9; /* This is still set by JS or manually */
-  --page-glow-spread: 8px;     /* Adjust initial size/thickness of the glow */
-  --page-glow-blur: 15px;      /* Adjust softness/fade distance (larger = softer) */
-
-} */
-
+/* --- GLOBAL RESET --- */
 html,
 body {
   margin: 0;
@@ -18,6 +15,7 @@ body {
   overflow: hidden;
 }
 
+/* --- BACKGROUND IMAGE --- */
 body::before {
   content: "";
   position: fixed;
@@ -27,51 +25,46 @@ body::before {
   height: 100vh;
   background: url("neon_cat.svg") center center no-repeat;
   background-size: cover;
-  /* 🔥 Fills screen and keeps aspect ratio */
-  z-index: -1;
+  z-index: -1; /* stays behind everything */
 }
 
-/* Bubble pop */
-
+/* --- UNIVERSAL BOX MODEL --- */
 * {
   box-sizing: border-box;
 }
 
+/* --- BODY LAYOUT --- */
 body {
-background-color: #111;
-display: flex;
-align-items: center;
-justify-content: center;
-height: 100vh;
-overflow: hidden;
-margin: 0;
-/* border: var(--page-border-thickness) solid var(--page-border-color); */
-/* box-shadow: inset 0 0 var(--page-glow-blur) var(--page-glow-spread) var(--page-border-color); */
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  /* border: var(--page-border-thickness) solid var(--page-border-color);
+  box-shadow: inset 0 0 var(--page-glow-blur) var(--page-glow-spread) var(--page-border-color); */
 }
 
+/* --- BOTTOM GRID OF SQUARES --- */
 .container {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
-  
-    /* Sane limits */
-    width: 100%;
-    height: 15%;
-    max-width: 100vw;
-    max-height: 15vh;
-    min-width: 100px;
-    /* min-height: 20px; */
-  
-    /* overflow: auto; Allows scrolling if content overflows */
-}
-  
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
 
+  width: 100%;
+  height: 15%;
+  max-width: 100vw;
+  max-height: 15vh;
+  min-width: 100px;
+}
+
+/* --- SQUARES --- */
 .square {
-  /* background-color: #181825; */
   background-color: rgba(24, 24, 37, 0.3);
   box-shadow: 0 0 2px #000;
   height: 24px;
@@ -85,75 +78,75 @@ margin: 0;
   transition-duration: 0s;
 }
 
-/* Cloud */
-
+/* --- CLOUDS --- */
 .cloud-container {
-    position: absolute;
-    top: -13%;
-    left: -100px;
-    width: 100%;
-    height: 35vh;
-    pointer-events: none;
-    z-index: 1;
-    /* border: 1px dashed red; */
-  }
-  
-  .cloud {
-    width: 200px;
-    animation: drift 420s linear infinite;
-    opacity: 0.4;
-  }
-  
-  @keyframes drift {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(120vw);
-    }
-  }
+  position: absolute;
+  top: -13%;
+  left: -100px;
+  width: 100%;
+  height: 35vh;
+  pointer-events: none;
+  z-index: 1;
+}
 
-/* Raindrops */
+.cloud {
+  width: 200px;
+  animation: drift 420s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+/* --- RAIN --- */
 .rain {
-    animation: rain-fall 4s ease-in infinite;
-    animation-delay: var(--delay);
+  animation: rain-fall 4s ease-in infinite;
+  animation-delay: var(--delay);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes rain-fall {
+  0% {
+    transform: translateY(0);
     opacity: 0;
-    transform-box: fill-box; /* Ensures transform applies relative to the element itself */
-    transform-origin: center;
-    /* outline: 1px solid blue; */
   }
-  
-  @keyframes rain-fall {
-    0% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    80% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(100px);
-      opacity: 0;
-    }
+  10% {
+    opacity: 1;
   }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
 
-
-/*MAP*/
+/* --- MAP SECTION --- */
 .map-wrapper {
-    display: inline-block;
-    padding: 4px;
-    position: relative;
-    left: 70px;
-    top: -170px; /* or however much you want to nudge it up */
-    z-index: 1; /* lower than other elements like clouds */
-  }
-  
-  
-  .map-image {
-    width: 100%;
-    max-width: 1350px;
-    opacity: 1.0;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: fixed;          /* ✅ fixes relative to viewport */
+  top: 10%;                /* ✅ adds space from top of screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 10;              /* ensure it stays above clouds, below UI */
+}
+
+.map-image {
+  flex: 1 1 50%;            /* each takes 50% of available width */
+  max-width: 50%;
+  height: auto;
+  opacity: 1;
+  object-fit: contain;      /* maintain aspect ratio */
+}

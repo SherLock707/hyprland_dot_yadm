@@ -61,8 +61,8 @@
             "text": "Notification"
         },
         "mpris": {
-            "image-size": 96,
-            "image-radius": 12,
+            "image-size": 100,
+            "image-radius": 15,
             "autohide": true,
             "blacklist": [
                 "brave.*"
