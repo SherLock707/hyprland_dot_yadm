@@ -48,21 +48,6 @@ disabled = true
 discharging_symbol = ""
 full_symbol = ""
 
-[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
-disabled = false
-style = "bold red"
-threshold = 15
-
-[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
-disabled = true
-style = "bold yellow"
-threshold = 50
-
-[[battery.display]]  # "bold green" style when capacity is between 10% and 30%
-disabled = true
-style = "bold green"
-threshold = 80
-
 # Prompt: optional param 1
 [time]
 disabled = true

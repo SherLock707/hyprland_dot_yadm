@@ -93,7 +93,9 @@
 			"custom/separator#blank_1",
 			"custom/calculator",
 			"custom/separator#blank_1",
-			"custom/ytmusic"
+			"custom/ytmusic",
+			"custom/separator#blank_1",
+			"custom/kew_player"
 		]
 	}
 }

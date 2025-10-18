@@ -4,7 +4,7 @@ MenuBar=Disabled
 update_info=dolphin_detailsmodesettings.upd:rename-leading-padding,dolphin_detailsmodesettings.upd:move-content-display
 
 [CompactMode]
-PreviewSize=32
+PreviewSize=16
 
 [ContentDisplay]
 DirectorySizeMode=None
@@ -12,6 +12,7 @@ RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
 PreviewSize=16
+RightPadding=25
 SidePadding=0
 
 [ExtractDialog]

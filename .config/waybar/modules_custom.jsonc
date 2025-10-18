@@ -287,7 +287,7 @@
   },
   "custom/calculator": {
     "format": " ",
-    "on-click": "qalculate-gtk",
+    "on-click": "qalculate-qt",
     "tooltip": false
 },
 "custom/hyprshade": {
@@ -331,5 +331,10 @@
     "tooltip": true,
     "interval": 3600,
     "on-click": "xdg-open https://archlinux.org/news/"
+  },
+  "custom/kew_player": {
+    "format": "<big> 󰥠</big> ",
+    "on-click": "foot --app-id='kew_player' -e sh -c 'kew lost'",
+    "tooltip-format": "Play Kew"
   }
 }

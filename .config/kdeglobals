@@ -2,7 +2,7 @@
 update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,icons_remove_effects.upd:IconsRemoveEffects,kwin.upd:animation-speed,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
-ChangeSelectionColor=186,152,227
+ChangeSelectionColor=true
 Color=56,56,56
 ColorAmount=0
 ColorEffect=0
@@ -44,7 +44,7 @@ ForegroundVisited=155,89,182
 
 [Colors:Complementary]
 BackgroundAlternate=27,30,32
-BackgroundNormal=42,46,50
+BackgroundNormal=205,181,234
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
@@ -168,21 +168,19 @@ widgetStyle=kvantum-dark
 Allow Expansion=false
 Automatically select filename extension=true
 Breadcrumb Navigation=false
-Decoration position=2
-LocationCombo Completionmode=5
-PathCombo Completionmode=5
-Preview Width=161
+Decoration position=0
+Preview Width=433
 Show Full Path=false
 Show Inline Previews=true
 Show Preview=true
 Show Speedbar=true
-Show hidden files=false
+Show hidden files=true
 Sort by=Date
 Sort directories first=true
 Sort hidden files last=false
-Sort reversed=true
+Sort reversed=false
 Speedbar Width=197
-View Style=Simple
+View Style=Detail
 
 [KShortcutsDialog Settings]
 Dialog Size=600,480

@@ -5,7 +5,7 @@
 [miscellaneous]
 
 path=/home/itachi/Music
-version=3.4.1
+version=3.5.2
 allowNotifications=1
 hideLogo=0
 hideHelp=0
@@ -35,6 +35,36 @@ shuffleEnabled=0
 
 # Set the window title to the title of the currently playing track
 trackTitleAsWindowTitle=1
+
+
+[colors]
+
+# Theme's go in ~/.config/kew/themes (on Linux/FreeBSD/Android), 
+# and ~/Library/Preferences/kew/themes (on macOS), 
+theme=forest
+
+# Color Mode is:
+# 0 = 16-bit color palette from default theme, 
+# 1 = Colors derived from track cover, 
+# 2 = Colors derived from TrueColor theme, 
+
+# Color Mode:
+colorMode=2
+
+# Terminal color theme is default.theme in 
+# ~/.config/kew/themes (on Linux/FreeBSD/Android), 
+# and ~/Library/Preferences/kew/themes (on macOS).
+
+
+[track cover]
+
+coverEnabled=1
+coverAnsi=0
+
+
+[mouse]
+
+mouseEnabled=1
 
 
 [visualizer]
@@ -92,37 +122,6 @@ progressBarApproachingOddChar=━
 progressBarCurrentEvenChar=━
 progressBarCurrentOddChar=━
 
-[colors]
-
-# Use the configuration file colors below
-useConfigColors=1
-
-# Color values are 0=Black, 1=Red, 2=Green, 3=Yellow, 4=Blue, 5=Magenta, 6=Cyan, 7=White
-# These mostly affect the library view.
-
-# Logo color:
-color=6
-
-# Header color in library view:
-artistColor=6
-
-# Now playing song text in library view:
-titleColor=6
-
-# Color of enqueued songs in library view:
-enqueuedColor=6
-
-
-[track cover]
-
-coverEnabled=1
-coverAnsi=0
-
-
-[mouse]
-
-mouseEnabled=1
-
 # Mouse actions are 0=None, 1=Select song, 2=Toggle pause, 3=Scroll up, 4=Scroll down, 5=Seek forward, 6=Seek backward, 7=Volume up, 8=Volume down, 9=Switch to next view, 10=Switch to previous view
 mouseLeftClickAction=0
 mouseMiddleClickAction=1
@@ -146,7 +145,9 @@ scrollUpAlt=k
 scrollDownAlt=j
 switchNumberedSong=
 togglePause=p
+toggleNotifications=n
 toggleColorsDerivedFrom=i
+cycleThemes=t
 toggleVisualizer=v
 toggleAscii=b
 toggleRepeat=r
@@ -156,7 +157,7 @@ seekForward=d
 savePlaylist=x
 addToFavoritesPlaylist=.
 updateLibrary=u
-moveSongUp=t
+moveSongUp=f
 moveSongDown=g
 enqueueAndPlay=^M
 sortLibrary=o
