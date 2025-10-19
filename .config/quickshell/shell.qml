@@ -8,6 +8,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import "./services/"
 
 ShellRoot {
@@ -15,11 +16,27 @@ ShellRoot {
     property bool enablePalette: true
 
     Component.onCompleted: {
-        // Comment out missing singletons temporarily
-        // MaterialThemeLoader.reapplyTheme()
-        // ConfigLoader.loadConfig()
+        // Initialize any required services here if needed
     }
 
     Loader { active: enableOverview; sourceComponent: Overview {} }
-    //Loader { active: enablePalette; source: "./PaletteWidget.qml" }
+    Loader { active: enablePalette; source: "./PaletteWidget.qml" }
+    
+    // Always load the palette IpcHandler even if widget is disabled
+    IpcHandler {
+        target: "palette"
+        
+        function toggle() {
+            console.log("Palette toggle called from shell")
+            GlobalStates.paletteOpen = !GlobalStates.paletteOpen
+        }
+        function close() {
+            console.log("Palette close called from shell")
+            GlobalStates.paletteOpen = false
+        }
+        function open() {
+            console.log("Palette open called from shell")
+            GlobalStates.paletteOpen = true
+        }
+    }
 }

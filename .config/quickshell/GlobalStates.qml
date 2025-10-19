@@ -7,4 +7,5 @@ pragma ComponentBehavior: Bound
 Singleton {
     id: root
     property bool overviewOpen: false
+    property bool paletteOpen: false
 }

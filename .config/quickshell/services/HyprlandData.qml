@@ -45,6 +45,27 @@ Singleton {
         updateWorkspaces();
     }
 
+    // Debounce rapid updates to prevent excessive process calls
+    Timer {
+        id: debounceTimer
+        interval: ConfigOptions.performance.hyprlandDebounceMs
+        repeat: false
+        property var pendingUpdates: new Set()
+        
+        onTriggered: {
+            if (pendingUpdates.has("windows")) updateWindowList();
+            if (pendingUpdates.has("workspaces")) updateWorkspaces();
+            if (pendingUpdates.has("monitors")) updateMonitors();
+            if (pendingUpdates.has("layers")) updateLayers();
+            pendingUpdates.clear();
+        }
+    }
+
+    function debouncedUpdate(type) {
+        debounceTimer.pendingUpdates.add(type);
+        debounceTimer.restart();
+    }
+
     function biggestWindowForWorkspace(workspaceId) {
         const windowsInThisWorkspace = HyprlandData.windowList.filter(w => w.workspace.id == workspaceId);
         return windowsInThisWorkspace.reduce((maxWin, win) => {
@@ -63,7 +84,35 @@ Singleton {
 
         function onRawEvent(event) {
             // console.log("Hyprland raw event:", event.name);
-            updateAll()
+            // Only update relevant data based on event type with debouncing
+            switch(event.name) {
+                case "openwindow":
+                case "closewindow":
+                case "movewindow":
+                case "resizewindow":
+                case "changefloatingmode":
+                case "windowtitle":
+                    debouncedUpdate("windows");
+                    break;
+                case "workspace":
+                case "createworkspace":
+                case "destroyworkspace":
+                    debouncedUpdate("workspaces");
+                    break;
+                case "monitoradded":
+                case "monitorremoved":
+                case "monitorchanged":
+                    debouncedUpdate("monitors");
+                    break;
+                case "layeropen":
+                case "layerclosed":
+                    debouncedUpdate("layers");
+                    break;
+                default:
+                    // For unknown events, update everything (fallback)
+                    updateAll();
+                    break;
+            }
         }
     }
 

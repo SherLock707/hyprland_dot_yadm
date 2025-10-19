@@ -1,3 +1,4 @@
+import "root:/"
 import "root:/services/"
 import "root:/modules/common"
 import "root:/modules/common/widgets"
@@ -9,17 +10,19 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Wayland
 
-Rectangle { // Window
+Item { // Window
     id: root
+    property var toplevel
     property var windowData
     property var monitorData
     property var scale
     property var availableWorkspaceWidth
     property var availableWorkspaceHeight
     property bool restrictToWorkspace: true``
-    property real initX: Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
-    property real initY: Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
+    property real initX: Math.max((windowData?.at[0] - (monitorData?.x ?? 0) - monitorData?.reserved[0]) * root.scale, 0) + xOffset
+    property real initY: Math.max((windowData?.at[1] - (monitorData?.y ?? 0) - monitorData?.reserved[1]) * root.scale, 0) + yOffset
     property real xOffset: 0
     property real yOffset: 0
     
@@ -34,25 +37,35 @@ Rectangle { // Window
     property var iconPath: Quickshell.iconPath(AppSearch.guessIcon(windowData?.class), "image-missing")
     property bool compactMode: Appearance.font.pixelSize.textSmall * 4 > targetWindowHeight || Appearance.font.pixelSize.textSmall * 4 > targetWindowWidth
 
-    property bool indicateXWayland: (ConfigOptions.overview.showXwaylandIndicator && windowData?.xwayland) ?? false
+    property bool indicateXWayland: windowData?.xwayland ?? false
 
     property url backgroundImage: ""  // Path to the image file (can be empty)
+    property int draggingFromWorkspace: -1
+    property int draggingTargetWorkspace: -1
     
     x: initX
     y: initY
     width: Math.min(windowData?.size[0] * root.scale, (restrictToWorkspace ? windowData?.size[0] : availableWorkspaceWidth - x + xOffset))
     height: Math.min(windowData?.size[1] * root.scale, (restrictToWorkspace ? windowData?.size[1] : availableWorkspaceHeight - y + yOffset))
 
-    radius: Appearance.rounding.windowRounding * root.scale
-    color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2
-    // color: root.backgroundImage !== "" ? "transparent"
-    //    : pressed ? Appearance.colors.colLayer2Active
-    //    : hovered ? Appearance.colors.colLayer2Hover
-    //    : Appearance.colors.colLayer2
-    // border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
-    border.color : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.4)
-    border.pixelAligned : false
-    border.width : 2
+    layer.enabled: true
+    layer.effect: OpacityMask {
+        maskSource: Rectangle {
+            width: root.width
+            height: root.height
+            radius: Appearance.rounding.windowRounding * root.scale
+        }
+    }
+
+    // Window border
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        radius: Appearance.rounding.windowRounding * root.scale
+        border.color: ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.4)
+        border.pixelAligned: false
+        border.width: 2
+    }
 
     Behavior on x {
         animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)
@@ -68,6 +81,18 @@ Rectangle { // Window
     }
 
     // --- Background Layer ---
+    ScreencopyView {
+        id: windowPreview
+        anchors.fill: parent
+        captureSource: GlobalStates.overviewOpen ? root.toplevel : null
+        live: ConfigOptions.overview.liveCapture
+        visible: GlobalStates.overviewOpen && root.toplevel
+        z: -1
+        // Optimize for small preview size
+        smooth: false
+        antialiasing: true
+    }
+
     Image {
         id: bg
         anchors.fill: parent
@@ -75,40 +100,85 @@ Rectangle { // Window
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
         cache: true
-        visible: source !== ""
+        visible: source !== "" && !windowPreview.visible
         smooth: true
         opacity: 0.9
         z: -1
     }
 
-    ColumnLayout {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.right: parent.right
-        spacing: Appearance.font.pixelSize.textSmall * 0.5
-
-        IconImage {
+        Image {
             id: windowIcon
-            Layout.alignment: Qt.AlignHCenter
+            anchors.centerIn: parent
+            property var iconSize: Math.min(targetWindowWidth, targetWindowHeight) * (root.compactMode ? root.iconToWindowRatioCompact : root.iconToWindowRatio)
             source: root.iconPath
-            implicitSize: Math.min(targetWindowWidth, targetWindowHeight) * (root.compactMode ? root.iconToWindowRatioCompact : root.iconToWindowRatio)
+            width: iconSize
+            height: iconSize
+            sourceSize: Qt.size(iconSize, iconSize)
 
-            Behavior on implicitSize {
+            Behavior on width {
+                animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)
+            }
+            Behavior on height {
                 animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)
             }
         }
 
-        StyledText {
-            Layout.leftMargin: 10
-            Layout.rightMargin: 10
-            visible: !compactMode
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: Appearance.font.pixelSize.textSmall
-            font.italic: indicateXWayland ? true : false
-            elide: Text.ElideRight
-            text: windowData?.title ?? ""
+    MouseArea {
+        id: dragArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: hovered = true
+        onExited: hovered = false
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+        drag.target: parent
+        onPressed: {
+            root.draggingFromWorkspace = windowData?.workspace.id
+            root.pressed = true
+            root.Drag.active = true
+            root.Drag.source = root
+        }
+        onReleased: {
+            const targetWorkspace = root.draggingTargetWorkspace
+            root.pressed = false
+            root.Drag.active = false
+            root.draggingFromWorkspace = -1
+            if (targetWorkspace !== -1 && targetWorkspace !== windowData?.workspace.id) {
+                Hyprland.dispatch(`movetoworkspacesilent ${targetWorkspace}, address:${root.windowData?.address}`)
+                updateWindowPosition.restart()
+            }
+            else {
+                root.x = root.initX
+                root.y = root.initY
+            }
+        }
+        onClicked: (event) => {
+            if (!windowData) return;
+
+            if (event.button === Qt.LeftButton) {
+                GlobalStates.overviewOpen = false
+                Hyprland.dispatch(`focuswindow address:${windowData.address}`)
+                event.accepted = true
+            } else if (event.button === Qt.MiddleButton) {
+                Hyprland.dispatch(`closewindow address:${windowData.address}`)
+                event.accepted = true
+            }
+        }
+
+        StyledToolTip {
+            extraVisibleCondition: false
+            alternativeVisibleCondition: dragArea.containsMouse && !root.Drag.active
+            content: `${windowData.title}\n[${windowData.class}] ${windowData.xwayland ? "[XWayland] " : ""}\n`
+        }
+    }
+
+    Timer {
+        id: updateWindowPosition
+        interval: ConfigOptions.hacks.arbitraryRaceConditionDelay
+        repeat: false
+        running: false
+        onTriggered: {
+            root.x = Math.max((windowData?.at[0] - monitorData?.reserved[0] - monitorData?.x) * root.scale, 0) + xOffset
+            root.y = Math.max((windowData?.at[1] - monitorData?.reserved[1] - monitorData?.y) * root.scale, 0) + yOffset
         }
     }
 }

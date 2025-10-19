@@ -17,10 +17,16 @@ Singleton {
         property real windowPadding: 6 
         property real position: 1 // 0: top | 1: middle | 2: bottom
         property real workspaceNumberSize: 120 // Set 0, dynamic calculation based on monitor size
+        property bool liveCapture: false // Enable/disable live window capture
     }
 
     property QtObject resources: QtObject {
         property int updateInterval: 3000
+    }
+
+    property QtObject performance: QtObject {
+        property int hyprlandDebounceMs: 50 // Debounce time for Hyprland updates
+        property bool enableEventFiltering: true // Enable smart event filtering
     }
 
     property QtObject hacks: QtObject {

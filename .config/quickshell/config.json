@@ -16,7 +16,8 @@
     "showXwaylandIndicator": true,
     "windowPadding": 6,
     "position": 1,
-    "workspaceNumberSize": 0
+    "workspaceNumberSize": 0,
+    "liveCapture": false
   },
   "resources": {
     "updateInterval": 3000

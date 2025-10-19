@@ -1,0 +1,6 @@
+module services
+singleton ConfigLoader 1.0 ConfigLoader.qml
+singleton AppSearch 1.0 AppSearch.qml
+singleton HyprlandData 1.0 HyprlandData.qml
+singleton HyprlandKeybinds 1.0 HyprlandKeybinds.qml
+singleton MaterialThemeLoader 1.0 MaterialThemeLoader.qml

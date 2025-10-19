@@ -1,0 +1,4 @@
+module common
+singleton ConfigOptions 1.0 ConfigOptions.qml
+singleton Appearance 1.0 Appearance.qml
+singleton Directories 1.0 Directories.qml

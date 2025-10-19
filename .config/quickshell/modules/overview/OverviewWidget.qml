@@ -231,14 +231,19 @@ Item {
 
             Repeater { // Window repeater
                 model: ScriptModel {
-                    values: windowAddresses.filter((address) => {
+                    values: [...ToplevelManager.toplevels.values.filter((toplevel) => {
+                        const address = `0x${toplevel.HyprlandToplevel?.address}`
                         var win = windowByAddress[address]
-                        return (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
-                    })
+                        const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
+                        return inWorkspaceGroup;
+                    })].reverse()
                 }
                 delegate: OverviewWindow {
                     id: window
-                    windowData: windowByAddress[modelData]
+                    required property var modelData
+                    property var address: `0x${modelData.HyprlandToplevel.address}`
+                    toplevel: modelData
+                    windowData: windowByAddress[address]
                     monitorData: root.monitorData
                     scale: root.scale
                     availableWorkspaceWidth: root.workspaceImplicitWidth
