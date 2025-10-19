@@ -16,7 +16,8 @@ ShellRoot {
     property bool enablePalette: true
 
     Component.onCompleted: {
-        // Initialize any required services here if needed
+        // Load configuration from config.json
+        ConfigLoader.loadConfig()
     }
 
     Loader { active: enableOverview; sourceComponent: Overview {} }
