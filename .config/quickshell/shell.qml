@@ -18,6 +18,8 @@ ShellRoot {
     Component.onCompleted: {
         // Load configuration from config.json
         ConfigLoader.loadConfig()
+        // Load material theme colors
+        MaterialThemeLoader.reapplyTheme()
     }
 
     Loader { active: enableOverview; sourceComponent: Overview {} }
