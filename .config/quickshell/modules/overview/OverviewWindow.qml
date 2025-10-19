@@ -35,6 +35,8 @@ Rectangle { // Window
     property bool compactMode: Appearance.font.pixelSize.textSmall * 4 > targetWindowHeight || Appearance.font.pixelSize.textSmall * 4 > targetWindowWidth
 
     property bool indicateXWayland: (ConfigOptions.overview.showXwaylandIndicator && windowData?.xwayland) ?? false
+
+    property url backgroundImage: ""  // Path to the image file (can be empty)
     
     x: initX
     y: initY
@@ -43,6 +45,10 @@ Rectangle { // Window
 
     radius: Appearance.rounding.windowRounding * root.scale
     color: pressed ? Appearance.colors.colLayer2Active : hovered ? Appearance.colors.colLayer2Hover : Appearance.colors.colLayer2
+    // color: root.backgroundImage !== "" ? "transparent"
+    //    : pressed ? Appearance.colors.colLayer2Active
+    //    : hovered ? Appearance.colors.colLayer2Hover
+    //    : Appearance.colors.colLayer2
     // border.color : ColorUtils.transparentize(Appearance.m3colors.m3outline, 0.9)
     border.color : ColorUtils.transparentize(Appearance.m3colors.m3borderPrimary, 0.4)
     border.pixelAligned : false
@@ -59,6 +65,20 @@ Rectangle { // Window
     }
     Behavior on height {
         animation: Appearance.animation.elementMoveEnter.numberAnimation.createObject(this)
+    }
+
+    // --- Background Layer ---
+    Image {
+        id: bg
+        anchors.fill: parent
+        source: root.backgroundImage
+        fillMode: Image.PreserveAspectCrop
+        asynchronous: true
+        cache: true
+        visible: source !== ""
+        smooth: true
+        opacity: 0.9
+        z: -1
     }
 
     ColumnLayout {

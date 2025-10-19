@@ -11,16 +11,15 @@ import Quickshell
 import "./services/"
 
 ShellRoot {
-    // Enable/disable modules here. False = not loaded at all, so rest assured
-    // no unnecessary stuff will take up memory if you decide to only use, say, the overview.
     property bool enableOverview: true
+    property bool enablePalette: true
 
-    // Force initialization of some singletons
     Component.onCompleted: {
-        MaterialThemeLoader.reapplyTheme()
-        ConfigLoader.loadConfig()
+        // Comment out missing singletons temporarily
+        // MaterialThemeLoader.reapplyTheme()
+        // ConfigLoader.loadConfig()
     }
 
     Loader { active: enableOverview; sourceComponent: Overview {} }
-
+    //Loader { active: enablePalette; source: "./PaletteWidget.qml" }
 }

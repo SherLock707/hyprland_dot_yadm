@@ -59,13 +59,13 @@ Scope {
                 target: GlobalStates
                 function onOverviewOpenChanged() {
                     if (!GlobalStates.overviewOpen) {
-                        if (overviewScope.searchEnabled && searchWidget) {
-                            searchWidget.disableExpandAnimation()
+                        if (overviewScope.searchEnabled && searchWidgetLoader.item) {
+                            searchWidgetLoader.item.disableExpandAnimation()
                         }
                         overviewScope.dontAutoCancelSearch = false;
                     } else {
-                        if (!overviewScope.dontAutoCancelSearch && overviewScope.searchEnabled && searchWidget) {
-                            searchWidget.cancelSearch()
+                        if (!overviewScope.dontAutoCancelSearch && overviewScope.searchEnabled && searchWidgetLoader.item) {
+                            searchWidgetLoader.item.cancelSearch()
                         }
                         delayedGrabTimer.start()
                     }
@@ -86,8 +86,8 @@ Scope {
             implicitHeight: columnLayout.implicitHeight
 
             function setSearchingText(text) {
-                if (overviewScope.searchEnabled && searchWidget) {
-                    searchWidget.setSearchingText(text);
+                if (overviewScope.searchEnabled && searchWidgetLoader.item) {
+                    searchWidgetLoader.item.setSearchingText(text);
                 }
             }
 
@@ -112,16 +112,28 @@ Scope {
                     width: 1
                 }
 
-                // Conditionally render SearchWidget - only exists when searchEnabled is true
-                SearchWidget {
-                    id: searchWidget
+                // FIX: Use Loader to conditionally load SearchWidget ONLY when searchEnabled is true
+                Loader {
+                    id: searchWidgetLoader
                     Layout.alignment: Qt.AlignHCenter
+                    active: overviewScope.searchEnabled
                     visible: overviewScope.searchEnabled
-                    height: overviewScope.searchEnabled ? implicitHeight : 0
-                    Layout.preferredHeight: overviewScope.searchEnabled ? implicitHeight : 0
-                    onSearchingTextChanged: (text) => {
-                        root.searchingText = searchingText
+                    Layout.preferredHeight: (overviewScope.searchEnabled && item) ? item.implicitHeight : 0
+                    
+                    sourceComponent: overviewScope.searchEnabled ? searchWidgetComponent : null
+                    
+                    onLoaded: {
+                        if (item) {
+                            item.searchingTextChanged.connect(function(text) {
+                                root.searchingText = item.searchingText
+                            })
+                        }
                     }
+                }
+                
+                Component {
+                    id: searchWidgetComponent
+                    SearchWidget {}
                 }
 
                 Item {
@@ -130,10 +142,18 @@ Scope {
                     visible: !overviewScope.searchEnabled
                 }
 
+                // FIX: Use Loader to load OverviewWidget from file
                 Loader {
-                    id: overviewLoader
+                    id: overviewWidgetLoader
                     active: GlobalStates.overviewOpen
-                    sourceComponent: OverviewWidget {
+                    Layout.alignment: Qt.AlignHCenter
+                    
+                    sourceComponent: overviewWidgetComponent
+                }
+                
+                Component {
+                    id: overviewWidgetComponent
+                    OverviewWidget {
                         panelWindow: root
                         // Show OverviewWidget when search is disabled OR when search text is empty
                         visible: !overviewScope.searchEnabled || (root.searchingText == "")
@@ -158,7 +178,6 @@ Scope {
         function toggleReleaseInterrupt() {
             GlobalStates.superReleaseMightTrigger = false
         }
-        // Add function to control search
         function toggleSearch() {
             overviewScope.searchEnabled = !overviewScope.searchEnabled
         }
@@ -216,13 +235,12 @@ Scope {
         }
     }
     
-    // Only enable clipboard/emoji shortcuts when search is enabled
     GlobalShortcut {
         name: "overviewClipboardToggle"
         description: qsTr("Toggle clipboard query on overview widget")
 
         onPressed: {
-            if (!overviewScope.searchEnabled) return; // Skip if search disabled
+            if (!overviewScope.searchEnabled) return;
             
             if (GlobalStates.overviewOpen && overviewScope.dontAutoCancelSearch) {
                 GlobalStates.overviewOpen = false;
@@ -247,7 +265,7 @@ Scope {
         description: qsTr("Toggle emoji query on overview widget")
 
         onPressed: {
-            if (!overviewScope.searchEnabled) return; // Skip if search disabled
+            if (!overviewScope.searchEnabled) return;
             
             if (GlobalStates.overviewOpen && overviewScope.dontAutoCancelSearch) {
                 GlobalStates.overviewOpen = false;
@@ -267,7 +285,6 @@ Scope {
         }
     }
 
-    // Optional: Add shortcut to toggle search functionality
     GlobalShortcut {
         name: "overviewToggleSearch"
         description: qsTr("Toggle search functionality in overview")
