@@ -3,9 +3,6 @@
     "theme": "dark",
     "scale": 1.25
   },
-  "features": {
-    "animations": true
-  },
   "appearance": {
     "fakeScreenRounding": 1
   },
@@ -33,9 +30,6 @@
       "clipboard": ";",
       "emojis": ":"
     }
-  },
-  "bar": {
-    "bottom": false
   },
   "font": {
     "family": {

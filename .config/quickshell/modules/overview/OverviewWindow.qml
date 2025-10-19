@@ -88,9 +88,10 @@ Item { // Window
         live: ConfigOptions.overview.liveCapture
         visible: GlobalStates.overviewOpen && root.toplevel
         z: -1
-        // Optimize for small preview size
-        smooth: false
+        // Let it capture at natural resolution with best scaling
+        smooth: true
         antialiasing: true
+        // Remove sourceSize to let it capture at natural resolution
     }
 
     Image {

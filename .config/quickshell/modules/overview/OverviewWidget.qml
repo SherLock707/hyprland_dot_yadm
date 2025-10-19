@@ -182,7 +182,8 @@ Item {
                                 anchors.leftMargin: 12 // Padding from left edge
                                 
                                 text: workspaceValue
-                                font.pixelSize: root.workspaceNumberSize * root.scale
+                                property int workspaceFontSize: Math.floor(root.workspaceNumberSize * root.scale)
+                                font.pixelSize: workspaceFontSize
                                 font.weight: Font.DemiBold
                                 color: ColorUtils.transparentize(Appearance.colors.colOnLayer1, 0.8)
                                 horizontalAlignment: Text.AlignLeft
