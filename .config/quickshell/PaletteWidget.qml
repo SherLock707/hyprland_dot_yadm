@@ -43,20 +43,8 @@ PanelWindow {
         id: focusGrab
         windows: [paletteWindow]
         active: GlobalStates.paletteOpen
-        onCleared: () => {
-            if (!active) GlobalStates.paletteOpen = false
-        }
     }
     
-    // Global shortcut for Escape key
-    GlobalShortcut {
-        name: "paletteClose"
-        description: qsTr("Closes palette")
-        
-        onPressed: {
-            GlobalStates.paletteOpen = false
-        }
-    }
     
     Process {
         id: colorLoader
@@ -72,14 +60,9 @@ PanelWindow {
                     try {
                         const content = text.trim()
                         if (content) {
-                            console.log("Loaded colors from:", colorJsonPath)
-                            console.log("Raw content:", content)
                             colorDict = JSON.parse(content)
                             colorKeys = Object.keys(colorDict)
-                            console.log("Parsed colorDict:", colorDict)
-                            console.log("Color keys:", colorKeys)
                         } else {
-                            console.log("Empty output from cat command")
                             // Fallback to default colors if file is empty
                             colorDict = {
                                 "color0": "#1e1e2e",
@@ -94,8 +77,6 @@ PanelWindow {
                             colorKeys = Object.keys(colorDict)
                         }
                     } catch (e) {
-                        console.log("Failed to parse colors.json:", e)
-                        console.log("Content that failed to parse:", text)
                         // Fallback to default colors if parsing fails
                         colorDict = {
                             "color0": "#1e1e2e",
@@ -115,7 +96,6 @@ PanelWindow {
         
         onExited: function(exitCode) {
             if (exitCode !== 0 && !loaded) {
-                console.log("Failed to read color file, using defaults")
                 loaded = true
                 // Fallback to default colors if file doesn't exist
                 colorDict = {
@@ -158,15 +138,14 @@ PanelWindow {
         processComp.running = true
     }
     
-    // Refresh theme
-    function refreshTheme() {
-        console.log("Refreshing theme...")
-        writeTheme()
-        
-        const processComp = Qt.createQmlObject('import Quickshell.Io; Process {}', paletteWindow)
-        processComp.command = [scriptPath, "theme-only"]
-        processComp.running = true
-    }
+        // Refresh theme
+        function refreshTheme() {
+            writeTheme()
+            
+            const processComp = Qt.createQmlObject('import Quickshell.Io; Process {}', paletteWindow)
+            processComp.command = [scriptPath, "theme-only"]
+            processComp.running = true
+        }
     
     // Pick color using kcolorchooser
     function pickColor(label, currentColor) {
@@ -174,17 +153,15 @@ PanelWindow {
         processComp.command = ["kcolorchooser", "--color=" + currentColor, "--print"]
         
         processComp.stdout = Qt.createQmlObject('import Quickshell.Io; StdioCollector {}', processComp)
-        processComp.stdout.onStreamFinished.connect(function() {
-            const newColor = processComp.stdout.text.trim()
-            console.log("Color picker output:", newColor)
-            if (newColor && newColor.startsWith('#')) {
-                colorDict[label] = newColor
-                // Trigger reactivity by creating new object
-                colorDict = Object.assign({}, colorDict)
-                colorKeys = Object.keys(colorDict)
-                console.log("Updated color for", label, "to", newColor)
-            }
-        })
+            processComp.stdout.onStreamFinished.connect(function() {
+                const newColor = processComp.stdout.text.trim()
+                if (newColor && newColor.startsWith('#')) {
+                    colorDict[label] = newColor
+                    // Trigger reactivity by creating new object
+                    colorDict = Object.assign({}, colorDict)
+                    colorKeys = Object.keys(colorDict)
+                }
+            })
         
         processComp.running = true
     }
@@ -196,14 +173,26 @@ PanelWindow {
         processComp.running = true
     }
     
-    Rectangle {
-        id: mainContainer
-        implicitWidth: contentColumn.implicitWidth + 20
-        implicitHeight: contentColumn.implicitHeight + 20
-        color: Qt.rgba(0.118, 0.118, 0.180, 0.7) // #1e1e2e with 0.7 alpha
-        radius: 20
-        border.width: 2
-        border.color: colorDict["color7"] || "#ffffff"
+        Rectangle {
+            id: mainContainer
+            implicitWidth: contentColumn.implicitWidth + 20
+            implicitHeight: contentColumn.implicitHeight + 20
+            color: Qt.rgba(0.118, 0.118, 0.180, 0.7) // #1e1e2e with 0.7 alpha
+            radius: 20
+            border.width: 2
+            border.color: colorDict["color7"] || "#ffffff"
+            
+    // Focus handling for keyboard input
+    focus: true
+    activeFocusOnTab: true
+    
+    // Keyboard handling for Escape key
+    Keys.onPressed: (event) => {
+        if (event.key === Qt.Key_Escape) {
+            GlobalStates.paletteOpen = false
+            event.accepted = true
+        }
+    }
         
         ColumnLayout {
             id: contentColumn
@@ -247,25 +236,7 @@ PanelWindow {
                             visible: status === Image.Ready
                         
                         onStatusChanged: {
-                            console.log("Image status:", status)
-                            console.log("Image source:", source)
-                            if (status === Image.Error) {
-                                console.log("Failed to load wallpaper from:", wallpaperPath)
-                                console.log("Checking if file exists...")
-                                // Try to check if file exists
-                                const checkProcess = Qt.createQmlObject('import Quickshell.Io; Process {}', paletteWindow)
-                                checkProcess.command = ["test", "-f", wallpaperPath]
-                                checkProcess.onExited.connect(function(exitCode) {
-                                    if (exitCode === 0) {
-                                        console.log("File exists but failed to load - might be corrupted or wrong format")
-                                    } else {
-                                        console.log("File does not exist at:", wallpaperPath)
-                                    }
-                                })
-                                checkProcess.running = true
-                            } else if (status === Image.Ready) {
-                                console.log("Wallpaper loaded successfully")
-                            }
+                            // Image status handling without debug prints
                         }
                     }
                 }
@@ -381,11 +352,7 @@ PanelWindow {
     
     
     
-    Component.onCompleted: {
-        console.log("PaletteWidget loaded")
-        console.log("Wallpaper path:", wallpaperPath)
-        console.log("Color JSON path:", colorJsonPath)
-        console.log("Theme path:", themePath)
-        console.log("Script path:", scriptPath)
-    }
+        Component.onCompleted: {
+            // PaletteWidget loaded
+        }
 }

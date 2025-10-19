@@ -5,6 +5,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
+import "root:/modules/common"
 
 /**
  * Provides access to some Hyprland data not available in Quickshell.Hyprland.

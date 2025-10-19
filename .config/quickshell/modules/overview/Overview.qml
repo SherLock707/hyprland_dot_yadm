@@ -49,10 +49,7 @@ Scope {
                 id: grab
                 windows: [ root ]
                 property bool canBeActive: root.monitorIsFocused
-                active: false
-                onCleared: () => {
-                    if (!active) GlobalStates.overviewOpen = false
-                }
+                active: GlobalStates.overviewOpen
             }
 
             Connections {
@@ -94,6 +91,8 @@ Scope {
             ColumnLayout {
                 id: columnLayout
                 visible: GlobalStates.overviewOpen
+                focus: true
+                activeFocusOnTab: true
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: ConfigOptions.overview.position === 0 ? parent.top : undefined
@@ -104,6 +103,7 @@ Scope {
                 Keys.onPressed: (event) => {
                     if (event.key === Qt.Key_Escape) {
                         GlobalStates.overviewOpen = false;
+                        event.accepted = true
                     }
                 }
 
