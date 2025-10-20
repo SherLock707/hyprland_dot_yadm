@@ -1,5 +1,14 @@
 # Hyprland Arch
 
+<div align="center">
+
+![GitHub Created At](https://img.shields.io/github/created-at/SherLock707/hyprland_dot_yadm?style=for-the-badge&label=CREATED&logo=git&logoColor=white&labelColor=1f2430&color=8bd5f7)
+![Commits](https://img.shields.io/github/commit-activity/y/SherLock707/hyprland_dot_yadm?style=for-the-badge&label=COMMITS&logo=git&logoColor=white&labelColor=1f2430&color=f5a97f)
+![Last Commit](https://img.shields.io/github/last-commit/SherLock707/hyprland_dot_yadm?style=for-the-badge&label=LAST%20COMMIT&logo=git&logoColor=white&labelColor=1f2430&color=8bd5f7)
+![Repo Size](https://img.shields.io/github/repo-size/SherLock707/hyprland_dot_yadm?style=for-the-badge&label=REPO%20SIZE&logo=github&logoColor=white&labelColor=1f2430&color=a6da95)
+
+</div>
+
 ### 🖥️ **WM**: [Hyprland](https://github.com/hyprwm/Hyprland)  
 ### 🐚 **Shell**: [Fish](https://github.com/fish-shell/fish-shell)  
 ### ⏳ **Prompt**: [starship](https://github.com/starship/starship)  
