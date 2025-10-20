@@ -15,21 +15,153 @@
 @define-color text-color-disabled rgb(150, 150, 150);
 @define-color bg-selected rgb(0, 128, 255);
 
+:root {
+  --cc-bg: rgba(36, 36, 59, 0.5);
+  --noti-border-color: @accent;
+  --noti-bg: 30, 30, 46;
+  --noti-bg-alpha: 0.6;
+  --noti-bg-darker: rgb(43, 43, 57);
+  --noti-bg-hover: rgba(127, 132, 156, 1);
+  --noti-bg-focus: rgba(27, 27, 43, 0.6);
+  --noti-close-bg: rgba(243, 139, 168, 1);
+  --noti-close-bg-hover: rgba(235, 160, 172, 1);
+  --text-color: rgb(205, 214, 244);
+  --text-color-disabled: rgb(150, 150, 150);
+  --bg-selected: rgb(116, 199, 236);
+  --notification-icon-size: 64px;
+  --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
+  --notification-group-icon-size: 64px;
+  --border: 1px solid var(--noti-border-color);
+  --border-radius: 12.6px;
+  --notification-shadow: 0 0 0 0px rgba(0, 0, 0, 0.0),
+    0 1px 3px 1px rgba(0, 0, 0, 0.7), 0 2px 6px 2px rgba(0, 0, 0, 0.3);
+  --font-size-body: 15px;
+  --font-size-summary: 16px;
+  --hover-transition: background 0.15s ease-in-out;
+  --group-collapse-transition: opacity 400ms ease-in-out;
+}
+
 * {
-  all: unset;
   font-family: "JetBrains Mono Nerd Font 5";
   font-weight: bold;
   font-size: 1.2rem;
   transition: 200ms;
 }
 
+notificationwindow, blankwindow {
+  background: transparent;
+}
+
+.close-button {
+  background: var(--noti-close-bg);
+  color: #1e1e2e;
+  text-shadow: none;
+  padding: 2px;
+  border-radius: 6.3px;
+  margin: 7px;
+  box-shadow: none;
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: var(--noti-close-bg-hover);
+  transition: var(--hover-transition);
+  border: none;
+}
+
+.notification-row {
+  background: transparent;
+  outline: none;
+}
+
+.notification-row:focus,
+.notification-row:focus-within,
+.notification-row:hover,
+.notification-row:selected {
+  background: transparent;
+  outline: none;
+}
+
+.control-center .notification-row,
+.control-center .notification-row:focus,
+.control-center .notification-row:focus-within,
+.control-center .notification-row:hover,
+.control-center .notification-row:selected {
+  background: transparent;
+  outline: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.control-center .notification-row:focus .notification {
+  background-color: #313244;
+  box-shadow: inset 0 0 0 2px @accent;
+}
+
+.notification-row .notification-background {
+  padding: 0px;
+}
+
+.notification-row .notification-background .notification {
+  border-radius: var(--border-radius);
+  border: var(--border);
+  padding: 0;
+  transition: var(--hover-transition);
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+}
+
+/* Control center overrides */
+.control-center .notification-row .notification-background {
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+}
+
+.control-center .notification-row .notification-background .notification {
+  border: none;
+  border-radius: 7px;
+  background-color: #313244;
+  box-shadow: inset 0 0 0 1px #45475a;
+}
+
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 4px;
+  margin: 0;
+  box-shadow: none;
+  background: transparent;
+  border: none;
+  color: #cdd6f4;
+  transition: background 0.15s ease-in-out;
+  border-radius: 12.6px;
+}
+
+.notification-row .notification-background .notification .notification-default-action:focus,
+.notification-row .notification-background .notification .notification-default-action:hover,
+.notification-row .notification-background .notification .notification-default-action:active {
+  background: transparent;
+}
+
+.control-center .notification-row .notification-background .notification .notification-default-action {
+  background: transparent;
+  border-radius: 7px;
+}
+
+.control-center .notification-row .notification-background .notification .notification-default-action:focus,
+.control-center .notification-row .notification-background .notification .notification-default-action:hover,
+.control-center .notification-row .notification-background .notification .notification-default-action:active {
+  background: transparent;
+}
+
 /* --- Floating Notifications --- */
 
 .floating-notifications.background .notification-row .notification-background {
-  border-radius: 12.6px;
+  border-radius: 14.5px;
   margin: 18px;
-  padding: 3px;
-  background-color: rgba(30, 30, 46, 0.6);
+  padding: 0px;
+  background-color: transparent;
   color: #cdd6f4;
   border: 1px solid @accent;
   border-bottom: 4px solid @accent;
@@ -38,7 +170,8 @@
 
 .floating-notifications.background .notification {
   padding: 7px;
-  border-radius: 12.6px;
+  border-radius: 11px;
+  background-color: rgba(30, 30, 46, 0.6);
 }
 
 .floating-notifications.background .notification.critical {
@@ -67,19 +200,12 @@
   border-radius: 7px;
   margin: 7px;
   color: #cdd6f4;
-  background-color: #313244;
-  box-shadow: inset 0 0 0 1px #45475a;
-}
-
-.notification-action {
-  border-radius: 5px;
-  margin: 5px;
-  border: 1px;
   background: linear-gradient(180deg, alpha(@accent, 0.6) 70%, alpha(@accent2, 0.4));
+  border: 1px solid @accent;
 }
 
 .floating-notifications.background .notification-action:hover {
-  background-color: #313244;
+  background: alpha(@accent, 0.8);
 }
 
 .floating-notifications.background .notification-action:active {
@@ -146,17 +272,42 @@
 
 /* Notifications inside Control Center */
 
+.control-center .notification-row {
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+}
+
+.control-center .notification-row:focus {
+  background: transparent;
+  outline: none;
+}
+
+.control-center .notification-row .notification-background {
+  padding: 0px;
+  margin: 0px;
+  background: transparent;
+}
+
+.control-center .notification-row .notification-background .notification {
+  border: none;
+  border-radius: 7px;
+  background-color: #313244;
+  box-shadow: inset 0 0 0 1px #45475a;
+}
+
 .control-center .notification-background {
   margin-top: 14px;
   border-radius: 7px;
-  background-color: #313244;
+  background-color: transparent;
   color: #cdd6f4;
-  box-shadow: inset 0 0 0 1px #45475a;
 }
 
 .control-center .notification {
   padding: 7px;
   border-radius: 7px;
+  background-color: #313244;
+  box-shadow: inset 0 0 0 1px #45475a;
 }
 
 .control-center .notification.critical {
@@ -180,12 +331,12 @@
   border-radius: 7px;
   margin: 7px;
   color: #cdd6f4;
-  background-color: #11111b;
-  box-shadow: inset 0 0 0 1px #45475a;
+  background: linear-gradient(180deg, alpha(@accent, 0.6) 70%, alpha(@accent2, 0.4));
+  border: 1px solid @accent;
 }
 
 .control-center .notification-action:hover {
-  background-color: #313244;
+  background: alpha(@accent, 0.8);
 }
 
 .control-center .notification-action:active {
@@ -205,11 +356,19 @@
 }
 
 .control-center .notification-background:hover {
-  background-color: #7f849c;
+  background-color: transparent;
+}
+
+.control-center .notification:hover {
+  background-color: rgba(127, 132, 156, 0.3);
 }
 
 .control-center .notification-background:active {
-  background-color: #74c7ec;
+  background-color: transparent;
+}
+
+.control-center .notification:active {
+  background-color: rgba(116, 199, 236, 0.3);
 }
 
 /* --- Progress Bars --- */
@@ -274,7 +433,7 @@ progress {
   border: 2px solid @color7;
 }
 
-/* --- MPRIS Widget (from author, adapted) --- */
+/* --- MPRIS Widget --- */
 
 .widget.widget-mpris {
   background: transparent;
@@ -285,9 +444,9 @@ progress {
 
 .widget.widget-mpris > carouselindicatordots {
   --dots-padding: 4px;
-  padding: var(--dots-padding);
-  padding-left: var(--dots-padding);
-  padding-right: calc(6px + var(--dots-padding));
+  padding: 2px;
+  padding-left: 1px;
+  padding-right: 1px;
   margin: 0;
   margin-top: 6px;
 }
@@ -313,17 +472,61 @@ progress {
   font-weight: bold;
   color: @accent;
   text-shadow: 
-    0 0 10px rgba(255,255,255,0.9),   /* stronger glow */
-    0 0 20px rgba(255,255,255,0.7),   /* extended glow */
-    2px 2px 6px rgba(0,0,0,0.7),      /* depth shadow */
-    -1px -1px 2px rgba(0,0,0,0.5);    /* subtle contrast */
+    0 0 10px rgba(255,255,255,0.9),
+    0 0 20px rgba(255,255,255,0.7),
+    2px 2px 6px rgba(0,0,0,0.7),
+    -1px -1px 2px rgba(0,0,0,0.5);
   border-radius: 0.2em;
 }
-
 
 .widget-mpris-subtitle {
   font-size: large;
   color: @accent;
+}
+
+.mpris {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  margin: 8px;
+  padding: 8px;
+  transform: scale(0.8);
+  transform-origin: top center;
+}
+
+.mpris-player {
+}
+
+.mpris-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.mpris-artist {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mpris-controls {
+  margin-top: 6px;
+}
+
+.mpris-button {
+  font-size: 18px;
+  color: white;
+  opacity: 0.8;
+}
+
+.mpris-button:hover {
+  opacity: 1;
+}
+
+.mpris,
+.mpris-player,
+.widget.mpris {
+  box-shadow: none;
+  border: none;
+  background-clip: padding-box;
 }
 
 /* --- Button Grid --- */
@@ -332,12 +535,32 @@ progress {
   font-size: x-large;
   padding: 1px;
   border-radius: 0;
+  margin: 6px;
+  padding: 4px;
+}
+
+.widget-buttons-grid button {
+  background: alpha(@accent, 0.5);
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: white;
+  border: 1px solid @accent;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.widget-buttons-grid button:hover {
+  background: rgba(122, 162, 247, 1);
+  color: @cc-bg;
+  transform: scale(1.1);
+}
+
+.widget-buttons-grid button:checked {
+  background: @accent2;
+  color: @cc-bg;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
   margin: 2px;
-  min-height: 30px;
-  min-width: 65px;
   background: alpha(@accent, 0.5);
   border-radius: 10px;
   color: white;
@@ -368,16 +591,38 @@ progress {
   color: @accent;
 }
 
+.widget-title {
+  margin-top: 0px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.widget-mpris {
+  margin-bottom: 0px; 
+  margin-top: -3px;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.widget-notifications {
+  margin-bottom: 0px;
+  margin-top: -15px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
 /* --- Notification Groups --- */
 
 .notification-group {
   margin: 0 4px 8px;
+  background: transparent;
 }
 
 .notification-group-headers {
   font-weight: 900;
   font-size: 1.25rem;
   letter-spacing: 2px;
+  color: #cdd6f4;
 }
 
 .notification-group-icon {
@@ -386,13 +631,14 @@ progress {
 
 .notification-group-collapse-button,
 .notification-group-close-all-button {
-  background: @surface;
+  background: #313244;
   margin: 4px;
   border-radius: 20px;
   padding: 8px;
+  border: 1px solid @accent;
 }
 
 .notification-group-collapse-button:hover,
 .notification-group-close-all-button:hover {
-  background: @hover;
+  background: #7f849c;
 }
