@@ -201,7 +201,7 @@ notificationwindow, blankwindow {
   margin: 7px;
   color: #cdd6f4;
   background: linear-gradient(180deg, alpha(@accent, 0.6) 70%, alpha(@accent2, 0.4));
-  border: 1px solid @accent;
+  border: none;
 }
 
 .floating-notifications.background .notification-action:hover {
@@ -332,7 +332,7 @@ notificationwindow, blankwindow {
   margin: 7px;
   color: #cdd6f4;
   background: linear-gradient(180deg, alpha(@accent, 0.6) 70%, alpha(@accent2, 0.4));
-  border: 1px solid @accent;
+  border: none;
 }
 
 .control-center .notification-action:hover {
