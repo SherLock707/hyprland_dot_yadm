@@ -46,19 +46,30 @@ get_backlight_icon() {
 }
 
 # Get appropriate icon
+# get_icon() {
+# 	current=$(get_backlight)
+# 	if   [ "$current" -le 20 ]; then
+# 		icon="$iDIR/brightness-20.png"
+# 	elif [ "$current" -le 40 ]; then
+# 		icon="$iDIR/brightness-40.png"
+# 	elif [ "$current" -le 60 ]; then
+# 		icon="$iDIR/brightness-60.png"
+# 	elif [ "$current" -le 80 ]; then
+# 		icon="$iDIR/brightness-80.png"
+# 	else
+# 		icon="$iDIR/brightness-100.png"
+# 	fi
+# }
 get_icon() {
 	current=$(get_backlight)
-	if   [ "$current" -le 20 ]; then
-		icon="$iDIR/brightness-20.png"
-	elif [ "$current" -le 40 ]; then
-		icon="$iDIR/brightness-40.png"
-	elif [ "$current" -le 60 ]; then
-		icon="$iDIR/brightness-60.png"
-	elif [ "$current" -le 80 ]; then
-		icon="$iDIR/brightness-80.png"
-	else
-		icon="$iDIR/brightness-100.png"
-	fi
+
+	# Round brightness down to nearest multiple of 5
+	level=$(( (current / 5) * 5 ))
+
+	# Format with leading zero if needed (e.g., 05)
+	printf -v level "%02d" "$level"
+
+	icon="$iDIR/brightness-${level}.png"
 }
 
 # Show notification
