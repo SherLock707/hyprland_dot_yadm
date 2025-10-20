@@ -18,6 +18,13 @@ PanelWindow {
     property string scriptPath: `${Quickshell.env("HOME")}/.config/hypr/scripts/ThemeEngine.sh`
     property string colorJsonPath: `${Quickshell.env("HOME")}/.cache/hellwal/colors.json`
     
+    // Watch for palette opening to reload data
+    onVisibleChanged: {
+        if (visible) {
+            reloadData()
+        }
+    }
+    
     anchors {
         top: true
         left: true
@@ -46,71 +53,67 @@ PanelWindow {
     }
     
     
-    Process {
-        id: colorLoader
-        command: ["cat", colorJsonPath]
-        running: true
+    // Function to reload colors and wallpaper
+    function reloadData() {
+        loadColors()
+        reloadWallpaper()
+    }
+    
+    // Function to load colors from JSON file
+    function loadColors() {
+        const processComp = Qt.createQmlObject('import Quickshell.Io; Process {}', paletteWindow)
+        processComp.command = ["cat", colorJsonPath]
         
-        property bool loaded: false
-        
-        stdout: StdioCollector {
-            onStreamFinished: {
-                if (!colorLoader.loaded) {
-                    colorLoader.loaded = true
-                    try {
-                        const content = text.trim()
-                        if (content) {
-                            colorDict = JSON.parse(content)
-                            colorKeys = Object.keys(colorDict)
-                        } else {
-                            // Fallback to default colors if file is empty
-                            colorDict = {
-                                "color0": "#1e1e2e",
-                                "color1": "#f38ba8", 
-                                "color2": "#a6e3a1",
-                                "color3": "#f9e2af",
-                                "color4": "#89b4fa",
-                                "color5": "#cba6f7",
-                                "color6": "#94e2d5",
-                                "color7": "#cdd6f4"
-                            }
-                            colorKeys = Object.keys(colorDict)
-                        }
-                    } catch (e) {
-                        // Fallback to default colors if parsing fails
-                        colorDict = {
-                            "color0": "#1e1e2e",
-                            "color1": "#f38ba8", 
-                            "color2": "#a6e3a1",
-                            "color3": "#f9e2af",
-                            "color4": "#89b4fa",
-                            "color5": "#cba6f7",
-                            "color6": "#94e2d5",
-                            "color7": "#cdd6f4"
-                        }
-                        colorKeys = Object.keys(colorDict)
-                    }
+        processComp.stdout = Qt.createQmlObject('import Quickshell.Io; StdioCollector {}', processComp)
+        processComp.stdout.onStreamFinished.connect(function() {
+            try {
+                const content = processComp.stdout.text.trim()
+                if (content) {
+                    colorDict = JSON.parse(content)
+                    colorKeys = Object.keys(colorDict)
+                } else {
+                    // Fallback to default colors if file is empty
+                    setDefaultColors()
                 }
+            } catch (e) {
+                // Fallback to default colors if parsing fails
+                setDefaultColors()
             }
-        }
+        })
         
-        onExited: function(exitCode) {
-            if (exitCode !== 0 && !loaded) {
-                loaded = true
+        processComp.onExited.connect(function(exitCode) {
+            if (exitCode !== 0) {
                 // Fallback to default colors if file doesn't exist
-                colorDict = {
-                    "color0": "#1e1e2e",
-                    "color1": "#f38ba8", 
-                    "color2": "#a6e3a1",
-                    "color3": "#f9e2af",
-                    "color4": "#89b4fa",
-                    "color5": "#cba6f7",
-                    "color6": "#94e2d5",
-                    "color7": "#cdd6f4"
-                }
-                colorKeys = Object.keys(colorDict)
+                setDefaultColors()
             }
+        })
+        
+        processComp.running = true
+    }
+    
+    // Function to set default colors
+    function setDefaultColors() {
+        colorDict = {
+            "color0": "#1e1e2e",
+            "color1": "#f38ba8", 
+            "color2": "#a6e3a1",
+            "color3": "#f9e2af",
+            "color4": "#89b4fa",
+            "color5": "#cba6f7",
+            "color6": "#94e2d5",
+            "color7": "#cdd6f4"
         }
+        colorKeys = Object.keys(colorDict)
+    }
+    
+    // Function to reload wallpaper
+    function reloadWallpaper() {
+        // Clear the current source first to force reload
+        wallpaperImage.source = ""
+        // Add a small delay to ensure the clear takes effect
+        Qt.callLater(function() {
+            wallpaperImage.source = "file://" + wallpaperPath + "?t=" + Date.now()
+        })
     }
     
     // Calculate complementary color for text (matches Python version)
@@ -230,10 +233,12 @@ PanelWindow {
                         Image {
                             id: wallpaperImage
                             anchors.fill: parent
-                            source: "file://" + wallpaperPath
+                            source: "file://" + wallpaperPath + "?t=" + Date.now()
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
                             visible: status === Image.Ready
+                            smooth: true
+                            antialiasing: true
                         
                         onStatusChanged: {
                             // Image status handling without debug prints
@@ -353,6 +358,7 @@ PanelWindow {
     
     
         Component.onCompleted: {
-            // PaletteWidget loaded
+            // Load initial data
+            reloadData()
         }
 }

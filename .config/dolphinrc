@@ -57,4 +57,4 @@ Plugins=audiothumbnail,cursorthumbnail,ebookthumbnail,imagethumbnail,jpegthumbna
 ToolButtonStyle=IconOnly
 
 [UiSettings]
-ColorScheme=CatppuccinMochaFlamingo
+ColorScheme=CatppuccinMochaColorAdapt

@@ -30,3 +30,7 @@ if [ -n "$new_color" ]; then
 # else
 #     echo "New color code not found."
 fi
+
+# Dolphin colours
+src_file="$HOME/.cache/hellwal/qt_dolphin_colors.colors"
+[ -f "$src_file" ] && cp -f "$src_file" "$HOME/.local/share/color-schemes/CatppuccinMochaColorAdapt.colors"
