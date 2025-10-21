@@ -2,24 +2,24 @@
 update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,icons_remove_effects.upd:IconsRemoveEffects,kwin.upd:animation-speed,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
-ChangeSelectionColor=true
-Color=56,56,56
-ColorAmount=0
-ColorEffect=0
-ContrastAmount=0.65
-ContrastEffect=1
+ChangeSelectionColor=
+Color=30, 30, 46
+ColorAmount=0.30000000000000004
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=0
 Enable=
-IntensityAmount=0.1
-IntensityEffect=2
+IntensityAmount=-1
+IntensityEffect=0
 
 [ColorEffects:Inactive]
 ChangeSelectionColor=true
-Color=112,111,110
-ColorAmount=0.025
-ColorEffect=2
-ContrastAmount=0.1
-ContrastEffect=2
-Enable=false
+Color=30, 30, 46
+ColorAmount=0.5
+ColorEffect=3
+ContrastAmount=0
+ContrastEffect=0
+Enable=true
 IntensityAmount=0
 IntensityEffect=0
 
@@ -29,116 +29,102 @@ BackgroundNormal=186,152,227
 ForegroundNormal=186,152,227
 
 [Colors:Button]
-BackgroundAlternate=205,181,234
-BackgroundNormal=252,252,252
+BackgroundAlternate=144,121,179
+BackgroundNormal=49, 50, 68
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=112,125,138
-ForegroundLink=156,90,217
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundInactive=166, 173, 200
+ForegroundLink=186,152,227
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:Complementary]
-BackgroundAlternate=27,30,32
-BackgroundNormal=205,181,234
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=161,169,177
+ForegroundInactive=166, 173, 200
 ForegroundLink=186,152,227
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=252,252,252
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:Header]
-BackgroundAlternate=239,240,241
-BackgroundNormal=222,224,226
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=112,125,138
-ForegroundLink=156,90,217
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
-
-[Colors:Header][Inactive]
-BackgroundAlternate=227,229,231
-BackgroundNormal=239,240,241
-DecorationFocus=61,174,233
-DecorationHover=61,174,233
-ForegroundActive=61,174,233
-ForegroundInactive=112,125,138
-ForegroundLink=41,128,185
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundInactive=166, 173, 200
+ForegroundLink=186,152,227
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:Selection]
-BackgroundAlternate=206,182,235
-BackgroundNormal=206,182,235
+BackgroundAlternate=139,115,172
+BackgroundNormal=139,115,172
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
 ForegroundInactive=0,0,0
-ForegroundLink=224,211,241
-ForegroundNegative=176,55,69
-ForegroundNeutral=198,92,0
+ForegroundLink=156,90,217
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
 ForegroundNormal=0,0,0
-ForegroundPositive=23,104,57
-ForegroundVisited=155,89,182
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:Tooltip]
-BackgroundAlternate=239,240,241
-BackgroundNormal=247,247,247
+BackgroundAlternate=27,25,35
+BackgroundNormal=30, 30, 46
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=112,125,138
-ForegroundLink=156,90,217
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundInactive=166, 173, 200
+ForegroundLink=186,152,227
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:View]
-BackgroundAlternate=247,247,247
-BackgroundNormal=255,255,255
+BackgroundAlternate=24, 24, 37
+BackgroundNormal=30, 30, 46
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=112,125,138
-ForegroundLink=156,90,217
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundInactive=166, 173, 200
+ForegroundLink=186,152,227
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [Colors:Window]
-BackgroundAlternate=227,229,231
-BackgroundNormal=239,240,241
+BackgroundAlternate=17, 17, 27
+BackgroundNormal=24, 24, 37
 DecorationFocus=186,152,227
 DecorationHover=186,152,227
 ForegroundActive=186,152,227
-ForegroundInactive=112,125,138
-ForegroundLink=156,90,217
-ForegroundNegative=218,68,83
-ForegroundNeutral=246,116,0
-ForegroundNormal=35,38,41
-ForegroundPositive=39,174,96
-ForegroundVisited=155,89,182
+ForegroundInactive=166, 173, 200
+ForegroundLink=186,152,227
+ForegroundNegative=243, 139, 168
+ForegroundNeutral=249, 226, 175
+ForegroundNormal=205, 214, 244
+ForegroundPositive=166, 227, 161
+ForegroundVisited=203, 166, 247
 
 [DirSelect Dialog]
 DirSelectDialog Size=1333,774
@@ -146,6 +132,7 @@ DirSelectDialog Size=1333,774
 [General]
 AccentColor=186,152,227
 BrowserApplication=Brave-browser.desktop
+ColorScheme=CatppuccinMochaColorAdapt
 ColorSchemeHash=080f3f8eac020ac566c252909d74ead45adfd52c
 LastUsedCustomAccentColor=186,152,227
 TerminalApplication=foot
@@ -190,10 +177,10 @@ EnableRemoteFolderThumbnail=false
 MaximumRemoteSize=10485760
 
 [WM]
-activeBackground=227,229,231
-activeBlend=227,229,231
+activeBackground=30,30,46
+activeBlend=205,214,244
 activeFont=Fira Sans,10,-1,5,75,0,0,0,0,0,Bold
-activeForeground=35,38,41
-inactiveBackground=239,240,241
-inactiveBlend=239,240,241
-inactiveForeground=112,125,138
+activeForeground=205,214,244
+inactiveBackground=17,17,27
+inactiveBlend=166,173,200
+inactiveForeground=166,173,200

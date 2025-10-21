@@ -58,10 +58,26 @@ shot10() {
 	notify_view
 }
 
+# shotwin() {
+# 	w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
+# 	w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
+# 	cd ${dir} && grim -g "$w_pos $w_size" - | tee "$file" | wl-copy
+# 	notify_view
+# }
+
 shotwin() {
-	w_pos=$(hyprctl activewindow | grep 'at:' | cut -d':' -f2 | tr -d ' ' | tail -n1)
-	w_size=$(hyprctl activewindow | grep 'size:' | cut -d':' -f2 | tr -d ' ' | tail -n1 | sed s/,/x/g)
-	cd ${dir} && grim -g "$w_pos $w_size" - | tee "$file" | wl-copy
+	offset=2  # adjust as needed (2–3 pixels)
+
+	read x y <<< $(hyprctl activewindow | grep 'at:' | sed -E 's/.*at: ([0-9]+),([0-9]+)/\1 \2/')
+	read w h <<< $(hyprctl activewindow | grep 'size:' | sed -E 's/.*size: ([0-9]+),([0-9]+)/\1 \2/')
+
+	# expand capture area
+	x=$((x - offset))
+	y=$((y - offset))
+	w=$((w + 2 * offset))
+	h=$((h + 2 * offset))
+
+	cd "${dir}" && grim -g "${x},${y} ${w}x${h}" - | tee "$file" | wl-copy
 	notify_view
 }
 
