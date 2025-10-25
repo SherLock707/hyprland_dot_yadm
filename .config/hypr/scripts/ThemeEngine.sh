@@ -49,6 +49,11 @@ fi
 } &
 
 {
+    # Update cava color gradiants
+    $HOME/.config/hypr/scripts/cava_color_blend.sh
+} &
+
+{
     # Update VScodium colour
     $HOME/.config/hypr/scripts/SetVscodeColor.sh
 } &
