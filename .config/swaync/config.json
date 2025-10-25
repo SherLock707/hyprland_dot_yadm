@@ -40,6 +40,7 @@
         "buttons-grid",
         "dnd",
         "mpris",
+        "volume",
         "title",
         "notifications"
     ],
@@ -64,12 +65,16 @@
             "image-radius": 15,
             "autohide": true,
             "blacklist": [
-                "brave.*"
+                "brave.*",
+                "kdeconnect.*"
             ],
             "show-album-art": "when-available"
         },
         "volume": {
-            "label": "󰕾"
+            "label": "",
+            "show-per-app": true,
+            "show-per-app-icon": true,
+            "show-per-app-label": true
         },
         "backlight": {
             "label": "󰃟"

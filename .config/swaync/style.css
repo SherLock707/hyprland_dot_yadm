@@ -371,6 +371,49 @@ notificationwindow, blankwindow {
   background-color: rgba(116, 199, 236, 0.3);
 }
 
+
+/* --- Volume Slider (Floating Notification Style) --- */
+.widget-volume {
+  background: transparent;
+  padding: 1px;
+  margin: 1px;
+  color: @accent;
+}
+
+/* Slider Track */
+.widget-volume trough {
+  background: rgba(49, 50, 68, 0.75);
+  border-radius: 999px;
+  border: 1px solid alpha(@accent, 0.6);
+  padding: 3px;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.widget-volume trough:hover {
+  background: rgba(63, 65, 90, 0.9);
+}
+
+/* Progress Fill */
+.widget-volume progress {
+  background: linear-gradient(180deg, alpha(@accent, 0.95) 60%, alpha(@accent2, 0.5));
+  border-radius: 999px;
+}
+
+/* Slider Thumb */
+.widget-volume slider {
+  background: radial-gradient(circle at center, @accent2 45%, alpha(@accent2, 0.8) 100%);
+  border-radius: 50%;
+  min-width: 24px;
+  min-height: 24px;
+  border: 2px solid alpha(@accent2, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget-volume slider:hover {
+  transform: scale(1.4);
+}
+
+
 /* --- Progress Bars --- */
 
 progressbar,
