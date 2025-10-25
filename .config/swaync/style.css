@@ -401,16 +401,26 @@ notificationwindow, blankwindow {
 
 /* Slider Thumb */
 .widget-volume slider {
-  background: radial-gradient(circle at center, @accent2 45%, alpha(@accent2, 0.8) 100%);
+  background: radial-gradient(circle at center, @accent 45%, alpha(@accent2, 0.8) 100%);
   border-radius: 50%;
   min-width: 24px;
   min-height: 24px;
-  border: 2px solid alpha(@accent2, 0.5);
+
+  /* Inner dark border */
+  border: 3px solid @cc-bg;
+
+  /* Outer accent border using box-shadow */
+  box-shadow: 0 0 0 2px @accent, 0 0 6px rgba(0, 0, 0, 0.2);
+
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover effect */
 .widget-volume slider:hover {
   transform: scale(1.4);
+
+  /* Reduce halo/glow on hover while keeping accent border */
+  box-shadow: 0 0 0 2px @accent, 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 
