@@ -29,8 +29,11 @@
             "maxPrefix": "GB"
         },
         "bar": {
-            "charElapsed": "=",
-            "charTotal": "-",
+            "char":
+            {
+                "Elapsed": "=",
+                "Total": "-"
+            },
             "width": 13
         },
         "disableLinewrap": true,

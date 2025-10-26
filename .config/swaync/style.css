@@ -508,7 +508,7 @@ progress {
   border: 1px solid @accent;
   margin: 6px 10px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .widget-mpris-player:only-child {

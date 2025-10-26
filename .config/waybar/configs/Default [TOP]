@@ -22,6 +22,7 @@
 		"custom/separator#blank_1",
 		"wlr/taskbar",
 		"custom/separator#blank_1",
+		"cava",
 		"custom/palette",
 		"custom/arch_news",
 		"custom/netstatus",
@@ -30,7 +31,6 @@
 		"group/tools",
 		"privacy",
 		"gamemode",
-		// "systemd-failed-units",
 		"custom/separator#blank_1",
 		"hyprland/window"
 	],
@@ -52,8 +52,8 @@
 		"custom/weather",
 		"clock",
 		"custom/separator#blank_1",
-		"custom/power",
-		"custom/lock"
+		"custom/lock",
+		"custom/power"
 	],
 	"group/hardware": {
 		"orientation": "horizontal",
@@ -65,17 +65,6 @@
 			"disk"
 		]
 	},
-	// "group/system_state":{
-	// 	// "orientation": "horizontal",
-	// 	// "drawer": {
-	// 	// 	"transition-duration": 300,
-	// 	// 	"transition-left-to-right": true
-	// 	// },
-	// 	"modules":[
-	// 		"custom/power",
-	// 		"custom/lock"
-	// 	]
-	// },
 	"group/tools": {
 		"orientation": "horizontal",
 		"drawer": {
