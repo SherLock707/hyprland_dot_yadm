@@ -156,7 +156,7 @@ Allow Expansion=false
 Automatically select filename extension=true
 Breadcrumb Navigation=false
 Decoration position=2
-Preview Width=537
+Preview Width=532
 Show Full Path=false
 Show Inline Previews=true
 Show Preview=true
@@ -167,7 +167,7 @@ Sort directories first=true
 Sort hidden files last=false
 Sort reversed=false
 Speedbar Width=197
-View Style=Detail
+View Style=Simple
 
 [KShortcutsDialog Settings]
 Dialog Size=600,480
