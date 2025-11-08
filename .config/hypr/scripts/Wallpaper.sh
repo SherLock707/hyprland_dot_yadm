@@ -11,3 +11,5 @@ swww img ${RANDOMPICS} --transition-fps 60 --transition-type any --transition-du
 # exec $HOME/.config/hypr/scripts/PywalSwww.sh &
 sleep 1
 exec $HOME/.config/hypr/scripts/Refresh.sh
+
+# mpvpaper -p -o "--loop --no-audio --panscan=1 --speed=1.0" '*' /home/itachi/Pictures/hollow-knight-echo-of-shadows.3840x2160.mp4

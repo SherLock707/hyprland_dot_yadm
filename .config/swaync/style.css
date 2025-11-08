@@ -451,9 +451,9 @@ progress {
 
 .control-center-dnd {
   margin-top: 5px;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #313244;
-  border: 1px solid #45475a;
+  border: 2px solid #45475a;
 }
 
 .control-center-dnd:checked {
@@ -466,13 +466,13 @@ progress {
 }
 
 .widget-dnd {
-  padding: 10px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
   font-size: 1.1rem;
 }
 
 .widget-dnd > switch {
-  border-radius: 8px;
+  border-radius: 14px;
   background: #313244;
   border: 1px solid mix(@color7, #45475a, 0.5);
 }
@@ -483,7 +483,7 @@ progress {
 
 .widget-dnd > switch slider {
   background: #45475a;
-  border-radius: 8px;
+  border-radius: 14px;
   border: 2px solid @color7;
 }
 
