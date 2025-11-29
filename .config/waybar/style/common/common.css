@@ -186,3 +186,12 @@ window#waybar {
 #custom-netstatus {
     padding-left: 10px;
 }
+
+menu {
+    border-radius: 15px;
+    background: @main-bg;
+    color: @color7;
+}
+menuitem {
+    border-radius: 15px;
+}

@@ -155,19 +155,19 @@ widgetStyle=kvantum-dark
 Allow Expansion=false
 Automatically select filename extension=true
 Breadcrumb Navigation=false
-Decoration position=2
-Preview Width=532
+Decoration position=0
+Preview Width=512
 Show Full Path=false
 Show Inline Previews=true
 Show Preview=true
 Show Speedbar=true
 Show hidden files=true
-Sort by=Name
+Sort by=Date
 Sort directories first=true
 Sort hidden files last=false
 Sort reversed=false
 Speedbar Width=197
-View Style=Simple
+View Style=Detail
 
 [KShortcutsDialog Settings]
 Dialog Size=600,480

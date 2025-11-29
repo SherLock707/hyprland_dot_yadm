@@ -337,5 +337,17 @@
     "format": "<big> 󰥠</big> ",
     "on-click": "foot --app-id='kew_player' -e sh -c 'kew lost'",
     "tooltip-format": "Play Kew"
+  },
+  "custom/power_menu": {
+    "format" : "⏻ 2 ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/power_menu.xml",
+    "menu-actions": {
+        "shutdown": "notify-send 'shutdown'",
+        "reboot": "notify-send 'reboot'",
+        "suspend": "notify-send 'systemctl suspend'",
+        "hibernate": "notify-send 'systemctl hibernate'"
+    }
   }
 }

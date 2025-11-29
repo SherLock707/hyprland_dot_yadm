@@ -51,7 +51,6 @@
 		"custom/weather",
 		"clock",
 		"custom/separator#blank_1",
-		"custom/lock",
 		"custom/power"
 	],
 	"group/hardware": {
