@@ -256,6 +256,48 @@ PanelWindow {
                 }
             }
             
+            // Preset colors row
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 12
+                Layout.topMargin: 5
+                
+                property var presetColors: ["#ba98e3", "#d2a39f", "#a6e3a1","#fab387", "#89b4fa", "#74c7ec"]
+                
+                // Text {
+                //     text: "Presets:"
+                //     color: colorDict["color7"] || "#ffffff"
+                //     font.pixelSize: 14
+                //     Layout.alignment: Qt.AlignVCenter
+                // }
+                
+                Repeater {
+                    model: parent.presetColors
+                    
+                    delegate: Button {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 25
+                        
+                        property string presetColor: modelData
+                        
+                        onClicked: {
+                            colorDict["color7"] = presetColor
+                            colorDict = Object.assign({}, colorDict)
+                            colorKeys = Object.keys(colorDict)
+                        }
+                        
+                        background: Rectangle {
+                            color: parent.presetColor
+                            radius: 8
+                            border.width: colorDict["color7"] === parent.presetColor ? 3 : 0
+                            border.color: "#ffffff"
+                        }
+                        
+                        contentItem: Item {}
+                    }
+                }
+            }
+            
             // Color rows
             Repeater {
                 model: colorKeys
