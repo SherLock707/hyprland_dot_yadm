@@ -11,6 +11,7 @@ DirectorySizeMode=None
 RecursiveDirectorySizeLimit=3
 
 [DetailsMode]
+LeftPadding=0
 PreviewSize=16
 RightPadding=25
 SidePadding=0
