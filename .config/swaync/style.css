@@ -402,10 +402,11 @@ notificationwindow, blankwindow {
 
 /* Slider Thumb */
 .widget-volume slider {
-  background: radial-gradient(circle at center, @accent 45%, alpha(@accent2, 0.8) 100%);
-  border-radius: 50%;
-  min-width: 24px;
-  min-height: 24px;
+  background: radial-gradient(circle at center, @accent 45%, alpha(@accent, 0.8) 100%);
+  border-radius: 4px; /* Changed from 50% to small radius for line */
+  min-width: 1px; /* REDUCED - thinner inner box */
+  width: 1px; /* REDUCED - thinner inner box */
+  min-height: 34px;
 
   /* Inner dark border */
   border: 3px solid @cc-bg;
