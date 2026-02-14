@@ -55,3 +55,4 @@ yadm add ~/.config/zellij/
 yadm add ~/.config/satty/
 yadm add ~/.config/quickshell/
 yadm add ~/.config/kotofetch/config.toml
+yadm add ~/.config/fresh/

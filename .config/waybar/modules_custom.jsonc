@@ -299,7 +299,7 @@
 "custom/hyprpicker": {
     "tooltip": false,
     "format": " ",
-    "on-click": " COLOR=$(hyprpicker -a) && notify-send -u low -i /home/itachi/.config/dunst/icons/dropper.png \"  Hyprpicker\" \"  Copied to clipboard: <span color='$COLOR'> 󰮯      \n   $COLOR </span>\"",
+    "on-click": " COLOR=$(hyprpicker -a) && notify-send -u low -i $HOME/.config/swaync/assets/picker.png \"  Hyprpicker\" \"  Copied Color: <span color='$COLOR'>   $COLOR </span>\"",
     "escape": true
   },
   "custom/kew": {
@@ -349,5 +349,8 @@
         "suspend": "notify-send 'systemctl suspend'",
         "hibernate": "notify-send 'systemctl hibernate'"
     }
+  },
+  "custom/cpucat": {
+    "exec":"~/.config/waybar/custom_modules/catloop.sh"
   }
 }

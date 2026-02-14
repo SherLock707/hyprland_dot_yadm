@@ -43,6 +43,7 @@
 		"custom/pacman2",
 		"idle_inhibitor",
 		"custom/separator#blank_1",
+		// "custom/cpucat",
 		"group/hardware",
 		"custom/separator#blank_1",
 		"pulseaudio",

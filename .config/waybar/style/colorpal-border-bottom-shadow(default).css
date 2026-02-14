@@ -95,6 +95,7 @@ tooltip {
 #custom-gpu_aio,
 #custom-palette,
 #custom-arch_news,
+/* #custom-cpucat, */
 #custom-weather.sunnyDay {
     color: @main-fg;
     background: alpha(@main-bg, 0.7);
@@ -107,6 +108,15 @@ tooltip {
     border-bottom: 3px;
     border-style: solid;
     border-color: @main-fg;
+}
+
+#custom-cpucat {
+  font-family: "Waycat", monospace;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 /* tooltip #custom-arch_news.arch_news_active {

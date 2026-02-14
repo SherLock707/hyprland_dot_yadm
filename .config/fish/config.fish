@@ -7,7 +7,7 @@ set -x SHELL /usr/bin/fish
 
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
-    set -x QT_QPA_PLATFORMTHEME qt5ct
+    set -x QT_QPA_PLATFORMTHEME qt6ct
 end
 
 # Set settings for https://github.com/franciscolourenco/done

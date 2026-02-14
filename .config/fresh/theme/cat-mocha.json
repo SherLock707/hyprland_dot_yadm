@@ -1,0 +1,14 @@
+{
+  "name": "catppuccin-mocha",
+  "editor": {
+    "bg": [30, 30, 46],
+    "fg": [205, 214, 244],
+    "cursor": [245, 224, 220],
+    "selection_bg": [69, 71, 90]
+  },
+  "syntax": {
+    "keyword": [203, 166, 247],
+    "string": [166, 227, 161],
+    "comment": [127, 132, 156]
+  }
+}
