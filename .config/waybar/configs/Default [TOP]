@@ -25,6 +25,7 @@
 		"cava",
 		"custom/palette",
 		"custom/netstatus",
+		"custom/proton_vpn",
 		"custom/power_outage_switch",
 		"custom/controllerstatus",
 		"group/tools",

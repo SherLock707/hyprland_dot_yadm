@@ -9,7 +9,7 @@ case $LAYOUT in
 	hyprctl keyword unbind SUPER,K
 	hyprctl keyword bind SUPER,J,cyclenext
 	hyprctl keyword bind SUPER,K,cyclenext,prev
-	hyprctl keyword bind SUPER,O,togglesplit
+	hyprctl keyword bind SUPER,O,layoutmsg togglesplit
   notify-send "Dwindle Layout"
 	;;
 "dwindle")

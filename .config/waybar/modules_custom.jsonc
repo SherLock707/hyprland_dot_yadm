@@ -352,5 +352,11 @@
   },
   "custom/cpucat": {
     "exec":"~/.config/waybar/custom_modules/catloop.sh"
+  },
+  "custom/proton_vpn": {
+    "exec": "~/.config/waybar/custom_modules/protonvpn.sh",
+    "on-click": "~/.config/waybar/custom_modules/protonvpn.sh toggle",
+    "interval": 5,
+    "return-type": "json"
   }
 }
