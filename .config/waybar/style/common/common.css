@@ -90,8 +90,8 @@ window#waybar {
     background: @wb-act-bg;
     color: @wb-act-color;
     margin-left: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
     margin-right: 3px;
     animation: gradient_f 40s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
