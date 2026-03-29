@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wallpaper_path=$(swww query | head -n 1 | grep -oP 'image: \K.*')
+wallpaper_path=$(awww query | head -n 1 | grep -oP 'image: \K.*')
 
 # Copy the wallpaper to the location Rofi can access
 ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"
@@ -67,3 +67,4 @@ cp -f ~/.cache/hellwal/folder_48.svg ~/.local/share/icons/BeautyLine_pywal/place
 # cp -f ~/.cache/hellwal/config-cava ~/.config/cava/config
 
 notify-send -u low -a "Theme engine" "Theme refreshed"
+

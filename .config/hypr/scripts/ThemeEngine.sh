@@ -10,7 +10,7 @@ send_completion_notification() {
 }
 
 # Get current wallpaper path
-wallpaper_path=$(swww query | head -n 1 | grep -oP 'image: \K.*')
+wallpaper_path=$(awww query | head -n 1 | grep -oP 'image: \K.*')
 
 # Validate wallpaper path
 if [[ -z "$wallpaper_path" || ! -f "$wallpaper_path" ]]; then
