@@ -126,9 +126,6 @@ ForegroundNormal=205, 214, 244
 ForegroundPositive=166, 227, 161
 ForegroundVisited=203, 166, 247
 
-[DirSelect Dialog]
-DirSelectDialog Size=1333,774
-
 [General]
 AccentColor=186,152,227
 BrowserApplication=Brave-browser.desktop

@@ -15,9 +15,11 @@ DBUS=$(qdbus | grep org.kde.dolphin | head -1 | tr -d ' ')
 NEW_COLOR=$(grep "^highlight.color" ~/.config/Kvantum/Catppuccin-Mocha-Mauve-pywal/Catppuccin-Mocha-Mauve-pywal.kvconfig | cut -d= -f2)
 
 if [ -n "$DBUS" ] && [ -n "$NEW_COLOR" ]; then
+    # First flush to update icons
     qdbus "$DBUS" /MainApplication org.qtproject.Qt.QApplication.setStyleSheet "* {}"
     sleep 0.1
 
+    # Final stylesheet — keep permanently to override Kvantum cache
     qdbus "$DBUS" /MainApplication org.qtproject.Qt.QApplication.setStyleSheet "
 QWidget { color: palette(text); background: palette(window); }
 QAbstractItemView { selection-background-color: ${NEW_COLOR}; }
@@ -26,13 +28,7 @@ QAbstractItemView::item:selected:active { background-color: ${NEW_COLOR}; color:
 QAbstractItemView::item:selected:!active { background-color: ${NEW_COLOR}; color: #181825; }
 QTreeView::item:selected { background-color: ${NEW_COLOR}; color: #181825; }
 QListView::item:selected { background-color: ${NEW_COLOR}; color: #181825; }
-QListWidget::item:selected { background-color: ${NEW_COLOR}; color: #181825; }
-QListWidget::item:selected:active { background-color: ${NEW_COLOR}; color: #181825; }
-KFilePlacesView::item:selected { background-color: ${NEW_COLOR}; color: #181825; }
 QProgressBar::chunk { background-color: ${NEW_COLOR}; }
-QRubberBand { background-color: ${NEW_COLOR}; border: 1px solid ${NEW_COLOR}; }
-QToolButton:checked { background-color: ${NEW_COLOR}; color: #181825; border-radius: 4px; }
-QToolBar QToolButton:checked { background-color: ${NEW_COLOR}; color: #181825; border-radius: 4px; }
-QAbstractButton:checked { background-color: ${NEW_COLOR}; color: #181825; }
+QToolBar QAbstractButton:checked { background-color: ${NEW_COLOR}; }
 "
 fi
