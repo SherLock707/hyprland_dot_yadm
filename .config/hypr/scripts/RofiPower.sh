@@ -55,7 +55,7 @@ run_cmd() {
             systemctl poweroff
             ;;
         "󰒲")
-            systemctl hibernate
+            hyprlock -q & sleep 0.5; systemctl hibernate
             ;;
         *)
             echo "choose: $1"
