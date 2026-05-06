@@ -15,5 +15,7 @@ UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /var/log       btrfs   subvol=/@log,de
 UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7 /var/tmp       btrfs   subvol=/@tmp,defaults,noatime,compress=zstd 0 0
 tmpfs                                     /tmp           tmpfs   defaults,noatime,mode=1777 0 0
 UUID=500ad0aa-adca-4716-9ea5-1f69eb7fa7c7 /run/media/itachi/DATA_NVME ext4 defaults,x-gvfs-name=DATA_NVME 0 2
-UUID=1de989da-4964-4cf5-9711-f9e671ce41a7 /run/media/itachi/DATA_SATA ext4 defaults,x-gvfs-name=DATA_SATA 0 2
+#UUID=1de989da-4964-4cf5-9711-f9e671ce41a7 /run/media/itachi/DATA_SATA ext4 defaults,x-gvfs-name=DATA_SATA 0 2
 UUID=ac318953-0c56-4733-8145-0bf7bedb49f4 /run/media/itachi/DATA_SATA_4TB ext4 defaults,x-gvfs-name=DATA_SATA_4TB 0 2
+UUID=b4b3473c-3b46-4809-9c77-3886e5e88ec7  /swap  btrfs  subvol=@swap,nodatacow,noatime,compress=no  0  0
+/swap/swapfile none swap defaults,pri=0 0
