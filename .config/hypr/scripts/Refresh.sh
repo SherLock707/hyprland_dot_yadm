@@ -16,7 +16,7 @@ swaync-client -rs
 # ags -q
 # relaunch apps
 # swaync &
-# swaync-client --reload-css &
+swaync-client --reload-css 
 # waybar &
 # ags &
 #sleep 1

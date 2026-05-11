@@ -1,24 +1,27 @@
---  ▗▖ ▗▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄  ▗▄▖ ▗▖ ▗▖    ▗▄▄▖ ▗▖ ▗▖▗▖   ▗▄▄▄▖ ▗▄▄▖
---  ▐▌ ▐▌  █  ▐▛▚▖▐▌▐▌  █▐▌ ▐▌▐▌ ▐▌    ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌   ▐▌
---  ▐▌ ▐▌  █  ▐▌ ▝▜▌▐▌  █▐▌ ▐▌▐▌ ▐▌    ▐▛▀▚▖▐▌ ▐▌▐▌   ▐▛▀▀▘ ▝▀▚▖
---  ▐▙█▟▌▗▄█▄▖▐▌  ▐▌▐▙▄▄▀▝▚▄▞▘▐▙█▟▌    ▐▌ ▐▌▝▚▄▞▘▐▙▄▄▖▐▙▄▄▖▗▄▄▞▘
-
+--[[
+██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗██████╗ ██╗   ██╗██╗     ███████╗
+██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔══██╗██║   ██║██║     ██╔════╝
+██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║██████╔╝██║   ██║██║     █████╗  
+██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║██╔══██╗██║   ██║██║     ██╔══╝  
+╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝██║  ██║╚██████╔╝███████╗███████╗
+ ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝
+--]]
 -- See: https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
 -- ================================================================
--- App-Specific Float Rules — System Utilities
+-- System Utilities
 -- ================================================================
 
 hl.window_rule({
-    name   = "float-system-utilities",
-    match  = { class = "^(nm-connection-editor|blueman-manager|pavucontrol|corectrl|nwg-look|qt[56]ct|yad|gnome-system-monitor|opensnitch|org.kde.keditfiletype|org.kde.kdeconnect.(handler|daemon)|steam|script-fu-interpreter|com.gabm.satty|script-fu)$" },
-    float  = true,
+    name  = "float-system-utilities",
+    match = { class = "^(nm-connection-editor|blueman-manager|pavucontrol|corectrl|nwg-look|qt[56]ct|yad|gnome-system-monitor|opensnitch|org.kde.keditfiletype|org.kde.kdeconnect.(handler|daemon)|steam|script-fu-interpreter|com.gabm.satty|script-fu)$" },
+    float = true,
 })
 
 hl.window_rule({
-    name   = "float-opensnitch-rule",
-    match  = { class = "^(opensnitch_ui)$", title = "^(Rule)$" },
-    float  = true,
+    name  = "float-opensnitch-rule",
+    match = { class = "^(opensnitch_ui)$", title = "^(Rule)$" },
+    float = true,
 })
 
 hl.window_rule({
@@ -30,7 +33,7 @@ hl.window_rule({
 })
 
 -- ================================================================
--- App-Specific Float Rules — Media & UI
+-- Media & UI
 -- ================================================================
 
 hl.window_rule({
@@ -40,7 +43,7 @@ hl.window_rule({
 })
 
 -- ================================================================
--- App-Specific Float Rules — Gaming & Launchers
+-- Gaming & Launchers
 -- ================================================================
 
 hl.window_rule({
@@ -66,7 +69,11 @@ hl.window_rule({ name = "float-brave",        match = { class = "^(brave)$" },  
 -- Editors & Terminals
 -- ================================================================
 
-hl.window_rule({ name = "float-editors-terms", match = { class = "^(mousepad|foot-dropterm|kew_player)$" }, float = true })
+hl.window_rule({
+    name  = "float-editors-terms",
+    match = { class = "^(mousepad|foot-dropterm|kew_player)$" },
+    float = true,
+})
 
 hl.window_rule({
     name  = "kew-player-position",
@@ -101,8 +108,8 @@ hl.window_rule({
 -- ================================================================
 
 hl.window_rule({
-    name             = "focus-on-activate-apps",
-    match            = { class = "^(brave-browser|codium|org.kde.dolphin|foot)$" },
+    name              = "focus-on-activate-apps",
+    match             = { class = "^(brave-browser|codium|org.kde.dolphin|foot)$" },
     focus_on_activate = true,
 })
 
@@ -215,11 +222,11 @@ hl.window_rule({
 -- ================================================================
 
 local pip_match = { title = "^(Picture-in-picture)$" }
-hl.window_rule({ name = "pip-float",  match = pip_match, float           = true })
-hl.window_rule({ name = "pip-pin",    match = pip_match, pin             = true })
+hl.window_rule({ name = "pip-float",  match = pip_match, float             = true })
+hl.window_rule({ name = "pip-pin",    match = pip_match, pin               = true })
 hl.window_rule({ name = "pip-aspect", match = pip_match, keep_aspect_ratio = true })
-hl.window_rule({ name = "pip-nodim",  match = pip_match, no_dim          = true })
-hl.window_rule({ name = "pip-opaque", match = pip_match, opaque          = true })
+hl.window_rule({ name = "pip-nodim",  match = pip_match, no_dim            = true })
+hl.window_rule({ name = "pip-opaque", match = pip_match, opaque            = true })
 hl.window_rule({
     name  = "pip-geometry",
     match = pip_match,
@@ -229,11 +236,11 @@ hl.window_rule({
 
 -- Chrome extension popups (_crx_*)
 local crx_match = { title = "^(_crx_.*)" }
-hl.window_rule({ name = "crx-float",  match = crx_match, float           = true })
-hl.window_rule({ name = "crx-pin",    match = crx_match, pin             = true })
+hl.window_rule({ name = "crx-float",  match = crx_match, float             = true })
+hl.window_rule({ name = "crx-pin",    match = crx_match, pin               = true })
 hl.window_rule({ name = "crx-aspect", match = crx_match, keep_aspect_ratio = true })
-hl.window_rule({ name = "crx-nodim",  match = crx_match, no_dim          = true })
-hl.window_rule({ name = "crx-opaque", match = crx_match, opaque          = true })
+hl.window_rule({ name = "crx-nodim",  match = crx_match, no_dim            = true })
+hl.window_rule({ name = "crx-opaque", match = crx_match, opaque            = true })
 hl.window_rule({
     name  = "crx-geometry",
     match = crx_match,
@@ -245,12 +252,11 @@ hl.window_rule({
 -- Workspace Assignments
 -- ================================================================
 
-hl.window_rule({ name = "ws-brave",  match = { class = "^(Brave-browser)$" },      workspace = "1" })
-hl.window_rule({ name = "ws-lutris", match = { class = "^(net.lutris.Lutris)$" },  workspace = "2 silent" })
-hl.window_rule({ name = "ws-tvtime", match = { class = "brave-app.tvtime.*" },      workspace = "2 silent" })
+hl.window_rule({ name = "ws-brave",  match = { class = "^(Brave-browser)$" },     workspace = "1" })
+hl.window_rule({ name = "ws-lutris", match = { class = "^(net.lutris.Lutris)$" }, workspace = "2 silent" })
+hl.window_rule({ name = "ws-tvtime", match = { class = "brave-app.tvtime.*" },     workspace = "2 silent" })
 hl.window_rule({ name = "ws-steam",  match = { class = "^(steam)$" },             workspace = "3 silent" })
 hl.window_rule({ name = "ws-gimp",   match = { class = "^(gimp.*)$" },            workspace = "6" })
--- hl.window_rule({ name = "ws-codium", match = { initial_title = "VSCodium" },     workspace = "4 silent" })
 
 -- ================================================================
 -- Window Opacity
@@ -274,10 +280,8 @@ hl.window_rule({
 })
 
 -- ================================================================
--- Experimental / Special
+-- Special
 -- ================================================================
-
--- hl.window_rule({ name = "fullscreen-matrix", match = { class = "^(matrix)$" }, fullscreen = true })
 
 hl.window_rule({
     name     = "no-focus-swaync",
@@ -296,19 +300,19 @@ hl.layer_rule({
 })
 
 hl.layer_rule({
-    name          = "alpha-bars",
-    match         = { namespace = "^(waybar|overview|fabric|swaync-notification-window)$" },
-    ignore_alpha  = 0,
+    name         = "alpha-bars",
+    match        = { namespace = "^(waybar|overview|fabric|swaync-notification-window)$" },
+    ignore_alpha = 0,
 })
 
 hl.layer_rule({
-    name          = "alpha-overlays",
-    match         = { namespace = "^(swaync-control-center|quickshell:(overview|palette))$" },
-    ignore_alpha  = 0.5,
+    name         = "alpha-overlays",
+    match        = { namespace = "^(swaync-control-center|quickshell:(overview|palette))$" },
+    ignore_alpha = 0.5,
 })
 
 hl.layer_rule({ name = "anim-selection",   match = { namespace = "selection" }, animation = "fade" })
-hl.layer_rule({ name = "noanim-selection", match = { namespace = "selection" }, no_anim = true })
+hl.layer_rule({ name = "noanim-selection", match = { namespace = "selection" }, no_anim   = true   })
 
 hl.layer_rule({ name = "anim-kwybars",   match = { namespace = "kwybars" }, animation = "fade" })
-hl.layer_rule({ name = "noanim-kwybars", match = { namespace = "kwybars" }, no_anim = true })
+hl.layer_rule({ name = "noanim-kwybars", match = { namespace = "kwybars" }, no_anim   = true   })
