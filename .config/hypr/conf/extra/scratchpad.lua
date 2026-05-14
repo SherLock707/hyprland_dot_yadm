@@ -1,10 +1,9 @@
 -- conf/extra/scratchpad.lua
--- Ghost-Free Hybrid Scratchpad (Robust Workspace State Management)
 
 local CONFIG = {
     class      = "foot-scratchpad",
     cmd        = "foot -a foot-scratchpad -e zellij attach --create scratchpad",
-    width_pct  = 0.6,
+    width_pct  = 0.5,
     height_pct = 0.5,
     y_pct      = 0.05,
     special_ws = "special:scratchpad"
@@ -48,7 +47,6 @@ local function toggle_scratchpad()
 
     state.animating = true
 
-    -- REALITY CHECK: Is it already on our current workspace?
     if win.workspace.name == active_ws then
         -- HIDE: Slide up on current WS first
         hl.dispatch(hl.dsp.window.set_prop({ window = "address:" .. win.address, prop = "no_anim", value = "0" }))
