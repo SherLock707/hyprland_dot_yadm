@@ -217,7 +217,8 @@ hl.bind("SUPER + SHIFT + S",
 -- ---------------- Misc ----------------
 
 -- Dropdown terminal
-hl.bind("SUPER + S", hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal" })
+-- hl.bind("SUPER + S", hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal" })
+require("conf.extra.scratchpad")
 hl.bind("Insert",          hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal Alt" })
 
 -- Overview (quickshell)

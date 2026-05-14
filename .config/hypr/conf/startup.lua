@@ -64,26 +64,17 @@ hl.on("hyprland.start", function()
     -- Zellij session cleanup
     hl.exec_cmd("zellij delete-all-sessions -y")
 
-    -- ---------------- Workspace Workflow (commented — active block below) ----------------
-    -- Workspace 1
-    -- hl.exec_cmd("brave --restore-last-session", { workspace = "1 silent" })
-    -- hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   { workspace = "1 silent" })
-    -- hl.exec_cmd([[sh -c 'sleep 3 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"']], { workspace = "1 silent" })
-    -- Workspace 2
-    -- hl.exec_cmd("lutris",  { workspace = "2 silent" })
-    -- hl.exec_cmd('brave --profile-directory=Default --app="https://app.tvtime.com/shows/watchlist"', { workspace = "2 silent" })
-    -- Workspace 3
-    -- hl.exec_cmd("steam",   { workspace = "3 silent" })
-    -- Workspace 4
-    -- hl.exec_cmd("codium",  { workspace = "4 silent" })
+    -- ---------------- Workspace 1 Workflow ----------------
+    -- Handled by conf/extra/setupworkspace.lua
+    require("conf.extra.setupworkspace")
     
-    local ws1 = { workspace = "1 silent" }
-    local ws2 = { workspace = "2 silent" }
-    local ws3 = { workspace = "3 silent" }
+    -- local ws1 = { workspace = "1 silent" }
+    -- local ws2 = { workspace = "2 silent" }
+    -- local ws3 = { workspace = "3 silent" }
 
-    hl.exec_cmd("brave --restore-last-session", ws1)
-    hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   ws1)
-    hl.exec_cmd([[sh -c 'sleep 3 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"']], ws1)
+    -- hl.exec_cmd("brave --restore-last-session", ws1)
+    -- hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   ws1)
+    -- hl.exec_cmd([[sh -c 'sleep 3 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"']], ws1)
 
     hl.exec_cmd("lutris", ws2)
 
