@@ -27,8 +27,8 @@ hl.monitor({
 -- QEMU / VirtualBox
 -- hl.monitor({ output = "Virtual-1", mode = "1920x1080@60", position = "auto", scale = 1 })
 
--- Disable a monitor
--- hl.monitor({ output = "name", mode = "disable" })
+-- Disable a monitor (new Lua API uses disabled=true, NOT mode="disable")
+-- hl.monitor({ output = "name", disabled = true })
 
 -- Mirror example
 -- hl.monitor({ output = "DP-3", mode = "1920x1080@60", position = "0x0", scale = 1, mirror = "DP-2" })

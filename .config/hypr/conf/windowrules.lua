@@ -28,7 +28,7 @@ hl.window_rule({
     name   = "float-portal",
     match  = { class = "^(xdg-desktop-portal-gtk|org.freedesktop.impl.portal.desktop.kde)$" },
     float  = true,
-    size   = { width = "monitor_w*0.40", height = "monitor_h*0.50" },
+    size   = { "monitor_w*0.40", "monitor_h*0.50" },
     center = true,
 })
 
@@ -78,8 +78,8 @@ hl.window_rule({
 hl.window_rule({
     name  = "kew-player-position",
     match = { class = "^(kew_player)$" },
-    size  = { width = "monitor_w*0.12", height = "monitor_h*0.40" },
-    move  = { x = "monitor_w*0.87",    y = "monitor_h*0.40" },
+    size  = { "monitor_w*0.12", "monitor_h*0.40" },
+    move  = { "monitor_w*0.87", "monitor_h*0.40" },
     pin   = true,
 })
 
@@ -117,7 +117,7 @@ hl.window_rule({
 hl.window_rule({
     name   = "octopi-size",
     match  = { class = "^(octopi)$", title = "^(Octopi)$" },
-    size   = { width = "monitor_w*0.41", height = "monitor_h*0.69" },
+    size   = { "monitor_w*0.41", "monitor_h*0.69" },
     center = true,
 })
 
@@ -148,15 +148,15 @@ hl.window_rule({
 hl.window_rule({
     name  = "size-brave-ai-music",
     match = { class = "^(brave-(chat.openai.com|gemini.google.com|music.youtube.com).*)$" },
-    size  = { width = "monitor_w*0.30", height = "monitor_h*0.50" },
-    move  = { x = "monitor_w*0.02",    y = "monitor_h*0.05" },
+    size  = { "monitor_w*0.30", "monitor_h*0.50" },
+    move  = { "monitor_w*0.02", "monitor_h*0.05" },
 })
 
 hl.window_rule({
     name  = "size-brave-tvtime",
     match = { class = "^(brave-(app.tvtime.com).*)$" },
-    size  = { width = "monitor_w*0.15", height = "monitor_h*0.50" },
-    move  = { x = "monitor_w*0.10",    y = "monitor_h*0.05" },
+    size  = { "monitor_w*0.15", "monitor_h*0.50" },
+    move  = { "monitor_w*0.10", "monitor_h*0.05" },
 })
 
 -- ================================================================
@@ -166,7 +166,7 @@ hl.window_rule({
 hl.window_rule({
     name   = "lutris-size",
     match  = { class = "^(net.lutris.Lutris.*)$", title = "^(Lutris)$" },
-    size   = { width = "monitor_w*0.67", height = "monitor_h*0.72" },
+    size   = { "monitor_w*0.67", "monitor_h*0.72" },
     center = true,
 })
 
@@ -177,7 +177,7 @@ hl.window_rule({
 hl.window_rule({
     name   = "steam-size",
     match  = { class = "^(steam.*)$", title = "^(steam)$" },
-    size   = { width = "monitor_w*0.60", height = "monitor_h*0.72" },
+    size   = { "monitor_w*0.60", "monitor_h*0.72" },
     center = true,
 })
 
@@ -192,9 +192,9 @@ hl.window_rule({
     center = true,
 })
 
-hl.window_rule({ name = "size-control-exe", match = { class = "^(control.exe)$" }, size = { width = "monitor_w*0.45", height = "monitor_h*0.70" } })
-hl.window_rule({ name = "size-waypaper",    match = { class = "^(waypaper)$" },    size = { width = "monitor_w*0.48", height = "monitor_h*0.70" } })
-hl.window_rule({ name = "size-qtct",        match = { class = "^(qt[56]ct)$" },    size = { width = "monitor_w*0.23", height = "monitor_h*0.35" } })
+hl.window_rule({ name = "size-control-exe", match = { class = "^(control.exe)$" }, size = { "monitor_w*0.45", "monitor_h*0.70" } })
+hl.window_rule({ name = "size-waypaper",    match = { class = "^(waypaper)$" },    size = { "monitor_w*0.48", "monitor_h*0.70" } })
+hl.window_rule({ name = "size-qtct",        match = { class = "^(qt[56]ct)$" },    size = { "monitor_w*0.23", "monitor_h*0.35" } })
 
 -- ================================================================
 -- Dolphin Dialogs
@@ -230,8 +230,8 @@ hl.window_rule({ name = "pip-opaque", match = pip_match, opaque            = tru
 hl.window_rule({
     name  = "pip-geometry",
     match = pip_match,
-    size  = { width = "monitor_w*0.30", height = "monitor_h*0.40" },
-    move  = { x = "monitor_w*0.69",    y = "monitor_h*0.05" },
+    size  = { "monitor_w*0.30", "monitor_h*0.40" },
+    move  = { "monitor_w*0.69", "monitor_h*0.05" },
 })
 
 -- Chrome extension popups (_crx_*)
@@ -244,8 +244,8 @@ hl.window_rule({ name = "crx-opaque", match = crx_match, opaque            = tru
 hl.window_rule({
     name  = "crx-geometry",
     match = crx_match,
-    size  = { width = "monitor_w*0.30", height = "monitor_h*0.40" },
-    move  = { x = "monitor_w*0.69",    y = "monitor_h*0.05" },
+    size  = { "monitor_w*0.30", "monitor_h*0.40" },
+    move  = { "monitor_w*0.69", "monitor_h*0.05" },
 })
 
 -- ================================================================
@@ -262,12 +262,12 @@ hl.window_rule({ name = "ws-gimp",   match = { class = "^(gimp.*)$" },          
 -- Window Opacity
 -- ================================================================
 
-hl.window_rule({ name = "opacity-rofi-brave",  match = { class = "^([Rr]ofi|Brave-browser|codium-url-handler)$" }, opacity = { active = 0.9, inactive = 0.6 } })
-hl.window_rule({ name = "opacity-thunar",       match = { class = "^(thunar)$" },                                   opacity = { active = 0.9, inactive = 0.9 } })
-hl.window_rule({ name = "opacity-dolphin-code", match = { class = "^(org.kde.dolphin|gedit|VSCodium)$" },           opacity = { active = 0.9, inactive = 0.8 } })
-hl.window_rule({ name = "opacity-terminals",    match = { class = "^(kitty|mousepad|foot|foot-dropterm)$" },        opacity = { active = 0.9, inactive = 0.7 } })
-hl.window_rule({ name = "opacity-gaming",       match = { class = "^(steam|net.lutris.Lutris)$" },                  opacity = { active = 0.8, inactive = 0.7 } })
-hl.window_rule({ name = "opacity-gimp",         match = { class = "^(gimp)$" },                                     opacity = { active = 1.0, inactive = 1.0 } })
+hl.window_rule({ name = "opacity-rofi-brave",  match = { class = "^([Rr]ofi|Brave-browser|codium-url-handler)$" },  opacity = "0.9 override 0.6 override" })
+hl.window_rule({ name = "opacity-thunar",       match = { class = "^(thunar)$" },                                   opacity = "0.9 override 0.9 override" })
+hl.window_rule({ name = "opacity-dolphin-code", match = { class = "^(org.kde.dolphin|gedit|VSCodium)$" },           opacity = "0.9 override 0.8 override" })
+hl.window_rule({ name = "opacity-terminals",    match = { class = "^(kitty|mousepad|foot|foot-dropterm)$" },        opacity = "0.9 override 0.7 override" })
+hl.window_rule({ name = "opacity-gaming",       match = { class = "^(steam|net.lutris.Lutris)$" },                  opacity = "0.8 override 0.7 override" })
+hl.window_rule({ name = "opacity-gimp",         match = { class = "^(gimp)$" },                                     opacity = "1.0 1.0 override" })
 
 -- ================================================================
 -- Browser Popups

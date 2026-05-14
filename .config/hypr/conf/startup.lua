@@ -64,30 +64,24 @@ hl.on("hyprland.start", function()
     -- Zellij session cleanup
     hl.exec_cmd("zellij delete-all-sessions -y")
 
-    -- ---------------- Workspace Workflow ----------------
-    -- -- Workspace 1: browser, file manager, system monitor
-    -- hl.exec_cmd("brave --restore-last-session", { workspace = "1", silent = true })
-    -- hl.exec_cmd("sh -c 'sleep 1 && dolphin'", { workspace = "1", silent = true })
-    -- -- hl.exec_cmd('sh -c \'sleep 4 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"\'', { workspace = "1", silent = true })
-    -- hl.exec_cmd(
-    --     [[sh -c 'sleep 3 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"']],
-    --     { workspace = "1", silent = true }
-    -- }
-
-    -- -- Workspace 2: gaming / entertainment
-    -- hl.exec_cmd("lutris",{ workspace = "2", silent = true })
-    -- -- hl.exec_cmd('brave --profile-directory=Default --app="https://app.tvtime.com/shows/watchlist"', { workspace = "2", silent = true })
-
-    -- -- Workspace 3: Steam
-    -- hl.exec_cmd("steam", { workspace = "3", silent = true })
-
-    -- -- Workspace 4: editor (uncomment as needed)
-    -- -- hl.exec_cmd("codium", { workspace = "4", silent = true })
-    -- -- hl.exec_cmd('codium "/home/itachi/.config"',{ workspace = "4", silent = true })
+    -- ---------------- Workspace Workflow (commented — active block below) ----------------
+    -- Workspace 1
+    -- hl.exec_cmd("brave --restore-last-session", { workspace = "1 silent" })
+    -- hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   { workspace = "1 silent" })
+    -- hl.exec_cmd([[sh -c 'sleep 3 && foot -e sh -c "zellij -l gotop_cava attach --create gotop_cava; exec fish"']], { workspace = "1 silent" })
+    -- Workspace 2
+    -- hl.exec_cmd("lutris",  { workspace = "2 silent" })
+    -- hl.exec_cmd('brave --profile-directory=Default --app="https://app.tvtime.com/shows/watchlist"', { workspace = "2 silent" })
+    -- Workspace 3
+    -- hl.exec_cmd("steam",   { workspace = "3 silent" })
+    -- Workspace 4
+    -- hl.exec_cmd("codium",  { workspace = "4 silent" })
     
-    local ws1 = { workspace = "1", silent = true }
-    local ws2 = { workspace = "2", silent = true }
-    local ws3 = { workspace = "3", silent = true }
+    -- NOTE: exec_cmd rules use window rule effects.
+    -- 'silent' is NOT a separate key — append it to the workspace string instead.
+    local ws1 = { workspace = "1 silent" }
+    local ws2 = { workspace = "2 silent" }
+    local ws3 = { workspace = "3 silent" }
 
     hl.exec_cmd("brave --restore-last-session", ws1)
     hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   ws1)

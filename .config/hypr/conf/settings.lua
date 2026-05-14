@@ -141,10 +141,11 @@ hl.config({
             enabled        = true,
             range          = 6,
             render_power   = 2,
-            color          = "rgba(31, 32, 44, 0.6)",
-            color_inactive = "rgba(31, 32, 44, 0.3)",
+            -- color          = "rgba(31, 32, 44, 0.6)",
+            color          = "rgba(1f202c99)",
+            -- color_inactive = "rgba(31, 32, 44, 0.3)",
+            color_inactive = "rgba(1f202c4d)",
             offset         = { 4, 4 },
-            ignore_window  = true,
         },
 
         blur = {
@@ -207,18 +208,18 @@ hl.config({
         repeat_delay = 300,
         numlock_by_default          = false,
         left_handed                 = false,
-        follow_mouse                = true,
-        float_switch_override_focus = false,
+        follow_mouse                = 1,    -- int: 0=none,1=always,2=detached,3=separate
+        float_switch_override_focus = 0,    -- int: 0=off,1=on,2=on+float-to-float
         accel_profile               = "flat",
 
-        touchpad = {
-            disable_while_typing    = true,
-            natural_scroll          = false,
-            clickfinger_behavior    = false,
-            middle_button_emulation = true,
-            ["tap-to-click"]        = true,
-            drag_lock               = false,
-        },
+        -- touchpad = {
+        --     disable_while_typing    = true,
+        --     natural_scroll          = false,
+        --     clickfinger_behavior    = false,
+        --     middle_button_emulation = true,
+        --     ["tap-to-click"]        = true,
+        --     drag_lock               = false,
+        -- },
     },
 })
 
@@ -232,7 +233,7 @@ hl.config({
         disable_hyprland_logo    = true,
         disable_splash_rendering = true,
         mouse_move_enables_dpms  = true,
-        vrr                      = false,
+        vrr                      = 0,    -- int: 0=off,1=on,2=fullscreen-only,3=fullscreen+game
         enable_swallow           = false,
         focus_on_activate        = false,
         render_unfocused_fps     = 30,
@@ -254,7 +255,7 @@ hl.config({
 hl.config({
     cursor = {
         sync_gsettings_theme = true,
-        no_hardware_cursors  = 2,
+        no_hardware_cursors  = 1,    -- int: 0=use if possible,1=never,2=auto
         enable_hyprcursor    = true,
         no_warps             = true,
     },
@@ -273,37 +274,37 @@ hl.config({
 
 hl.config({
     render = {
-        direct_scanout = false,
+        direct_scanout = 0,    -- int: 0=off,1=on,2=auto(game content)
     },
 })
 
 -- ---------------- Plugin Settings ----------------
 
-hl.config({
-    plugin = {
-        hyprexpo = {
-            columns          = 3,
-            gap_size         = 5,
-            bg_col           = C.color7,
-            workspace_method = "center current",
-        },
-        hyprtasking = {
-            layout          = "grid",
-            gap_size        = 15,
-            bg_color        = C.color7,
-            border_size     = 4,
-            exit_on_hovered = false,
-            grid = {
-                rows                  = 3,
-                cols                  = 3,
-                loop                  = false,
-                gaps_use_aspect_ratio = true,
-            },
-            linear = {
-                height       = 500,
-                scroll_speed = 1.0,
-                blur         = 5,
-            },
-        },
-    },
-})
+-- hl.config({
+--     plugin = {
+--         hyprexpo = {
+--             columns          = 3,
+--             gap_size         = 5,
+--             bg_col           = C.color7,
+--             workspace_method = "center current",
+--         },
+--         hyprtasking = {
+--             layout          = "grid",
+--             gap_size        = 15,
+--             bg_color        = C.color7,
+--             border_size     = 4,
+--             exit_on_hovered = false,
+--             grid = {
+--                 rows                  = 3,
+--                 cols                  = 3,
+--                 loop                  = false,
+--                 gaps_use_aspect_ratio = true,
+--             },
+--             linear = {
+--                 height       = 500,
+--                 scroll_speed = 1.0,
+--                 blur         = 5,
+--             },
+--         },
+--     },
+-- })

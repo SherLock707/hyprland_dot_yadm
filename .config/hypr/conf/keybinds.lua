@@ -33,12 +33,12 @@ local brightness   = scriptsDir .. "/Brightness.sh"
 -- ---------------- System Controls ----------------
 
 -- Power
-hl.bind("xf86poweroff",           hl.dsp.exec_cmd(scriptsDir .. "/LockScreen.sh --suspend"), { description = "Suspend System" })
-hl.bind("CTRL + ALT + Delete",    hl.dsp.exit(),                                              { description = "Exit Hyprland" })
+hl.bind("XF86poweroff",           hl.dsp.exec_cmd(scriptsDir .. "/LockScreen.sh --suspend"), { description = "Suspend System" })
+hl.bind("CTRL + ALT + Delete",    hl.dsp.exec_cmd("hyprshutdown"),                            { description = "Exit Hyprland" })
 hl.bind("CTRL + ALT + P",         hl.dsp.exec_cmd(scriptsDir .. "/RofiPower.sh"),             { description = "Power Menu" })
-hl.bind("xf86mail",               hl.dsp.exec_cmd(scriptsDir .. "/RofiPower.sh"),             { description = "Power Menu Alt (F12)" })
+hl.bind("XF86mail",               hl.dsp.exec_cmd(scriptsDir .. "/RofiPower.sh"),             { description = "Power Menu Alt (F12)" })
 hl.bind("CTRL + ALT + L",         hl.dsp.exec_cmd(scriptsDir .. "/LockScreen.sh"),            { description = "Lock Screen" })
-hl.bind("xf86Sleep",              hl.dsp.exec_cmd(scriptsDir .. "/LockScreen.sh"),            { description = "Sleep Lock (FN+F11)" })
+hl.bind("XF86Sleep",              hl.dsp.exec_cmd(scriptsDir .. "/LockScreen.sh"),            { description = "Sleep Lock (FN+F11)" })
 
 -- Hyprland
 hl.bind("SUPER + SHIFT + C", hl.dsp.exec_cmd("hyprctl reload"),    { description = "Reload Config" })
@@ -70,12 +70,12 @@ hl.bind("SUPER + SHIFT + Return", hl.dsp.exec_cmd(termSec),           { descript
 hl.bind("SUPER + D",             hl.dsp.exec_cmd(files_main),         { description = "Dolphin File Manager" })
 hl.bind("SUPER + T",             hl.dsp.exec_cmd(files_sec),          { description = "Thunar File Manager" })
 hl.bind("SUPER + B",             hl.dsp.exec_cmd(browser),            { description = "Browser" })
-hl.bind("xf86calculator",              hl.dsp.exec_cmd("qalculate-qt"),     { description = "Calculator (F3)" })
+hl.bind("XF86calculator",              hl.dsp.exec_cmd("qalculate-qt"),     { description = "Calculator (F3)" })
 
 -- Ani-cli
-hl.bind("xf86explorer", hl.dsp.exec_cmd(ani_cli_cmd .. " -q 1080p --dub --rofi"), { description = "Ani-cli Dub (F1)" })
-hl.bind("xf86homepage", hl.dsp.exec_cmd(ani_cli_cmd .. " -q 1080p --rofi"),       { description = "Ani-cli Sub (F2)" })
-hl.bind("xf86tools",    hl.dsp.exec_cmd(ani_cli_cmd .. " -c --rofi"),             { description = "Ani-cli Continue (F4)" })
+hl.bind("XF86explorer", hl.dsp.exec_cmd(ani_cli_cmd .. " -q 1080p --dub --rofi"), { description = "Ani-cli Dub (F1)" })
+hl.bind("XF86homepage", hl.dsp.exec_cmd(ani_cli_cmd .. " -q 1080p --rofi"),       { description = "Ani-cli Sub (F2)" })
+hl.bind("XF86tools",    hl.dsp.exec_cmd(ani_cli_cmd .. " -c --rofi"),             { description = "Ani-cli Continue (F4)" })
 
 -- ---------------- Window Management ----------------
 
@@ -88,11 +88,11 @@ hl.bind("SUPER + P",         hl.dsp.window.pin(),                               
 
 -- Layout
 hl.bind("SUPER + CTRL + D",    hl.dsp.layout("removemaster"),                                        { description = "Remove Master" })
-hl.bind("SUPER + X",           hl.dsp.window.fullscreen({ mode = 1 }),                               { description = "Maximize" })
-hl.bind("SUPER + F11",         hl.dsp.window.fullscreenstate({ client = -1, internal = 2 }),         { description = "Fullscreen Toggle" })
+hl.bind("SUPER + X",           hl.dsp.window.fullscreen({ mode = "maximized" }),               { description = "Maximize" })
+hl.bind("SUPER + F11",         hl.dsp.window.fullscreen_state({ internal = 2, client = -1, action = "toggle" }),{ description = "Fullscreen Toggle" })
 hl.bind("SUPER + I",           hl.dsp.layout("addmaster"),                                           { description = "Add Master" })
 hl.bind("SUPER + J",           hl.dsp.layout("cyclenext"),                                           { description = "Cycle Next" })
-hl.bind("SUPER + K",           hl.dsp.layout("cycleprev"),                                           { description = "Cycle Previous" })
+hl.bind("SUPER + CTRL + J",    hl.dsp.layout("cycleprev"),                                           { description = "Cycle Previous" })
 hl.bind("SUPER + M",           hl.dsp.exec_cmd("hyprctl dispatch splitratio 0.3"),                   { description = "Split Ratio 0.3" })
 hl.bind("SUPER + SHIFT + M",   hl.dsp.exec_cmd("hyprctl dispatch splitratio -0.3"),                  { description = "Split Ratio -0.3" })
 hl.bind("SUPER + CTRL + Return", hl.dsp.layout("swapwithmaster"),                                    { description = "Swap with Master" })
@@ -104,9 +104,9 @@ hl.bind("SUPER + bracketright", hl.dsp.layout("move +col"), { description = "Scr
 hl.bind("SUPER + bracketleft",  hl.dsp.layout("move -col"), { description = "Scroll Col Left" })
 
 -- Grouping
-hl.bind("SUPER + G",          hl.dsp.window.togglegroup(),      { description = "Toggle Group" })
-hl.bind("SUPER + CTRL + Tab", hl.dsp.window.changegroupactive(), { description = "Change Group Focus" })
-hl.bind("SUPER + CTRL + R",   hl.dsp.window.moveoutofgroup(),    { description = "Move Out of Group" })
+hl.bind("SUPER + G",          hl.dsp.group.toggle(),                        { description = "Toggle Group" })
+hl.bind("SUPER + CTRL + Tab", hl.dsp.group.next(),                          { description = "Change Group Focus" })
+hl.bind("SUPER + CTRL + R",   hl.dsp.window.move({ out_of_group = true }),  { description = "Move Out of Group" })
 
 -- Resize (symmetrical, anchor-preserving)
 hl.bind("SUPER + SHIFT + right", hl.dsp.exec_cmd('hyprctl --batch "dispatch resizeactive 50 0 ; dispatch moveactive 25 0"'),   { repeating = true, description = "Resize Width +" })
@@ -119,11 +119,11 @@ hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true, description
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Resize Window" })
 
 -- HyprTasking / Navigation
-hl.bind("SUPER + I",     hl.dsp.exec_cmd("hyprtasking:toggle cursor"), { description = "Tasking Toggle" })
-hl.bind("SUPER + left",  hl.dsp.exec_cmd("hyprtasking:move left"),     { description = "Tasking Left" })
-hl.bind("SUPER + down",  hl.dsp.exec_cmd("hyprtasking:move down"),     { description = "Tasking Down" })
-hl.bind("SUPER + up",    hl.dsp.exec_cmd("hyprtasking:move up"),       { description = "Tasking Up" })
-hl.bind("SUPER + right", hl.dsp.exec_cmd("hyprtasking:move right"),    { description = "Tasking Right" })
+-- hl.bind("SUPER + I",     hl.dsp.exec_cmd("hyprtasking:toggle cursor"), { description = "Tasking Toggle" })
+-- hl.bind("SUPER + left",  hl.dsp.exec_cmd("hyprtasking:move left"),     { description = "Tasking Left" })
+-- hl.bind("SUPER + down",  hl.dsp.exec_cmd("hyprtasking:move down"),     { description = "Tasking Down" })
+-- hl.bind("SUPER + up",    hl.dsp.exec_cmd("hyprtasking:move up"),       { description = "Tasking Up" })
+-- hl.bind("SUPER + right", hl.dsp.exec_cmd("hyprtasking:move right"),    { description = "Tasking Right" })
 
 -- ---------------- Workspace Management ----------------
 
@@ -136,6 +136,8 @@ for i = 1, 10 do
     local key = i % 10  -- 10 → key "0"
     hl.bind("SUPER + " .. key,                hl.dsp.focus({ workspace = i }),                       { description = "Workspace " .. i })
     hl.bind("SUPER + CTRL + " .. key,         hl.dsp.window.move({ workspace = i }),                 { description = "Move to WS " .. i })
+    -- NOTE: silent=true is not in the wiki (move only documents workspace + follow?)
+    -- Old conf used movetoworkspacesilent — test if this param works at runtime
     hl.bind("SUPER + SHIFT + " .. key,        hl.dsp.window.move({ workspace = i, silent = true }),  { description = "Move Silent WS " .. i })
 end
 
@@ -146,6 +148,7 @@ hl.bind("SUPER + period",            hl.dsp.focus({ workspace = "e+1" }), { desc
 hl.bind("SUPER + comma",             hl.dsp.focus({ workspace = "e-1" }), { description = "Prev Workspace Alt" })
 hl.bind("SUPER + CTRL + bracketleft",    hl.dsp.window.move({ workspace = "-1" }),              { description = "Move to Prev WS" })
 hl.bind("SUPER + CTRL + bracketright",   hl.dsp.window.move({ workspace = "+1" }),              { description = "Move to Next WS" })
+-- NOTE: silent=true not documented in wiki — may be silently ignored (test at runtime)
 hl.bind("SUPER + SHIFT + bracketleft",   hl.dsp.window.move({ workspace = "-1", silent = true }), { description = "Move Silent Prev" })
 hl.bind("SUPER + SHIFT + bracketright",  hl.dsp.window.move({ workspace = "+1", silent = true }), { description = "Move Silent Next" })
 
@@ -156,31 +159,31 @@ hl.bind("mouse:276", hl.dsp.focus({ workspace = "e+1" }), { description = "Next 
 -- ---------------- Multimedia Controls ----------------
 
 -- Volume
-hl.bind("xf86audioraisevolume", hl.dsp.exec_cmd(volume .. " --inc"),        { description = "Volume Up" })
-hl.bind("xf86audiolowervolume", hl.dsp.exec_cmd(volume .. " --dec"),        { description = "Volume Down" })
-hl.bind("xf86AudioMicMute",     hl.dsp.exec_cmd(volume .. " --toggle-mic"), { description = "Toggle Mic" })
-hl.bind("xf86audiomute",        hl.dsp.exec_cmd(volume .. " --toggle"),     { description = "Toggle Mute (FN+F1)" })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volume .. " --inc"),        { description = "Volume Up" })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volume .. " --dec"),        { description = "Volume Down" })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd(volume .. " --toggle-mic"), { description = "Toggle Mic" })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd(volume .. " --toggle"),     { description = "Toggle Mute (FN+F1)" })
 
 -- Brightness
 hl.bind("XF86MonBrightnessUp",              hl.dsp.exec_cmd(brightness .. " --inc"), { description = "Brightness Up" })
 hl.bind("XF86MonBrightnessDown",            hl.dsp.exec_cmd(brightness .. " --dec"), { description = "Brightness Down" })
 hl.bind("SCROLL_LOCK",                      hl.dsp.exec_cmd(brightness .. " --dec"), { description = "Brightness Down Alt" })
 hl.bind("PAUSE",                            hl.dsp.exec_cmd(brightness .. " --inc"), { description = "Brightness Up Alt" })
-hl.bind("CTRL + xf86audioraisevolume",      hl.dsp.exec_cmd(brightness .. " --inc"), { description = "Brightness Up Ctrl" })
-hl.bind("CTRL + xf86audiolowervolume",      hl.dsp.exec_cmd(brightness .. " --dec"), { description = "Brightness Down Ctrl" })
+hl.bind("CTRL + XF86AudioRaiseVolume",      hl.dsp.exec_cmd(brightness .. " --inc"), { description = "Brightness Up Ctrl" })
+hl.bind("CTRL + XF86AudioLowerVolume",      hl.dsp.exec_cmd(brightness .. " --dec"), { description = "Brightness Down Ctrl" })
 
 -- Media
-hl.bind("xf86AudioPlayPause", hl.dsp.exec_cmd(Media .. " --pause"), { description = "Play/Pause" })
-hl.bind("xf86AudioPause",     hl.dsp.exec_cmd(Media .. " --pause"), { description = "Pause" })
-hl.bind("xf86AudioPlay",      hl.dsp.exec_cmd(Media .. " --pause"), { description = "Play" })
-hl.bind("xf86AudioNext",      hl.dsp.exec_cmd(Media .. " --nxt"),   { description = "Next Track" })
-hl.bind("xf86AudioPrev",      hl.dsp.exec_cmd(Media .. " --prv"),   { description = "Previous Track" })
-hl.bind("xf86audiostop",      hl.dsp.exec_cmd(Media .. " --stop"),  { description = "Stop Media" })
+-- hl.bind("XF86MediaPlayPause", hl.dsp.exec_cmd(Media .. " --pause"), { description = "Play/Pause" })
+hl.bind("XF86AudioPause",     hl.dsp.exec_cmd(Media .. " --pause"), { description = "Pause" })
+hl.bind("XF86AudioPlay",      hl.dsp.exec_cmd(Media .. " --pause"), { description = "Play" })
+hl.bind("XF86AudioNext",      hl.dsp.exec_cmd(Media .. " --nxt"),   { description = "Next Track" })
+hl.bind("XF86AudioPrev",      hl.dsp.exec_cmd(Media .. " --prv"),   { description = "Previous Track" })
+hl.bind("XF86AudioStop",      hl.dsp.exec_cmd(Media .. " --stop"),  { description = "Stop Media" })
 
 -- Hyprsunset (colour temperature)
-hl.bind("ALT + xf86audioraisevolume", hl.dsp.exec_cmd("hyprctl hyprsunset temperature +400"), { description = "Warmer Screen" })
-hl.bind("ALT + xf86audiolowervolume", hl.dsp.exec_cmd("hyprctl hyprsunset temperature -400"), { description = "Cooler Screen" })
-hl.bind("ALT + xf86audiomute",
+hl.bind("ALT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("hyprctl hyprsunset temperature +400"), { description = "Warmer Screen" })
+hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("hyprctl hyprsunset temperature -400"), { description = "Cooler Screen" })
+hl.bind("ALT + XF86AudioMute",
     hl.dsp.exec_cmd("hyprctl hyprsunset temperature $([ $(hyprctl hyprsunset temperature) = 6500 ] && echo 3500 || echo 6500)"),
     { description = "Toggle Night Light" })
 
@@ -212,7 +215,7 @@ hl.bind("SUPER + Tab", hl.dsp.global("quickshell:overviewToggle"), { description
 hl.bind("SUPER + V", hl.dsp.exec_cmd(scriptsDir .. "/ClipManager.sh"), { description = "Clipboard Manager" })
 
 -- System
-hl.bind("xf86Rfkill", hl.dsp.exec_cmd(AirplaneMode), { description = "Airplane Mode (FN+F12)" })
+hl.bind("XF86Rfkill", hl.dsp.exec_cmd(AirplaneMode), { description = "Airplane Mode (FN+F12)" })
 
 -- Window Effects
 hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd(scriptsDir .. "/ChangeBlur.sh"), { description = "Toggle Blur" })
@@ -242,10 +245,10 @@ hl.bind("SUPER + ALT + M",
 hl.bind("SUPER + N", hl.dsp.exec_cmd("swaync-client -t -sw"), { description = "Notification Center" })
 
 -- Window Cycle
-hl.bind("ALT + Tab", function()
-    hl.dispatch(hl.dsp.window.cyclenext())
-    hl.dispatch(hl.dsp.window.bringactivetotop())
-end, { description = "Cycle Windows" })
+-- hl.bind("ALT + Tab", function()
+--     hl.dispatch(hl.dsp.window.cycle_next())   -- wiki: cycle_next (snake_case)
+--     hl.dispatch(hl.dsp.window.bring_to_top()) -- wiki: bring_to_top (snake_case)
+-- end, { description = "Cycle Windows" })
 
 -- Search Keybinds
 hl.bind("SUPER + K", hl.dsp.exec_cmd(scriptsDir .. "/Key-bind.sh"), { description = "Search Keybinds" })
@@ -265,14 +268,16 @@ hl.bind("SUPER + SHIFT + O",
 -- ---------------- VM Passthrough Submap ----------------
 -- Enter passthrough mode (all keys forwarded to VM); exit with SUPER + Escape + P.
 
-hl.bind("SUPER + ALT + P", hl.dsp.submap("passthru"), { description = "Enable Passthrough" })
+-- hl.bind("SUPER + ALT + P", hl.dsp.submap("passthru"), { description = "Enable Passthrough" })
 
-hl.submap("passthru", function()
-    hl.bind("SUPER + Escape + P", hl.dsp.submap("reset"), { description = "Disable Passthrough" })
-end)
+-- hl.define_submap("passthru", function()
+--     hl.bind("SUPER + Escape + P", hl.dsp.submap("reset"), { description = "Disable Passthrough" })
+-- end)
 
 -- ---------------- EXPERIMENTAL ---------------------------
--- hl.bind(mainMod .. " + P",   hl.dsp.exec_cmd("hyprctl dispatch layoutmsg promote"))
--- hl.bind(mainMod .. " + V",   hl.dsp.exec_cmd("hyprctl dispatch layoutmsg splitv"))
--- hl.bind(mainMod .. " + H",   hl.dsp.exec_cmd("hyprctl dispatch layoutmsg splith"))
--- hl.bind(mainMod .. " + R",   hl.dsp.exec_cmd("hyprctl dispatch layoutmsg rotate"))
+-- NOTE: mainMod was an old hyprlang variable — not defined in this lua file.
+-- Replaced with the string "SUPER" directly. Uncomment to use.
+-- hl.bind("SUPER + P",   hl.dsp.layout("promote"))
+-- hl.bind("SUPER + V",   hl.dsp.layout("splitv"))
+-- hl.bind("SUPER + H",   hl.dsp.layout("splith"))
+-- hl.bind("SUPER + R",   hl.dsp.layout("rotate"))
