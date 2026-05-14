@@ -17,7 +17,6 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_MENU_PREFIX", "plasma-")
 hl.env("GTK_USE_PORTAL", "1")
--- NOTE: $VAR is NOT expanded in Lua strings — use os.getenv() to build the value
 hl.env("PATH", os.getenv("PATH") .. ":" .. os.getenv("HOME") .. "/.local/bin/scripts/")
 hl.env("EDITOR", "nvim")
 

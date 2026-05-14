@@ -72,17 +72,17 @@ animate_slide_down() {
     local step_y=$(((target_y - start_y) / SLIDE_STEPS))
 
     # Place at start position instantly
-    hyprctl dispatch movewindowpixel "exact $target_x $start_y,address:$addr" >/dev/null 2>&1
+    hyprctl dispatch "hl.dsp.window.move({ x = $target_x, y = $start_y, window = 'address:$addr' })" >/dev/null 2>&1
     sleep 0.03
 
     for i in $(seq 1 $SLIDE_STEPS); do
         local current_y=$((start_y + step_y * i))
-        hyprctl dispatch movewindowpixel "exact $target_x $current_y,address:$addr" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.window.move({ x = $target_x, y = $current_y, window = 'address:$addr' })" >/dev/null 2>&1
         sleep $SLIDE_DELAY
     done
 
     # Ensure exact final position
-    hyprctl dispatch movewindowpixel "exact $target_x $target_y,address:$addr" >/dev/null 2>&1
+    hyprctl dispatch "hl.dsp.window.move({ x = $target_x, y = $target_y, window = 'address:$addr' })" >/dev/null 2>&1
 }
 
 # Function to animate window slide up (hide)
@@ -101,7 +101,7 @@ animate_slide_up() {
 
     for i in $(seq 1 $SLIDE_STEPS); do
         local current_y=$((start_y - step_y * i))
-        hyprctl dispatch movewindowpixel "exact $start_x $current_y,address:$addr" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.window.move({ x = $start_x, y = $current_y, window = 'address:$addr' })" >/dev/null 2>&1
         sleep $SLIDE_DELAY
     done
 
@@ -223,7 +223,7 @@ spawn_terminal() {
     local count_before=$(echo "$windows_before" | jq 'length')
 
     # Spawn into special workspace silently
-    hyprctl dispatch exec "[float; size $width $height; workspace special:scratchpad silent] $TERMINAL_CMD"
+    hyprctl dispatch "hl.dsp.exec_cmd([[$TERMINAL_CMD]], { float = true, size = {$width, $height}, workspace = 'special:scratchpad silent' })"
 
     sleep 0.2
 
@@ -250,9 +250,9 @@ spawn_terminal() {
         sleep 0.1
 
         # Move to current workspace, pin, resize, then animate in
-        hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$new_addr"
-        hyprctl dispatch pin "address:$new_addr"
-        hyprctl dispatch resizewindowpixel "exact $width $height,address:$new_addr" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.window.move({ workspace = '$CURRENT_WS', follow = false, window = 'address:$new_addr' })"
+        hyprctl dispatch "hl.dsp.window.pin({ window = 'address:$new_addr' })"
+        hyprctl dispatch "hl.dsp.window.resize({ x = $width, y = $height, window = 'address:$new_addr' })" >/dev/null 2>&1
         animate_slide_down "$new_addr" "$target_x" "$target_y" "$width" "$height"
 
         return 0
@@ -277,11 +277,11 @@ if terminal_exists; then
         height=$(echo $pos_info | cut -d' ' -f4)
 
         # Move to current workspace first, then animate down
-        hyprctl dispatch movetoworkspacesilent "$CURRENT_WS,address:$TERMINAL_ADDR"
-        hyprctl dispatch pin "address:$TERMINAL_ADDR"
-        hyprctl dispatch resizewindowpixel "exact $width $height,address:$TERMINAL_ADDR" >/dev/null 2>&1
+        hyprctl dispatch "hl.dsp.window.move({ workspace = '$CURRENT_WS', follow = false, window = 'address:$TERMINAL_ADDR' })"
+        hyprctl dispatch "hl.dsp.window.pin({ window = 'address:$TERMINAL_ADDR' })"
+        hyprctl dispatch "hl.dsp.window.resize({ x = $width, y = $height, window = 'address:$TERMINAL_ADDR' })" >/dev/null 2>&1
         animate_slide_down "$TERMINAL_ADDR" "$target_x" "$target_y" "$width" "$height"
-        hyprctl dispatch focuswindow "address:$TERMINAL_ADDR"
+        hyprctl dispatch "hl.dsp.focus({ window = 'address:$TERMINAL_ADDR' })"
 
     else
         debug_echo "Hiding terminal to scratchpad with slide up"
@@ -302,15 +302,15 @@ if terminal_exists; then
             # causing the bounce-back artifact (slides up, snaps back, disappears).
             # By moving first (which is visually instant since the window is pinned),
             # the subsequent pixel animation runs without any workspace interference.
-            hyprctl dispatch pin "address:$TERMINAL_ADDR"         # unpin (toggle off)
-            hyprctl dispatch movetoworkspacesilent "$SPECIAL_WS,address:$TERMINAL_ADDR"
+            hyprctl dispatch "hl.dsp.window.pin({ window = 'address:$TERMINAL_ADDR' })"         # unpin (toggle off)
+            hyprctl dispatch "hl.dsp.window.move({ workspace = '$SPECIAL_WS', follow = false, window = 'address:$TERMINAL_ADDR' })"
             sleep 0.05  # let the workspace move settle
 
             animate_slide_up "$TERMINAL_ADDR" "$curr_x" "$curr_y" "$curr_width" "$curr_height"
         else
             debug_echo "Could not get geometry, hiding without animation"
-            hyprctl dispatch pin "address:$TERMINAL_ADDR"
-            hyprctl dispatch movetoworkspacesilent "$SPECIAL_WS,address:$TERMINAL_ADDR"
+            hyprctl dispatch "hl.dsp.window.pin({ window = 'address:$TERMINAL_ADDR' })"
+            hyprctl dispatch "hl.dsp.window.move({ workspace = '$SPECIAL_WS', follow = false, window = 'address:$TERMINAL_ADDR' })"
         fi
     fi
 
@@ -319,7 +319,7 @@ else
     if spawn_terminal; then
         TERMINAL_ADDR=$(get_terminal_address)
         if [ -n "$TERMINAL_ADDR" ]; then
-            hyprctl dispatch focuswindow "address:$TERMINAL_ADDR"
+            hyprctl dispatch "hl.dsp.focus({ window = 'address:$TERMINAL_ADDR' })"
         fi
     fi
 fi

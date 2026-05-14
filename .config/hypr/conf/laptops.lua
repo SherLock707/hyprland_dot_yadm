@@ -9,9 +9,6 @@
 -- This file is an addendum to keybinds.lua, intended for laptop hardware.
 -- Uncomment and adjust as needed for your specific laptop model.
 -- Remember to uncomment require("conf.laptops") in hyprland.lua.
---
--- SCOPE NOTE: Each require() is a separate Lua scope. Variables from
--- keybinds.lua (scriptsDir, etc.) are NOT available here — redefine below.
 
 -- local home       = os.getenv("HOME")  -- use os.getenv(), NOT "$HOME" ($ not expanded in Lua strings)
 -- local scriptsDir = home .. "/.config/hypr/scripts"

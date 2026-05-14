@@ -77,8 +77,6 @@ hl.on("hyprland.start", function()
     -- Workspace 4
     -- hl.exec_cmd("codium",  { workspace = "4 silent" })
     
-    -- NOTE: exec_cmd rules use window rule effects.
-    -- 'silent' is NOT a separate key — append it to the workspace string instead.
     local ws1 = { workspace = "1 silent" }
     local ws2 = { workspace = "2 silent" }
     local ws3 = { workspace = "3 silent" }
