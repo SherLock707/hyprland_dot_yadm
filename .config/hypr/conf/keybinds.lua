@@ -151,7 +151,7 @@ for i = 1, 10 do
     local key = i % 10  -- 10 → key "0"
     hl.bind("SUPER + " .. key,                hl.dsp.focus({ workspace = i }),                       { description = "Workspace " .. i })
     hl.bind("SUPER + CTRL + " .. key,         hl.dsp.window.move({ workspace = i }),                 { description = "Move to WS " .. i })
-    hl.bind("SUPER + SHIFT + " .. key,        hl.dsp.window.move({ workspace = i, silent = true }),  { description = "Move Silent WS " .. i })
+    hl.bind("SUPER + SHIFT + " .. key,        hl.dsp.window.move({ workspace = i, follow = false}),  { description = "Move Silent WS " .. i })
 end
 
 -- Workspace navigation
@@ -161,8 +161,8 @@ hl.bind("SUPER + period",            hl.dsp.focus({ workspace = "e+1" }), { desc
 hl.bind("SUPER + comma",             hl.dsp.focus({ workspace = "e-1" }), { description = "Prev Workspace Alt" })
 hl.bind("SUPER + CTRL + bracketleft",    hl.dsp.window.move({ workspace = "-1" }),              { description = "Move to Prev WS" })
 hl.bind("SUPER + CTRL + bracketright",   hl.dsp.window.move({ workspace = "+1" }),              { description = "Move to Next WS" })
-hl.bind("SUPER + SHIFT + bracketleft",   hl.dsp.window.move({ workspace = "-1", silent = true }), { description = "Move Silent Prev" })
-hl.bind("SUPER + SHIFT + bracketright",  hl.dsp.window.move({ workspace = "+1", silent = true }), { description = "Move Silent Next" })
+hl.bind("SUPER + SHIFT + bracketleft",   hl.dsp.window.move({ workspace = "-1", follow = false }), { description = "Move Silent Prev" })
+hl.bind("SUPER + SHIFT + bracketright",  hl.dsp.window.move({ workspace = "+1", follow = false }), { description = "Move Silent Next" })
 
 -- Razer mouse side buttons
 hl.bind("mouse:275", hl.dsp.focus({ workspace = "e-1" }), { description = "Prev WS Mouse" })

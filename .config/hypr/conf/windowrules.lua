@@ -166,7 +166,7 @@ hl.window_rule({
 hl.window_rule({
     name   = "lutris-size",
     match  = { class = "^(net.lutris.Lutris.*)$", title = "^(Lutris)$" },
-    size   = { "monitor_w*0.67", "monitor_h*0.72" },
+    size   = { "monitor_w*0.67", "monitor_h*0.87" },
     center = true,
 })
 
@@ -254,7 +254,7 @@ hl.window_rule({
 
 hl.window_rule({ name = "ws-brave",  match = { class = "^(Brave-browser)$" },     workspace = "1" })
 hl.window_rule({ name = "ws-lutris", match = { class = "^(net.lutris.Lutris)$" }, workspace = "2 silent" })
-hl.window_rule({ name = "ws-tvtime", match = { class = "brave-app.tvtime.*" },     workspace = "2 silent" })
+hl.window_rule({ name = "ws-tvtime", match = { class = "brave-app.tvtime.*" },    workspace = "2 silent" })
 hl.window_rule({ name = "ws-steam",  match = { class = "^(steam)$" },             workspace = "3 silent" })
 hl.window_rule({ name = "ws-gimp",   match = { class = "^(gimp.*)$" },            workspace = "6" })
 
