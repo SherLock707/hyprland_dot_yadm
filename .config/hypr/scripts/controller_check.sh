@@ -1,22 +1,33 @@
 #!/bin/bash
-# Checks controller and gamemode status
+# Checks controller and gamemode status for Waybar
 
-animation_status=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+animation_raw=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 gamemode_status=$(gamemoded -s)
 
-# Check if /dev/input/js1 exists
-if stat -c "%n" /dev/input/js1 >/dev/null 2>&1; then
-    # Check the value of animations:enabled from hyprctl
-    if [[ $animation_status -eq 1 ]]; then
-        echo -e "{\"alt\": \"success-gamemodeoff\", \"tooltip\": \"Hyprland Animation: ${animation_status}\\\nGameModeRun: ${gamemode_status}\"}"
-    else
-        echo "{\"alt\": \"success-gamemodeon\"}"
-    fi
+if [[ "$animation_raw" == "true" ]] || [[ "$animation_raw" == "1" ]]; then
+    ANIM_STATUS=1
 else
-    # Check the value of animations:enabled from hyprctl
-    if [[ $animation_status -eq 1 ]]; then
-        echo -e "{\"alt\": \"fail-gamemodeoff\", \"tooltip\": \"Hyprland Animation: ${animation_status}\\\nGameModeRun: ${gamemode_status}\"}"
-    else
-        echo "{\"alt\": \"fail-gamemodeon\"}"
-    fi
+    ANIM_STATUS=0
 fi
+
+if [ -e /dev/input/js1 ]; then
+    PREFIX="success"
+else
+    PREFIX="fail"
+fi
+
+if [[ $ANIM_STATUS -eq 1 ]]; then
+    SUFFIX="gamemodeoff"
+else
+    SUFFIX="gamemodeon"
+fi
+
+# Determine bool text for tooltip
+if [[ $ANIM_STATUS -eq 1 ]]; then
+    ANIM_BOOL="true"
+else
+    ANIM_BOOL="false"
+fi
+
+# Output JSON for Waybar
+echo -e "{\"alt\": \"${PREFIX}-${SUFFIX}\", \"tooltip\": \"Hyprland Animation: ${ANIM_BOOL} | GameModeRun: ${gamemode_status}\"}"

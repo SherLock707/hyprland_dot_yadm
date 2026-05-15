@@ -219,7 +219,7 @@ hl.bind("SUPER + SHIFT + S",
 -- Dropdown terminal
 -- hl.bind("SUPER + S", hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal" })
 require("conf.extra.scratchpad")
-hl.bind("Insert",          hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal Alt" })
+-- hl.bind("Insert",          hl.dsp.exec_cmd(drop_down .. ' "' .. drop_cmd .. '"'), { description = "Dropdown Terminal Alt" })
 
 -- Overview (quickshell)
 hl.bind("SUPER + Tab", hl.dsp.global("quickshell:overviewToggle"), { description = "Toggle Overview" })

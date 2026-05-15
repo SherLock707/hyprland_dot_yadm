@@ -1,32 +1,40 @@
 #!/bin/bash
-# Game Mode. Turning off all animations
 
-notif="$HOME/.config/dunst/images/bell.png"
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
-
-
-HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-if [ "$HYPRGAMEMODE" = 1 ] ; then
-    hyprctl --batch "\
-        keyword animations:enabled 0;\
-        keyword decoration:drop_shadow 0;\
-		keyword decoration:blur:passes 0;\
-        keyword general:gaps_in 0;\
-        keyword general:gaps_out 0;\
-        keyword general:border_size 1;\
-        keyword decoration:rounding 0"001
-	
-	hyprctl keyword "windowrule opacity 1 override 1 override 1 override, ^(.*)$"
-    awww kill 
-    notify-send -e -u low -i "$notif" " GameMode enabled!"
-    exit
+if [ -z "$1" ]; then
+    if hyprctl getoption animations:enabled | head -n1 | grep -q "true"; then
+        ACTION="enable"
+    else
+        ACTION="disable"
+    fi
 else
-	awww-daemon --format xrgb && awww img "$HOME/.config/rofi/.current_wallpaper" &
-	sleep 0.1
-	${SCRIPTSDIR}/PywalSwww.sh
-	sleep 0.5
-	${SCRIPTSDIR}/Refresh.sh	 
-    notify-send -e -u normal -i "$notif" "GameMode disabled."
-    exit
+    case "$1" in
+        enable|on)  ACTION="enable"  ;;
+        disable|off) ACTION="disable" ;;
+        *) ACTION="enable" ;;
+    esac
 fi
-hyprctl reload
+
+if [ "$ACTION" = "enable" ]; then
+    hyprctl eval '
+        hl.config({
+            animations = { enabled = false },
+            decoration = { shadow = { enabled = false }, blur = { enabled = false }, rounding = 0 },
+            general = { gaps_in = 0, gaps_out = 0, border_size = 1 }
+        })
+        hl.window_rule({ name = "gm-op", match = { class = "^(.*)$" }, opacity = "1 override 1 override" })
+    '
+    
+    pkill awww-daemon &
+    notify-send -u low -t 2000 "GameMode Enabled" "Visual effects off."
+else
+    hyprctl reload
+    
+    (
+        sleep 0.4
+        if ! pgrep -x "awww-daemon" > /dev/null; then
+            awww-daemon --format xrgb
+        fi
+    ) &
+    
+    notify-send -t 2000 "GameMode Disabled" "Visual effects restored."
+fi

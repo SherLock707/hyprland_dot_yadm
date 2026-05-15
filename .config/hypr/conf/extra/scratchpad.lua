@@ -4,7 +4,7 @@
 local CONFIG = {
     class      = "foot-scratchpad",
     cmd        = "foot -a foot-scratchpad -e zellij attach --create scratchpad",
-    width_pct  = 0.6,
+    width_pct  = 0.5,
     height_pct = 0.5,
     y_pct      = 0.05,
     special_ws = "special:scratchpad"
@@ -119,6 +119,7 @@ hl.on("window.close", function(win)
     end
 end)
 
-hl.bind("SUPER + S", toggle_scratchpad, { description = "Toggle Zellij Scratchpad" })
+hl.bind("SUPER + S", toggle_scratchpad, { description = "Toggle Scratchpad" })
+hl.bind("Insert", toggle_scratchpad, { description = "Toggle Scratchpad" })
 
 return { toggle = toggle_scratchpad }
