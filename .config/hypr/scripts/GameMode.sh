@@ -25,7 +25,7 @@ if [ "$ACTION" = "enable" ]; then
     '
     
     pkill awww-daemon &
-    notify-send -u low -t 2000 "GameMode Enabled" "Visual effects off."
+    hyprctl eval 'hl.notification.create({ text = "GameMode Enabled: Visual effects off.", icon = "ok", timeout = 2000 })'
 else
     hyprctl reload
     
@@ -36,5 +36,5 @@ else
         fi
     ) &
     
-    notify-send -t 2000 "GameMode Disabled" "Visual effects restored."
+    hyprctl eval 'hl.notification.create({ text = "GameMode Disabled: Visual effects restored.", icon = "info", timeout = 2000 })'
 fi

@@ -25,5 +25,7 @@ require("conf.windowrules")
 require("conf.keybinds")
 require("conf.startup")
 
+require("conf.extra.gamemode")
+
 -- Laptop-specific binds (uncomment if on a laptop)
 -- require("conf.laptops")
