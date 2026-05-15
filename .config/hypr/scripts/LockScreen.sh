@@ -7,10 +7,10 @@ lock() {
 
 if [[ "$1" == "--suspend" ]]; then
     # run lock in background so it doesn't block
-    hyprlock -q --immediate &
+    # hyprlock -q --immediate &
     
-    # give it a moment to actually lock
-    sleep 0.5
+    # # give it a moment to actually lock
+    # sleep 0.5
     
     systemctl suspend
 else
