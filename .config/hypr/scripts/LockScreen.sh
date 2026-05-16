@@ -2,12 +2,12 @@
 
 # lock function
 lock() {
-    hyprlock -q --immediate &
+    hyprlock -q
 }
 
 if [[ "$1" == "--suspend" ]]; then
     # run lock in background so it doesn't block
-    # hyprlock -q --immediate &
+    # hyprlock -q
     
     # # give it a moment to actually lock
     # sleep 0.5

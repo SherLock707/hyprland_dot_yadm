@@ -8,6 +8,9 @@
 --]]
 -- See: https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
+-- Force all windows to open on the active workspace by default
+hl.window_rule({ match = { class = ".*" }, workspace = "unset" })
+
 -- ================================================================
 -- System Utilities
 -- ================================================================
@@ -58,7 +61,7 @@ hl.window_rule({
 
 hl.window_rule({
     name  = "float-file-dialogs",
-    match = { class = "^(file-roller|file-.*|script-fu.*)$", title = "^(Open File|Save File|Extract archive|Export.*|Choose Application — Dolphin|Extract — Dolphin)$" },
+    match = { class = "^(file-roller|file-.*|script-fu.*|org.kde.dolphin)$", title = "^(Open File|Save File|Extract archive|Export.*|Choose Application — Dolphin|Extract — Dolphin)$" },
     float = true,
 })
 

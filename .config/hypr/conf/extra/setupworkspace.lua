@@ -1,5 +1,4 @@
 -- conf/extra/setupworkspace.lua
--- Premium Workspace Orchestrator (Consolidated)
 
 local CONFIG = {
     target_ws    = "1",

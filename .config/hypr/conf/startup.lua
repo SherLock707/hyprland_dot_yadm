@@ -69,8 +69,9 @@ hl.on("hyprland.start", function()
     require("conf.extra.setupworkspace")
     
     -- local ws1 = { workspace = "1 silent" }
-    -- local ws2 = { workspace = "2 silent" }
-    -- local ws3 = { workspace = "3 silent" }
+    local ws2 = { workspace = "2 silent" }
+    local ws3 = { workspace = "3 silent" }
+    local ws4 = { workspace = "4 silent" }
 
     -- hl.exec_cmd("brave --restore-last-session", ws1)
     -- hl.exec_cmd("sh -c 'sleep 1 && dolphin'",   ws1)
@@ -79,5 +80,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("lutris", ws2)
 
     hl.exec_cmd("steam", ws3)
+
+    hl.exec_cmd("codium", ws4)
 
 end)
