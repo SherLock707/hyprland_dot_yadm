@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Get the current timestamp
+timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
+
+echo -e "\e[34m🚀 Starting YADM backup...\e[0m"
+
+# Add all tracked files
+echo -e "\e[32m📂 Staging changes...\e[0m"
+yadm add -u
+
+# Check if there's actually anything to commit
+if [ -z "$(yadm diff --staged --name-only)" ]; then
+    echo -e "\e[33mℹ️ No changes to commit. Exiting...\e[0m"
+    exit 0
+fi
+
+# Commit logic
+echo -e "\e[33m📝 Getting commit message from Ollama...\e[0m"
+# Calling the local script (make sure this path matches where you keep it!)
+ollama_output=$(~/.config/scripts/yd_commit_ollama.sh 2>/dev/null)
+
+# Parse the JSON response safely
+is_valid=$(echo "$ollama_output" | jq -r '.valid // "false"')
+commit_msg=$(echo "$ollama_output" | jq -r '.message // "Failed to parse script output"')
+
+if [ "$is_valid" = "true" ]; then
+    echo -e "\e[32m✅ Using generated commit message: \e[1m$commit_msg\e[0m"
+    yadm commit -m "$commit_msg"
+else
+    echo -e "\e[31m⚠️ $commit_msg. Falling back to timestamp.\e[0m"
+    yadm commit -m "commit - $timestamp"
+fi
+
+# Push changes
+echo -e "\e[35m📤 Pushing to remote...\e[0m"
+yadm push
+
+echo -e "\e[36m✅ Backup complete!\e[0m"
