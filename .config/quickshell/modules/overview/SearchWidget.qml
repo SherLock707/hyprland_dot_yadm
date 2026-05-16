@@ -303,7 +303,7 @@ Item { // Wrapper
                                     clickActionName: "",
                                     type: `#${entry.match(/^\s*(\S+)/)?.[1] || ""}`,
                                     execute: () => {
-                                        Hyprland.dispatch(`exec echo '${StringUtils.shellSingleQuoteEscape(entry)}' | cliphist decode | wl-copy`);
+                                        Hyprland.dispatch(`hl.dsp.exec_cmd("echo '${StringUtils.shellSingleQuoteEscape(entry)}' | cliphist decode | wl-copy")`);
                                     }
                                 };
                             }).filter(Boolean);
@@ -318,7 +318,7 @@ Item { // Wrapper
                                     clickActionName: "",
                                     type: "Emoji",
                                     execute: () => {
-                                        Hyprland.dispatch(`exec wl-copy '${StringUtils.shellSingleQuoteEscape(entry.match(/^\s*(\S+)/)?.[1])}'`);
+                                        Hyprland.dispatch(`hl.dsp.exec_cmd("wl-copy '${StringUtils.shellSingleQuoteEscape(entry.match(/^\s*(\S+)/)?.[1])}'")`);
                                     }
                                 };
                             }).filter(Boolean);
@@ -334,7 +334,7 @@ Item { // Wrapper
                             fontType: "monospace",
                             materialSymbol: 'calculate',
                             execute: () => {
-                                Hyprland.dispatch(`exec wl-copy '${StringUtils.shellSingleQuoteEscape(root.mathResult)}'`)
+                                Hyprland.dispatch(`hl.dsp.exec_cmd("wl-copy '${StringUtils.shellSingleQuoteEscape(root.mathResult)}'")`)
                             }
                         }
                         const commandResultObject = {

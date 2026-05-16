@@ -24,11 +24,11 @@ hl.env("EDITOR", "nvim")
 
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb") -- hyprqt6engine
-hl.env("QT_QPA_PLATFORMTHEME", "kde")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct") --kde
 hl.env("QT_SCALE_FACTOR", "1")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.env("QT_QUICK_CONTROLS_STYLE", "org.hyprland.style")
-hl.env("QT_STYLE_OVERRIDE", "kvantum-dark")
+hl.env("QT_STYLE_OVERRIDE", "kvantum")
 
 -- ---------------- XWayland ----------------
 

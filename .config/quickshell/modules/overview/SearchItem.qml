@@ -93,7 +93,7 @@ RippleButton {
     PointingHandInteraction {}
     onClicked: {
         root.itemExecute()
-        Hyprland.dispatch("global quickshell:overviewClose")
+        Hyprland.dispatch("hl.dsp.global('quickshell:overviewClose')")
     }
     Keys.onPressed: (event) => {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
