@@ -9,18 +9,25 @@ timestamp=$(date '+%Y-%m-%d_%H-%M-%S')
 # echo -e "\e[32m📂 Staging changes...\e[0m"
 yadm add -u
 
-# Get the actual staged diff (the contents of the changes)
-# We truncate to the first 1000 characters so Ollama doesn't hang on massive diffs!
-staged_changes=$(yadm diff --staged | head -c 1000)
+# Get the full staged diff
+full_diff=$(yadm diff --staged)
 
 # Check if there are any changes to commit
-if [ -z "$staged_changes" ]; then
+if [ -z "$full_diff" ]; then
   echo '{"valid": false, "message": "No changes to commit"}'
   exit 0
 fi
 
-# Replace newlines with spaces so filenames don't merge together
-staged_changes=$(echo "$staged_changes" | tr '\n' ' ')
+# Count the number of lines in the diff
+diff_lines=$(echo "$full_diff" | wc -l)
+
+# If the diff is massive (>100 lines), just send the filenames to Ollama
+# Otherwise, send the actual code changes
+if [ "$diff_lines" -gt 100 ]; then
+  staged_changes=$(yadm diff --staged --name-only | tr '\n' ' ')
+else
+  staged_changes=$(echo "$full_diff" | tr '\n' ' ')
+fi
 
 # echo -e "\e[34m💬 Generating commit message using Ollama...\e[0m"
 
