@@ -8,7 +8,7 @@
 --]]
 -- See: https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
--- Force all windows to open on the active workspace by default
+-- Force all windows to open on the active workspace by default (experimental)
 hl.window_rule({ match = { class = ".*" }, workspace = "unset" })
 
 -- ================================================================
