@@ -3,7 +3,7 @@
 local CONFIG = {
     target_ws    = "1",
     master_ratio = 1.30,    -- Perfect for Brave
-    slave_ratio  = 0.9,    -- 50/50 for Dolphin/Foot
+    slave_ratio  = 1.1,    -- 50/50 for Dolphin/Foot
     settle_delay = 400,    -- Slightly longer for heavy apps like Brave
     step_delay   = 60,
     debug        = false,
@@ -64,7 +64,9 @@ hl.on("window.open", function(win)
                     function() hl.dispatch(hl.dsp.layout("splitratio " .. CONFIG.master_ratio .. " exact")) end,
                     function() hl.dispatch(hl.dsp.focus({ window = "address:" .. s1 })) end,
                     function() hl.dispatch(hl.dsp.layout("splitratio " .. CONFIG.slave_ratio .. " exact")) end,
-                    function() notify(CONFIG.on_done, "ok") end
+                    function() notify(CONFIG.on_done, "ok") end,
+                    function() hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/setTermColor.sh") end,
+                    function() hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/setOpenRGB.sh") end
                 }, CONFIG.step_delay)
             end, { timeout = CONFIG.settle_delay, type = "oneshot" })
         end

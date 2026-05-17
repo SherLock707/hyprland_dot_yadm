@@ -215,16 +215,21 @@
     "interval": 5,
     "format": "{icon} ",
     "format-icons": {
-      "success-gamemodeoff": "<big><span foreground='#C1E1C1'>󰖺 </span></big>", 
-      "success-gamemodeon": "<big><span foreground='#C1E1C1'>󰖺 </span></big>",
-      "fail-gamemodeoff": "<big><span foreground='#FAA0A0'>󰖻 </span></big>", 
-      "fail-gamemodeon": "<big><span foreground='#FAA0A0'>󰖻 </span></big>"
+      "controlleron-gamemodeon-optizationon": "<big><span foreground='#C1E1C1'>󰖺  </span></big>",
+      "controlleron-gamemodeon-optizationoff": "<big><span foreground='#C1E1C1'>󰖺 </span> <span foreground='#FAA0A0'>󰻈</span></big>",
+      "controlleron-gamemodeoff-optizationon": "<big><span foreground='#C1E1C1'>󰖺</span> <span foreground='#FAA0A0'></span> <span foreground='#C1E1C1'></span></big>",
+      "controlleron-gamemodeoff-optizationoff": "<big><span foreground='#C1E1C1'>󰖺</span> <span foreground='#FAA0A0'> 󰻈</span></big>",
+      "controlleroff-gamemodeon-optizationon": "<big><span foreground='#FAA0A0'>󰖻</span> <span foreground='#C1E1C1'> </span></big>",
+      "controlleroff-gamemodeon-optizationoff": "<big><span foreground='#FAA0A0'>󰖻 󰻈</span> <span foreground='#C1E1C1'></span></big>",
+      "controlleroff-gamemodeoff-optizationon": "<big><span foreground='#FAA0A0'>󰖻 </span> <span foreground='#C1E1C1'></span></big>",
+      "controlleroff-gamemodeoff-optizationoff": "<big><span foreground='#FAA0A0'>󰖻  󰻈</span></big>"
     },
     "return-type": "json",
     // "exec": "stat -c \"%n\" /dev/input/js1 >/dev/null 2>&1  && echo '{\"alt\": \"success\"}' || echo '{\"alt\": \"fail\"}'",
     "exec": "~/.config/hypr/scripts/controller_check.sh",
     "escape": true,
-    "on-click": "~/.config/hypr/scripts/GameMode.sh"
+    "on-click": "~/.config/hypr/scripts/GameMode.sh",
+    "on-click-middle": "[ -f /tmp/auto_gamemode_disabled ] && rm /tmp/auto_gamemode_disabled || touch /tmp/auto_gamemode_disabled"
   },
   "custom/backlight": {
     "interval": 60,

@@ -36,19 +36,28 @@ end
 hl.on("workspace.active", function(ws)
     local current_ws_name = ws.name
 
-    -- Entering game workspace
-    if current_ws_name == game_ws and last_ws_name ~= game_ws then
-        if workspace_has_windows(game_ws) then
-            is_gamemode_active = true
-            hl.exec_cmd(effects_script .. " enable")
-        end
+    local f = io.open("/tmp/auto_gamemode_disabled", "r")
+    local is_auto_disabled = false
+    if f then
+        f:close()
+        is_auto_disabled = true
     end
 
-    -- Leaving game workspace
-    if last_ws_name == game_ws and current_ws_name ~= game_ws then
-        if is_gamemode_active then
-            is_gamemode_active = false
-            hl.exec_cmd(effects_script .. " disable")
+    if not is_auto_disabled then
+        -- Entering game workspace
+        if current_ws_name == game_ws and last_ws_name ~= game_ws then
+            if workspace_has_windows(game_ws) then
+                is_gamemode_active = true
+                hl.exec_cmd(effects_script .. " enable")
+            end
+        end
+
+        -- Leaving game workspace
+        if last_ws_name == game_ws and current_ws_name ~= game_ws then
+            if is_gamemode_active then
+                is_gamemode_active = false
+                hl.exec_cmd(effects_script .. " disable")
+            end
         end
     end
 
@@ -57,6 +66,12 @@ end)
 
 -- 2. Handle windows leaving Workspace (Closing or Moving)
 local function check_and_disable_if_empty()
+    local f = io.open("/tmp/auto_gamemode_disabled", "r")
+    if f then
+        f:close()
+        return -- Do nothing if auto gamemode is disabled
+    end
+
     if is_gamemode_active and not workspace_has_windows(game_ws) then
         is_gamemode_active = false
         hl.exec_cmd(effects_script .. " disable")
