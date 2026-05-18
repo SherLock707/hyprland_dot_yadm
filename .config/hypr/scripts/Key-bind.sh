@@ -1,29 +1,45 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Kill yad to not interfere with this binds
 pkill yad || true
 
-# Check if rofi is already running
 if pidof rofi > /dev/null; then
-  pkill rofi
-  exit
+    pkill rofi
+    exit
 fi
 
-# Define the config files
-KEYBINDS_CONF="$HOME/.config/hypr/configs/Keybinds.conf"
+KEYBINDS=$(
+    hyprctl binds -j | jq -r '
 
-# Combine the contents of the keybinds files and filter for keybinds
-# KEYBINDS=$(cat "$KEYBINDS_CONF" | grep -E '^(bind|bindl|binde|bindm)')
-KEYBINDS=$(grep -E '^(bind|bindl|binde|bindm)' "$KEYBINDS_CONF" \
-  | sed 's/^bind[a-z]* = / /; s/\$mainMod/ /g; s/,/ /g; s/exec/ /g; s/  \+/ /g; s/^ //')
+    def getbit($pos; $n):
+        ((($n / (($pos | exp2))) | floor) % 2);
 
+    def mods($m):
+        (if getbit(6; $m) == 1 then " + " else "" end) +
+        (if getbit(0; $m) == 1 then "SHIFT + " else "" end) +
+        (if getbit(2; $m) == 1 then "CTRL + " else "" end) +
+        (if getbit(3; $m) == 1 then "ALT + " else "" end);
 
+    .[]
+    | select(.has_description == true)
+    | [
+        .description,
+        ("  " + mods(.modmask) + .key)
+      ]
+    | @tsv
+    ' | while IFS=$'\t' read -r desc key; do
+        printf "%-35s %s\n" "$desc" "$key"
+    done
+)
 
-# check for any keybinds to display
 if [[ -z "$KEYBINDS" ]]; then
     echo "No keybinds found."
     exit 1
 fi
 
-# Use rofi to display the keybinds
-echo "$KEYBINDS" | rofi -matching fuzzy -dmenu -i -p "Keybinds" -config ~/.config/rofi/config-keybinds.rasi
+echo "$KEYBINDS" \
+    | rofi \
+        -dmenu \
+        -i \
+        -matching fuzzy \
+        -p "Keybinds" \
+        -config ~/.config/rofi/config-keybinds.rasi
