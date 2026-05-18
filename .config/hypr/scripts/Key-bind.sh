@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-pkill yad || true
-
 if pidof rofi > /dev/null; then
     pkill rofi
     exit
