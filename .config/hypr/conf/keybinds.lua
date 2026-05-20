@@ -239,12 +239,20 @@ hl.bind("SUPER + L",         hl.dsp.exec_cmd(scriptsDir .. "/hyprshade.sh"),  { 
 hl.bind("SUPER + ALT + O", hl.dsp.exec_cmd("hyprctl setprop active opaque toggle"), { description = "Toggle Opacity" })
 
 -- Cursor Zoom
-hl.bind("SUPER + CTRL + mouse_down",
-    hl.dsp.exec_cmd('hyprctl keyword cursor:zoom_factor $(awk "BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep \'float:\' | awk \'{print $2}\') + 0.7}")'),
-    { description = "Zoom Out" })
-hl.bind("SUPER + CTRL + mouse_up",
-    hl.dsp.exec_cmd('hyprctl keyword cursor:zoom_factor $(awk "BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep \'float:\' | awk \'{print $2}\') - 0.7}")'),
-    { description = "Zoom In" })
+-- hl.bind("SUPER + CTRL + mouse_down",
+--     hl.dsp.exec_cmd('hyprctl keyword cursor:zoom_factor $(awk "BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep \'float:\' | awk \'{print $2}\') + 0.7}")'),
+--     { description = "Zoom Out" })
+-- hl.bind("SUPER + CTRL + mouse_up",
+--     hl.dsp.exec_cmd('hyprctl keyword cursor:zoom_factor $(awk "BEGIN {print $(hyprctl getoption cursor:zoom_factor | grep \'float:\' | awk \'{print $2}\') - 0.7}")'),
+--     { description = "Zoom In" })
+
+local zoom = dofile(os.getenv("HOME") .. "/.config/hypr/conf/extra/zoom.lua")
+hl.bind("SUPER + CTRL + mouse_down", function()
+  zoom.zoom_in()
+end)
+hl.bind("SUPER + CTRL + mouse_up", function()
+  zoom.zoom_out()
+end)
 
 -- YTDL-MPV
 hl.bind("SUPER + Y", hl.dsp.exec_cmd("ytdl-mpv"), { description = "YTDL MPV" })

@@ -3,7 +3,7 @@
 local CONFIG = {
     target_ws    = "1",
     master_ratio = 1.30,    -- Perfect for Brave
-    slave_ratio  = 0.9,    -- 40/60 for Dolphin/Foot
+    slave_ratio  = 1.0,    -- 40/60 for Dolphin/Foot
     settle_delay = 400,    -- Slightly longer for heavy apps like Brave
     step_delay   = 60,
     debug        = false,

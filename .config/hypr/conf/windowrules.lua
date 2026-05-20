@@ -55,6 +55,26 @@ hl.window_rule({
     float = true,
 })
 
+hl.window_rule({
+    name = "gamescope-content-game",
+    match = {class = "^(gamescope)$"},
+    content = "game",
+    no_anim = true,
+    no_blur = true,
+    no_shadow = true,
+    opacity = "1.0 1.0 1.0"
+})
+
+hl.window_rule({
+    name = "steam-content-game",
+    match = {class = "^steam_app_[0-9]+$"},
+    content = "game",
+    no_anim = true,
+    no_blur = true,
+    no_shadow = true,
+    opacity = "1.0 1.0 1.0"
+})
+
 -- ================================================================
 -- File & Image Dialogs
 -- ================================================================
