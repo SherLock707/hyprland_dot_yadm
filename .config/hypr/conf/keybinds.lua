@@ -233,7 +233,7 @@ hl.bind("XF86Rfkill", hl.dsp.exec_cmd(AirplaneMode), { description = "Airplane M
 -- Window Effects
 hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd(scriptsDir .. "/ChangeBlur.sh"), { description = "Toggle Blur" })
 hl.bind("SUPER + SHIFT + G", hl.dsp.exec_cmd(scriptsDir .. "/GameMode.sh"),   { description = "Game Mode" })
-hl.bind("SUPER + L",         hl.dsp.exec_cmd(scriptsDir .. "/hyprshade.sh"),  { description = "Hyprshade" })
+-- hl.bind("SUPER + L",         hl.dsp.exec_cmd(scriptsDir .. "/hyprshade.sh"),  { description = "Hyprshade" })
 
 -- Window Opacity
 hl.bind("SUPER + ALT + O", hl.dsp.exec_cmd("hyprctl setprop active opaque toggle"), { description = "Toggle Opacity" })
