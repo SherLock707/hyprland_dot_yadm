@@ -9,7 +9,7 @@
 @define-color wb-hvr-fg #f6c177;
 
 tooltip {
-    background: @main-bg;
+    background: alpha(@main-bg,0.5);
     color: @main-fg;
     border-radius: 8px;
     border-width: 0px;
@@ -99,13 +99,13 @@ tooltip {
 /* #custom-cpucat, */
 #custom-weather.sunnyDay {
     color: @main-fg;
-    background: alpha(@main-bg, 0.7);
+    background: alpha(@main-bg, 0.5); /* 0.7 */
     opacity: 1;
 	padding-top: 2px;
 	padding-bottom: 2px;
     padding-left: 6px;
     padding-right: 6px;
-    border: 0.5px solid @main-fg;
+    border: 0.5px solid alpha(@main-fg, 0.7); /* no alpha */
     border-bottom: 3px;
     border-style: solid;
     border-color: @main-fg;
