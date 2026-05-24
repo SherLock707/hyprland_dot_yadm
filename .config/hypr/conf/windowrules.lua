@@ -342,5 +342,14 @@ hl.layer_rule({ name = "noanim-kwybars", match = { namespace = "kwybars" }, no_a
 
 
 -- ---- exp ----
-hl.window_rule({ match = { class = "^forzahorizon6.exe$" }, float = true })
-hl.window_rule({ match = { class = "^forzahorizon6.exe$" }, suppress_event = "fullscreen" })
+-- hl.window_rule({ match = { class = "^forzahorizon6.exe$" }, float = true })
+-- hl.window_rule({ match = { class = "^forzahorizon6.exe$" }, suppress_event = "fullscreen" })
+hl.window_rule({ 
+                match = { class = "^forzahorizon6.exe$" }, 
+                fullscreen = true,
+                content = "game",
+                no_anim = true,
+                no_blur = true,
+                no_shadow = true,
+                opacity = "1.0 1.0 1.0"
+            })
