@@ -363,5 +363,18 @@
     "on-click": "~/.config/waybar/custom_modules/protonvpn.sh toggle",
     "interval": 5,
     "return-type": "json"
+  },
+  "custom/phone-battery": {
+    "exec": "~/.config/waybar/custom_modules/kde_connect_info.sh",
+    "return-type": "json",
+    "interval": 15,
+    "format": "{icon} {text} ",
+    "tooltip": true,
+    "format-icons": {
+        "charging": "<big><span foreground='#C1E1C1'>󰂄</span></big>",
+        "low": "<big><span foreground='#FAA0A0'>󰁺</span></big>",
+        "normal": "<big>󰁿</big>",
+        "disconnected": "<big><span foreground='#FAA0A0'>󰂃</span></big>"
+    }
   }
 }

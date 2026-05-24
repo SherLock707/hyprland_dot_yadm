@@ -24,6 +24,7 @@
 		"cava",
 		// "custom/separator#blank_1",
 		"custom/palette",
+		"custom/phone-battery",
 		"custom/netstatus",
 		"custom/proton_vpn",
 		"custom/power_outage_switch",
