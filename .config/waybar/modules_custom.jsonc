@@ -367,7 +367,7 @@
   "custom/phone-battery": {
     "exec": "~/.config/waybar/custom_modules/kde_connect_info.sh",
     "return-type": "json",
-    "interval": 15,
+    "interval": 60,
     "format": "{icon} {text} ",
     "tooltip": true,
     "format-icons": {
