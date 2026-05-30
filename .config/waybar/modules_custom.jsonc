@@ -370,6 +370,7 @@
     "interval": 60,
     "format": "{icon} {text} ",
     "tooltip": true,
+    "escape": false,
     "format-icons": {
         "charging": "<big><span foreground='#C1E1C1'>󰂄</span></big>",
         "low": "<big><span foreground='#FAA0A0'>󰁺</span></big>",

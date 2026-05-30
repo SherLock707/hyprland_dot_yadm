@@ -29,8 +29,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd(scriptsDir .. "/PortalHyprland.sh")
 
-    -- Kill leftover kde processes from previous session
-    hl.exec_cmd("pkill kde6")
 
     -- Status bar / notification / shell
     hl.exec_cmd("waybar")
@@ -44,10 +42,10 @@ hl.on("hyprland.start", function()
 
     -- Hardware / RGB
     hl.exec_cmd("sh -c 'sleep 5 && openrgb --server --startminimized -p ~/.config/OpenRGB/GPU_match_dim.orp'")
-    hl.exec_cmd("corectrl --minimize-systray")
+    hl.exec_cmd("sh -c 'sleep 5 && corectrl --minimize-systray'")
 
     -- Firewall / security
-    hl.exec_cmd("opensnitch-ui")
+    hl.exec_cmd("sh -c 'sleep 5 && opensnitch-ui --background'")
 
     -- Clipboard / idle / sunset
     hl.exec_cmd("wl-paste --watch cliphist store")
@@ -80,5 +78,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("lutris", ws2)
     hl.exec_cmd("steam", ws3)
     -- hl.exec_cmd("codium", ws4)
+
+    -- Kill leftover kde processes from previous session
+    hl.exec_cmd("sh -c 'sleep 5 && pkill kde6'")
 
 end)

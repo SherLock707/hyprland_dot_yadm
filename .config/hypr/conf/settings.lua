@@ -183,8 +183,8 @@ hl.curve("easeInSine", { type = "bezier", points = { { 0.005, 0.89 }, { 0.09, 0.
 hl.curve("rofi_curve", { type = "bezier", points = { { 0.34, -0.09 }, { 0,   0.96  } } })
 
 -- Animations
-hl.animation({ leaf = "windowsIn",        enabled = true, speed = 5,   bezier = "winIn",   style = "popin"      })
-hl.animation({ leaf = "windowsOut",       enabled = true, speed = 5,   bezier = "winOut",  style = "popin"      })
+hl.animation({ leaf = "windowsIn",        enabled = true, speed = 5,   bezier = "winIn",   style = "gnomed"      }) --popin
+hl.animation({ leaf = "windowsOut",       enabled = true, speed = 5,   bezier = "winOut",  style = "gnomed"      }) --popin
 hl.animation({ leaf = "windowsMove",      enabled = true, speed = 5,   bezier = "wind",    style = "slide"      })
 hl.animation({ leaf = "border",           enabled = true, speed = 10,  bezier = "linear"                        })
 hl.animation({ leaf = "borderangle",      enabled = true, speed = 100, bezier = "linear",  style = "loop"       })
