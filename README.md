@@ -9,6 +9,12 @@
 
 </div>
 
+> [!WARNING]
+> **Repository moved (30 May 2026):** Activity has migrated to https://codeberg.org/SherLock707/hyprland_dot_yadm.
+> 
+> This repository is archived and will no longer in use.
+
+
 ### 🖥️ **WM**: [Hyprland](https://github.com/hyprwm/Hyprland)  
 ### 🐚 **Shell**: [Fish](https://github.com/fish-shell/fish-shell)  
 ### ⏳ **Prompt**: [starship](https://github.com/starship/starship)  
